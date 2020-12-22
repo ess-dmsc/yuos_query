@@ -23,7 +23,7 @@ ProposalInfo = NamedTuple(
 )
 
 
-class ProposalSystemClient:
+class YuosClient:
     def __init__(
         self,
         url,

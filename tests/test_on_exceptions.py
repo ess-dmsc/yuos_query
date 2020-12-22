@@ -4,7 +4,7 @@ import pytest
 from gql.transport.exceptions import TransportServerError
 
 from yuos_query.exceptions import ConnectionException
-from yuos_query.proposal_system import ProposalSystemClient
+from yuos_query.proposal_system import YuosClient
 
 from .test_proposal_system_behaviour import (
     VALID_INSTRUMENT_LIST,
@@ -23,9 +23,7 @@ def test_issue_with_getting_instrument_data_from_system_raises_correct_exception
     mocked_impl = generate_standard_mock()
     mocked_impl.get_instrument_data.side_effect = TransportServerError("oops")
 
-    proposal_system = ProposalSystemClient(
-        SOME_URL, SOME_USER, SOME_PASSWORD, mocked_impl
-    )
+    proposal_system = YuosClient(SOME_URL, SOME_USER, SOME_PASSWORD, mocked_impl)
 
     with pytest.raises(ConnectionException):
         proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
@@ -35,9 +33,7 @@ def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_t
     mocked_impl = generate_standard_mock()
     mocked_impl.get_proposal_for_instrument.side_effect = TransportServerError("oops")
 
-    proposal_system = ProposalSystemClient(
-        SOME_URL, SOME_USER, SOME_PASSWORD, mocked_impl
-    )
+    proposal_system = YuosClient(SOME_URL, SOME_USER, SOME_PASSWORD, mocked_impl)
 
     with pytest.raises(ConnectionException):
         proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
@@ -46,9 +42,7 @@ def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_t
 def test_once_token_received_then_it_is_cached_for_subsequent_calls():
     mocked_impl = generate_standard_mock()
 
-    proposal_system = ProposalSystemClient(
-        SOME_URL, SOME_USER, SOME_PASSWORD, mocked_impl
-    )
+    proposal_system = YuosClient(SOME_URL, SOME_USER, SOME_PASSWORD, mocked_impl)
 
     # Multiple calls
     _ = proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
@@ -61,9 +55,7 @@ def test_once_token_received_then_it_is_cached_for_subsequent_calls():
 def test_querying_for_proposal_id_with_translates_instrument_name_into_correct_id():
     mocked_impl = generate_standard_mock()
 
-    proposal_system = ProposalSystemClient(
-        SOME_URL, SOME_USER, SOME_PASSWORD, mocked_impl
-    )
+    proposal_system = YuosClient(SOME_URL, SOME_USER, SOME_PASSWORD, mocked_impl)
     proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
 
     # This test is fragile because it relies on the order of the parameters
@@ -78,7 +70,7 @@ def test_instrument_list_is_called_if_empty_on_proposal_query():
     mocked_impl = generate_standard_mock()
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
 
-    proposal_system = ProposalSystemClient(
+    proposal_system = YuosClient(
         SOME_URL,
         SOME_USER,
         SOME_PASSWORD,

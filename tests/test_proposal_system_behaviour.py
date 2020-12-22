@@ -9,7 +9,7 @@ from yuos_query.exceptions import (
     InvalidCredentialsException,
     InvalidIdException,
 )
-from yuos_query.proposal_system import ProposalSystemClient, _ProposalSystemWrapper
+from yuos_query.proposal_system import YuosClient, _ProposalSystemWrapper
 
 # These tests can be run against the real system and should do the same as the mocked version.
 # Just need to set the environment variables "USER" and "PASSWORD"
@@ -75,10 +75,10 @@ def generate_standard_mock():
 def create_client(url, user, password, mocked_impl):
     if USE_REAL_SYSTEM:
         # Actually test against the real system
-        return ProposalSystemClient(url, user, password)
+        return YuosClient(url, user, password)
     else:
         # Use the mock
-        return ProposalSystemClient(url, user, password, mocked_impl)
+        return YuosClient(url, user, password, mocked_impl)
 
 
 def test_querying_for_proposal_by_id_with_invalid_url_raise_correct_exception_type():

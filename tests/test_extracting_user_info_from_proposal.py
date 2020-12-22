@@ -1,4 +1,4 @@
-from yuos_query.proposal_system import ProposalSystemClient
+from yuos_query.proposal_system import YuosClient
 
 
 def test_extracting_users_when_no_users_gives_no_users():
@@ -9,7 +9,7 @@ def test_extracting_users_when_no_users_gives_no_users():
         "proposer": {"firstname": "Alberto", "lastname": "Accountant"},
     }
 
-    results = ProposalSystemClient.extract_users(proposal_no_users)
+    results = YuosClient.extract_users(proposal_no_users)
     assert len(results) == 0
 
 
@@ -21,7 +21,7 @@ def test_extracting_users_when_users_not_present_gives_no_users():
         "proposer": {"firstname": "Alberto", "lastname": "Accountant"},
     }
 
-    results = ProposalSystemClient.extract_users(proposal_no_users)
+    results = YuosClient.extract_users(proposal_no_users)
     assert len(results) == 0
 
 
@@ -37,7 +37,7 @@ def test_extracting_users_when_user_missing_firstname_or_lastname_inserts_blanks
         "proposer": {"firstname": "Alberto", "lastname": "Accountant"},
     }
 
-    results = ProposalSystemClient.extract_users(proposal_missing_parts)
+    results = YuosClient.extract_users(proposal_missing_parts)
     assert len(results) == 2
     assert ("Ralf", "") in results
     assert ("", "Fields") in results
@@ -53,5 +53,5 @@ def test_extracting_proposer_when_not_present_gives_none():
         ],
     }
 
-    result = ProposalSystemClient.extract_proposer(proposal_no_proposer)
+    result = YuosClient.extract_proposer(proposal_no_proposer)
     assert result is None
