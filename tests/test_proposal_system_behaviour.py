@@ -4,7 +4,7 @@ from unittest import mock
 import pytest
 from requests.exceptions import ConnectionError
 
-from proposal_system import (
+from yuos_query.proposal_system import (
     ConnectionException,
     InvalidCredentialsException,
     InvalidIdException,

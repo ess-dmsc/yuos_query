@@ -4,7 +4,7 @@ import pytest
 import requests
 from gql.transport.exceptions import TransportServerError
 
-from proposal_system import _ProposalSystemWrapper
+from yuos_query.proposal_system import _ProposalSystemWrapper
 
 # These tests are skipped if the TEST_USER and TEST_PASSWORD environment variables are not defined
 SKIP_TEST = True

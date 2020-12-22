@@ -1,4 +1,4 @@
-from proposal_system import ProposalSystemClient
+from yuos_query.proposal_system import ProposalSystemClient
 
 
 def test_extracting_users_when_no_users_gives_no_users():

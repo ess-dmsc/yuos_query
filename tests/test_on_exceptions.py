@@ -3,7 +3,7 @@ from unittest.mock import ANY
 import pytest
 from gql.transport.exceptions import TransportServerError
 
-from proposal_system import ConnectionException, ProposalSystemClient
+from yuos_query.proposal_system import ConnectionException, ProposalSystemClient
 
 from .test_proposal_system_behaviour import (
     VALID_INSTRUMENT_LIST,
