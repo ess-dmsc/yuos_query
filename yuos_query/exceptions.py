@@ -1,14 +1,14 @@
-class BaseYuosSystemException(Exception):
+class BaseYuosException(Exception):
     pass
 
 
-class ConnectionException(BaseYuosSystemException):
+class ConnectionException(BaseYuosException):
     pass
 
 
-class InvalidIdException(BaseYuosSystemException):
+class InvalidIdException(BaseYuosException):
     pass
 
 
-class InvalidCredentialsException(BaseYuosSystemException):
+class InvalidCredentialsException(BaseYuosException):
     pass

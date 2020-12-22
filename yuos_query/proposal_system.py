@@ -6,7 +6,7 @@ from gql.transport.requests import RequestsHTTPTransport
 from requests.exceptions import ConnectionError
 
 from yuos_query.exceptions import (
-    BaseYuosSystemException,
+    BaseYuosException,
     ConnectionException,
     InvalidCredentialsException,
     InvalidIdException,
@@ -75,10 +75,10 @@ class ProposalSystemClient:
                         converted_id, proposal["title"], proposer, users
                     )
             return None
-        except BaseYuosSystemException:
+        except BaseYuosException:
             raise
         except Exception as error:
-            raise BaseYuosSystemException(error) from error
+            raise BaseYuosException(error) from error
 
     def _validate_proposal_id(self, proposal_id: str) -> int:
         # Does proposal_id conform to the expected pattern?

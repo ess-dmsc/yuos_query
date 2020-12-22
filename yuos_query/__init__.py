@@ -1,4 +1,4 @@
-from yuos_query.exceptions import BaseYuosSystemException  # noqa
+from yuos_query.exceptions import BaseYuosException  # noqa
 from yuos_query.exceptions import ConnectionException  # noqa
 from yuos_query.exceptions import InvalidCredentialsException  # noqa
 from yuos_query.exceptions import InvalidIdException  # noqa
