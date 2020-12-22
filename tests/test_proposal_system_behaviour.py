@@ -5,11 +5,11 @@ import pytest
 from requests.exceptions import ConnectionError
 
 from proposal_system import (
+    ConnectionException,
+    InvalidCredentialsException,
+    InvalidIdException,
     ProposalSystemClient,
     _ProposalSystemWrapper,
-    ConnectionException,
-    InvalidIdException,
-    InvalidCredentialsException,
 )
 
 # These tests can be run against the real system and should do the same as the mocked version.
