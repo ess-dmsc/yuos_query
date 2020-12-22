@@ -5,6 +5,13 @@ from gql.transport.exceptions import TransportServerError
 from gql.transport.requests import RequestsHTTPTransport
 from requests.exceptions import ConnectionError
 
+from yuos_query.exceptions import (
+    BaseYuosSystemException,
+    ConnectionException,
+    InvalidCredentialsException,
+    InvalidIdException,
+)
+
 ProposalInfo = NamedTuple(
     "ProposalInfo",
     (
@@ -68,10 +75,10 @@ class ProposalSystemClient:
                         converted_id, proposal["title"], proposer, users
                     )
             return None
-        except BaseProposalSystemException:
+        except BaseYuosSystemException:
             raise
         except Exception as error:
-            raise BaseProposalSystemException(error) from error
+            raise BaseYuosSystemException(error) from error
 
     def _validate_proposal_id(self, proposal_id: str) -> int:
         # Does proposal_id conform to the expected pattern?
@@ -236,19 +243,3 @@ class _ProposalSystemWrapper:
             ),
         )
         return json_data["proposals"]["proposals"]
-
-
-class BaseProposalSystemException(Exception):
-    pass
-
-
-class ConnectionException(BaseProposalSystemException):
-    pass
-
-
-class InvalidIdException(BaseProposalSystemException):
-    pass
-
-
-class InvalidCredentialsException(BaseProposalSystemException):
-    pass

@@ -4,13 +4,12 @@ from unittest import mock
 import pytest
 from requests.exceptions import ConnectionError
 
-from yuos_query.proposal_system import (
+from yuos_query.exceptions import (
     ConnectionException,
     InvalidCredentialsException,
     InvalidIdException,
-    ProposalSystemClient,
-    _ProposalSystemWrapper,
 )
+from yuos_query.proposal_system import ProposalSystemClient, _ProposalSystemWrapper
 
 # These tests can be run against the real system and should do the same as the mocked version.
 # Just need to set the environment variables "USER" and "PASSWORD"
