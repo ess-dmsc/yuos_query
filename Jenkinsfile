@@ -48,12 +48,14 @@ builders = pipeline_builder.createBuilders { container ->
 
   pipeline_builder.stage("${container.key}: Test") {
     def test_output = "TestResults.xml"
-    container.sh """
-      export PATH=/opt/miniconda/bin:$PATH
-      python --version
-      cd ${project}
-      python -m pytest --junitxml=${test_output}
-    """
+    withCredentials([usernamePassword(credentialsId: 'cow-bot-proposal-system', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
+      container.sh """
+        export PATH=/opt/miniconda/bin:$PATH
+        python --version
+        cd ${project}
+        TEST_USER=${USER} TEST_PASSWORD=${PASSWORD} python -m pytest --junitxml=${test_output}
+      """
+    }
     container.copyFrom("${project}/${test_output}", ".")
     xunit thresholds: [failed(unstableThreshold: '0')], tools: [JUnit(deleteOutputFiles: true, pattern: '*.xml', skipNoTestFiles: false, stopProcessingIfError: true)]
   } // stage
@@ -73,5 +75,3 @@ node {
   // Delete workspace when build is done
   cleanWs()
 }
-
-
