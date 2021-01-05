@@ -15,7 +15,7 @@ from yuos_query.exceptions import (
 ProposalInfo = NamedTuple(
     "ProposalInfo",
     (
-        ("id", int),
+        ("id", str),
         ("title", str),
         ("proposer", Tuple[str, str]),
         ("users", List[Tuple[str, str]]),
@@ -68,7 +68,8 @@ class YuosClient:
             data = self._get_proposal_data(inst_id)
 
             for proposal in data:
-                if "id" in proposal and proposal["id"] == converted_id:
+                # In the proposal system the proposal ID is called the shortCode
+                if "shortCode" in proposal and proposal["shortCode"] == converted_id:
                     users = self.extract_users(proposal)
                     proposer = self.extract_proposer(proposal)
                     return ProposalInfo(
@@ -80,11 +81,11 @@ class YuosClient:
         except Exception as error:
             raise BaseYuosException(error) from error
 
-    def _validate_proposal_id(self, proposal_id: str) -> int:
+    def _validate_proposal_id(self, proposal_id: str) -> str:
         # Does proposal_id conform to the expected pattern?
         try:
-            # Currently just needs to convertible to int
-            return int(proposal_id)
+            # Currently just needs to be a string
+            return str(proposal_id)
         except Exception as error:
             raise InvalidIdException(error) from error
 
@@ -225,7 +226,7 @@ class _ProposalSystemWrapper:
                 proposals(filter: {instrumentId: $INST$}){
                     totalCount
                     proposals{
-                        id
+                        shortCode
                         title
                         users {
                             firstname

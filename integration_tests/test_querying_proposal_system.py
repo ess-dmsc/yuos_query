@@ -66,7 +66,7 @@ def test_get_proposals_for_ymir_instrument():
     # We should get data back, but it may not be the same data each time!
     # So just test the structure for now
     assert len(results) > 0
-    assert "id" in results[0]
+    assert "shortCode" in results[0]
     assert "title" in results[0]
     assert "proposer" in results[0]
     assert "firstname" in results[0]["proposer"]

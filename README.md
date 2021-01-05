@@ -36,3 +36,12 @@ corresponding password:
 **All these "integration tests" should be run before submitting code and semi-regularly to check that the real server's API hasn't changed.**
 
 **Jenkins will run the tests against the real system automatically for pull requests**
+
+## Example usage
+
+```
+from yuos_query import YuosClient
+
+client = YuosClient(server_url, server_user, password)
+proposal_info = client.proposal_by_id(instrument_name, proposal_id)
+```
