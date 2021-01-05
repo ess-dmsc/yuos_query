@@ -48,12 +48,13 @@ VALID_INSTRUMENT_LIST = [
 ]
 
 UNKNOWN_INSTRUMENT_ID_RESPONSE = []
-VALID_PROPOSAL_ID = 169
+VALID_PROPOSAL_ID = "471120"
 
 # Copied from a real server
 VALID_RESPONSE_DATA = [
     {
         "id": 169,
+        "shortCode": "471120",
         "title": "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12",
         "users": [
             {"firstname": "jonathan ", "lastname": "Taylor"},
@@ -139,6 +140,15 @@ def test_querying_for_proposal_by_id_gets_correct_proposal():
     assert ("Johan", "Andersson") in results.users
 
 
+def test_when_querying_for_proposal_by_id_instrument_name_case_is_ignored():
+    mocked_impl = generate_standard_mock()
+
+    proposal_system = create_client(URL, TEST_USER, TEST_PASSWORD, mocked_impl)
+    results = proposal_system.proposal_by_id("yMIr", VALID_PROPOSAL_ID)
+
+    assert results.id == VALID_PROPOSAL_ID
+
+
 def test_querying_for_proposal_by_id_with_id_that_does_not_conform_to_pattern_raises():
     mocked_impl = generate_standard_mock()
 
@@ -172,4 +182,4 @@ def test_querying_for_unknown_proposal_id_returns_nothing():
         mocked_impl,
     )
 
-    assert proposal_system.proposal_by_id("YMIR", 1234567) is None
+    assert proposal_system.proposal_by_id("YMIR", "1234567") is None
