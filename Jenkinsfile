@@ -25,6 +25,11 @@ properties([[
   ]
 ]]);
 
+// Set periodic trigger at 9:56 every day.
+properties([
+  pipelineTriggers([cron('20 9 * * *')]),
+])
+
 pipeline_builder = new PipelineBuilder(this, container_build_nodes)
 pipeline_builder.activateEmailFailureNotifications()
 
