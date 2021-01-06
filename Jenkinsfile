@@ -25,9 +25,9 @@ properties([[
   ]
 ]]);
 
-// Set periodic trigger at 9:56 every day.
+// Set periodic trigger at 2:56 every day.
 properties([
-  pipelineTriggers([cron('20 9 * * *')]),
+  pipelineTriggers([cron('56 2 * * *')]),
 ])
 
 pipeline_builder = new PipelineBuilder(this, container_build_nodes)

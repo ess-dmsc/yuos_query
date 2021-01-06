@@ -35,7 +35,9 @@ corresponding password:
 
 **All these "integration tests" should be run before submitting code and semi-regularly to check that the real server's API hasn't changed.**
 
-**Jenkins will run the tests against the real system automatically for pull requests**
+**Jenkins will run the tests against the real system automatically for pull requests.**
+
+**Jenkins will also run the tests on main daily, so if there are breaking any API changes we will know about it.**
 
 ## Example usage
 
