@@ -84,4 +84,4 @@ def test_get_sample_list_by_id():
     )
 
     assert len(results) == 2
-    assert results[0].title in ["Camembert", "Chaource"]
+    assert {results[0]["title"], results[1]["title"]} == {"Camembert", "Chaource"}
