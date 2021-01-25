@@ -16,7 +16,7 @@ except Exception as error:
 
 setup(
     name="yuos_query",
-    version="0.1.5",
+    version="0.1.6",
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
