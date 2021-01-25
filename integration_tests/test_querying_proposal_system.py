@@ -15,6 +15,7 @@ if "TEST_USER" in os.environ:
 
 TEST_URL = "https://useroffice-test.esss.lu.se/graphql"
 YMIR_ID = 4
+KNOWN_DB_ID = 242  # Not a "proposal" ID rather the database ID.
 
 
 @pytest.mark.skipif(
@@ -92,7 +93,8 @@ def test_get_instruments_list():
     wrapper = _ProposalSystemWrapper()
 
     results = wrapper.get_instrument_data(
-        wrapper.get_token(TEST_URL, TEST_USER, TEST_PASSWORD), TEST_URL
+        wrapper.get_token(TEST_URL, TEST_USER, TEST_PASSWORD),
+        TEST_URL,
     )
 
     # We should get data back, but it may not be the same data each time!
@@ -101,3 +103,17 @@ def test_get_instruments_list():
     assert "id" in results[0]
     assert "shortCode" in results[0]
     assert "name" in results[0]
+
+
+@pytest.mark.skipif(
+    SKIP_TEST, reason="no user and password supplied for testing against real system"
+)
+def test_get_sample_list_by_id():
+    wrapper = _ProposalSystemWrapper()
+
+    results = wrapper.get_sample_data_by_id(
+        wrapper.get_token(TEST_URL, TEST_USER, TEST_PASSWORD), TEST_URL, KNOWN_DB_ID
+    )
+
+    assert len(results) == 2
+    assert results[0].title in ["Camembert", "Chaource"]

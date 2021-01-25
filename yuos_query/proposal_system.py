@@ -244,3 +244,6 @@ class _ProposalSystemWrapper:
             ),
         )
         return json_data["proposals"]["proposals"]
+
+    def get_sample_data_by_id(self, token, url, db_id):
+        pass
