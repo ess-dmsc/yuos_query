@@ -14,9 +14,12 @@ except Exception as error:
     print("COULD NOT GET LONG DESC: {}".format(error))
     LONG_DESCRIPTION = DESCRIPTION
 
+# Import version number
+from yuos_query.__init__ import __version__ as version
+
 setup(
     name="yuos_query",
-    version="0.1.6",
+    version=version,
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
