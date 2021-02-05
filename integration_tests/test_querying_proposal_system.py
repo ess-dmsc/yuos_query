@@ -85,3 +85,17 @@ def test_get_sample_list_by_id():
 
     assert len(results) == 2
     assert {results[0]["title"], results[1]["title"]} == {"Camembert", "Chaource"}
+
+
+@pytest.mark.skipif(
+    SKIP_TEST, reason="no user and password supplied for testing against real system"
+)
+def test_get_sample_details_by_proposal_id():
+    wrapper = _ProposalSystemWrapper()
+
+    results = wrapper.get_sample_details_by_proposal_id(
+        wrapper.get_token(TEST_URL, TEST_USER, TEST_PASSWORD), TEST_URL, KNOWN_DB_ID
+    )
+
+    assert len(results) == 2
+    assert "questionary" in results[0] and "questionary" in results[1]

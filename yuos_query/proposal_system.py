@@ -43,7 +43,7 @@ class YuosClient:
 
         :param instrument_name: instrument name
         :param proposal_id: proposal ID
-        :return: the proposal or None if not found
+        :return: the proposal information or None if not found
         """
         try:
             if not self.instrument_list:
@@ -70,6 +70,15 @@ class YuosClient:
             raise
         except Exception as error:
             raise BaseYuosException(error) from error
+
+    def _find_proposal(self, converted_id, data):
+        for proposal in data:
+            # In the proposal system the proposal ID is called the shortCode
+            if "shortCode" in proposal and proposal["shortCode"] == converted_id:
+                users = self.extract_users(proposal)
+                proposer = self.extract_proposer(proposal)
+                return ProposalInfo(converted_id, proposal["title"], proposer, users)
+        return None
 
     def _validate_proposal_id(self, proposal_id: str) -> str:
         # Does proposal_id conform to the expected pattern?
@@ -195,6 +204,33 @@ class _ProposalSystemWrapper:
                     proposalId
                     title
                 }
+            }
+            """.replace(
+                "$DBID$", str(db_id)
+            ),
+        )
+        return json_data["samples"]
+
+    def get_sample_details_by_proposal_id(self, token, url, db_id):
+        json_data = self.execute_query(
+            token,
+            url,
+            """
+            {
+                samples(filter: {proposalId: $DBID$})  {
+                    proposalId
+                    title
+                    questionary{
+                      steps{
+                        fields{
+                          value
+                          question{
+                            question
+                          }
+                        }
+                      }
+                    }
+                  }
             }
             """.replace(
                 "$DBID$", str(db_id)
