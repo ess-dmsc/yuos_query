@@ -131,3 +131,4 @@ def test_get_sample_details_by_proposal_id():
 
     assert len(results) == 2
     assert "questionary" in results[0] and "questionary" in results[1]
+    assert len(results[0]["questionary"]["steps"]) == 3
