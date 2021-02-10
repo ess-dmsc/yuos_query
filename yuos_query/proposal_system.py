@@ -123,13 +123,23 @@ class YuosClient:
 
     @staticmethod
     def extract_sample_info(target, data):
-        questions = YuosClient._retrieve_questions_and_answer(data)
-        for question in questions:
-            # SMELL questions inside questions
-            key_question = question["question"]["question"]
-            if key_question.lower() == target.lower():
-                return question["value"]
-        return None
+        if isinstance(target, list):
+            target = [x.lower() for x in target]
+            result = {}
+            questions = YuosClient._retrieve_questions_and_answer(data)
+            for question in questions:
+                key_question = question["question"]["question"]
+                if key_question.lower() in target:
+                    result[key_question.lower()] = question["value"]
+            return result
+        else:
+            questions = YuosClient._retrieve_questions_and_answer(data)
+            for question in questions:
+                # SMELL questions inside questions
+                key_question = question["question"]["question"]
+                if key_question.lower() == target.lower():
+                    return question["value"]
+            return None
 
     @staticmethod
     def _retrieve_questions_and_answer(data):

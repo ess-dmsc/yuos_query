@@ -348,3 +348,16 @@ def test_extracting_information_ignores_question_case():
 def test_extracting_information_for_invalid_question():
     result = YuosClient.extract_sample_info(":: not a question ::", EXAMPLE_DATA)
     assert result is None
+
+
+def test_multiple_questions_gives_correct_answers():
+    questions = ["Chemical formula", "Special Isotopes"]
+    result = YuosClient.extract_sample_info(questions, EXAMPLE_DATA)
+    assert result["chemical formula"] == "CHE3S"
+    assert not result["special isotopes"]
+
+
+def test_multiple_invalid_questions_returns_nothing():
+    questions = [":: not a question 1::", ":: not a question 2::"]
+    result = YuosClient.extract_sample_info(questions, EXAMPLE_DATA)
+    assert not result
