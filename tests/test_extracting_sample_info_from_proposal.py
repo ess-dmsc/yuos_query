@@ -338,3 +338,13 @@ def test_extract_chemical_formula():
 def test_extract_special_isotopes():
     result = YuosClient.extract_sample_info("Special Isotopes", EXAMPLE_DATA)
     assert not result
+
+
+def test_extracting_information_ignores_question_case():
+    result = YuosClient.extract_sample_info("chemical formula", EXAMPLE_DATA)
+    assert result == "CHE3S"
+
+
+def test_extracting_information_for_invalid_question():
+    result = YuosClient.extract_sample_info(":: not a question ::", EXAMPLE_DATA)
+    assert result is None
