@@ -356,3 +356,6 @@ def test_multiple_invalid_questions_returns_nothing():
     questions = [":: not a question 1::", ":: not a question 2::"]
     result = YuosClient.extract_sample_info(questions, EXAMPLE_DATA)
     assert not result
+
+
+# TODO: We need to handle the case when we have multiple samples in a single proposal.
