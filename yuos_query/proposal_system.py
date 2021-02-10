@@ -145,6 +145,18 @@ class YuosClient:
         except ConnectionError as error:
             raise ConnectionException("could not connect - wrong URL?") from error
 
+    @staticmethod
+    def extract_sample_info(target, data):
+        first_sample = data["data"]["samples"][0]
+        first_step = first_sample["questionary"]["steps"][0]
+        questions = first_step["fields"]
+        for question in questions:
+            key_question = question["question"]["question"]
+            if key_question == target:
+                return question["value"]
+
+        return key_question
+
 
 class _ProposalSystemWrapper:
     """
