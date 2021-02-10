@@ -147,15 +147,18 @@ class YuosClient:
 
     @staticmethod
     def extract_sample_info(target, data):
-        first_sample = data["data"]["samples"][0]
-        first_step = first_sample["questionary"]["steps"][0]
-        questions = first_step["fields"]
+        questions = YuosClient._retrieve_questions_and_answer(data)
         for question in questions:
+            # SMELL questions inside questions
             key_question = question["question"]["question"]
-            if key_question == target:
+            if key_question.lower() == target.lower():
                 return question["value"]
+        return None
 
-        return key_question
+    @staticmethod
+    def _retrieve_questions_and_answer(data):
+        questions = data["data"]["samples"][0]["questionary"]["steps"][0]["fields"]
+        return questions
 
 
 class _ProposalSystemWrapper:
