@@ -71,6 +71,17 @@ class YuosClient:
         except Exception as error:
             raise BaseYuosException(error) from error
 
+    def samples_by_id(self, proposal_id):
+        token = self._get_token()
+
+        try:
+            data = self.implementation.get_sample_data_by_id(
+                token, self.url, proposal_id
+            )
+            return data
+        except TransportServerError as error:
+            raise ConnectionException(f"connection issue: {error}") from error
+
     def _find_proposal(self, converted_id, data):
         for proposal in data:
             # In the proposal system the proposal ID is called the shortCode
@@ -124,10 +135,9 @@ class YuosClient:
     @staticmethod
     def extract_sample_info(target, data):
         target = [x.lower() for x in target]
-        data_l = len(data["data"]["samples"])
         results = []
-        for i in range(0, data_l):
-            questions = YuosClient._retrieve_questions_and_answer(data, i)
+        for i in range(len(data["data"]["samples"])):
+            questions = data["data"]["samples"][i]["questionary"]["steps"][0]["fields"]
             result = YuosClient._get_answers_by_question(questions, target)
             if result:
                 results.append(result)
@@ -143,11 +153,6 @@ class YuosClient:
                 result[key_question.lower()] = question["value"]
 
         return result
-
-    @staticmethod
-    def _retrieve_questions_and_answer(data, idx=0):
-        questions = data["data"]["samples"][idx]["questionary"]["steps"][0]["fields"]
-        return questions
 
 
 class _ProposalSystemWrapper:

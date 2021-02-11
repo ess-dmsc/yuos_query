@@ -138,3 +138,11 @@ class TestProposalSystem:
         proposal_system = self.create_client(unknown_id=True)
 
         assert proposal_system.proposal_by_id("YMIR", "00000") is None
+
+
+def test_querying_for_samples_by_proposal_id_returns_sample_info():
+    client = YuosClient(URL, TEST_USER, TEST_PASSWORD)
+
+    results = client.samples_by_id("242")
+
+    assert len(results) == 2    # Two samples
