@@ -183,3 +183,11 @@ def test_querying_for_unknown_proposal_id_returns_nothing():
     )
 
     assert proposal_system.proposal_by_id("YMIR", "1234567") is None
+
+
+def test_querying_for_samples_by_proposal_id_returns_sample_info():
+    client = YuosClient(URL, TEST_USER, TEST_PASSWORD)
+
+    results = client.samples_by_id("242")
+
+    assert len(results) == 2    # Two samples
