@@ -77,7 +77,7 @@ class YuosClient:
         token = self._get_token()
 
         try:
-            data = self.implementation.get_sample_data_by_id(
+            data = self.implementation.get_sample_details_by_proposal_id(
                 token, self.url, proposal_id
             )
             return data

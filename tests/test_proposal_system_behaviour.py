@@ -4,6 +4,7 @@ from unittest import mock
 import pytest
 from requests.exceptions import ConnectionError
 
+from tests.test_extracting_sample_info_from_proposal import EXAMPLE_DATA
 from yuos_query.exceptions import (
     ConnectionException,
     InvalidCredentialsException,
@@ -70,6 +71,7 @@ def generate_standard_mock():
     mocked_impl.get_token.return_value = {"login": {"token": "eyJhbG"}}
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     mocked_impl.get_proposal_for_instrument.return_value = VALID_RESPONSE_DATA
+    mocked_impl.get_sample_details_by_proposal_id.return_value = EXAMPLE_DATA
     return mocked_impl
 
 
@@ -186,8 +188,17 @@ def test_querying_for_unknown_proposal_id_returns_nothing():
 
 
 def test_querying_for_samples_by_proposal_id_returns_sample_info():
-    client = YuosClient(URL, TEST_USER, TEST_PASSWORD)
+    mocked_impl = generate_standard_mock()
 
-    results = client.samples_by_id("242")
+    proposal_system = create_client(
+        URL,
+        TEST_USER,
+        TEST_PASSWORD,
+        mocked_impl,
+    )
 
-    assert len(results) == 2    # Two samples
+    results = proposal_system.samples_by_id("242")
+
+    assert len(results) == 2  # Two samples
+
+    # TODO Finish this
