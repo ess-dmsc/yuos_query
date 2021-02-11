@@ -332,12 +332,14 @@ EXAMPLE_DATA = {
 
 def test_extract_one_question():
     result = YuosClient.extract_sample_info(["Chemical formula"], EXAMPLE_DATA)
-    assert result["chemical formula"] == "CHE3S"
+    assert len(result) == 2
+    assert result[0]["chemical formula"] == "CHE3S"
+    assert result[1]["chemical formula"] == "unknown"
 
 
 def test_extracting_information_ignores_question_case():
     result = YuosClient.extract_sample_info(["chemical formula"], EXAMPLE_DATA)
-    assert result["chemical formula"] == "CHE3S"
+    assert result[0]["chemical formula"] == "CHE3S"
 
 
 def test_extracting_information_for_invalid_question():
@@ -348,8 +350,8 @@ def test_extracting_information_for_invalid_question():
 def test_multiple_questions_gives_correct_answers():
     questions = ["Chemical formula", "Special Isotopes"]
     result = YuosClient.extract_sample_info(questions, EXAMPLE_DATA)
-    assert result["chemical formula"] == "CHE3S"
-    assert not result["special isotopes"]
+    assert result[0]["chemical formula"] == "CHE3S"
+    assert not result[0]["special isotopes"]
 
 
 def test_multiple_invalid_questions_returns_nothing():
@@ -358,5 +360,4 @@ def test_multiple_invalid_questions_returns_nothing():
     assert not result
 
 
-# TODO: We need to handle the case when we have multiple samples in a single proposal.
 # TODO: We should be able to run these tests against the real server too
