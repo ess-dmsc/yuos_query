@@ -21,7 +21,7 @@ This query will return something like:
   }
 }
 ```
-The long token string then has to be entered into the `HTTP HEADERS` section, like so:
+The long token string then has to be entered into the `HTTP HEADERS` section at the bottom, like so:
 ```
 {
   "authorization": "Bearer aVeryVeryLongStringOfCharactersThatIsTheTokenForTheEmailAddressEnteredAbove"
