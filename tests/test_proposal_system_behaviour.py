@@ -1,29 +1,16 @@
-import os
 from unittest import mock
 
 import pytest
 from requests.exceptions import ConnectionError
 
 from tests.test_extracting_sample_info_from_proposal import EXAMPLE_DATA
+from yuos_query import YuosClient
 from yuos_query.exceptions import (
     ConnectionException,
     InvalidCredentialsException,
     InvalidIdException,
 )
-from yuos_query.proposal_system import YuosClient, _ProposalSystemWrapper
-
-# These tests can be run against the real system and should do the same as the mocked version.
-# Just need to set the environment variables "USER" and "PASSWORD"
-USE_REAL_SYSTEM = True if "TEST_USER" in os.environ else False
-
-if USE_REAL_SYSTEM:
-    URL = "https://useroffice-test.esss.lu.se/graphql"
-    TEST_USER = os.environ["TEST_USER"]
-    TEST_PASSWORD = os.environ["TEST_PASSWORD"]
-else:
-    URL = "https://something.com"
-    TEST_USER = "account@ess.eu"
-    TEST_PASSWORD = "apassword"
+from yuos_query.proposal_system import _ProposalSystemWrapper
 
 # Copied from a real server
 VALID_INSTRUMENT_LIST = [
@@ -65,6 +52,10 @@ VALID_RESPONSE_DATA = [
     }
 ]
 
+URL = "https://something.com"
+TEST_USER = "account@ess.eu"
+TEST_PASSWORD = "apassword"
+
 
 def generate_standard_mock():
     mocked_impl = mock.create_autospec(_ProposalSystemWrapper)
@@ -75,130 +66,109 @@ def generate_standard_mock():
     return mocked_impl
 
 
-def create_client(url, user, password, mocked_impl):
-    if USE_REAL_SYSTEM:
-        # Actually test against the real system
-        return YuosClient(url, user, password)
-    else:
-        # Use the mock
-        return YuosClient(url, user, password, mocked_impl)
+class TestProposalSystem:
+    def create_client(
+        self,
+        invalid_url: bool = False,
+        invalid_user: bool = False,
+        invalid_password: bool = False,
+        unknown_id: bool = False,
+    ):
+        """
+        Creates a client with a mocked implementation for talking to the server.
 
+        This method should be overridden when creating a non-mocked version of
+        these tests.
 
-def test_querying_for_proposal_by_id_with_invalid_url_raise_correct_exception_type():
-    mocked_impl = generate_standard_mock()
-    mocked_impl.get_token.side_effect = ConnectionError("oops")
+        NOTE: Only activate one flag at a time!
 
-    proposal_system = create_client(
-        "https://does.not.exist",
-        TEST_USER,
-        TEST_PASSWORD,
-        mocked_impl,
-    )
+        :param invalid_url: Behave like the url is invalid.
+        :param invalid_user: Behave like the user is invalid.
+        :param invalid_password: Behave like the password is invalid.
+        :param unknown_id: Behave like the proposal id is invalid.
+        :return: A YuosClient instance.
+        """
+        mocked_impl = generate_standard_mock()
 
-    with pytest.raises(ConnectionException):
-        proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
+        if invalid_url:
+            mocked_impl.get_token.side_effect = ConnectionError("oops")
+        if invalid_user or invalid_password:
+            mocked_impl.get_token.side_effect = InvalidCredentialsException("oops")
+        if unknown_id:
+            mocked_impl.get_proposal_for_instrument.return_value = (
+                UNKNOWN_INSTRUMENT_ID_RESPONSE
+            )
 
+        return YuosClient(URL, TEST_USER, TEST_PASSWORD, mocked_impl)
 
-def test_querying_for_proposal_by_id_with_invalid_password_raise_correct_exception_type():
-    mocked_impl = generate_standard_mock()
-    mocked_impl.get_token.side_effect = InvalidCredentialsException("oops")
+    def test_querying_for_proposal_by_id_with_invalid_url_raise_correct_exception_type(
+        self,
+    ):
+        proposal_system = self.create_client(invalid_url=True)
 
-    proposal_system = create_client(
-        URL,
-        TEST_USER,
-        "wrong_password",
-        mocked_impl,
-    )
+        with pytest.raises(ConnectionException):
+            proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
 
-    with pytest.raises(InvalidCredentialsException):
-        proposal_system.proposal_by_id("loki", VALID_PROPOSAL_ID)
+    def test_querying_for_proposal_by_id_with_invalid_password_raise_correct_exception_type(
+        self,
+    ):
+        proposal_system = self.create_client(invalid_password=True)
 
+        with pytest.raises(InvalidCredentialsException):
+            proposal_system.proposal_by_id("loki", VALID_PROPOSAL_ID)
 
-def test_querying_for_proposal_by_id_with_invalid_user_raise_correct_exception_type():
-    mocked_impl = generate_standard_mock()
-    mocked_impl.get_token.side_effect = InvalidCredentialsException("oops")
+    def test_querying_for_proposal_by_id_with_invalid_user_raise_correct_exception_type(
+        self,
+    ):
+        proposal_system = self.create_client(invalid_user=True)
 
-    proposal_system = create_client(
-        URL,
-        "wrong_user",
-        TEST_PASSWORD,
-        mocked_impl,
-    )
+        with pytest.raises(InvalidCredentialsException):
+            proposal_system.proposal_by_id("loki", VALID_PROPOSAL_ID)
 
-    with pytest.raises(InvalidCredentialsException):
-        proposal_system.proposal_by_id("loki", VALID_PROPOSAL_ID)
+    def test_querying_for_proposal_by_id_gets_correct_proposal(self):
+        proposal_system = self.create_client()
 
+        results = proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
 
-def test_querying_for_proposal_by_id_gets_correct_proposal():
-    mocked_impl = generate_standard_mock()
+        assert results.id == VALID_PROPOSAL_ID
+        assert results.title.startswith("The magnetic field dependence")
+        assert results.proposer == ("Fredrik-user", "Bolmsten")
+        assert len(results.users) == 2
+        assert ("Johan", "Andersson") in results.users
 
-    proposal_system = create_client(URL, TEST_USER, TEST_PASSWORD, mocked_impl)
-    results = proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
+    def test_when_querying_for_proposal_by_id_instrument_name_case_is_ignored(self):
+        proposal_system = self.create_client()
 
-    assert results.id == VALID_PROPOSAL_ID
-    assert results.title.startswith("The magnetic field dependence")
-    assert results.proposer == ("Fredrik-user", "Bolmsten")
-    assert len(results.users) == 2
-    assert ("Johan", "Andersson") in results.users
+        results = proposal_system.proposal_by_id("yMIr", VALID_PROPOSAL_ID)
 
+        assert results.id == VALID_PROPOSAL_ID
 
-def test_when_querying_for_proposal_by_id_instrument_name_case_is_ignored():
-    mocked_impl = generate_standard_mock()
+    def test_querying_for_proposal_by_id_with_id_that_does_not_conform_to_pattern_raises(
+        self,
+    ):
+        proposal_system = self.create_client()
 
-    proposal_system = create_client(URL, TEST_USER, TEST_PASSWORD, mocked_impl)
-    results = proposal_system.proposal_by_id("yMIr", VALID_PROPOSAL_ID)
+        with pytest.raises(InvalidIdException):
+            proposal_system.proposal_by_id("loki", "abc")
 
-    assert results.id == VALID_PROPOSAL_ID
+    def test_querying_for_proposal_id_with_unknown_instrument_raises_correct_exception_type(
+        self,
+    ):
+        proposal_system = self.create_client()
 
+        with pytest.raises(InvalidIdException):
+            proposal_system.proposal_by_id("::unknown instrument::", VALID_PROPOSAL_ID)
 
-def test_querying_for_proposal_by_id_with_id_that_does_not_conform_to_pattern_raises():
-    mocked_impl = generate_standard_mock()
+    def test_querying_for_unknown_proposal_id_returns_nothing(self):
+        proposal_system = self.create_client(unknown_id=True)
 
-    proposal_system = create_client(URL, TEST_USER, TEST_PASSWORD, mocked_impl)
+        assert proposal_system.proposal_by_id("YMIR", "1234567") is None
 
-    with pytest.raises(InvalidIdException):
-        proposal_system.proposal_by_id("loki", "abc")
+    def test_querying_for_samples_by_proposal_id_returns_sample_info(self):
+        proposal_system = self.create_client()
 
+        results = proposal_system.samples_by_id("242")
 
-def test_querying_for_proposal_id_with_unknown_instrument_raises_correct_exception_type():
-    mocked_impl = generate_standard_mock()
+        assert len(results) == 2  # Two samples
 
-    proposal_system = create_client(URL, TEST_USER, TEST_PASSWORD, mocked_impl)
-
-    with pytest.raises(InvalidIdException):
-        proposal_system.proposal_by_id(
-            "instrument that does not exist", VALID_PROPOSAL_ID
-        )
-
-
-def test_querying_for_unknown_proposal_id_returns_nothing():
-    mocked_impl = generate_standard_mock()
-    mocked_impl.get_proposal_for_instrument.return_value = (
-        UNKNOWN_INSTRUMENT_ID_RESPONSE
-    )
-
-    proposal_system = create_client(
-        URL,
-        TEST_USER,
-        TEST_PASSWORD,
-        mocked_impl,
-    )
-
-    assert proposal_system.proposal_by_id("YMIR", "1234567") is None
-
-
-def test_querying_for_samples_by_proposal_id_returns_sample_info():
-    mocked_impl = generate_standard_mock()
-
-    proposal_system = create_client(
-        URL,
-        TEST_USER,
-        TEST_PASSWORD,
-        mocked_impl,
-    )
-
-    results = proposal_system.samples_by_id("242")
-
-    assert len(results) == 2  # Two samples
-
-    # TODO Finish this
+        # TODO Finish this
