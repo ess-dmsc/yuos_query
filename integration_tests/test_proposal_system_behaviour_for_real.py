@@ -5,11 +5,11 @@ import pytest
 from tests.test_proposal_system_behaviour import TestProposalSystem
 from yuos_query import YuosClient
 
-# These tests are skipped if the TEST_TOKEN environment variable is not defined
+# These tests are skipped if the YUOS_TOKEN environment variable is not defined
 SKIP_TEST = True
-if "TEST_TOKEN" in os.environ:
+if "YUOS_TOKEN" in os.environ:
     SKIP_TEST = False
-    TEST_TOKEN = os.environ["TEST_TOKEN"]
+    YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
 
 @pytest.mark.skipif(SKIP_TEST, reason="Not set to test against real system")
@@ -38,6 +38,6 @@ class TestProposalSystemReal(TestProposalSystem):
             else "https://useroffice-test.esss.lu.se/graphql"
         )
 
-        return YuosClient(url, TEST_TOKEN)
+        return YuosClient(url, YUOS_TOKEN)
 
     # Tests are inherited from TestProposalSystem
