@@ -7,8 +7,6 @@ from gql.transport.exceptions import TransportServerError
 from yuos_query.proposal_system import _ProposalSystemWrapper
 
 # These tests are skipped if the TEST_USER and TEST_PASSWORD environment variables are not defined
-OLD_STYLE_TOKEN = {"login": {"token": None}}
-
 SKIP_TEST = True
 if "TEST_USER" in os.environ:
     SKIP_TEST = False
@@ -18,6 +16,8 @@ if "TEST_USER" in os.environ:
 
 TEST_URL = "https://useroffice-test.esss.lu.se/graphql"
 YMIR_ID = 4
+
+OLD_STYLE_TOKEN = {"login": {"token": None}}
 
 
 @pytest.mark.skipif(
@@ -81,11 +81,11 @@ def test_get_proposals_for_ymir_instrument():
     SKIP_TEST, reason="no user and password supplied for testing against real system"
 )
 def test_invalid_token_raises_transport_error():
-    invalid_token = {"login": {"token": "some random nonsense ewrewrew"}}
-
     with pytest.raises(TransportServerError):
         wrapper = _ProposalSystemWrapper()
-        _ = wrapper.get_proposal_for_instrument(invalid_token, TEST_URL, YMIR_ID)
+        _ = wrapper.get_proposal_for_instrument(
+            OLD_STYLE_TOKEN, TEST_URL, YMIR_ID, ":: not a valid token ::"
+        )
 
 
 @pytest.mark.skipif(
