@@ -7,11 +7,14 @@ from gql.transport.exceptions import TransportServerError
 from yuos_query.proposal_system import _ProposalSystemWrapper
 
 # These tests are skipped if the TEST_USER and TEST_PASSWORD environment variables are not defined
+OLD_STYLE_TOKEN = {"login": {"token": None}}
+
 SKIP_TEST = True
 if "TEST_USER" in os.environ:
     SKIP_TEST = False
     TEST_USER = os.environ["TEST_USER"]
     TEST_PASSWORD = os.environ["TEST_PASSWORD"]
+    TEST_TOKEN = os.environ["TEST_TOKEN"]
 
 TEST_URL = "https://useroffice-test.esss.lu.se/graphql"
 YMIR_ID = 4
@@ -60,7 +63,7 @@ def test_if_password_wrong_then_get_no_token():
 def test_get_proposals_for_ymir_instrument():
     wrapper = _ProposalSystemWrapper()
     results = wrapper.get_proposal_for_instrument(
-        wrapper.get_token(TEST_URL, TEST_USER, TEST_PASSWORD), TEST_URL, YMIR_ID
+        OLD_STYLE_TOKEN, TEST_URL, YMIR_ID, TEST_TOKEN
     )
 
     # We should get data back, but it may not be the same data each time!
@@ -91,9 +94,7 @@ def test_invalid_token_raises_transport_error():
 def test_get_instruments_list():
     wrapper = _ProposalSystemWrapper()
 
-    results = wrapper.get_instrument_data(
-        wrapper.get_token(TEST_URL, TEST_USER, TEST_PASSWORD), TEST_URL
-    )
+    results = wrapper.get_instrument_data(OLD_STYLE_TOKEN, TEST_URL, TEST_TOKEN)
 
     # We should get data back, but it may not be the same data each time!
     # So just test the structure for now

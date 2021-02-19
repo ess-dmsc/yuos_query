@@ -198,7 +198,9 @@ class _ProposalSystemWrapper:
             query = gql(query_json)
             return session.execute(query)
 
-    def get_instrument_data(self, token, url):
+    def get_instrument_data(self, token, url, foo=None):
+        if foo:
+            token["login"]["token"] = foo
         json_data = self.execute_query(
             token,
             url,
@@ -217,7 +219,9 @@ class _ProposalSystemWrapper:
         )
         return json_data["instruments"]["instruments"]
 
-    def get_proposal_for_instrument(self, token, url, instrument_id):
+    def get_proposal_for_instrument(self, token, url, instrument_id, foo=None):
+        if foo:
+            token["login"]["token"] = foo
         json_data = self.execute_query(
             token,
             url,
