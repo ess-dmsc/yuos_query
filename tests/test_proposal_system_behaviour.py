@@ -54,6 +54,7 @@ VALID_RESPONSE_DATA = [
 URL = "https://something.com"
 TEST_USER = "account@ess.eu"
 TEST_PASSWORD = "apassword"
+TEST_TOKEN = "not_a_real_token"
 
 
 def generate_standard_mock():
@@ -97,7 +98,7 @@ class TestProposalSystem:
                 UNKNOWN_INSTRUMENT_ID_RESPONSE
             )
 
-        return YuosClient(URL, TEST_USER, TEST_PASSWORD, mocked_impl)
+        return YuosClient(URL, TEST_USER, TEST_PASSWORD, mocked_impl, TEST_TOKEN)
 
     def test_querying_for_proposal_by_id_with_invalid_url_raise_correct_exception_type(
         self,

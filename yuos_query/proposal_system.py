@@ -8,7 +8,6 @@ from requests.exceptions import ConnectionError
 from yuos_query.exceptions import (
     BaseYuosException,
     ConnectionException,
-    InvalidCredentialsException,
     InvalidIdException,
 )
 
@@ -30,11 +29,12 @@ class YuosClient:
         user,
         password,
         implementation=None,
+        token=None,
     ):
         self.url = url
         self.user = user
         self.password = password
-        self.token = None
+        self.token = token
         self.implementation = (
             implementation if implementation else _ProposalSystemWrapper()
         )
@@ -127,19 +127,18 @@ class YuosClient:
             ]
         return []
 
+    # TODO: don't need this, but used by mocks...
     def _get_token(self):
-        if self.token:
-            return self.token
+        # if self.token:
+        #     return self.token
 
         try:
-            self.token = self.implementation.get_token(
-                self.url, self.user, self.password
-            )
-            if self.token["login"]["token"] is None:
-                self.token = None
-                raise InvalidCredentialsException(
-                    "could not obtain token - incorrect credentials?"
-                )
+            self.implementation.get_token(self.url, self.user, self.password)
+            # if self.token["login"]["token"] is None:
+            #     self.token = None
+            #     raise InvalidCredentialsException(
+            #         "could not obtain token - incorrect credentials?"
+            #     )
             return self.token
         except ConnectionError as error:
             raise ConnectionException("could not connect - wrong URL?") from error
