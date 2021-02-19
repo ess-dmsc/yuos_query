@@ -23,17 +23,8 @@ ProposalInfo = NamedTuple(
 
 
 class YuosClient:
-    def __init__(
-        self,
-        url,
-        user,
-        password,
-        implementation=None,
-        token=None,
-    ):
+    def __init__(self, url, token, implementation=None):
         self.url = url
-        self.user = user
-        self.password = password
         self.token = token
         self.implementation = (
             implementation if implementation else _ProposalSystemWrapper()
@@ -41,12 +32,12 @@ class YuosClient:
         self.instrument_list = {}
 
     def _get_instruments(self):
-        token = self._get_token()
-
         try:
-            data = self.implementation.get_instrument_data(token, self.url)
+            data = self.implementation.get_instrument_data(self.token, self.url)
             return {inst["id"]: inst["shortCode"].lower() for inst in data}
         except TransportServerError as error:
+            raise ConnectionException(f"connection issue: {error}") from error
+        except ConnectionError as error:
             raise ConnectionException(f"connection issue: {error}") from error
 
     def proposal_by_id(
@@ -76,6 +67,8 @@ class YuosClient:
                         converted_id, proposal["title"], proposer, users
                     )
             return None
+        except TransportServerError as error:
+            raise ConnectionException(f"connection issue: {error}") from error
         except BaseYuosException:
             raise
         except Exception as error:
@@ -97,11 +90,9 @@ class YuosClient:
         raise InvalidIdException(f"instrument {instrument_name} not recognised")
 
     def _get_proposal_data(self, instrument_id):
-        token = self._get_token()
-
         try:
             data = self.implementation.get_proposal_for_instrument(
-                token, self.url, instrument_id
+                self.token, self.url, instrument_id
             )
             return data
         except TransportServerError as error:
@@ -127,38 +118,11 @@ class YuosClient:
             ]
         return []
 
-    # TODO: don't need this, but used by mocks...
-    def _get_token(self):
-        # if self.token:
-        #     return self.token
-
-        try:
-            self.implementation.get_token()
-            # if self.token["login"]["token"] is None:
-            #     self.token = None
-            #     raise InvalidCredentialsException(
-            #         "could not obtain token - incorrect credentials?"
-            #     )
-            return self.token
-        except ConnectionError as error:
-            raise ConnectionException("could not connect - wrong URL?") from error
-
 
 class _ProposalSystemWrapper:
     """
     Don't use this directly instead use the ProposalSystem class.
     """
-
-    def get_token(self):
-        """
-        Function for getting a token from the proposal system.
-
-        :param url: the proposal system URL
-        :param user: the username
-        :param password: the password associated with the user
-        :return: the JSON response
-        """
-        return None
 
     def execute_query(self, token, url, query_json):
         """
@@ -169,7 +133,7 @@ class _ProposalSystemWrapper:
         :param query_json: the query to make
         :return: the JSON response
         """
-        token = f"Bearer {token['login']['token']}"
+        token = f"Bearer {token}"
         transport = RequestsHTTPTransport(
             url=url,
             verify=True,
@@ -180,9 +144,7 @@ class _ProposalSystemWrapper:
             query = gql(query_json)
             return session.execute(query)
 
-    def get_instrument_data(self, token, url, foo=None):
-        if foo:
-            token["login"]["token"] = foo
+    def get_instrument_data(self, token, url):
         json_data = self.execute_query(
             token,
             url,
@@ -201,9 +163,7 @@ class _ProposalSystemWrapper:
         )
         return json_data["instruments"]["instruments"]
 
-    def get_proposal_for_instrument(self, token, url, instrument_id, foo=None):
-        if foo:
-            token["login"]["token"] = foo
+    def get_proposal_for_instrument(self, token, url, instrument_id):
         json_data = self.execute_query(
             token,
             url,
