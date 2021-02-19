@@ -26,11 +26,11 @@ actually connect to a real server and are, thus, a bit slower to run.
 Some of the integration_tests are exactly the same as the programmer tests but run against the real system.
 Again, when run against the real server these tests are a bit slower to run.
 
-To run these tests, the `TEST_USER` and `TEST_PASSWORD` environment variables must be set using a real user (with the correct permissions) and the
+To run these tests, the `TEST_TOKEN` environment variable must be set to the value of the token in blackbox and the
 corresponding password:
 
 ```
-> TEST_USER=<the username> TEST_PASSWORD=<the password> pytest
+> TEST_TOKEN=<the long token string> pytest
 ```
 
 **All these "integration tests" should be run before submitting code and semi-regularly to check that the real server's API hasn't changed.**
@@ -44,6 +44,6 @@ corresponding password:
 ```
 from yuos_query import YuosClient
 
-client = YuosClient(server_url, server_user, password)
+client = YuosClient("some url", "token string from blackbox")
 proposal_info = client.proposal_by_id(instrument_name, proposal_id)
 ```
