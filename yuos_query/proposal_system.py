@@ -32,13 +32,8 @@ class YuosClient:
         self.instrument_list = {}
 
     def _get_instruments(self):
-        try:
-            data = self.implementation.get_instrument_data(self.token, self.url)
-            return {inst["id"]: inst["shortCode"].lower() for inst in data}
-        except TransportServerError as error:
-            raise ConnectionException(f"connection issue: {error}") from error
-        except ConnectionError as error:
-            raise ConnectionException(f"connection issue: {error}") from error
+        data = self.implementation.get_instrument_data(self.token, self.url)
+        return {inst["id"]: inst["shortCode"].lower() for inst in data}
 
     def proposal_by_id(
         self, instrument_name: str, proposal_id: str
@@ -69,6 +64,8 @@ class YuosClient:
             return None
         except TransportServerError as error:
             raise ConnectionException(f"connection issue: {error}") from error
+        except ConnectionError as error:
+            raise ConnectionException(f"connection issue: {error}") from error
         except BaseYuosException:
             raise
         except Exception as error:
@@ -90,13 +87,10 @@ class YuosClient:
         raise InvalidIdException(f"instrument {instrument_name} not recognised")
 
     def _get_proposal_data(self, instrument_id):
-        try:
-            data = self.implementation.get_proposal_for_instrument(
-                self.token, self.url, instrument_id
-            )
-            return data
-        except TransportServerError as error:
-            raise ConnectionException(f"connection issue: {error}") from error
+        data = self.implementation.get_proposal_for_instrument(
+            self.token, self.url, instrument_id
+        )
+        return data
 
     @staticmethod
     def extract_proposer(proposal):

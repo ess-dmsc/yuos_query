@@ -15,7 +15,7 @@ SOME_URL = "https://something.com"
 SOME_USER = "account@ess.eu"
 SOME_PASSWORD = "apassword"
 SOME_TOKEN = "not_a_real_token"
-VALID_PROPOSAL_ID = 169
+VALID_PROPOSAL_ID = "169"
 YMIR_INFO = (4, "YMIR")
 
 

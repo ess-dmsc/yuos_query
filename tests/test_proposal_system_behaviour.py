@@ -7,7 +7,7 @@ from yuos_query import YuosClient
 from yuos_query.exceptions import ConnectionException, InvalidIdException
 from yuos_query.proposal_system import _ProposalSystemWrapper
 
-# Copied from a real server
+# Copied from the real server
 VALID_INSTRUMENT_LIST = [
     {"id": 4, "shortCode": "YMIR", "description": "Our test beamline", "name": "YMIR"},
     {
@@ -33,7 +33,7 @@ VALID_INSTRUMENT_LIST = [
 UNKNOWN_INSTRUMENT_ID_RESPONSE = []
 VALID_PROPOSAL_ID = "471120"
 
-# Copied from a real server
+# Copied from the real server
 VALID_RESPONSE_DATA = [
     {
         "id": 169,
@@ -46,11 +46,6 @@ VALID_RESPONSE_DATA = [
         "proposer": {"firstname": "Fredrik-user", "lastname": "Bolmsten"},
     }
 ]
-
-URL = "https://something.com"
-TEST_USER = "account@ess.eu"
-TEST_PASSWORD = "apassword"
-TEST_TOKEN = "not_a_real_token"
 
 
 def generate_standard_mock():
@@ -87,14 +82,17 @@ class TestProposalSystem:
         if invalid_url:
             mocked_impl.get_instrument_data.side_effect = ConnectionError("oops")
             mocked_impl.execute_query.side_effect = ConnectionError("oops")
+            mocked_impl.get_proposal_for_instrument.side_effect = ConnectionError(
+                "oops"
+            )
         if unknown_id:
             mocked_impl.get_proposal_for_instrument.return_value = (
                 UNKNOWN_INSTRUMENT_ID_RESPONSE
             )
 
-        return YuosClient(URL, TEST_TOKEN, mocked_impl)
+        return YuosClient("https://something.com", "not_a_real_token", mocked_impl)
 
-    def test_querying_for_proposal_by_id_with_invalid_url_raise_correct_exception_type(
+    def test_querying_for_proposal_by_id_with_invalid_url_raises(
         self,
     ):
         proposal_system = self.create_client(invalid_url=True)
@@ -128,7 +126,7 @@ class TestProposalSystem:
         with pytest.raises(InvalidIdException):
             proposal_system.proposal_by_id("loki", "abc")
 
-    def test_querying_for_proposal_id_with_unknown_instrument_raises_correct_exception_type(
+    def test_querying_for_proposal_id_with_unknown_instrument_raises(
         self,
     ):
         proposal_system = self.create_client()
