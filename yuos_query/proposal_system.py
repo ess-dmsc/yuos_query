@@ -133,7 +133,7 @@ class YuosClient:
         #     return self.token
 
         try:
-            self.implementation.get_token(self.url, self.user, self.password)
+            self.implementation.get_token()
             # if self.token["login"]["token"] is None:
             #     self.token = None
             #     raise InvalidCredentialsException(
@@ -149,7 +149,7 @@ class _ProposalSystemWrapper:
     Don't use this directly instead use the ProposalSystem class.
     """
 
-    def get_token(self, url, user, password):
+    def get_token(self):
         """
         Function for getting a token from the proposal system.
 
@@ -158,24 +158,7 @@ class _ProposalSystemWrapper:
         :param password: the password associated with the user
         :return: the JSON response
         """
-        transport = RequestsHTTPTransport(url=url, verify=True)
-        client = Client(transport=transport, fetch_schema_from_transport=True)
-        with client as session:
-            assert client.schema is not None
-            query = gql(
-                """
-                mutation{
-                    login(email: "$USER$", password: "$PASSWORD$"){
-                        token
-                    }
-                }
-                """.replace(
-                    "$USER$", user
-                ).replace(
-                    "$PASSWORD$", password
-                )
-            )
-            return session.execute(query)
+        return None
 
     def execute_query(self, token, url, query_json):
         """
