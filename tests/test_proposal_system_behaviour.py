@@ -4,14 +4,10 @@ import pytest
 from requests.exceptions import ConnectionError
 
 from yuos_query import YuosClient
-from yuos_query.exceptions import (
-    ConnectionException,
-    InvalidCredentialsException,
-    InvalidIdException,
-)
+from yuos_query.exceptions import ConnectionException, InvalidIdException
 from yuos_query.proposal_system import _ProposalSystemWrapper
 
-# Copied from a real server
+# Copied from the real server
 VALID_INSTRUMENT_LIST = [
     {"id": 4, "shortCode": "YMIR", "description": "Our test beamline", "name": "YMIR"},
     {
@@ -37,7 +33,7 @@ VALID_INSTRUMENT_LIST = [
 UNKNOWN_INSTRUMENT_ID_RESPONSE = []
 VALID_PROPOSAL_ID = "471120"
 
-# Copied from a real server
+# Copied from the real server
 VALID_RESPONSE_DATA = [
     {
         "id": 169,
@@ -51,14 +47,9 @@ VALID_RESPONSE_DATA = [
     }
 ]
 
-URL = "https://something.com"
-TEST_USER = "account@ess.eu"
-TEST_PASSWORD = "apassword"
-
 
 def generate_standard_mock():
     mocked_impl = mock.create_autospec(_ProposalSystemWrapper)
-    mocked_impl.get_token.return_value = {"login": {"token": "eyJhbG"}}
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     mocked_impl.get_proposal_for_instrument.return_value = VALID_RESPONSE_DATA
     return mocked_impl
@@ -89,39 +80,25 @@ class TestProposalSystem:
         mocked_impl = generate_standard_mock()
 
         if invalid_url:
-            mocked_impl.get_token.side_effect = ConnectionError("oops")
-        if invalid_user or invalid_password:
-            mocked_impl.get_token.side_effect = InvalidCredentialsException("oops")
+            mocked_impl.get_instrument_data.side_effect = ConnectionError("oops")
+            mocked_impl.execute_query.side_effect = ConnectionError("oops")
+            mocked_impl.get_proposal_for_instrument.side_effect = ConnectionError(
+                "oops"
+            )
         if unknown_id:
             mocked_impl.get_proposal_for_instrument.return_value = (
                 UNKNOWN_INSTRUMENT_ID_RESPONSE
             )
 
-        return YuosClient(URL, TEST_USER, TEST_PASSWORD, mocked_impl)
+        return YuosClient("https://something.com", "not_a_real_token", mocked_impl)
 
-    def test_querying_for_proposal_by_id_with_invalid_url_raise_correct_exception_type(
+    def test_querying_for_proposal_by_id_with_invalid_url_raises(
         self,
     ):
         proposal_system = self.create_client(invalid_url=True)
 
         with pytest.raises(ConnectionException):
             proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
-
-    def test_querying_for_proposal_by_id_with_invalid_password_raise_correct_exception_type(
-        self,
-    ):
-        proposal_system = self.create_client(invalid_password=True)
-
-        with pytest.raises(InvalidCredentialsException):
-            proposal_system.proposal_by_id("loki", VALID_PROPOSAL_ID)
-
-    def test_querying_for_proposal_by_id_with_invalid_user_raise_correct_exception_type(
-        self,
-    ):
-        proposal_system = self.create_client(invalid_user=True)
-
-        with pytest.raises(InvalidCredentialsException):
-            proposal_system.proposal_by_id("loki", VALID_PROPOSAL_ID)
 
     def test_querying_for_proposal_by_id_gets_correct_proposal(self):
         proposal_system = self.create_client()
@@ -149,7 +126,7 @@ class TestProposalSystem:
         with pytest.raises(InvalidIdException):
             proposal_system.proposal_by_id("loki", "abc")
 
-    def test_querying_for_proposal_id_with_unknown_instrument_raises_correct_exception_type(
+    def test_querying_for_proposal_id_with_unknown_instrument_raises(
         self,
     ):
         proposal_system = self.create_client()

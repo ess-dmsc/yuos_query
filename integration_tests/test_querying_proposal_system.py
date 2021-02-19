@@ -6,62 +6,33 @@ from gql.transport.exceptions import TransportServerError
 
 from yuos_query.proposal_system import _ProposalSystemWrapper
 
-# These tests are skipped if the TEST_USER and TEST_PASSWORD environment variables are not defined
+# These tests are skipped if the YUOS_TOKEN environment variable is not defined
 SKIP_TEST = True
-if "TEST_USER" in os.environ:
+if "YUOS_TOKEN" in os.environ:
     SKIP_TEST = False
-    TEST_USER = os.environ["TEST_USER"]
-    TEST_PASSWORD = os.environ["TEST_PASSWORD"]
+    YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
 TEST_URL = "https://useroffice-test.esss.lu.se/graphql"
 YMIR_ID = 4
 
 
 @pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
-)
-def test_can_get_token_for_test_user():
-    result = _ProposalSystemWrapper().get_token(TEST_URL, TEST_USER, TEST_PASSWORD)
-    assert result["login"]["token"] is not None
-
-
-@pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
+    SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_if_url_does_not_exist_raises():
-    does_not_exist = TEST_URL.replace("e", "")
+    url_does_not_exist = TEST_URL.replace("e", "")
     with pytest.raises(requests.exceptions.ConnectionError):
-        _ProposalSystemWrapper().get_token(does_not_exist, TEST_USER, TEST_PASSWORD)
+        _ProposalSystemWrapper().get_proposal_for_instrument(
+            YUOS_TOKEN, url_does_not_exist, YMIR_ID
+        )
 
 
 @pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
-)
-def test_if_user_does_not_exist_then_get_no_token():
-    result = _ProposalSystemWrapper().get_token(
-        TEST_URL, "not.real@ess.eu", TEST_PASSWORD
-    )
-    assert result["login"]["token"] is None
-
-
-@pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
-)
-def test_if_password_wrong_then_get_no_token():
-    result = _ProposalSystemWrapper().get_token(
-        TEST_URL, TEST_USER, "unlikely_to_be_right"
-    )
-    assert result["login"]["token"] is None
-
-
-@pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
+    SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_get_proposals_for_ymir_instrument():
     wrapper = _ProposalSystemWrapper()
-    results = wrapper.get_proposal_for_instrument(
-        wrapper.get_token(TEST_URL, TEST_USER, TEST_PASSWORD), TEST_URL, YMIR_ID
-    )
+    results = wrapper.get_proposal_for_instrument(YUOS_TOKEN, TEST_URL, YMIR_ID)
 
     # We should get data back, but it may not be the same data each time!
     # So just test the structure for now
@@ -75,25 +46,23 @@ def test_get_proposals_for_ymir_instrument():
 
 
 @pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
+    SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_invalid_token_raises_transport_error():
-    invalid_token = {"login": {"token": "some random nonsense ewrewrew"}}
-
     with pytest.raises(TransportServerError):
         wrapper = _ProposalSystemWrapper()
-        _ = wrapper.get_proposal_for_instrument(invalid_token, TEST_URL, YMIR_ID)
+        _ = wrapper.get_proposal_for_instrument(
+            ":: not a valid token ::", TEST_URL, YMIR_ID
+        )
 
 
 @pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
+    SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_get_instruments_list():
     wrapper = _ProposalSystemWrapper()
 
-    results = wrapper.get_instrument_data(
-        wrapper.get_token(TEST_URL, TEST_USER, TEST_PASSWORD), TEST_URL
-    )
+    results = wrapper.get_instrument_data(YUOS_TOKEN, TEST_URL)
 
     # We should get data back, but it may not be the same data each time!
     # So just test the structure for now

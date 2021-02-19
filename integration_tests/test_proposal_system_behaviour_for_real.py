@@ -5,10 +5,14 @@ import pytest
 from tests.test_proposal_system_behaviour import TestProposalSystem
 from yuos_query import YuosClient
 
-USE_REAL_SYSTEM = True if "TEST_USER" in os.environ else False
+# These tests are skipped if the YUOS_TOKEN environment variable is not defined
+SKIP_TEST = True
+if "YUOS_TOKEN" in os.environ:
+    SKIP_TEST = False
+    YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
 
-@pytest.mark.skipif(not USE_REAL_SYSTEM, reason="Not set to test against real system")
+@pytest.mark.skipif(SKIP_TEST, reason="Not set to test against real system")
 class TestProposalSystemReal(TestProposalSystem):
     def create_client(
         self,
@@ -33,11 +37,7 @@ class TestProposalSystemReal(TestProposalSystem):
             if invalid_url
             else "https://useroffice-test.esss.lu.se/graphql"
         )
-        user = "::not a user::" if invalid_user else os.environ["TEST_USER"]
-        password = (
-            "::invalid password::" if invalid_password else os.environ["TEST_PASSWORD"]
-        )
 
-        return YuosClient(url, user, password)
+        return YuosClient(url, YUOS_TOKEN)
 
     # Tests are inherited from TestProposalSystem
