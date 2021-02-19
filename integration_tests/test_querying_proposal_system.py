@@ -21,44 +21,18 @@ OLD_STYLE_TOKEN = {"login": {"token": None}}
 
 
 @pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
-)
-def test_can_get_token_for_test_user():
-    result = _ProposalSystemWrapper().get_token(TEST_URL, TEST_USER, TEST_PASSWORD)
-    assert result["login"]["token"] is not None
-
-
-@pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
+    SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_if_url_does_not_exist_raises():
     does_not_exist = TEST_URL.replace("e", "")
     with pytest.raises(requests.exceptions.ConnectionError):
-        _ProposalSystemWrapper().get_token(does_not_exist, TEST_USER, TEST_PASSWORD)
+        _ProposalSystemWrapper().get_proposal_for_instrument(
+            OLD_STYLE_TOKEN, does_not_exist, YMIR_ID, TEST_TOKEN
+        )
 
 
 @pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
-)
-def test_if_user_does_not_exist_then_get_no_token():
-    result = _ProposalSystemWrapper().get_token(
-        TEST_URL, "not.real@ess.eu", TEST_PASSWORD
-    )
-    assert result["login"]["token"] is None
-
-
-@pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
-)
-def test_if_password_wrong_then_get_no_token():
-    result = _ProposalSystemWrapper().get_token(
-        TEST_URL, TEST_USER, "unlikely_to_be_right"
-    )
-    assert result["login"]["token"] is None
-
-
-@pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
+    SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_get_proposals_for_ymir_instrument():
     wrapper = _ProposalSystemWrapper()
@@ -78,7 +52,7 @@ def test_get_proposals_for_ymir_instrument():
 
 
 @pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
+    SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_invalid_token_raises_transport_error():
     with pytest.raises(TransportServerError):
@@ -89,7 +63,7 @@ def test_invalid_token_raises_transport_error():
 
 
 @pytest.mark.skipif(
-    SKIP_TEST, reason="no user and password supplied for testing against real system"
+    SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_get_instruments_list():
     wrapper = _ProposalSystemWrapper()
