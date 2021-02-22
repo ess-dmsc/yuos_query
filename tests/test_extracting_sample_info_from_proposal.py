@@ -1,4 +1,4 @@
-from yuos_query import YuosClient
+from yuos_query.data_extractors import extract_sample_info
 
 EXAMPLE_DATA = [
     {
@@ -315,32 +315,32 @@ EXAMPLE_DATA = [
 
 
 def test_extract_one_question():
-    result = YuosClient.extract_sample_info(["Chemical formula"], EXAMPLE_DATA)
+    result = extract_sample_info(["Chemical formula"], EXAMPLE_DATA)
     assert len(result) == 2
     assert result[0]["chemical formula"] == "CHE3S"
     assert result[1]["chemical formula"] == "unknown"
 
 
 def test_extracting_information_ignores_question_case():
-    result = YuosClient.extract_sample_info(["chemical formula"], EXAMPLE_DATA)
+    result = extract_sample_info(["chemical formula"], EXAMPLE_DATA)
     assert result[0]["chemical formula"] == "CHE3S"
 
 
 def test_extracting_information_for_invalid_question():
-    result = YuosClient.extract_sample_info([":: not a question ::"], EXAMPLE_DATA)
+    result = extract_sample_info([":: not a question ::"], EXAMPLE_DATA)
     assert not result
 
 
 def test_multiple_questions_gives_correct_answers():
     questions = ["Chemical formula", "Special Isotopes"]
-    result = YuosClient.extract_sample_info(questions, EXAMPLE_DATA)
+    result = extract_sample_info(questions, EXAMPLE_DATA)
     assert result[0]["chemical formula"] == "CHE3S"
     assert not result[0]["special isotopes"]
 
 
 def test_multiple_invalid_questions_returns_nothing():
     questions = [":: not a question 1::", ":: not a question 2::"]
-    result = YuosClient.extract_sample_info(questions, EXAMPLE_DATA)
+    result = extract_sample_info(questions, EXAMPLE_DATA)
     assert not result
 
 

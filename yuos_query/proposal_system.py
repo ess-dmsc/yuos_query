@@ -5,6 +5,7 @@ from gql.transport.exceptions import TransportServerError
 from gql.transport.requests import RequestsHTTPTransport
 from requests.exceptions import ConnectionError
 
+from yuos_query.data_extractors import extract_proposer, extract_users
 from yuos_query.exceptions import (
     BaseYuosException,
     ConnectionException,
@@ -81,8 +82,8 @@ class YuosClient:
         for proposal in data:
             # In the proposal system the proposal ID is called the shortCode
             if "shortCode" in proposal and proposal["shortCode"] == converted_id:
-                users = self.extract_users(proposal)
-                proposer = self.extract_proposer(proposal)
+                users = extract_users(proposal)
+                proposer = extract_proposer(proposal)
                 return ProposalInfo(converted_id, proposal["title"], proposer, users)
         return None
 
@@ -106,48 +107,6 @@ class YuosClient:
             self.token, self.url, instrument_id
         )
         return data
-
-    @staticmethod
-    def extract_proposer(proposal):
-        if "proposer" in proposal:
-            proposer = (
-                proposal["proposer"].get("firstname", ""),
-                proposal["proposer"].get("lastname", ""),
-            )
-        else:
-            proposer = None
-        return proposer
-
-    @classmethod
-    def extract_users(cls, proposal):
-        if "users" in proposal:
-            return [
-                (x.get("firstname", ""), x.get("lastname", ""))
-                for x in proposal["users"]
-            ]
-        return []
-
-    @classmethod
-    def extract_sample_info(cls, target, data):
-        target = [x.lower() for x in target]
-        results = []
-        for sample in data:
-            questions = sample["questionary"]["steps"][0]["fields"]
-            result = cls._get_answers_by_question(questions, target)
-            if result:
-                results.append(result)
-        return results
-
-    @classmethod
-    def _get_answers_by_question(cls, questions, target):
-        result = {}
-        for question in questions:
-            # SMELL question within question?
-            key_question = question["question"]["question"]
-            if key_question.lower() in target:
-                result[key_question.lower()] = question["value"]
-
-        return result
 
 
 class _ProposalSystemWrapper:
