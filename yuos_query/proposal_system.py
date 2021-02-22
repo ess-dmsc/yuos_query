@@ -70,6 +70,12 @@ class YuosClient:
             return data
         except TransportServerError as error:
             raise ConnectionException(f"connection issue: {error}") from error
+        except ConnectionError as error:
+            raise ConnectionException(f"connection issue: {error}") from error
+        except BaseYuosException:
+            raise
+        except Exception as error:
+            raise BaseYuosException(error) from error
 
     def _find_proposal(self, converted_id, data):
         for proposal in data:
