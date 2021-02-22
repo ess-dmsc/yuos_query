@@ -1,25 +1,20 @@
-from typing import List, NamedTuple, Optional, Tuple
+from typing import Optional
 
 from gql import Client, gql
 from gql.transport.exceptions import TransportServerError
 from gql.transport.requests import RequestsHTTPTransport
 from requests.exceptions import ConnectionError
 
-from yuos_query.data_extractors import extract_proposer, extract_users
+from yuos_query.data_classes import ProposalInfo
+from yuos_query.data_extractors import (
+    extract_proposer,
+    extract_relevant_sample_info,
+    extract_users,
+)
 from yuos_query.exceptions import (
     BaseYuosException,
     ConnectionException,
     InvalidIdException,
-)
-
-ProposalInfo = NamedTuple(
-    "ProposalInfo",
-    (
-        ("id", str),
-        ("title", str),
-        ("proposer", Tuple[str, str]),
-        ("users", List[Tuple[str, str]]),
-    ),
 )
 
 
@@ -68,7 +63,7 @@ class YuosClient:
             data = self.implementation.get_sample_details_by_proposal_id(
                 self.token, self.url, proposal_id
             )
-            return data
+            return extract_relevant_sample_info(data)
         except TransportServerError as error:
             raise ConnectionException(f"connection issue: {error}") from error
         except ConnectionError as error:
@@ -211,8 +206,13 @@ class _ProposalSystemWrapper:
                       steps{
                         fields{
                           value
+                          dependencies{
+                            dependencyNaturalKey
+                            questionId
+                          }
                           question{
                             question
+                            naturalKey
                           }
                         }
                       }

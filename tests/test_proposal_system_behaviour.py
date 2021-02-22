@@ -3,7 +3,7 @@ from unittest import mock
 import pytest
 from requests.exceptions import ConnectionError
 
-from tests.test_extracting_sample_info_from_proposal import EXAMPLE_DATA
+from tests.sample_data_example import SAMPLE_EXAMPLE
 from yuos_query import YuosClient
 from yuos_query.exceptions import ConnectionException, InvalidIdException
 from yuos_query.proposal_system import _ProposalSystemWrapper
@@ -53,7 +53,7 @@ def generate_standard_mock():
     mocked_impl = mock.create_autospec(_ProposalSystemWrapper)
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     mocked_impl.get_proposal_for_instrument.return_value = VALID_RESPONSE_DATA
-    mocked_impl.get_sample_details_by_proposal_id.return_value = EXAMPLE_DATA
+    mocked_impl.get_sample_details_by_proposal_id.return_value = SAMPLE_EXAMPLE
     return mocked_impl
 
 
@@ -147,5 +147,14 @@ class TestProposalSystem:
         results = proposal_system.samples_by_id("242")
 
         assert len(results) == 2  # Two samples
+        assert results[0].name is None
+        assert results[0].formula == "CHE3S"
+        assert results[0].number == 10
+        assert results[0].mass_or_volume == (5, "kg")
+        assert results[0].density == ("", "g/cm*3")
 
-        # TODO Finish this
+        assert results[1].name is None
+        assert results[1].formula == "unknown"
+        assert results[1].number == 1
+        assert results[1].mass_or_volume == (100, "g")
+        assert results[1].density == ("", "g/cm*3")
