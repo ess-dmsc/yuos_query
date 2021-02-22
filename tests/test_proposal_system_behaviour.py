@@ -3,6 +3,7 @@ from unittest import mock
 import pytest
 from requests.exceptions import ConnectionError
 
+from tests.test_extracting_sample_info_from_proposal import EXAMPLE_DATA
 from yuos_query import YuosClient
 from yuos_query.exceptions import ConnectionException, InvalidIdException
 from yuos_query.proposal_system import _ProposalSystemWrapper
@@ -140,19 +141,11 @@ class TestProposalSystem:
 
         assert proposal_system.proposal_by_id("YMIR", "00000") is None
 
+    def test_querying_for_samples_by_proposal_id_returns_sample_info(self):
+        proposal_system = self.create_client()
 
-def test_querying_for_samples_by_proposal_id_returns_sample_info():
-    mocked_impl = generate_standard_mock()
+        results = proposal_system.samples_by_id("242")
 
-    proposal_system = create_client(
-        URL,
-        TEST_USER,
-        TEST_PASSWORD,
-        mocked_impl,
-    )
+        assert len(results) == 2  # Two samples
 
-    results = proposal_system.samples_by_id("242")
-
-    assert len(results) == 2  # Two samples
-
-    # TODO Finish this
+        # TODO Finish this
