@@ -147,6 +147,7 @@ class TestProposalSystem:
         results = proposal_system.samples_by_id("242")
 
         assert len(results) == 2  # Two samples
+
         assert results[0].name is None
         assert results[0].formula == "CHE3S"
         assert results[0].number == 10
