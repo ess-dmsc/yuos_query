@@ -52,16 +52,7 @@ class YuosClient:
             converted_id = self._validate_proposal_id(proposal_id)
             inst_id = self._get_instrument_id_from_name(instrument_name)
             data = self._get_proposal_data(inst_id)
-
-            for proposal in data:
-                # In the proposal system the proposal ID is called the shortCode
-                if "shortCode" in proposal and proposal["shortCode"] == converted_id:
-                    users = self.extract_users(proposal)
-                    proposer = self.extract_proposer(proposal)
-                    return ProposalInfo(
-                        converted_id, proposal["title"], proposer, users
-                    )
-            return None
+            return self._find_proposal(converted_id, data)
         except TransportServerError as error:
             raise ConnectionException(f"connection issue: {error}") from error
         except ConnectionError as error:
@@ -72,11 +63,9 @@ class YuosClient:
             raise BaseYuosException(error) from error
 
     def samples_by_id(self, proposal_id):
-        token = self._get_token()
-
         try:
             data = self.implementation.get_sample_details_by_proposal_id(
-                token, self.url, proposal_id
+                self.token, self.url, proposal_id
             )
             return data
         except TransportServerError as error:
@@ -123,8 +112,8 @@ class YuosClient:
             proposer = None
         return proposer
 
-    @staticmethod
-    def extract_users(proposal):
+    @classmethod
+    def extract_users(cls, proposal):
         if "users" in proposal:
             return [
                 (x.get("firstname", ""), x.get("lastname", ""))
@@ -132,19 +121,19 @@ class YuosClient:
             ]
         return []
 
-    @staticmethod
-    def extract_sample_info(target, data):
+    @classmethod
+    def extract_sample_info(cls, target, data):
         target = [x.lower() for x in target]
         results = []
-        for i in range(len(data["data"]["samples"])):
-            questions = data["data"]["samples"][i]["questionary"]["steps"][0]["fields"]
-            result = YuosClient._get_answers_by_question(questions, target)
+        for sample in data:
+            questions = sample["questionary"]["steps"][0]["fields"]
+            result = cls._get_answers_by_question(questions, target)
             if result:
                 results.append(result)
         return results
 
-    @staticmethod
-    def _get_answers_by_question(questions, target):
+    @classmethod
+    def _get_answers_by_question(cls, questions, target):
         result = {}
         for question in questions:
             # SMELL question within question?
@@ -157,7 +146,7 @@ class YuosClient:
 
 class _ProposalSystemWrapper:
     """
-    Don't use this directly instead use the ProposalSystem class.
+    Don't use this directly, instead use the ProposalSystem class.
     """
 
     def execute_query(self, token, url, query_json):
