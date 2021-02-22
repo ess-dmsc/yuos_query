@@ -1,4 +1,5 @@
 from yuos_query.data_classes import SampleInfo
+from yuos_query.exceptions import SampleInfoMissingException
 
 
 def extract_proposer(proposal):
@@ -22,25 +23,29 @@ def extract_users(proposal):
 
 def extract_relevant_sample_info(data):
     def _extract_for_sample(sample_data):
-        result = {}
+        collected_data = {}
 
         questions = sample_data["questionary"]["steps"][0]["fields"]
         for question in questions:
             question_key = question["question"]["question"]
             if question_key == "Sample name and/or material":
-                result["name"] = question["value"]
+                collected_data["name"] = question["value"]
             elif question_key == "Chemical formula":
-                result["formula"] = question["value"]
+                collected_data["formula"] = question["value"]
             elif question_key == "Total number of the same sample":
-                result["number"] = question["value"]["value"]
+                collected_data["number"] = question["value"]["value"]
             elif question_key == "Mass or volume":
-                result["mass_or_volume"] = (
+                collected_data["mass_or_volume"] = (
                     question["value"]["value"],
                     question["value"]["unit"],
                 )
             elif question_key == "Density (g/cm*3)":
-                result["density"] = (question["value"]["value"], "g/cm*3")
-        return SampleInfo(**result)
+                collected_data["density"] = (question["value"]["value"], "g/cm*3")
+
+        try:
+            return SampleInfo(**collected_data)
+        except TypeError as error:
+            raise SampleInfoMissingException() from error
 
     results = []
     for sample in data:
