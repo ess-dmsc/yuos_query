@@ -43,7 +43,7 @@ VALID_RESPONSE_DATA = [
             {"firstname": "jonathan ", "lastname": "Taylor"},
             {"firstname": "Johan", "lastname": "Andersson"},
         ],
-        "proposer": {"firstname": "Fredrik-user", "lastname": "Bolmsten"},
+        "proposer": {"firstname": "Fredrik", "lastname": "Bolmsten"},
     }
 ]
 
@@ -107,7 +107,7 @@ class TestProposalSystem:
 
         assert results.id == VALID_PROPOSAL_ID
         assert results.title.startswith("The magnetic field dependence")
-        assert results.proposer == ("Fredrik-user", "Bolmsten")
+        assert results.proposer == ("Fredrik", "Bolmsten")
         assert len(results.users) == 2
         assert ("Johan", "Andersson") in results.users
 
