@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from tests.test_proposal_system_behaviour import TestProposalSystem
+from tests.proposal_sysyem_contract import ProposalSystemContract
 from yuos_query import YuosClient
 
 # These tests are skipped if the YUOS_TOKEN environment variable is not defined
@@ -13,7 +13,7 @@ if "YUOS_TOKEN" in os.environ:
 
 
 @pytest.mark.skipif(SKIP_TEST, reason="Not set to test against real system")
-class TestProposalSystemReal(TestProposalSystem):
+class TestProposalSystemReal(ProposalSystemContract):
     def create_client(
         self,
         invalid_url: bool = False,
@@ -40,4 +40,4 @@ class TestProposalSystemReal(TestProposalSystem):
 
         return YuosClient(url, YUOS_TOKEN)
 
-    # Tests are inherited from TestProposalSystem
+    # Tests are inherited from ProposalSystemContract
