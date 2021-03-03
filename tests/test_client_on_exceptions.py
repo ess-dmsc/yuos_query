@@ -3,13 +3,12 @@ from unittest.mock import ANY
 import pytest
 from gql.transport.exceptions import TransportServerError
 
-from yuos_query.exceptions import ConnectionException
-from yuos_query.proposal_system import YuosClient
-
-from .test_proposal_system_behaviour import (
+from contract_tests.test_proposal_system_behaviour_mocked import (
     VALID_INSTRUMENT_LIST,
     generate_standard_mock,
 )
+from yuos_query.exceptions import ConnectionException
+from yuos_query.proposal_system import YuosClient
 
 SOME_URL = "https://something.com"
 SOME_TOKEN = "not_a_real_token"
