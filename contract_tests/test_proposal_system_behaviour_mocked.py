@@ -2,7 +2,7 @@ from unittest import mock
 
 from requests.exceptions import ConnectionError
 
-from tests.proposal_sysyem_contract import ProposalSystemContract
+from contract_tests.proposal_sysyem_contract import ProposalSystemContract
 from yuos_query import YuosClient
 from yuos_query.proposal_system import _ProposalSystemWrapper
 

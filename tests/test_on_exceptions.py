@@ -3,7 +3,7 @@ from unittest.mock import ANY
 import pytest
 from gql.transport.exceptions import TransportServerError
 
-from tests.test_proposal_system_behaviour_mocked import (
+from contract_tests.test_proposal_system_behaviour_mocked import (
     VALID_INSTRUMENT_LIST,
     generate_standard_mock,
 )

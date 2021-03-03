@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from tests.proposal_sysyem_contract import ProposalSystemContract
+from contract_tests.proposal_sysyem_contract import ProposalSystemContract
 from yuos_query import YuosClient
 
 # These tests are skipped if the YUOS_TOKEN environment variable is not defined
