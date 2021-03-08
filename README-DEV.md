@@ -15,6 +15,7 @@ Now it is possible to run queries against the system, for example:
 {
   proposals(filter: { instrumentId: 4 }) {
     proposals {
+      shortCode
       id
       title
     }
