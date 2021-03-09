@@ -15,7 +15,7 @@ except Exception as error:
     LONG_DESCRIPTION = DESCRIPTION
 
 # Import version number
-from yuos_query.version import __version__ as version
+from yuos_query import __version__ as version
 
 setup(
     name="yuos_query",

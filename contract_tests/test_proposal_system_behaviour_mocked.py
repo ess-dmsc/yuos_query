@@ -3,8 +3,7 @@ from unittest import mock
 from requests.exceptions import ConnectionError
 
 from contract_tests.proposal_sysyem_contract import ProposalSystemContract
-from yuos_query import YuosClient
-from yuos_query.proposal_system import _ProposalSystemWrapper
+from yuos_query.proposal_system import YuosClient, _ProposalSystemWrapper
 
 # Copied from the real server
 VALID_INSTRUMENT_LIST = [
