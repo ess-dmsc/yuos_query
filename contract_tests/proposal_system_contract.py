@@ -1,6 +1,6 @@
 import pytest
 
-from yuos_query import ConnectionException, InvalidIdException
+from yuos_query.exceptions import ConnectionException, InvalidIdException
 
 VALID_PROPOSAL_ID = "471120"
 

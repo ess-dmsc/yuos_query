@@ -2,7 +2,7 @@ import os
 
 import pytest
 import requests
-from gql.transport.exceptions import TransportServerError
+from gql.transport.exceptions import TransportQueryError
 
 from yuos_query.proposal_system import _ProposalSystemWrapper
 
@@ -50,7 +50,7 @@ def test_get_proposals_for_ymir_instrument():
     SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_invalid_token_raises_transport_error():
-    with pytest.raises(TransportServerError):
+    with pytest.raises(TransportQueryError):
         wrapper = _ProposalSystemWrapper()
         _ = wrapper.get_proposal_for_instrument(
             ":: not a valid token ::", TEST_URL, YMIR_ID
