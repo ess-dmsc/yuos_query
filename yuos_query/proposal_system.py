@@ -109,28 +109,6 @@ class YuosClient:
         )
         return data
 
-    @staticmethod
-    def extract_sample_info(target, data):
-        target = [x.lower() for x in target]
-        results = []
-        for i in range(len(data["data"]["samples"])):
-            questions = data["data"]["samples"][i]["questionary"]["steps"][0]["fields"]
-            result = YuosClient._get_answers_by_question(questions, target)
-            if result:
-                results.append(result)
-        return results
-
-    @staticmethod
-    def _get_answers_by_question(questions, target):
-        result = {}
-        for question in questions:
-            # SMELL question within question?
-            key_question = question["question"]["question"]
-            if key_question.lower() in target:
-                result[key_question.lower()] = question["value"]
-
-        return result
-
 
 class _ProposalSystemWrapper:
     """
