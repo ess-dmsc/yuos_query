@@ -59,6 +59,12 @@ class YuosClient:
             raise BaseYuosException(error) from error
 
     def samples_by_id(self, proposal_id):
+        """
+        Get the sample associated with the proposal id.
+
+        :param proposal_id: the proposal id
+        :return: list of SampleInfo
+        """
         try:
             data = self.implementation.get_sample_details_by_proposal_id(
                 self.token, self.url, proposal_id
