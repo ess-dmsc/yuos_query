@@ -1,1 +1,3 @@
-__version__ = "0.1.9"
+from yuos_query.version import version
+
+__version__ = version
