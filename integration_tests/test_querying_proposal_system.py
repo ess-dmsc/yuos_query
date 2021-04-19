@@ -79,7 +79,9 @@ def test_get_instruments_list():
 def test_get_sample_list_by_id():
     wrapper = _ProposalSystemWrapper()
 
-    results = wrapper.get_sample_data_by_id(YUOS_TOKEN, TEST_URL, KNOWN_DB_ID)
+    results = wrapper.get_sample_details_by_proposal_id(
+        YUOS_TOKEN, TEST_URL, KNOWN_DB_ID
+    )
 
     assert len(results) == 2
     assert {results[0]["title"], results[1]["title"]} == {"Camembert", "Chaource"}

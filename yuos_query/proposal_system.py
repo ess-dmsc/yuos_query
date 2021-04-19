@@ -182,23 +182,6 @@ class _ProposalSystemWrapper:
         )
         return json_data["proposals"]["proposals"]
 
-    def get_sample_data_by_id(self, token, url, db_id):
-        json_data = self.execute_query(
-            token,
-            url,
-            """
-            {
-                samples(filter: {proposalId: $DBID$})  {
-                    proposalId
-                    title
-                }
-            }
-            """.replace(
-                "$DBID$", str(db_id)
-            ),
-        )
-        return json_data["samples"]
-
     def get_sample_details_by_proposal_id(self, token, url, db_id):
         json_data = self.execute_query(
             token,
