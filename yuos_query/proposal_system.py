@@ -58,16 +58,19 @@ class YuosClient:
         except Exception as error:
             raise BaseYuosException(error) from error
 
-    def samples_by_id(self, proposal_id):
+    def samples_by_id(self, db_id):
         """
-        Get the sample associated with the proposal id.
+        Get the sample associated with the supplied database ID.
 
-        :param proposal_id: the proposal id
+        The sample data is associated to the proposal ID by the internal database ID,
+        so we have to use that. That is retrieved during the proposal query.
+
+        :param db_id: the database ID
         :return: list of SampleInfo
         """
         try:
             data = self.implementation.get_sample_details_by_proposal_id(
-                self.token, self.url, proposal_id
+                self.token, self.url, db_id
             )
             return extract_relevant_sample_info(data)
         except TransportServerError as error:

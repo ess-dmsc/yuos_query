@@ -1,10 +1,7 @@
-import pytest
-
 from yuos_query.data_extractors import extract_relevant_sample_info
-from yuos_query.exceptions import SampleInfoMissingException
 
 
-def test_throws_if_relevant_data_missing():
+def test_supplies_default_if_relevant_data_missing():
     data_missing = [
         {
             "proposalId": 242,
@@ -28,5 +25,10 @@ def test_throws_if_relevant_data_missing():
         }
     ]
 
-    with pytest.raises(SampleInfoMissingException):
-        extract_relevant_sample_info(data_missing)
+    result = extract_relevant_sample_info(data_missing)
+    assert len(result) == 1
+    assert result[0].name == ""
+    assert result[0].formula == ""
+    assert result[0].number == 1
+    assert result[0].density == ("", "g/cm*3")
+    assert result[0].mass_or_volume == ("", "")

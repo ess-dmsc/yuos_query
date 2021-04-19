@@ -8,7 +8,3 @@ class ConnectionException(BaseYuosException):
 
 class InvalidIdException(BaseYuosException):
     pass
-
-
-class SampleInfoMissingException(BaseYuosException):
-    pass

@@ -103,3 +103,14 @@ def test_get_sample_details_by_proposal_id():
     assert len(results[0]["questionary"]["steps"]) == 3
     assert "question" in results[0]["questionary"]["steps"][0]["fields"][0]["question"]
     assert "value" in results[0]["questionary"]["steps"][0]["fields"][0]
+
+
+@pytest.mark.skipif(
+    SKIP_TEST, reason="no user and password supplied for testing against real system"
+)
+def test_get_sample_details_for_invalid_proposal_id():
+    wrapper = _ProposalSystemWrapper()
+
+    results = wrapper.get_sample_details_by_proposal_id(YUOS_TOKEN, TEST_URL, -12345)
+
+    assert len(results) == 0
