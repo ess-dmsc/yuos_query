@@ -7,6 +7,7 @@ ProposalInfo = NamedTuple(
         ("title", str),
         ("proposer", Tuple[str, str]),
         ("users", List[Tuple[str, str]]),
+        ("db_id", int),
     ),
 )
 

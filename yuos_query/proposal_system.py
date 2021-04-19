@@ -85,7 +85,9 @@ class YuosClient:
             if "shortCode" in proposal and proposal["shortCode"] == converted_id:
                 users = extract_users(proposal)
                 proposer = extract_proposer(proposal)
-                return ProposalInfo(converted_id, proposal["title"], proposer, users)
+                return ProposalInfo(
+                    converted_id, proposal["title"], proposer, users, proposal["id"]
+                )
         return None
 
     def _validate_proposal_id(self, proposal_id: str) -> str:
@@ -165,6 +167,7 @@ class _ProposalSystemWrapper:
                     proposals{
                         shortCode
                         title
+                        id
                         users {
                             firstname
                             lastname

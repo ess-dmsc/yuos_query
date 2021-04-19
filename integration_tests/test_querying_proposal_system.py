@@ -44,6 +44,7 @@ def test_get_proposals_for_ymir_instrument():
     assert "firstname" in results[0]["proposer"]
     assert "lastname" in results[0]["proposer"]
     assert "users" in results[0]
+    assert "id" in results[0]
 
 
 @pytest.mark.skipif(

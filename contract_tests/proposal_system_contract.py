@@ -39,6 +39,7 @@ class ProposalSystemContract:
         assert results.proposer == ("Fredrik", "Bolmsten")
         assert len(results.users) == 2
         assert ("Johan", "Andersson") in results.users
+        assert results.db_id == 169
 
     def test_when_querying_for_proposal_by_id_instrument_name_case_is_ignored(self):
         proposal_system = self.create_client()
