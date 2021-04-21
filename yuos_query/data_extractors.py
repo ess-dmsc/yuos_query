@@ -48,7 +48,7 @@ def extract_relevant_sample_info(data):
                         collected_data["mass_or_volume"] = (
                             question["value"]["value"]
                             if "value" in question["value"]
-                            else "",
+                            else 0,
                             question["value"]["unit"]
                             if "unit" in question["value"]
                             else "",
@@ -56,7 +56,9 @@ def extract_relevant_sample_info(data):
                 elif question_key == "Density (g/cm*3)":
                     if question["value"] and "value" in question["value"]:
                         collected_data["density"] = (
-                            question["value"]["value"],
+                            question["value"]["value"]
+                            if "value" in question["value"]
+                            else 0,
                             "g/cm*3",
                         )
             except KeyError:
