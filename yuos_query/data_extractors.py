@@ -42,10 +42,9 @@ def _extract_sample_data(sample_data):
             elif question_key == "Mass or volume":
                 extracted_data["mass_or_volume"] = _extract_value_with_units(question)
             elif question_key == "Density (g/cm*3)":
-                if question["value"] and "value" in question["value"]:
-                    extracted_data["density"] = _extract_value_with_units(
-                        question, "g/cm*3"
-                    )
+                extracted_data["density"] = _extract_value_with_units(
+                    question, "g/cm*3"
+                )
         except KeyError:
             # If the data cannot be extracted then we have to use the defaults
             pass
