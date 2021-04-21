@@ -26,8 +26,8 @@ def extract_relevant_sample_info(data):
             "name": "",
             "formula": "",
             "number": 1,
-            "mass_or_volume": ("", ""),
-            "density": ("", "g/cm*3"),
+            "mass_or_volume": (0, ""),
+            "density": (0, "g/cm*3"),
         }
 
         questions = sample_data["questionary"]["steps"][0]["fields"]
