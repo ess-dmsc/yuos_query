@@ -80,10 +80,10 @@ class ProposalSystemContract:
         assert results[0].formula == "CHE3S"
         assert results[0].number == 10
         assert results[0].mass_or_volume == (5, "kg")
-        assert results[0].density == ("", "g/cm*3")
+        assert results[0].density == (0, "g/cm*3")
 
         assert results[1].name == ""
         assert results[1].formula == "unknown"
         assert results[1].number == 1
         assert results[1].mass_or_volume == (100, "g")
-        assert results[1].density == ("", "g/cm*3")
+        assert results[1].density == (0, "g/cm*3")

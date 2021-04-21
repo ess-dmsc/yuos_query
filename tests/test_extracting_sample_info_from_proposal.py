@@ -11,13 +11,13 @@ def test_supplies_default_if_relevant_data_missing():
                     {
                         "fields": [
                             {
-                                "value": None,
+                                "value": {"unit": None, "value": ""},
                                 "dependencies": [],
                                 "question": {
-                                    "question": "New question",
-                                    "naturalKey": "embellishment_1601536727146_sample",
+                                    "question": "Density (g/cm*3)",
+                                    "naturalKey": "number_input_1610713898040",
                                 },
-                            }
+                            },
                         ]
                     }
                 ]
@@ -32,3 +32,40 @@ def test_supplies_default_if_relevant_data_missing():
     assert result[0].number == 1
     assert result[0].density == (0, "g/cm*3")
     assert result[0].mass_or_volume == (0, "")
+
+
+def test_supplies_default_if_blank_data():
+    data_missing = [
+        {
+            "proposalId": 242,
+            "title": "Camembert",
+            "id": 153,
+            "questionary": {
+                "steps": [
+                    {
+                        "fields": [
+                            {
+                                "value": {"unit": "kg", "value": ""},
+                                "dependencies": [],
+                                "question": {
+                                    "question": "Mass or volume",
+                                    "naturalKey": "number_input_1610698357121",
+                                },
+                            },
+                            {
+                                "value": {"unit": None, "value": ""},
+                                "dependencies": [],
+                                "question": {
+                                    "question": "Density (g/cm*3)",
+                                    "naturalKey": "number_input_1610713898040",
+                                },
+                            },
+                        ]
+                    }
+                ]
+            },
+        }
+    ]
+    result = extract_relevant_sample_info(data_missing)
+    assert result[0].density == (0, "g/cm*3")
+    assert result[0].mass_or_volume == (0, "kg")
