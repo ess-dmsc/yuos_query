@@ -30,5 +30,5 @@ def test_supplies_default_if_relevant_data_missing():
     assert result[0].name == ""
     assert result[0].formula == ""
     assert result[0].number == 1
-    assert result[0].density == ("", "g/cm*3")
-    assert result[0].mass_or_volume == ("", "")
+    assert result[0].density == (0, "g/cm*3")
+    assert result[0].mass_or_volume == (0, "")
