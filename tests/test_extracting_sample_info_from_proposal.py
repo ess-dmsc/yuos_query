@@ -1,4 +1,15 @@
+from tests.sample_data_example import SAMPLE_EXAMPLE
 from yuos_query.data_extractors import extract_relevant_sample_info
+
+
+def test_sample_info():
+    result = extract_relevant_sample_info(SAMPLE_EXAMPLE)
+    assert len(result) == 2
+    assert result[0].name == ""
+    assert result[0].formula == "CHE3S"
+    assert result[0].number == 10
+    assert result[0].density == (0, "g/cm*3")
+    assert result[0].mass_or_volume == (5, "kg")
 
 
 def test_supplies_default_if_relevant_data_missing():
@@ -60,6 +71,14 @@ def test_supplies_default_if_blank_data():
                                     "naturalKey": "number_input_1610713898040",
                                 },
                             },
+                            {
+                                "value": {"value": "", "unit": None},
+                                "dependencies": [],
+                                "question": {
+                                    "question": "Total number of the same sample",
+                                    "naturalKey": "number_input_1610713981207",
+                                },
+                            },
                         ]
                     }
                 ]
@@ -69,3 +88,4 @@ def test_supplies_default_if_blank_data():
     result = extract_relevant_sample_info(data_missing)
     assert result[0].density == (0, "g/cm*3")
     assert result[0].mass_or_volume == (0, "kg")
+    assert result[0].number == 1
