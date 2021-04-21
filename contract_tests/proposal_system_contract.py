@@ -39,6 +39,7 @@ class ProposalSystemContract:
         assert results.proposer == ("Fredrik", "Bolmsten")
         assert len(results.users) == 2
         assert ("Johan", "Andersson") in results.users
+        assert results.db_id == 169
 
     def test_when_querying_for_proposal_by_id_instrument_name_case_is_ignored(self):
         proposal_system = self.create_client()
@@ -67,3 +68,22 @@ class ProposalSystemContract:
         proposal_system = self.create_client(unknown_id=True)
 
         assert proposal_system.proposal_by_id("YMIR", "00000") is None
+
+    def test_querying_for_samples_by_database_id_returns_sample_info(self):
+        proposal_system = self.create_client()
+
+        results = proposal_system.samples_by_id(242)
+
+        assert len(results) == 2  # Two samples
+
+        assert results[0].name == ""
+        assert results[0].formula == "CHE3S"
+        assert results[0].number == 10
+        assert results[0].mass_or_volume == (5, "kg")
+        assert results[0].density == ("", "g/cm*3")
+
+        assert results[1].name == ""
+        assert results[1].formula == "unknown"
+        assert results[1].number == 1
+        assert results[1].mass_or_volume == (100, "g")
+        assert results[1].density == ("", "g/cm*3")

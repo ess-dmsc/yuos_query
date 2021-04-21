@@ -14,6 +14,7 @@ if "YUOS_TOKEN" in os.environ:
 
 TEST_URL = "https://useroffice-test.esss.lu.se/graphql"
 YMIR_ID = 4
+KNOWN_DB_ID = 242  # Not a "proposal" ID rather the database ID.
 
 
 @pytest.mark.skipif(
@@ -43,6 +44,7 @@ def test_get_proposals_for_ymir_instrument():
     assert "firstname" in results[0]["proposer"]
     assert "lastname" in results[0]["proposer"]
     assert "users" in results[0]
+    assert "id" in results[0]
 
 
 @pytest.mark.skipif(
@@ -70,3 +72,45 @@ def test_get_instruments_list():
     assert "id" in results[0]
     assert "shortCode" in results[0]
     assert "name" in results[0]
+
+
+@pytest.mark.skipif(
+    SKIP_TEST, reason="no user and password supplied for testing against real system"
+)
+def test_get_sample_list_by_id():
+    wrapper = _ProposalSystemWrapper()
+
+    results = wrapper.get_sample_details_by_proposal_id(
+        YUOS_TOKEN, TEST_URL, KNOWN_DB_ID
+    )
+
+    assert len(results) == 2
+    assert {results[0]["title"], results[1]["title"]} == {"Camembert", "Chaource"}
+
+
+@pytest.mark.skipif(
+    SKIP_TEST, reason="no user and password supplied for testing against real system"
+)
+def test_get_sample_details_by_proposal_id():
+    wrapper = _ProposalSystemWrapper()
+
+    results = wrapper.get_sample_details_by_proposal_id(
+        YUOS_TOKEN, TEST_URL, KNOWN_DB_ID
+    )
+
+    assert len(results) == 2
+    assert "questionary" in results[0] and "questionary" in results[1]
+    assert len(results[0]["questionary"]["steps"]) == 3
+    assert "question" in results[0]["questionary"]["steps"][0]["fields"][0]["question"]
+    assert "value" in results[0]["questionary"]["steps"][0]["fields"][0]
+
+
+@pytest.mark.skipif(
+    SKIP_TEST, reason="no user and password supplied for testing against real system"
+)
+def test_get_sample_details_for_invalid_proposal_id():
+    wrapper = _ProposalSystemWrapper()
+
+    results = wrapper.get_sample_details_by_proposal_id(YUOS_TOKEN, TEST_URL, -12345)
+
+    assert len(results) == 0

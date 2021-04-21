@@ -1,24 +1,20 @@
-from typing import List, NamedTuple, Optional, Tuple
+from typing import Optional
 
 from gql import Client, gql
 from gql.transport.exceptions import TransportServerError
 from gql.transport.requests import RequestsHTTPTransport
 from requests.exceptions import ConnectionError
 
+from yuos_query.data_classes import ProposalInfo
+from yuos_query.data_extractors import (
+    extract_proposer,
+    extract_relevant_sample_info,
+    extract_users,
+)
 from yuos_query.exceptions import (
     BaseYuosException,
     ConnectionException,
     InvalidIdException,
-)
-
-ProposalInfo = NamedTuple(
-    "ProposalInfo",
-    (
-        ("id", str),
-        ("title", str),
-        ("proposer", Tuple[str, str]),
-        ("users", List[Tuple[str, str]]),
-    ),
 )
 
 
@@ -43,7 +39,7 @@ class YuosClient:
 
         :param instrument_name: instrument name
         :param proposal_id: proposal ID
-        :return: the proposal or None if not found
+        :return: the proposal information or None if not found
         """
         try:
             if not self.instrument_list:
@@ -52,16 +48,7 @@ class YuosClient:
             converted_id = self._validate_proposal_id(proposal_id)
             inst_id = self._get_instrument_id_from_name(instrument_name)
             data = self._get_proposal_data(inst_id)
-
-            for proposal in data:
-                # In the proposal system the proposal ID is called the shortCode
-                if "shortCode" in proposal and proposal["shortCode"] == converted_id:
-                    users = self.extract_users(proposal)
-                    proposer = self.extract_proposer(proposal)
-                    return ProposalInfo(
-                        converted_id, proposal["title"], proposer, users
-                    )
-            return None
+            return self._find_proposal(converted_id, data)
         except TransportServerError as error:
             raise ConnectionException(f"connection issue: {error}") from error
         except ConnectionError as error:
@@ -70,6 +57,41 @@ class YuosClient:
             raise
         except Exception as error:
             raise BaseYuosException(error) from error
+
+    def samples_by_id(self, db_id):
+        """
+        Get the sample associated with the supplied database ID.
+
+        The sample data is associated to the proposal ID by the internal database ID,
+        so we have to use that. That is retrieved during the proposal query.
+
+        :param db_id: the database ID
+        :return: list of SampleInfo
+        """
+        try:
+            data = self.implementation.get_sample_details_by_proposal_id(
+                self.token, self.url, db_id
+            )
+            return extract_relevant_sample_info(data)
+        except TransportServerError as error:
+            raise ConnectionException(f"connection issue: {error}") from error
+        except ConnectionError as error:
+            raise ConnectionException(f"connection issue: {error}") from error
+        except BaseYuosException:
+            raise
+        except Exception as error:
+            raise BaseYuosException(error) from error
+
+    def _find_proposal(self, converted_id, data):
+        for proposal in data:
+            # In the proposal system the proposal ID is called the shortCode
+            if "shortCode" in proposal and proposal["shortCode"] == converted_id:
+                users = extract_users(proposal)
+                proposer = extract_proposer(proposal)
+                return ProposalInfo(
+                    converted_id, proposal["title"], proposer, users, proposal["id"]
+                )
+        return None
 
     def _validate_proposal_id(self, proposal_id: str) -> str:
         # Does proposal_id conform to the expected pattern?
@@ -92,30 +114,10 @@ class YuosClient:
         )
         return data
 
-    @staticmethod
-    def extract_proposer(proposal):
-        if "proposer" in proposal:
-            proposer = (
-                proposal["proposer"].get("firstname", ""),
-                proposal["proposer"].get("lastname", ""),
-            )
-        else:
-            proposer = None
-        return proposer
-
-    @staticmethod
-    def extract_users(proposal):
-        if "users" in proposal:
-            return [
-                (x.get("firstname", ""), x.get("lastname", ""))
-                for x in proposal["users"]
-            ]
-        return []
-
 
 class _ProposalSystemWrapper:
     """
-    Don't use this directly instead use the ProposalSystem class.
+    Don't use this directly, instead use the ProposalSystem class.
     """
 
     def execute_query(self, token, url, query_json):
@@ -168,6 +170,7 @@ class _ProposalSystemWrapper:
                     proposals{
                         shortCode
                         title
+                        id
                         users {
                             firstname
                             lastname
@@ -184,3 +187,35 @@ class _ProposalSystemWrapper:
             ),
         )
         return json_data["proposals"]["proposals"]
+
+    def get_sample_details_by_proposal_id(self, token, url, db_id):
+        json_data = self.execute_query(
+            token,
+            url,
+            """
+            {
+                samples(filter: {proposalId: $DBID$})  {
+                    proposalId
+                    title
+                    questionary{
+                      steps{
+                        fields{
+                          value
+                          dependencies{
+                            dependencyNaturalKey
+                            questionId
+                          }
+                          question{
+                            question
+                            naturalKey
+                          }
+                        }
+                      }
+                    }
+                  }
+            }
+            """.replace(
+                "$DBID$", str(db_id)
+            ),
+        )
+        return json_data["samples"]

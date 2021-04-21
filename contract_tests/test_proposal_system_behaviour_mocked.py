@@ -2,7 +2,8 @@ from unittest import mock
 
 from requests.exceptions import ConnectionError
 
-from contract_tests.proposal_sysyem_contract import ProposalSystemContract
+from contract_tests.proposal_system_contract import ProposalSystemContract
+from tests.sample_data_example import SAMPLE_EXAMPLE
 from yuos_query.proposal_system import YuosClient, _ProposalSystemWrapper
 
 # Copied from the real server
@@ -49,6 +50,7 @@ def generate_standard_mock():
     mocked_impl = mock.create_autospec(_ProposalSystemWrapper)
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     mocked_impl.get_proposal_for_instrument.return_value = VALID_RESPONSE_DATA
+    mocked_impl.get_sample_details_by_proposal_id.return_value = SAMPLE_EXAMPLE
     return mocked_impl
 
 

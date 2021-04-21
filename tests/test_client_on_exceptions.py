@@ -11,8 +11,6 @@ from yuos_query.exceptions import ConnectionException
 from yuos_query.proposal_system import YuosClient
 
 SOME_URL = "https://something.com"
-SOME_USER = "account@ess.eu"
-SOME_PASSWORD = "apassword"
 SOME_TOKEN = "not_a_real_token"
 VALID_PROPOSAL_ID = "169"
 YMIR_INFO = (4, "YMIR")
