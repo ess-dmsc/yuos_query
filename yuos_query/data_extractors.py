@@ -34,14 +34,11 @@ def _extract_sample_data(sample_data):
         try:
             question_key = question["question"]["question"]
             if question_key == "Sample name and/or material":
-                if question["value"]:
-                    collected_data["name"] = question["value"]
+                collected_data["name"] = _extract_simple_value(question, "")
             elif question_key == "Chemical formula":
-                if question["value"]:
-                    collected_data["formula"] = question["value"]
+                collected_data["formula"] = _extract_simple_value(question, "")
             elif question_key == "Total number of the same sample":
-                if question["value"] and "value" in question["value"]:
-                    collected_data["number"] = question["value"]["value"]
+                collected_data["number"] = _extract_number(question, 1)
             elif question_key == "Mass or volume":
                 collected_data["mass_or_volume"] = _extract_value_with_units(question)
             elif question_key == "Density (g/cm*3)":
@@ -54,6 +51,22 @@ def _extract_sample_data(sample_data):
             pass
 
     return SampleInfo(**collected_data)
+
+
+def _extract_simple_value(question, default_value):
+    if question["value"]:
+        return question["value"]
+    return default_value
+
+
+def _extract_number(question, default_value):
+    if (
+        question["value"]
+        and "value" in question["value"]
+        and question["value"]["value"]
+    ):
+        return question["value"]["value"]
+    return default_value
 
 
 def _extract_value_with_units(question, default_units=""):
