@@ -1,6 +1,3 @@
-from yuos_query.data_classes import SampleInfo
-
-
 def extract_proposer(proposal):
     if "proposer" in proposal:
         proposer = (
@@ -25,7 +22,7 @@ def _extract_sample_data(sample_data):
         "name": "",
         "formula": "",
         "number": 1,
-        "mass_or_volume": (0, ""),
+        "mass/volume": (0, ""),
         "density": (0, "g/cm*3"),
     }
 
@@ -40,7 +37,7 @@ def _extract_sample_data(sample_data):
             elif question_key == "Total number of the same sample":
                 extracted_data["number"] = _extract_number(question, 1)
             elif question_key == "Mass or volume":
-                extracted_data["mass_or_volume"] = _extract_value_with_units(question)
+                extracted_data["mass/volume"] = _extract_value_with_units(question)
             elif question_key == "Density (g/cm*3)":
                 extracted_data["density"] = _extract_value_with_units(
                     question, "g/cm*3"
@@ -49,7 +46,7 @@ def _extract_sample_data(sample_data):
             # If the data cannot be extracted then we have to use the defaults
             pass
 
-    return SampleInfo(**extracted_data)
+    return extracted_data
 
 
 def _extract_simple_value(question, default_value):
