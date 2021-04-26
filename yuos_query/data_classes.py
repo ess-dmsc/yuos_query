@@ -10,14 +10,3 @@ ProposalInfo = NamedTuple(
         ("db_id", int),
     ),
 )
-
-SampleInfo = NamedTuple(
-    "SampleInfo",
-    (
-        ("name", str),
-        ("formula", str),
-        ("number", str),
-        ("mass_or_volume", Tuple[float, str]),
-        ("density", Tuple[float, str]),
-    ),
-)
