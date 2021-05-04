@@ -109,17 +109,17 @@ class YuosClient:
         raise InvalidIdException(f"instrument {instrument_name} not recognised")
 
     def _get_proposal_data(self, instrument_id):
-        data = self.implementation.get_proposal_for_instrument(
+        data = self.implementation.get_proposals_for_instrument(
             self.token, self.url, instrument_id
         )
         return data
 
-    def get_proposals_and_samples_for_an_instrument(self, instrument_name):
+    def get_all_proposals_for_instrument(self, instrument_name):
         if not self.instrument_list:
             self.instrument_list = self._get_instruments()
 
         inst_id = self._get_instrument_id_from_name(instrument_name)
-        data = self.implementation.get_proposals_and_sample_for_instrument(
+        data = self.implementation.get_proposals_including_samples_for_instrument(
             self.token, self.url, inst_id
         )
         proposals = {}
@@ -187,7 +187,7 @@ class _ProposalSystemWrapper:
         )
         return json_data["instruments"]["instruments"]
 
-    def get_proposal_for_instrument(self, token, url, instrument_id):
+    def get_proposals_for_instrument(self, token, url, instrument_id):
         json_data = self.execute_query(
             token,
             url,
@@ -248,7 +248,7 @@ class _ProposalSystemWrapper:
         )
         return json_data["samples"]
 
-    def get_proposals_and_sample_for_instrument(self, token, url, instrument_id):
+    def get_proposals_including_samples_for_instrument(self, token, url, instrument_id):
         json_data = self.execute_query(
             token,
             url,

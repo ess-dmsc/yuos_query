@@ -23,7 +23,7 @@ KNOWN_DB_ID = 242  # Not a "proposal" ID rather the database ID.
 def test_if_url_does_not_exist_raises():
     url_does_not_exist = TEST_URL.replace("e", "")
     with pytest.raises(requests.exceptions.ConnectionError):
-        _ProposalSystemWrapper().get_proposal_for_instrument(
+        _ProposalSystemWrapper().get_proposals_for_instrument(
             YUOS_TOKEN, url_does_not_exist, YMIR_ID
         )
 
@@ -33,7 +33,7 @@ def test_if_url_does_not_exist_raises():
 )
 def test_get_proposals_for_ymir_instrument():
     wrapper = _ProposalSystemWrapper()
-    results = wrapper.get_proposal_for_instrument(YUOS_TOKEN, TEST_URL, YMIR_ID)
+    results = wrapper.get_proposals_for_instrument(YUOS_TOKEN, TEST_URL, YMIR_ID)
 
     # We should get data back, but it may not be the same data each time!
     # So just test the structure for now
@@ -53,7 +53,7 @@ def test_get_proposals_for_ymir_instrument():
 def test_invalid_token_raises_transport_error():
     with pytest.raises(TransportQueryError):
         wrapper = _ProposalSystemWrapper()
-        _ = wrapper.get_proposal_for_instrument(
+        _ = wrapper.get_proposals_for_instrument(
             ":: not a valid token ::", TEST_URL, YMIR_ID
         )
 
@@ -121,18 +121,18 @@ def test_get_sample_details_for_invalid_proposal_id():
 )
 def test_get_proposals_and_sample_for_ymir_instrument():
     wrapper = _ProposalSystemWrapper()
-    proposals = wrapper.get_proposals_and_sample_for_instrument(
+    proposals = wrapper.get_proposals_including_samples_for_instrument(
         YUOS_TOKEN, TEST_URL, YMIR_ID
     )
 
     for proposal in proposals:
+        # 471120 is a known proposal
         if proposal["shortCode"] == "471120":
             result = proposal
             break
     else:
         result = None
 
-    # TODO: Make asserts more specific
     assert (
         result["title"]
         == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
@@ -140,5 +140,8 @@ def test_get_proposals_and_sample_for_ymir_instrument():
     assert result["id"] == 169
     assert len(result["users"]) == 2
     assert len(result["samples"]) == 3
-    assert "firstname" in result["proposer"]
-    assert "lastname" in result["proposer"]
+    assert result["proposer"]["firstname"] == "Fredrik"
+    assert result["proposer"]["lastname"] == "Bolmsten"
+    assert {"firstname": "jonathan ", "lastname": "Taylor"} in result["users"]
+    assert result["samples"][0]["id"] == 77
+    assert result["samples"][0]["title"] == "Yb3Ga5O12"

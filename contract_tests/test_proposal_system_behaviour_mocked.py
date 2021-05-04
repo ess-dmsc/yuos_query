@@ -52,9 +52,11 @@ VALID_RESPONSE_DATA = [
 def generate_standard_mock():
     mocked_impl = mock.create_autospec(_ProposalSystemWrapper)
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
-    mocked_impl.get_proposal_for_instrument.return_value = VALID_RESPONSE_DATA
+    mocked_impl.get_proposals_for_instrument.return_value = VALID_RESPONSE_DATA
     mocked_impl.get_sample_details_by_proposal_id.return_value = SAMPLE_EXAMPLE
-    mocked_impl.get_proposals_and_sample_for_instrument.return_value = YMIR_EXAMPLE_DATA
+    mocked_impl.get_proposals_including_samples_for_instrument.return_value = (
+        YMIR_EXAMPLE_DATA
+    )
     return mocked_impl
 
 
@@ -85,11 +87,11 @@ class TestProposalSystemMocked(ProposalSystemContract):
         if invalid_url:
             mocked_impl.get_instrument_data.side_effect = ConnectionError("oops")
             mocked_impl.execute_query.side_effect = ConnectionError("oops")
-            mocked_impl.get_proposal_for_instrument.side_effect = ConnectionError(
+            mocked_impl.get_proposals_for_instrument.side_effect = ConnectionError(
                 "oops"
             )
         if unknown_id:
-            mocked_impl.get_proposal_for_instrument.return_value = (
+            mocked_impl.get_proposals_for_instrument.return_value = (
                 UNKNOWN_INSTRUMENT_ID_RESPONSE
             )
 

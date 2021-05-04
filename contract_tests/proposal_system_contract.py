@@ -91,7 +91,7 @@ class ProposalSystemContract:
     def test_retrieval_of_all_proposals_and_samples_for_an_instrument(self):
         client = self.create_client()
 
-        results = client.get_proposals_and_samples_for_an_instrument("YMIR")
+        results = client.get_all_proposals_for_instrument("YMIR")
 
         assert len(results) == 17
         assert (

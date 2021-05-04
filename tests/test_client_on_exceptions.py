@@ -28,7 +28,7 @@ def test_issue_with_getting_instrument_data_from_system_raises_correct_exception
 
 def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_type():
     mocked_impl = generate_standard_mock()
-    mocked_impl.get_proposal_for_instrument.side_effect = TransportServerError("oops")
+    mocked_impl.get_proposals_for_instrument.side_effect = TransportServerError("oops")
 
     proposal_system = YuosClient(SOME_URL, SOME_TOKEN, mocked_impl)
 
@@ -43,7 +43,7 @@ def test_querying_for_proposal_id_with_translates_instrument_name_into_correct_i
     proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
 
     # This test is fragile because it relies on the order of the parameters
-    mocked_impl.get_proposal_for_instrument.assert_called_with(ANY, ANY, YMIR_INFO[0])
+    mocked_impl.get_proposals_for_instrument.assert_called_with(ANY, ANY, YMIR_INFO[0])
 
 
 def test_instrument_list_is_called_if_empty_on_proposal_query():
