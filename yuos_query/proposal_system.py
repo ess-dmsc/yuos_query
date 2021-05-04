@@ -219,3 +219,52 @@ class _ProposalSystemWrapper:
             ),
         )
         return json_data["samples"]
+
+    def get_proposals_and_sample_for_instrument(self, token, url, instrument_id):
+        json_data = self.execute_query(
+            token,
+            url,
+            """
+            {
+                proposals(filter: {instrumentId: $INST$}){
+                    totalCount
+                    proposals{
+                        shortCode
+                        title
+                        id
+                        users {
+                            firstname
+                            lastname
+                        }
+                        proposer {
+                            firstname
+                            lastname
+                        }
+                        samples {
+                            proposalId
+                            title
+                            id
+                            questionary {
+                                steps {
+                                    fields {
+                                        value
+                                        dependencies {
+                                            dependencyNaturalKey
+                                            questionId
+                                        }
+                                        question {
+                                            question
+                                            naturalKey
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            """.replace(
+                "$INST$", str(instrument_id)
+            ),
+        )
+        return json_data["proposals"]["proposals"]

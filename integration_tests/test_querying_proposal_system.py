@@ -114,3 +114,30 @@ def test_get_sample_details_for_invalid_proposal_id():
     results = wrapper.get_sample_details_by_proposal_id(YUOS_TOKEN, TEST_URL, -12345)
 
     assert len(results) == 0
+
+
+@pytest.mark.skipif(
+    SKIP_TEST, reason="no token supplied for testing against real system"
+)
+def test_get_proposals_and_sample_for_ymir_instrument():
+    wrapper = _ProposalSystemWrapper()
+    proposals = wrapper.get_proposals_and_sample_for_instrument(
+        YUOS_TOKEN, TEST_URL, YMIR_ID
+    )
+
+    for proposal in proposals:
+        if proposal["shortCode"] == "471120":
+            result = proposal
+            break
+    else:
+        result = None
+
+    assert (
+        result["title"]
+        == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
+    )
+    assert result["id"] == 169
+    assert len(result["users"]) == 2
+    assert len(result["samples"]) == 3
+    assert "firstname" in result["proposer"]
+    assert "lastname" in result["proposer"]
