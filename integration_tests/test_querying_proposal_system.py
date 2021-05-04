@@ -132,6 +132,7 @@ def test_get_proposals_and_sample_for_ymir_instrument():
     else:
         result = None
 
+    # TODO: Make asserts more specific
     assert (
         result["title"]
         == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"

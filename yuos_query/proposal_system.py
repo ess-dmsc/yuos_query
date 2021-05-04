@@ -114,6 +114,34 @@ class YuosClient:
         )
         return data
 
+    def get_proposals_and_samples_for_an_instrument(self, instrument_name):
+        if not self.instrument_list:
+            self.instrument_list = self._get_instruments()
+
+        inst_id = self._get_instrument_id_from_name(instrument_name)
+        data = self.implementation.get_proposals_and_sample_for_instrument(
+            self.token, self.url, inst_id
+        )
+        proposals = {}
+        for d in data:
+
+            users = extract_users(d)
+            proposer = extract_proposer(d)
+            title = d["title"]
+            id = d["id"]
+            prop_id = d["shortCode"]
+            samples = extract_relevant_sample_info(d["samples"])
+
+            proposals[prop_id] = {
+                "users": users,
+                "proposer": proposer,
+                "title": title,
+                "id": id,
+                "samples": samples,
+            }
+
+        return proposals
+
 
 class _ProposalSystemWrapper:
     """
