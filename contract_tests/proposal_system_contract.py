@@ -87,3 +87,26 @@ class ProposalSystemContract:
         assert results[1].number == 1
         assert results[1].mass_or_volume == (100, "g")
         assert results[1].density == (0, "g/cm*3")
+
+    def test_retrieval_of_all_proposals_and_samples_for_an_instrument(self):
+        client = self.create_client()
+
+        results = client.get_proposals_and_samples_for_an_instrument("YMIR")
+
+        assert len(results) == 17
+        assert (
+            results["471120"]["title"]
+            == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
+        )
+        assert results["471120"]["id"] == 169
+        assert results["471120"]["users"] == [
+            ("jonathan ", "Taylor"),
+            ("Johan", "Andersson"),
+        ]
+        assert results["471120"]["proposer"] == ("Fredrik", "Bolmsten")
+        assert len(results["471120"]["samples"]) == 3
+        assert results["471120"]["samples"][0].name == ""
+        assert results["471120"]["samples"][0].formula == "Yb3Ga5O12"
+        assert results["471120"]["samples"][0].number == 1
+        assert results["471120"]["samples"][0].density == (0, "g/cm*3")
+        assert results["471120"]["samples"][0].mass_or_volume == (0, "")

@@ -1,5 +1,7 @@
-from tests.sample_data_example import SAMPLE_EXAMPLE
+from example_data import get_example_sample_data
 from yuos_query.data_extractors import extract_relevant_sample_info
+
+SAMPLE_EXAMPLE = get_example_sample_data()
 
 
 def test_sample_info():
