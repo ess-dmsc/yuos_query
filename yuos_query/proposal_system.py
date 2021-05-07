@@ -34,9 +34,7 @@ class YuosClient:
         data = self.implementation.get_instrument_data(self.token, self.url)
         return {inst["id"]: inst["shortCode"].lower() for inst in data}
 
-    def proposal_by_id(
-        self, instrument_name: str, proposal_id: str
-    ) -> Optional[ProposalInfo]:
+    def proposal_by_id(self, proposal_id: str) -> Optional[ProposalInfo]:
         """
         Query the proposal system based on the instrument and proposal ID.
 
@@ -44,22 +42,12 @@ class YuosClient:
         :param proposal_id: proposal ID
         :return: the proposal information or None if not found
         """
-        try:
-            # if not self.instrument_list:
-            #     self.instrument_list = self._get_instruments()
+        converted_id = self._validate_proposal_id(proposal_id)
+        # inst_id = self._get_instrument_id_from_name(instrument_name)
 
-            converted_id = self._validate_proposal_id(proposal_id)
-            inst_id = self._get_instrument_id_from_name(instrument_name)
-            data = self._get_proposal_data(inst_id)
-            return self._find_proposal(converted_id, data)
-        except TransportServerError as error:
-            raise ConnectionException(f"connection issue: {error}") from error
-        except ConnectionError as error:
-            raise ConnectionException(f"connection issue: {error}") from error
-        except BaseYuosException:
-            raise
-        except Exception as error:
-            raise BaseYuosException(error) from error
+        # data = self._get_proposal_data(inst_id)
+        # return self._find_proposal(converted_id, data)
+        return self.cached_proposals.get(converted_id)
 
     def samples_by_id(self, db_id):
         """
@@ -99,8 +87,8 @@ class YuosClient:
     def _validate_proposal_id(self, proposal_id: str) -> str:
         # Does proposal_id conform to the expected pattern?
         try:
-            # Currently just needs to be a string
-            return str(proposal_id)
+            # Currently just needs to be a numeric string
+            return str(int(proposal_id))
         except Exception as error:
             raise InvalidIdException(error) from error
 
@@ -135,13 +123,9 @@ class YuosClient:
             prop_id = d["shortCode"]
             samples = extract_relevant_sample_info(d["samples"])
 
-            proposals[prop_id] = {
-                "users": users,
-                "proposer": proposer,
-                "title": title,
-                "id": id,
-                "samples": samples,
-            }
+            proposals[prop_id] = ProposalInfo(
+                prop_id, title, proposer, users, id, samples
+            )
 
         return proposals
 

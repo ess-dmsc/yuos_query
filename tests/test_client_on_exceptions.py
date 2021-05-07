@@ -25,7 +25,7 @@ def test_issue_with_getting_instrument_data_from_system_raises_correct_exception
     )
 
     with pytest.raises(ConnectionException):
-        proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
+        proposal_system.proposal_by_id(VALID_PROPOSAL_ID)
 
 
 def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_type():
@@ -37,7 +37,7 @@ def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_t
     )
 
     with pytest.raises(ConnectionException):
-        proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
+        proposal_system.proposal_by_id(VALID_PROPOSAL_ID)
 
 
 def test_querying_for_proposal_id_with_translates_instrument_name_into_correct_id():
@@ -46,7 +46,7 @@ def test_querying_for_proposal_id_with_translates_instrument_name_into_correct_i
     proposal_system = YuosClient(
         SOME_URL, SOME_TOKEN, "YMIR", implementation=mocked_impl
     )
-    proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
+    proposal_system.proposal_by_id(VALID_PROPOSAL_ID)
 
     # This test is fragile because it relies on the order of the parameters
     mocked_impl.get_proposals_for_instrument.assert_called_with(ANY, ANY, YMIR_INFO[0])
@@ -64,6 +64,6 @@ def test_instrument_list_is_called_if_empty_on_proposal_query():
         SOME_URL, SOME_TOKEN, "YMIR", implementation=mocked_impl
     )
 
-    proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
+    proposal_system.proposal_by_id(VALID_PROPOSAL_ID)
 
     assert mocked_impl.get_instrument_data.call_count == 1

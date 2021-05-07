@@ -16,6 +16,7 @@ if "YUOS_TOKEN" in os.environ:
 class TestProposalSystemReal(ProposalSystemContract):
     def create_client(
         self,
+        instrument_name: str = "YMIR",
         invalid_url: bool = False,
         invalid_user: bool = False,
         invalid_password: bool = False,
@@ -38,6 +39,6 @@ class TestProposalSystemReal(ProposalSystemContract):
             else "https://useroffice-test.esss.lu.se/graphql"
         )
 
-        return YuosClient(url, YUOS_TOKEN, "YMIR")
+        return YuosClient(url, YUOS_TOKEN, instrument_name)
 
     # Tests are inherited from ProposalSystemContract

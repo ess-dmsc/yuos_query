@@ -63,6 +63,7 @@ def generate_standard_mock():
 class TestProposalSystemMocked(ProposalSystemContract):
     def create_client(
         self,
+        instrument_name: str = "YMIR",
         invalid_url: bool = False,
         invalid_user: bool = False,
         invalid_password: bool = False,
@@ -98,7 +99,7 @@ class TestProposalSystemMocked(ProposalSystemContract):
         return YuosClient(
             "https://something.com",
             "not_a_real_token",
-            "YMIR",
+            instrument_name,
             implementation=mocked_impl,
         )
 
