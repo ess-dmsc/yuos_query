@@ -142,6 +142,12 @@ class YuosClient:
 
         return proposals
 
+    def refresh_cache(self, instrument):
+        self.implementation.get_instrument_data(self.token, self.url)
+        self.implementation.get_proposals_including_samples_for_instrument(
+            self.token, self.url, instrument
+        )
+
 
 class _ProposalSystemWrapper:
     """

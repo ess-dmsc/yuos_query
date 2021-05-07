@@ -98,3 +98,17 @@ class TestProposalSystemMocked(ProposalSystemContract):
         return YuosClient("https://something.com", "not_a_real_token", mocked_impl)
 
     # Tests are inherited from ProposalSystemContract
+
+    def test_makes_calls_to_proposal_system(self):
+        instrument = ":: some instrument ::"
+        url = ":: some url ::"
+        token = ":: some token ::"
+        impl = mock.create_autospec(_ProposalSystemWrapper)
+        client = YuosClient(url, token, impl)
+
+        client.refresh_cache(instrument)
+
+        impl.get_instrument_data.assert_called_once_with(token, url)
+        impl.get_proposals_including_samples_for_instrument.assert_called_once_with(
+            token, url, instrument
+        )
