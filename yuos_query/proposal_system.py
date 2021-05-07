@@ -26,6 +26,7 @@ class YuosClient:
             implementation if implementation else _ProposalSystemWrapper()
         )
         self.instrument_list = {}
+        self.cached_proposals = []
 
     def _get_instruments(self):
         data = self.implementation.get_instrument_data(self.token, self.url)
@@ -146,9 +147,7 @@ class YuosClient:
         if not self.instrument_list:
             self.instrument_list = self._get_instruments()
 
-        self.implementation.get_proposals_including_samples_for_instrument(
-            self.token, self.url, instrument
-        )
+        self.cached_proposals = self.get_all_proposals_for_instrument(instrument)
 
 
 class _ProposalSystemWrapper:
