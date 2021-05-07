@@ -38,6 +38,6 @@ class TestProposalSystemReal(ProposalSystemContract):
             else "https://useroffice-test.esss.lu.se/graphql"
         )
 
-        return YuosClient(url, YUOS_TOKEN)
+        return YuosClient(url, YUOS_TOKEN, "YMIR")
 
     # Tests are inherited from ProposalSystemContract

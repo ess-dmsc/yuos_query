@@ -19,9 +19,10 @@ from yuos_query.exceptions import (
 
 
 class YuosClient:
-    def __init__(self, url, token, implementation=None, instrument="YMIR"):
+    def __init__(self, url, token, instrument, implementation=None):
         self.url = url
         self.token = token
+        self.instrument = instrument
         self.implementation = (
             implementation if implementation else _ProposalSystemWrapper()
         )

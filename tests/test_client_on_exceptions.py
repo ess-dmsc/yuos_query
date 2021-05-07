@@ -20,7 +20,9 @@ def test_issue_with_getting_instrument_data_from_system_raises_correct_exception
     mocked_impl = generate_standard_mock()
     mocked_impl.get_instrument_data.side_effect = TransportServerError("oops")
 
-    proposal_system = YuosClient(SOME_URL, SOME_TOKEN, mocked_impl)
+    proposal_system = YuosClient(
+        SOME_URL, SOME_TOKEN, "YMIR", implementation=mocked_impl
+    )
 
     with pytest.raises(ConnectionException):
         proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
@@ -30,7 +32,9 @@ def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_t
     mocked_impl = generate_standard_mock()
     mocked_impl.get_proposals_for_instrument.side_effect = TransportServerError("oops")
 
-    proposal_system = YuosClient(SOME_URL, SOME_TOKEN, mocked_impl)
+    proposal_system = YuosClient(
+        SOME_URL, SOME_TOKEN, "YMIR", implementation=mocked_impl
+    )
 
     with pytest.raises(ConnectionException):
         proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
@@ -39,7 +43,9 @@ def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_t
 def test_querying_for_proposal_id_with_translates_instrument_name_into_correct_id():
     mocked_impl = generate_standard_mock()
 
-    proposal_system = YuosClient(SOME_URL, SOME_TOKEN, mocked_impl)
+    proposal_system = YuosClient(
+        SOME_URL, SOME_TOKEN, "YMIR", implementation=mocked_impl
+    )
     proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
 
     # This test is fragile because it relies on the order of the parameters
@@ -54,7 +60,9 @@ def test_instrument_list_is_called_if_empty_on_proposal_query():
     mocked_impl = generate_standard_mock()
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
 
-    proposal_system = YuosClient(SOME_URL, SOME_TOKEN, mocked_impl)
+    proposal_system = YuosClient(
+        SOME_URL, SOME_TOKEN, "YMIR", implementation=mocked_impl
+    )
 
     proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
 

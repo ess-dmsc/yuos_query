@@ -95,14 +95,21 @@ class TestProposalSystemMocked(ProposalSystemContract):
                 UNKNOWN_INSTRUMENT_ID_RESPONSE
             )
 
-        return YuosClient("https://something.com", "not_a_real_token", mocked_impl)
+        return YuosClient(
+            "https://something.com",
+            "not_a_real_token",
+            "YMIR",
+            implementation=mocked_impl,
+        )
 
     # Tests are inherited from ProposalSystemContract
 
     def test_client_refreshes_cache_on_construction(self):
         impl = mock.create_autospec(_ProposalSystemWrapper)
         impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
-        _ = YuosClient(":: some url ::", ":: some token ::", impl)
+        _ = YuosClient(
+            ":: some url ::", ":: some token ::", "YMIR", implementation=impl
+        )
 
         impl.get_instrument_data.assert_called_once()
         impl.get_proposals_including_samples_for_instrument.assert_called_once()
