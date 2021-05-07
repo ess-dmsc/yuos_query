@@ -67,6 +67,7 @@ class ProposalSystemContract:
         assert proposal_system.proposal_by_id("00000") is None
 
     def test_querying_for_samples_by_database_id_returns_sample_info(self):
+        # TODO: remove samples_by_id and use new method for this test
         proposal_system = self.create_client()
 
         results = proposal_system.samples_by_id(242)
