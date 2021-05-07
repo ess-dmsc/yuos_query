@@ -24,10 +24,8 @@ class ProposalSystemContract:
     def test_querying_for_proposal_by_id_with_invalid_url_raises(
         self,
     ):
-        proposal_system = self.create_client(invalid_url=True)
-
         with pytest.raises(ConnectionException):
-            proposal_system.proposal_by_id("YMIR", VALID_PROPOSAL_ID)
+            self.create_client(invalid_url=True)
 
     def test_querying_for_proposal_by_id_gets_correct_proposal(self):
         proposal_system = self.create_client()

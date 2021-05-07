@@ -19,7 +19,7 @@ from yuos_query.exceptions import (
 
 
 class YuosClient:
-    def __init__(self, url, token, implementation=None):
+    def __init__(self, url, token, implementation=None, instrument="YMIR"):
         self.url = url
         self.token = token
         self.implementation = (
@@ -27,6 +27,7 @@ class YuosClient:
         )
         self.instrument_list = {}
         self.cached_proposals = []
+        self.refresh_cache(instrument)
 
     def _get_instruments(self):
         data = self.implementation.get_instrument_data(self.token, self.url)
@@ -43,8 +44,8 @@ class YuosClient:
         :return: the proposal information or None if not found
         """
         try:
-            if not self.instrument_list:
-                self.instrument_list = self._get_instruments()
+            # if not self.instrument_list:
+            #     self.instrument_list = self._get_instruments()
 
             converted_id = self._validate_proposal_id(proposal_id)
             inst_id = self._get_instrument_id_from_name(instrument_name)
@@ -144,10 +145,19 @@ class YuosClient:
         return proposals
 
     def refresh_cache(self, instrument):
-        if not self.instrument_list:
-            self.instrument_list = self._get_instruments()
+        try:
+            if not self.instrument_list:
+                self.instrument_list = self._get_instruments()
 
-        self.cached_proposals = self.get_all_proposals_for_instrument(instrument)
+            self.cached_proposals = self.get_all_proposals_for_instrument(instrument)
+        except TransportServerError as error:
+            raise ConnectionException(f"connection issue: {error}") from error
+        except ConnectionError as error:
+            raise ConnectionException(f"connection issue: {error}") from error
+        except BaseYuosException:
+            raise
+        except Exception as error:
+            raise BaseYuosException(error) from error
 
 
 class _ProposalSystemWrapper:

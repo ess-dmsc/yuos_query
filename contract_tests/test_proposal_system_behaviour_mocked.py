@@ -99,12 +99,10 @@ class TestProposalSystemMocked(ProposalSystemContract):
 
     # Tests are inherited from ProposalSystemContract
 
-    def test_makes_calls_to_proposal_system(self):
+    def test_client_refreshes_cache_on_construction(self):
         impl = mock.create_autospec(_ProposalSystemWrapper)
         impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
-        client = YuosClient(":: some url ::", ":: some token ::", impl)
-
-        client.refresh_cache("YMIR")
+        _ = YuosClient(":: some url ::", ":: some token ::", impl)
 
         impl.get_instrument_data.assert_called_once()
         impl.get_proposals_including_samples_for_instrument.assert_called_once()
