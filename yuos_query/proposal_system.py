@@ -27,7 +27,7 @@ class YuosClient:
             implementation if implementation else _ProposalSystemWrapper()
         )
         self.instrument_list = {}
-        self.cached_proposals = []
+        self.cached_proposals = {}
         self.refresh_cache(instrument)
 
     def _get_instruments(self):
@@ -36,17 +36,12 @@ class YuosClient:
 
     def proposal_by_id(self, proposal_id: str) -> Optional[ProposalInfo]:
         """
-        Query the proposal system based on the instrument and proposal ID.
+        Find the proposal.
 
-        :param instrument_name: instrument name
         :param proposal_id: proposal ID
         :return: the proposal information or None if not found
         """
         converted_id = self._validate_proposal_id(proposal_id)
-        # inst_id = self._get_instrument_id_from_name(instrument_name)
-
-        # data = self._get_proposal_data(inst_id)
-        # return self._find_proposal(converted_id, data)
         return self.cached_proposals.get(converted_id)
 
     def samples_by_id(self, db_id):
@@ -106,16 +101,12 @@ class YuosClient:
         return data
 
     def get_all_proposals_for_instrument(self, instrument_name):
-        if not self.instrument_list:
-            self.instrument_list = self._get_instruments()
-
         inst_id = self._get_instrument_id_from_name(instrument_name)
-        data = self.implementation.get_proposals_including_samples_for_instrument(
+        response = self.implementation.get_proposals_including_samples_for_instrument(
             self.token, self.url, inst_id
         )
         proposals = {}
-        for d in data:
-
+        for d in response:
             users = extract_users(d)
             proposer = extract_proposer(d)
             title = d["title"]
