@@ -106,13 +106,13 @@ class YuosClient:
             self.token, self.url, inst_id
         )
         proposals = {}
-        for d in response:
-            users = extract_users(d)
-            proposer = extract_proposer(d)
-            title = d["title"]
-            id = d["id"]
-            prop_id = d["shortCode"]
-            samples = extract_relevant_sample_info(d["samples"])
+        for proposal in response:
+            users = extract_users(proposal)
+            proposer = extract_proposer(proposal)
+            title = proposal["title"]
+            id = proposal["id"]
+            prop_id = proposal["shortCode"]
+            samples = extract_relevant_sample_info(proposal["samples"])
 
             proposals[prop_id] = ProposalInfo(
                 prop_id, title, proposer, users, id, samples
