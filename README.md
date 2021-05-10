@@ -19,23 +19,13 @@ These tests live in the `tests` directory and can be run directly from the main 
 > pytest tests
 ```
 
-### Contract tests
-These tests live in the `contract_tests` directory. They are tests that respect the contract of the system.
-There are tests that run against the real system (slow) and the mocked system. These tests ultimately ensure that the
-mocked tests and the real system tests behave in the same way.
-
-The tests against the real system do not run by default as they can be slow. To run these tests, the `YUOS_TOKEN`
-environment variable must be set to the value of the token in blackbox:
-
-```
-> YUOS_TOKEN=<the long token string> pytest contract_tests
-```
-
 ### Integration tests
 There are "pure" integration_tests in the `integration_tests` directory and are not run automatically by pytest because they
 actually connect to a real server and are, thus, a bit slower to run.
 
-The purpose of the integration_tests is to test the low-level behaviour of the real system, so any changes to that system's
+The integration_tests contain two types of tests:
+- end-to-end which check the test from the usage point of view
+- low-level API tests which test the low-level behaviour of the real system, so any changes to that system's
 API will be flagged.
 
 To run these tests, the `YUOS_TOKEN` environment variable must be set to the value of the token in blackbox:
