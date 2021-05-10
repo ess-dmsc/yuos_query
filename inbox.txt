@@ -1,4 +1,3 @@
-- remove sample_by_id and fix tests
 - extract cache into its own class
 - check tests make sense
 - use "Quantity (e.g.weight, volume, thickness)"
