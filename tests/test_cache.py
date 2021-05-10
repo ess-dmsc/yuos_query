@@ -97,3 +97,6 @@ def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_t
     cache = Cache(":: token ::", ":: url ::", "YMIR", implementation=mocked_impl)
     with pytest.raises(ConnectionException):
         cache.refresh()
+
+
+# TODO: test what happens if given an instrument it doesn't recognise
