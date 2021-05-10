@@ -4,10 +4,10 @@ from gql.transport.requests import RequestsHTTPTransport
 
 class ProposalSystem:
     """
-    Don't use this directly.
+    Don't use this directly, use YuosClient
     """
 
-    def execute_query(self, token, url, query_json):
+    def _execute_query(self, token, url, query_json):
         """
         Function for making a query on the proposal system.
 
@@ -28,7 +28,7 @@ class ProposalSystem:
             return session.execute(query)
 
     def get_instrument_data(self, token, url):
-        json_data = self.execute_query(
+        json_data = self._execute_query(
             token,
             url,
             """
@@ -46,8 +46,8 @@ class ProposalSystem:
         )
         return json_data["instruments"]["instruments"]
 
-    def get_proposals_including_samples_for_instrument(self, token, url, instrument_id):
-        json_data = self.execute_query(
+    def get_proposals_by_instrument_id(self, token, url, instrument_id):
+        json_data = self._execute_query(
             token,
             url,
             """

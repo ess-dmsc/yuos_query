@@ -22,7 +22,7 @@ class Cache:
         self.instrument = instrument
         self.implementation = implementation if implementation else ProposalSystem()
         self.instrument_list = {}
-        self.cached_proposals = {}
+        self.proposals = {}
 
     def _get_instruments(self):
         data = self.implementation.get_instrument_data(self.token, self.url)
@@ -38,10 +38,7 @@ class Cache:
     def refresh(self):
         try:
             self.instrument_list = self._get_instruments()
-
-            self.cached_proposals = self.get_all_proposals_for_instrument(
-                self.instrument
-            )
+            self.proposals = self._get_proposals()
         except TransportServerError as error:
             raise ConnectionException(f"connection issue: {error}") from error
         except ConnectionError as error:
@@ -51,9 +48,9 @@ class Cache:
         except Exception as error:
             raise BaseYuosException(error) from error
 
-    def get_all_proposals_for_instrument(self, instrument_name):
-        inst_id = self._get_instrument_id_from_name(instrument_name)
-        response = self.implementation.get_proposals_including_samples_for_instrument(
+    def _get_proposals(self):
+        inst_id = self._get_instrument_id_from_name(self.instrument)
+        response = self.implementation.get_proposals_by_instrument_id(
             self.token, self.url, inst_id
         )
         proposals = {}

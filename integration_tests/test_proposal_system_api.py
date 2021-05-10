@@ -7,9 +7,10 @@ from requests import ConnectionError
 
 from yuos_query.proposal_system import ProposalSystem
 
-YMIR_ID = 4
-
+# 471120 is a known proposal
 VALID_PROPOSAL_ID = "471120"
+YMIR_ID = 4  # From the proposal system
+
 SKIP_TEST = True
 if "YUOS_TOKEN" in os.environ:
     SKIP_TEST = False
@@ -40,15 +41,13 @@ class TestProposalSystemAPI:
         system = ProposalSystem()
 
         with pytest.raises(GraphQLError):
-            system.get_proposals_including_samples_for_instrument(
-                YUOS_TOKEN, URL, "hello"
-            )
+            system.get_proposals_by_instrument_id(YUOS_TOKEN, URL, ":: string ::")
 
     def test_querying_with_float_instrument_id_raises(self):
         system = ProposalSystem()
 
         with pytest.raises(GraphQLError):
-            system.get_proposals_including_samples_for_instrument(YUOS_TOKEN, URL, 3.14)
+            system.get_proposals_by_instrument_id(YUOS_TOKEN, URL, 3.14)
 
     @pytest.mark.parametrize("test_input", [-10000, 10000])
     def test_querying_with_out_of_range_instrument_id_return_empty_list(
@@ -57,12 +56,7 @@ class TestProposalSystemAPI:
         system = ProposalSystem()
 
         assert (
-            len(
-                system.get_proposals_including_samples_for_instrument(
-                    YUOS_TOKEN, URL, test_input
-                )
-            )
-            == 0
+            len(system.get_proposals_by_instrument_id(YUOS_TOKEN, URL, test_input)) == 0
         )
 
     def test_get_instrument_data(self):
@@ -80,13 +74,10 @@ class TestProposalSystemAPI:
     def test_get_proposal_data(self):
         system = ProposalSystem()
 
-        proposals = system.get_proposals_including_samples_for_instrument(
-            YUOS_TOKEN, URL, YMIR_ID
-        )
+        proposals = system.get_proposals_by_instrument_id(YUOS_TOKEN, URL, YMIR_ID)
 
         for proposal in proposals:
-            # 471120 is a known proposal
-            if proposal["shortCode"] == "471120":
+            if proposal["shortCode"] == VALID_PROPOSAL_ID:
                 result = proposal
                 break
         else:

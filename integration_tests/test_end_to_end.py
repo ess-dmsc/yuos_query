@@ -44,7 +44,6 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
     assert result.samples[1].number == 1
     assert result.samples[1].density == (0, "g/cm*3")
     assert result.samples[1].mass_or_volume == (0, "µg")
-    print(result.samples[2])
     assert result.samples[2].name == ""
     assert result.samples[2].formula == "PEO, D2O, NaCl, EtOH"
     assert result.samples[2].number == 1

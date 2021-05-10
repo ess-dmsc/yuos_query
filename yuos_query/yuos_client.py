@@ -21,7 +21,7 @@ class YuosClient:
         :return: the proposal information or None if not found
         """
         converted_id = self._validate_proposal_id(proposal_id)
-        return self.cache.cached_proposals.get(converted_id)
+        return self.cache.proposals.get(converted_id)
 
     def _validate_proposal_id(self, proposal_id: str) -> str:
         # Does proposal_id conform to the expected pattern?
