@@ -97,8 +97,8 @@ class TestProposalSystemMocked(ProposalSystemContract):
             "not_a_real_token",
             instrument_name,
             cache=Cache(
-                "https://something.com",
                 "not_a_real_token",
+                "https://something.com",
                 instrument_name,
                 mocked_impl,
             ),

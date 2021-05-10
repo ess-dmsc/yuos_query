@@ -41,7 +41,7 @@ class TestProposalSystemReal(ProposalSystemContract):
         )
 
         return YuosClient(
-            url, YUOS_TOKEN, instrument_name, Cache(YUOS_TOKEN, url, instrument_name)
+            url, YUOS_TOKEN, instrument_name, Cache(url, YUOS_TOKEN, instrument_name)
         )
 
     # Tests are inherited from ProposalSystemContract

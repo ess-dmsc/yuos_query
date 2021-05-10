@@ -19,7 +19,7 @@ def test_refresh_cache_calls_proposal_system():
     impl = mock.create_autospec(ProposalSystem)
     impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
 
-    cache = Cache(":: some_token ::", ":: some_url ::", "YMIR", implementation=impl)
+    cache = Cache(":: some_url ::", ":: some_token ::", "YMIR", implementation=impl)
     cache.refresh()
 
     impl.get_instrument_data.assert_called_once()
@@ -31,7 +31,7 @@ def test_cache_gives_dictionary_of_proposals():
     impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     impl.get_proposals_including_samples_for_instrument.return_value = YMIR_EXAMPLE_DATA
 
-    cache = Cache(":: some_token ::", ":: some_url ::", "YMIR", implementation=impl)
+    cache = Cache(":: some_url ::", ":: some_token ::", "YMIR", implementation=impl)
     cache.refresh()
 
     assert len(cache.cached_proposals) == 17
@@ -71,7 +71,7 @@ def test_issue_with_getting_instrument_data_from_system_raises_correct_exception
     mocked_impl = generate_standard_mock()
     mocked_impl.get_instrument_data.side_effect = TransportServerError("oops")
 
-    cache = Cache(SOME_URL, SOME_TOKEN, "YMIR", implementation=mocked_impl)
+    cache = Cache(SOME_TOKEN, SOME_URL, "YMIR", implementation=mocked_impl)
     with pytest.raises(ConnectionException):
         cache.refresh()
 
@@ -82,6 +82,6 @@ def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_t
     mocked_impl.get_proposals_including_samples_for_instrument.side_effect = (
         TransportServerError("oops")
     )
-    cache = Cache(SOME_URL, SOME_TOKEN, "YMIR", implementation=mocked_impl)
+    cache = Cache(SOME_TOKEN, SOME_URL, "YMIR", implementation=mocked_impl)
     with pytest.raises(ConnectionException):
         cache.refresh()

@@ -16,7 +16,7 @@ from yuos_query.proposal_system import ProposalSystem
 
 
 class Cache:
-    def __init__(self, token, url, instrument, implementation=None):
+    def __init__(self, url, token, instrument, implementation=None):
         self.token = token
         self.url = url
         self.instrument = instrument
