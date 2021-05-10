@@ -2,7 +2,7 @@ from unittest import mock
 
 from example_data import get_ymir_example_data
 from yuos_query.cache import Cache
-from yuos_query.proposal_system import _ProposalSystemWrapper
+from yuos_query.proposal_system import ProposalSystem
 
 VALID_INSTRUMENT_LIST = [
     {"id": 4, "shortCode": "YMIR", "description": "Our test beamline", "name": "YMIR"},
@@ -30,7 +30,7 @@ YMIR_EXAMPLE_DATA = get_ymir_example_data()
 
 
 def test_refresh_cache_calls_proposal_system():
-    impl = mock.create_autospec(_ProposalSystemWrapper)
+    impl = mock.create_autospec(ProposalSystem)
     impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
 
     cache = Cache(":: some_token ::", ":: some_url ::", "YMIR", implementation=impl)
@@ -41,7 +41,7 @@ def test_refresh_cache_calls_proposal_system():
 
 
 def test_cache_gives_dictionary_of_proposals():
-    impl = mock.create_autospec(_ProposalSystemWrapper)
+    impl = mock.create_autospec(ProposalSystem)
     impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     impl.get_proposals_including_samples_for_instrument.return_value = YMIR_EXAMPLE_DATA
 

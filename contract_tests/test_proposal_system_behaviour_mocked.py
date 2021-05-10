@@ -3,10 +3,10 @@ from unittest import mock
 from requests.exceptions import ConnectionError
 
 from contract_tests.proposal_system_contract import ProposalSystemContract
-from example_data import get_example_sample_data, get_ymir_example_data
-from yuos_query.proposal_system import YuosClient, _ProposalSystemWrapper
+from example_data import get_ymir_example_data
+from yuos_query.proposal_system import ProposalSystem
+from yuos_query.yuos_client import YuosClient
 
-SAMPLE_EXAMPLE = get_example_sample_data()
 YMIR_EXAMPLE_DATA = get_ymir_example_data()
 
 # Copied from the real server
@@ -50,7 +50,7 @@ VALID_RESPONSE_DATA = [
 
 
 def generate_standard_mock():
-    mocked_impl = mock.create_autospec(_ProposalSystemWrapper)
+    mocked_impl = mock.create_autospec(ProposalSystem)
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     mocked_impl.get_proposals_including_samples_for_instrument.return_value = (
         YMIR_EXAMPLE_DATA
@@ -101,7 +101,7 @@ class TestProposalSystemMocked(ProposalSystemContract):
     # Tests are inherited from ProposalSystemContract
 
     def test_client_refreshes_cache_on_construction(self):
-        impl = mock.create_autospec(_ProposalSystemWrapper)
+        impl = mock.create_autospec(ProposalSystem)
         impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
         _ = YuosClient(
             ":: some url ::", ":: some token ::", "YMIR", implementation=impl

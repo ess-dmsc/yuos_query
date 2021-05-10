@@ -12,7 +12,7 @@ from yuos_query.exceptions import (
     ConnectionException,
     InvalidIdException,
 )
-from yuos_query.proposal_system import _ProposalSystemWrapper
+from yuos_query.proposal_system import ProposalSystem
 
 
 class Cache:
@@ -21,9 +21,7 @@ class Cache:
         self.url = url
         self.instrument = instrument
 
-        self.implementation = (
-            implementation if implementation else _ProposalSystemWrapper()
-        )
+        self.implementation = implementation if implementation else ProposalSystem()
         self.instrument_list = {}
         self.cached_proposals = {}
 

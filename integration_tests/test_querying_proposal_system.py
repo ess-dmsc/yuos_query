@@ -4,7 +4,7 @@ import pytest
 import requests
 from gql.transport.exceptions import TransportQueryError
 
-from yuos_query.proposal_system import _ProposalSystemWrapper
+from yuos_query.proposal_system import ProposalSystem
 
 # These tests are skipped if the YUOS_TOKEN environment variable is not defined
 SKIP_TEST = True
@@ -23,7 +23,7 @@ KNOWN_DB_ID = 242  # Not a "proposal" ID rather the database ID.
 def test_if_url_does_not_exist_raises():
     url_does_not_exist = TEST_URL.replace("e", "")
     with pytest.raises(requests.exceptions.ConnectionError):
-        _ProposalSystemWrapper().get_proposals_including_samples_for_instrument(
+        ProposalSystem().get_proposals_including_samples_for_instrument(
             YUOS_TOKEN, url_does_not_exist, YMIR_ID
         )
 
@@ -33,7 +33,7 @@ def test_if_url_does_not_exist_raises():
 )
 def test_invalid_token_raises_transport_error():
     with pytest.raises(TransportQueryError):
-        wrapper = _ProposalSystemWrapper()
+        wrapper = ProposalSystem()
         _ = wrapper.get_proposals_including_samples_for_instrument(
             ":: not a valid token ::", TEST_URL, YMIR_ID
         )
@@ -43,7 +43,7 @@ def test_invalid_token_raises_transport_error():
     SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_get_instruments_list():
-    wrapper = _ProposalSystemWrapper()
+    wrapper = ProposalSystem()
 
     results = wrapper.get_instrument_data(YUOS_TOKEN, TEST_URL)
 
@@ -59,7 +59,7 @@ def test_get_instruments_list():
     SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_get_proposals_and_sample_for_ymir_instrument():
-    wrapper = _ProposalSystemWrapper()
+    wrapper = ProposalSystem()
     proposals = wrapper.get_proposals_including_samples_for_instrument(
         YUOS_TOKEN, TEST_URL, YMIR_ID
     )
