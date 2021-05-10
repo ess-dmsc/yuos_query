@@ -44,30 +44,6 @@ class YuosClient:
         converted_id = self._validate_proposal_id(proposal_id)
         return self.cached_proposals.get(converted_id)
 
-    def samples_by_id(self, db_id):
-        """
-        Get the sample associated with the supplied database ID.
-
-        The sample data is associated to the proposal ID by the internal database ID,
-        so we have to use that. That is retrieved during the proposal query.
-
-        :param db_id: the database ID
-        :return: list of SampleInfo
-        """
-        try:
-            data = self.implementation.get_sample_details_by_proposal_id(
-                self.token, self.url, db_id
-            )
-            return extract_relevant_sample_info(data)
-        except TransportServerError as error:
-            raise ConnectionException(f"connection issue: {error}") from error
-        except ConnectionError as error:
-            raise ConnectionException(f"connection issue: {error}") from error
-        except BaseYuosException:
-            raise
-        except Exception as error:
-            raise BaseYuosException(error) from error
-
     def _find_proposal(self, converted_id, data):
         for proposal in data:
             # In the proposal system the proposal ID is called the shortCode
