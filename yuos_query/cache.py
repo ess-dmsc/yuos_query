@@ -20,7 +20,6 @@ class Cache:
         self.token = token
         self.url = url
         self.instrument = instrument
-
         self.implementation = implementation if implementation else ProposalSystem()
         self.instrument_list = {}
         self.cached_proposals = {}

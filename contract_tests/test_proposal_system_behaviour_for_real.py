@@ -3,6 +3,7 @@ import os
 import pytest
 
 from contract_tests.proposal_system_contract import ProposalSystemContract
+from yuos_query.cache import Cache
 from yuos_query.yuos_client import YuosClient
 
 # These tests are skipped if the YUOS_TOKEN environment variable is not defined
@@ -39,6 +40,8 @@ class TestProposalSystemReal(ProposalSystemContract):
             else "https://useroffice-test.esss.lu.se/graphql"
         )
 
-        return YuosClient(url, YUOS_TOKEN, instrument_name)
+        return YuosClient(
+            url, YUOS_TOKEN, instrument_name, Cache(YUOS_TOKEN, url, instrument_name)
+        )
 
     # Tests are inherited from ProposalSystemContract
