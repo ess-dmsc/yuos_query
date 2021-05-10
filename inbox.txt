@@ -1,3 +1,5 @@
-- extract cache into its own class
 - check tests make sense
+    - one end to end test
+    - contract tests for cache/proposal system layer
 - use "Quantity (e.g.weight, volume, thickness)"
+    - quick look and if it makes sense create a ticket
