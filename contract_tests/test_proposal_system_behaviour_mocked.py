@@ -4,6 +4,7 @@ from requests.exceptions import ConnectionError
 
 from contract_tests.proposal_system_contract import ProposalSystemContract
 from example_data import get_ymir_example_data
+from yuos_query.cache import Cache
 from yuos_query.proposal_system import ProposalSystem
 from yuos_query.yuos_client import YuosClient
 
@@ -95,17 +96,19 @@ class TestProposalSystemMocked(ProposalSystemContract):
             "https://something.com",
             "not_a_real_token",
             instrument_name,
-            implementation=mocked_impl,
+            cache=Cache(
+                "https://something.com",
+                "not_a_real_token",
+                instrument_name,
+                mocked_impl,
+            ),
         )
 
     # Tests are inherited from ProposalSystemContract
 
     def test_client_refreshes_cache_on_construction(self):
-        impl = mock.create_autospec(ProposalSystem)
-        impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
-        _ = YuosClient(
-            ":: some url ::", ":: some token ::", "YMIR", implementation=impl
-        )
+        impl = mock.create_autospec(Cache)
 
-        impl.get_instrument_data.assert_called_once()
-        impl.get_proposals_including_samples_for_instrument.assert_called_once()
+        _ = YuosClient(":: some url ::", ":: some token ::", "YMIR", impl)
+
+        impl.refresh.assert_called_once()

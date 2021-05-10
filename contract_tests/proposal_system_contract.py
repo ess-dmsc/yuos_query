@@ -65,34 +65,3 @@ class ProposalSystemContract:
         proposal_system = self.create_client(unknown_id=True)
 
         assert proposal_system.proposal_by_id("00000") is None
-
-    def test_retrieval_of_all_proposals_and_samples_for_an_instrument(self):
-        client = self.create_client()
-
-        results = client.get_all_proposals_for_instrument("YMIR")
-
-        assert len(results) == 17
-        assert (
-            results["471120"].title
-            == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
-        )
-        assert results["471120"].id == "471120"
-        assert results["471120"].users == [
-            ("jonathan ", "Taylor"),
-            ("Johan", "Andersson"),
-        ]
-        assert results["471120"].proposer == ("Fredrik", "Bolmsten")
-        assert len(results["471120"].samples) == 3
-        assert results["471120"].samples[0].name == ""
-        assert results["471120"].samples[0].formula == "Yb3Ga5O12"
-        assert results["471120"].samples[0].number == 1
-        assert results["471120"].samples[0].density == (0, "g/cm*3")
-        assert results["471120"].samples[0].mass_or_volume == (0, "")
-        assert results["471120"].samples[1].name == ""
-        assert (
-            results["471120"].samples[1].formula
-            == "(EO)20-(PO)45-(EO)30, D2O, NaCl, SDS"
-        )
-        assert results["471120"].samples[1].number == 1
-        assert results["471120"].samples[1].density == (0, "g/cm*3")
-        assert results["471120"].samples[1].mass_or_volume == (0, "µg")
