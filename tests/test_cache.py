@@ -53,3 +53,23 @@ def test_cache_gives_dictionary_of_proposals():
         cache.cached_proposals["471120"].title
         == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
     )
+    assert cache.cached_proposals["471120"].id == "471120"
+    assert cache.cached_proposals["471120"].users == [
+        ("jonathan ", "Taylor"),
+        ("Johan", "Andersson"),
+    ]
+    assert cache.cached_proposals["471120"].proposer == ("Fredrik", "Bolmsten")
+    assert len(cache.cached_proposals["471120"].samples) == 3
+    assert cache.cached_proposals["471120"].samples[0].name == ""
+    assert cache.cached_proposals["471120"].samples[0].formula == "Yb3Ga5O12"
+    assert cache.cached_proposals["471120"].samples[0].number == 1
+    assert cache.cached_proposals["471120"].samples[0].density == (0, "g/cm*3")
+    assert cache.cached_proposals["471120"].samples[0].mass_or_volume == (0, "")
+    assert cache.cached_proposals["471120"].samples[1].name == ""
+    assert (
+        cache.cached_proposals["471120"].samples[1].formula
+        == "(EO)20-(PO)45-(EO)30, D2O, NaCl, SDS"
+    )
+    assert cache.cached_proposals["471120"].samples[1].number == 1
+    assert cache.cached_proposals["471120"].samples[1].density == (0, "g/cm*3")
+    assert cache.cached_proposals["471120"].samples[1].mass_or_volume == (0, "µg")
