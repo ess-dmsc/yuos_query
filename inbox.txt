@@ -1,5 +1,6 @@
 - check tests make sense
     - one end to end test
     - contract tests for cache/proposal system layer
+- better name for get_proposals_including_samples_for_instrument
 - use "Quantity (e.g.weight, volume, thickness)"
     - quick look and if it makes sense create a ticket
