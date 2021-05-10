@@ -156,67 +156,6 @@ class _ProposalSystemWrapper:
         )
         return json_data["instruments"]["instruments"]
 
-    def get_proposals_for_instrument(self, token, url, instrument_id):
-        json_data = self.execute_query(
-            token,
-            url,
-            """
-            {
-                proposals(filter: {instrumentId: $INST$}){
-                    totalCount
-                    proposals{
-                        shortCode
-                        title
-                        id
-                        users {
-                            firstname
-                            lastname
-                        }
-                        proposer {
-                            firstname
-                            lastname
-                        }
-                    }
-                }
-            }
-            """.replace(
-                "$INST$", str(instrument_id)
-            ),
-        )
-        return json_data["proposals"]["proposals"]
-
-    def get_sample_details_by_proposal_id(self, token, url, db_id):
-        json_data = self.execute_query(
-            token,
-            url,
-            """
-            {
-                samples(filter: {proposalId: $DBID$})  {
-                    proposalId
-                    title
-                    questionary{
-                      steps{
-                        fields{
-                          value
-                          dependencies{
-                            dependencyNaturalKey
-                            questionId
-                          }
-                          question{
-                            question
-                            naturalKey
-                          }
-                        }
-                      }
-                    }
-                  }
-            }
-            """.replace(
-                "$DBID$", str(db_id)
-            ),
-        )
-        return json_data["samples"]
-
     def get_proposals_including_samples_for_instrument(self, token, url, instrument_id):
         json_data = self.execute_query(
             token,
