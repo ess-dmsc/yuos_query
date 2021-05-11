@@ -44,8 +44,8 @@ To run these tests, the `YUOS_TOKEN` environment variable must be set to the val
 
 ```
 import os
-from yuos_query.proposal_system import YuosClient
+from yuos_query.yuos_client import YuosClient
 
-client = YuosClient("some url", os.environ["YUOS_TOKEN"])
-proposal_info = client.proposal_by_id(instrument_name, proposal_id)
+client = YuosClient("some url", os.environ["YUOS_TOKEN"], instrument_name)
+proposal_info = client.proposal_by_id(proposal_id)
 ```
