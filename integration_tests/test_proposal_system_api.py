@@ -108,21 +108,8 @@ class TestProposalSystemAPI:
     #
     #     assert results.id == VALID_PROPOSAL_ID
 
-    # def test_querying_for_proposal_by_id_with_id_that_does_not_conform_to_pattern_raises(
-    #     self,
-    # ):
-    #     proposal_system = self.create_client()
-    #
-    #     with pytest.raises(InvalidIdException):
-    #         proposal_system.proposal_by_id("abc")
-
     # def test_client_constructor_with_unknown_instrument_name_raises(
     #     self,
     # ):
     #     with pytest.raises(InvalidIdException):
     #         _ = self.create_client(":: not an instrument ::")
-
-    # def test_querying_for_unknown_proposal_id_returns_nothing(self):
-    #     proposal_system = self.create_client(unknown_id=True)
-    #
-    #     assert proposal_system.proposal_by_id("00000") is None
