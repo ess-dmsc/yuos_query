@@ -88,7 +88,7 @@ class TestYuosClient:
 
         assert client.proposal_by_id("00000") is None
 
-    def test_querying_for_proposal_by_id_gives_dictionary_of_proposals(self):
+    def test_querying_for_proposal_by_id_gives_proposal_info(self):
         mock_cache = mock.create_autospec(Cache)
         mock_cache.proposals = VALID_PROPOSAL_DATA
 
