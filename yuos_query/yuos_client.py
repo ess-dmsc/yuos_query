@@ -1,5 +1,6 @@
 from typing import Optional
 
+from yuos_query.cache import Cache
 from yuos_query.data_classes import ProposalInfo
 from yuos_query.exceptions import InvalidIdException
 
@@ -9,7 +10,7 @@ class YuosClient:
         self.url = url
         self.token = token
         self.instrument = instrument
-        self.cache = cache
+        self.cache = cache if cache else Cache(url, token, instrument)
 
         self.refresh_cache()
 
