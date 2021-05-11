@@ -18,6 +18,9 @@ if "YUOS_TOKEN" in os.environ:
 URL = "https://useroffice-test.esss.lu.se/graphql"
 
 
+@pytest.mark.skipif(
+    SKIP_TEST, reason="no token supplied for testing against real system"
+)
 class TestProposalSystemAPI:
     """
     This defines our understanding of how the proposal system works.
