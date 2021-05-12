@@ -105,6 +105,7 @@ def test_getting_proposals_for_unknown_instrument_raises_correct_exception_type(
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
 
     cache = Cache(
+        ":: url ::",
         ":: token ::",
         ":: url ::",
         "NOT AN INSTRUMENT",
@@ -119,7 +120,7 @@ def test_cache_ignores_instrument_name_casing():
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     mocked_impl.get_proposals_by_instrument_id.return_value = YMIR_EXAMPLE_DATA
 
-    cache = Cache(":: token ::", ":: url ::", "yMIr", implementation=mocked_impl)
+    cache = Cache(":: url ::", ":: token ::", "yMIr", implementation=mocked_impl)
     cache.refresh()
 
     assert len(cache.proposals)
