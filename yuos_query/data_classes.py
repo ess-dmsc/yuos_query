@@ -5,7 +5,7 @@ SampleInfo = NamedTuple(
     (
         ("name", str),
         ("formula", str),
-        ("number", str),
+        ("number", int),
         ("mass_or_volume", Tuple[float, str]),
         ("density", Tuple[float, str]),
     ),
