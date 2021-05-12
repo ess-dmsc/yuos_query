@@ -8,7 +8,7 @@ from requests import ConnectionError
 from yuos_query.proposal_system import ProposalSystem
 
 # 471120 is a known proposal
-VALID_PROPOSAL_ID = "47120"
+VALID_PROPOSAL_ID = "471120"
 YMIR_ID = 4  # From the proposal system
 
 SKIP_TEST = True
@@ -92,18 +92,3 @@ class TestProposalSystemAPI:
         assert {"firstname": "jonathan ", "lastname": "Taylor"} in result["users"]
         assert result["samples"][0]["id"] == 77
         assert result["samples"][0]["title"] == "Yb3Ga5O12"
-
-    # TODO: move to yuos client tests
-
-    # def test_when_querying_for_proposal_by_id_instrument_name_case_is_ignored(self):
-    #     proposal_system = self.create_client()
-    #
-    #     results = proposal_system.proposal_by_id(VALID_PROPOSAL_ID)
-    #
-    #     assert results.id == VALID_PROPOSAL_ID
-
-    # def test_client_constructor_with_unknown_instrument_name_raises(
-    #     self,
-    # ):
-    #     with pytest.raises(InvalidIdException):
-    #         _ = self.create_client(":: not an instrument ::")

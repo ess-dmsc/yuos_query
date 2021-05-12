@@ -111,3 +111,13 @@ def test_getting_proposals_for_unknown_instrument_raises_correct_exceptipn_type(
     )
     with pytest.raises(InvalidIdException):
         cache.refresh()
+
+
+def test_cache_gives_dictionary_of_proposals_with_instrument_name_case_ignored():
+    mocked_impl = mock.create_autospec(ProposalSystem)
+    mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
+    mocked_impl.get_proposals_by_instrument_id.return_value = YMIR_EXAMPLE_DATA
+
+    cache = Cache(":: token ::", ":: url ::", "yMIr", implementation=mocked_impl)
+    cache.refresh()
+    assert len(cache.proposals) == 17
