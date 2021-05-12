@@ -5,7 +5,7 @@ from gql.transport.exceptions import TransportServerError
 
 from example_data import get_ymir_example_data
 from yuos_query.cache import Cache
-from yuos_query.exceptions import ConnectionException
+from yuos_query.exceptions import ConnectionException, InvalidIdException
 from yuos_query.proposal_system import ProposalSystem
 
 YMIR_EXAMPLE_DATA = get_ymir_example_data()
@@ -99,4 +99,15 @@ def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_t
         cache.refresh()
 
 
-# TODO: test what happens if given an instrument it doesn't recognise
+def test_getting_proposals_for_unknown_instrument_raises_correct_exceptipn_type():
+    mocked_impl = mock.create_autospec(ProposalSystem)
+    mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
+
+    cache = Cache(
+        ":: token ::",
+        ":: url ::",
+        ":: unknown instrument ::",
+        implementation=mocked_impl,
+    )
+    with pytest.raises(InvalidIdException):
+        cache.refresh()
