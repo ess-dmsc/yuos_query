@@ -1,5 +1,9 @@
-from tests.sample_data_example import SAMPLE_EXAMPLE
+from example_data import get_ymir_example_data
 from yuos_query.data_extractors import extract_relevant_sample_info
+
+for data in get_ymir_example_data():
+    if data["shortCode"] == "871067":  # proposalId 242
+        SAMPLE_EXAMPLE = data["samples"]
 
 
 def test_sample_info():
