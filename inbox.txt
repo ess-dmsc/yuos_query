@@ -1,5 +1,0 @@
-- Move commented out tests to better location, see test_proposal_system_api
-- Fix example usage in README
-- Make it easier to create a YuosClient
-- use "Quantity (e.g.weight, volume, thickness)"?
-    - quick look and if it makes sense create a ticket
