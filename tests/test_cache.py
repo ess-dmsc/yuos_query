@@ -94,6 +94,7 @@ def test_issue_with_getting_proposal_data_from_system_raises_correct_exception_t
     mocked_impl.get_proposals_by_instrument_id.side_effect = TransportServerError(
         "oops"
     )
+
     cache = Cache(":: token ::", ":: url ::", "YMIR", implementation=mocked_impl)
     with pytest.raises(ConnectionException):
         cache.refresh()
@@ -113,7 +114,7 @@ def test_getting_proposals_for_unknown_instrument_raises_correct_exception_type(
         cache.refresh()
 
 
-def test_cache_gives_dictionary_of_proposals_with_instrument_name_case_ignored():
+def test_cache_ignores_instrument_name_casing():
     mocked_impl = mock.create_autospec(ProposalSystem)
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     mocked_impl.get_proposals_by_instrument_id.return_value = YMIR_EXAMPLE_DATA
