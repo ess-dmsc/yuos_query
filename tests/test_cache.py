@@ -3,6 +3,7 @@ from unittest import mock
 import pytest
 from gql.transport.exceptions import TransportQueryError
 from graphql import GraphQLError
+from requests.exceptions import ConnectionError
 
 from example_data import get_ymir_example_data
 from yuos_query.cache import Cache
@@ -42,7 +43,7 @@ def test_refresh_cache_calls_proposal_system():
     impl = mock.create_autospec(ProposalSystem)
     impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
 
-    cache = Cache(":: some_url ::", ":: some_token ::", "YMIR", implementation=impl)
+    cache = Cache(":: url ::", ":: token ::", "YMIR", implementation=impl)
     cache.refresh()
 
     impl.get_instrument_data.assert_called_once()
@@ -54,7 +55,7 @@ def test_cache_can_retrieve_proposals():
     impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
     impl.get_proposals_by_instrument_id.return_value = YMIR_EXAMPLE_DATA
 
-    cache = Cache(":: some_url ::", ":: some_token ::", "YMIR", implementation=impl)
+    cache = Cache(":: url ::", ":: token ::", "YMIR", implementation=impl)
     cache.refresh()
 
     assert len(cache.proposals) == 17
@@ -84,7 +85,7 @@ def test_cache_can_retrieve_proposals():
     assert cache.proposals["471120"].samples[1].mass_or_volume == (0, "µg")
 
 
-def test_getting_proposals_for_unknown_instrument_raises_correct_exception_type():
+def test_getting_proposals_for_unknown_instrument_raises_correct_exception():
     mocked_impl = mock.create_autospec(ProposalSystem)
     mocked_impl.get_instrument_data.return_value = VALID_INSTRUMENT_LIST
 
@@ -109,20 +110,32 @@ def test_cache_ignores_instrument_name_casing():
     assert len(cache.proposals)
 
 
-def test_querying_with_invalid_token_raises():
+def test_querying_with_invalid_token_raises_correct_exception():
+    """
+    The GraphQL library raises a specific exception if the token isn't valid.
+    """
     mocked_impl = mock.create_autospec(ProposalSystem)
     mocked_impl.get_instrument_data.side_effect = TransportQueryError("oops")
 
-    cache = Cache(":: url ::", ":: token ::", "YMIR", implementation=mocked_impl)
+    cache = Cache(":: url ::", ":: token ::", ":: inst ::", implementation=mocked_impl)
     with pytest.raises(ConnectionException):
         cache.refresh()
 
 
-def test_querying_with_non_server_url_raises():
+def test_querying_with_non_server_url_raises_correct_exception():
+    """
+    The GraphQL library raises a specific exception if given a URI which isn't a
+    GraphQL server.
+    """
     mocked_impl = mock.create_autospec(ProposalSystem)
     mocked_impl.get_instrument_data.side_effect = ConnectionError("oops")
 
-    cache = Cache("https://wwww.google.com", ":: token ::", "YMIR")
+    cache = Cache(
+        "https://wwww.google.com",
+        ":: token ::",
+        ":: inst ::",
+        implementation=mocked_impl,
+    )
 
     with pytest.raises(ConnectionException):
         cache.refresh()
@@ -130,14 +143,15 @@ def test_querying_with_non_server_url_raises():
 
 def test_gql_query_exception_raises_correct_exception():
     """
-    GraphQL raises a specific exception if there is something wrong with the query.
+    The GraphQL library raises a specific exception if there is something wrong
+    with the query.
 
-    For example: if the query json is invalid
+    For example: if the query json is invalid.
     """
     mocked_impl = mock.create_autospec(ProposalSystem)
     mocked_impl.get_instrument_data.side_effect = GraphQLError("oops")
 
-    cache = Cache(":: url ::", ":: token ::", "YMIR", implementation=mocked_impl)
+    cache = Cache(":: url ::", ":: token ::", ":: inst ::", implementation=mocked_impl)
 
     with pytest.raises(InvalidQueryException):
         cache.refresh()

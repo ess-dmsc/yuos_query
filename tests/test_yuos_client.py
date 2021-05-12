@@ -67,15 +67,15 @@ VALID_PROPOSAL_DATA = {
 class TestYuosClient:
     def test_during_client_construction_cache_refresh_is_called(self):
         mock_cache = mock.create_autospec(Cache)
-        _ = YuosClient(":: some_url ::", ":: some_token ::", "YMIR", mock_cache)
+        _ = YuosClient(":: url ::", ":: token ::", "YMIR", mock_cache)
 
         mock_cache.refresh.assert_called_once()
 
-    def test_querying_for_proposal_by_id_with_id_that_does_not_conform_to_pattern_raises(
+    def test_querying_with_id_that_does_not_conform_to_pattern_raises(
         self,
     ):
         mock_cache = mock.create_autospec(Cache)
-        client = YuosClient(":: some_url ::", ":: some_token ::", "YMIR", mock_cache)
+        client = YuosClient(":: url ::", ":: token ::", "YMIR", mock_cache)
 
         with pytest.raises(InvalidIdException):
             client.proposal_by_id("abc")
@@ -84,7 +84,7 @@ class TestYuosClient:
         mock_cache = mock.create_autospec(Cache)
         mock_cache.proposals = VALID_PROPOSAL_DATA
 
-        client = YuosClient(":: some_url ::", ":: some_token ::", "YMIR", mock_cache)
+        client = YuosClient(":: url ::", ":: token ::", "YMIR", mock_cache)
 
         assert client.proposal_by_id("00000") is None
 
@@ -92,7 +92,7 @@ class TestYuosClient:
         mock_cache = mock.create_autospec(Cache)
         mock_cache.proposals = VALID_PROPOSAL_DATA
 
-        client = YuosClient(":: some_url ::", ":: some_token ::", "YMIR", mock_cache)
+        client = YuosClient(":: url ::", ":: token ::", "YMIR", mock_cache)
         proposal_info = client.proposal_by_id("471120")
 
         assert (
