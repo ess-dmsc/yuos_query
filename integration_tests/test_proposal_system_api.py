@@ -8,7 +8,7 @@ from requests import ConnectionError
 from yuos_query.proposal_system import ProposalSystem
 
 # 471120 is a known proposal
-VALID_PROPOSAL_ID = "471120"
+VALID_PROPOSAL_ID = "47120"
 YMIR_ID = 4  # From the proposal system
 
 SKIP_TEST = True
@@ -66,25 +66,19 @@ class TestProposalSystemAPI:
         system = ProposalSystem()
 
         results = system.get_instrument_data(YUOS_TOKEN, URL)
-
         assert len(results) > 0
-        for instrument in results:
-            if instrument["name"] == "YMIR":
-                assert True
-                return
-        assert False
+        assert any(instrument["name"] == "YMIR" for instrument in results)
 
     def test_get_proposal_data(self):
         system = ProposalSystem()
 
         proposals = system.get_proposals_by_instrument_id(YUOS_TOKEN, URL, YMIR_ID)
 
+        result = None
         for proposal in proposals:
             if proposal["shortCode"] == VALID_PROPOSAL_ID:
                 result = proposal
                 break
-        else:
-            result = None
 
         assert (
             result["title"]
