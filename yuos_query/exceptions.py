@@ -8,3 +8,7 @@ class ConnectionException(BaseYuosException):
 
 class InvalidIdException(BaseYuosException):
     pass
+
+
+class InvalidQueryException(BaseYuosException):
+    pass

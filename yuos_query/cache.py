@@ -1,4 +1,5 @@
-from gql.transport.exceptions import TransportServerError
+from gql.transport.exceptions import TransportQueryError
+from graphql import GraphQLError
 from requests.exceptions import ConnectionError
 
 from yuos_query.data_classes import ProposalInfo
@@ -11,6 +12,7 @@ from yuos_query.exceptions import (
     BaseYuosException,
     ConnectionException,
     InvalidIdException,
+    InvalidQueryException,
 )
 from yuos_query.proposal_system import ProposalSystem
 
@@ -39,11 +41,13 @@ class Cache:
         try:
             self.instrument_list = self._get_instruments()
             self.proposals = self._get_proposals()
-        except TransportServerError as error:
+        except TransportQueryError as error:
             raise ConnectionException(f"connection issue: {error}") from error
         except ConnectionError as error:
             raise ConnectionException(f"connection issue: {error}") from error
-        except BaseYuosException:
+        except GraphQLError as error:
+            raise InvalidQueryException(f"invalid query: {error}") from error
+        except InvalidIdException:
             raise
         except Exception as error:
             raise BaseYuosException(error) from error
