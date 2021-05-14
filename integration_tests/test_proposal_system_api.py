@@ -35,37 +35,37 @@ class TestProposalSystemAPI:
     """
 
     def test_querying_with_non_server_url_raises(self):
-        api = GqlWrapper(YUOS_TOKEN, "https://wwww.google.com")
+        api = GqlWrapper("https://wwww.google.com", YUOS_TOKEN)
 
         with pytest.raises(InvalidUrlException):
             api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_non_valid_url_raises(self):
-        api = GqlWrapper(YUOS_TOKEN, "missing.protocol.com")
+        api = GqlWrapper("missing.protocol.com", YUOS_TOKEN)
 
         with pytest.raises(InvalidUrlException):
             api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_invalid_token_raises(self):
-        api = GqlWrapper("INVALID TOKEN", URL)
+        api = GqlWrapper(URL, "INVALID TOKEN")
 
         with pytest.raises(InvalidTokenException):
             api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_malformed_query_raises(self):
-        api = GqlWrapper(YUOS_TOKEN, URL)
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
         with pytest.raises(InvalidQueryException):
             api.request("MALFORMED QUERY")
 
     def test_querying_for_non_numeric_instrument_id_raises(self):
-        api = GqlWrapper(YUOS_TOKEN, URL)
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
         with pytest.raises(InvalidQueryException):
             api.request(create_proposal_query("NOT NUMERIC"))
 
     def test_querying_for_float_instrument_id_raises(self):
-        api = GqlWrapper(YUOS_TOKEN, URL)
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
         with pytest.raises(InvalidQueryException):
             api.request(create_proposal_query(123.45))
@@ -74,14 +74,14 @@ class TestProposalSystemAPI:
     def test_querying_with_out_of_range_instrument_id_return_empty_list(
         self, test_input
     ):
-        api = GqlWrapper(YUOS_TOKEN, URL)
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
         result = api.request(create_proposal_query(test_input))
 
         assert len(result["proposals"]["proposals"]) == 0
 
     def test_querying_for_instruments_returns_expected_data(self):
-        api = GqlWrapper(YUOS_TOKEN, URL)
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
         result = api.request(INSTRUMENT_QUERY)
 
@@ -91,7 +91,7 @@ class TestProposalSystemAPI:
         assert "id" in result["instruments"]["instruments"][0]
 
     def test_querying_for_proposals_returns_expected_data(self):
-        api = GqlWrapper(YUOS_TOKEN, URL)
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
         response = api.request(create_proposal_query(YMIR_ID))
 

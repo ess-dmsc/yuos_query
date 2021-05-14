@@ -71,7 +71,7 @@ def create_proposal_query(instrument_id):
 
 
 class GqlWrapper:
-    def __init__(self, token, url):
+    def __init__(self, url, token):
         self.token = token
         self.url = url
 
@@ -101,8 +101,8 @@ class ProposalSystem:
     Don't use this directly, use YuosClient
     """
 
-    def __init__(self, token, url):
-        self.wrapper = GqlWrapper(token, url)
+    def __init__(self, url, token):
+        self.wrapper = GqlWrapper(url, token)
 
     def get_instrument_data(self):
         json_data = self._execute(INSTRUMENT_QUERY)
