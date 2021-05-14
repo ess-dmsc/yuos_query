@@ -2,7 +2,6 @@ import os
 
 import pytest
 
-from yuos_query.cache import Cache
 from yuos_query.yuos_client import YuosClient
 
 # These tests are skipped if the YUOS_TOKEN environment variable is not defined
@@ -18,8 +17,7 @@ SERVER_URL = "https://useroffice-test.esss.lu.se/graphql"
     SKIP_TEST, reason="no token supplied for testing against real system"
 )
 def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
-    cache = Cache(SERVER_URL, YUOS_TOKEN, "YMIR")
-    client = YuosClient(SERVER_URL, YUOS_TOKEN, "YMIR", cache)
+    client = YuosClient(SERVER_URL, YUOS_TOKEN, "YMIR")
 
     result = client.proposal_by_id("471120")
 

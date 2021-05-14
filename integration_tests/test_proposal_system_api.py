@@ -1,22 +1,27 @@
 import os
 
 import pytest
-from gql.transport.exceptions import TransportQueryError
-from graphql import GraphQLError
-from requests import ConnectionError
-from requests.exceptions import MissingSchema
 
-from yuos_query.proposal_system import ProposalSystem
+from yuos_query.exceptions import (
+    ConnectionException,
+    InvalidQueryException,
+    InvalidTokenException,
+)
+from yuos_query.proposal_system import (
+    INSTRUMENT_QUERY,
+    GqlWrapper,
+    create_proposal_query,
+)
 
 # 471120 is a known proposal
 VALID_PROPOSAL_ID = "471120"
 YMIR_ID = 4  # From the proposal system
+URL = "https://useroffice-test.esss.lu.se/graphql"
 
 SKIP_TEST = True
 if "YUOS_TOKEN" in os.environ:
     SKIP_TEST = False
     YUOS_TOKEN = os.environ["YUOS_TOKEN"]
-URL = "https://useroffice-test.esss.lu.se/graphql"
 
 
 @pytest.mark.skipif(
@@ -30,59 +35,68 @@ class TestProposalSystemAPI:
     """
 
     def test_querying_with_non_server_url_raises(self):
-        system = ProposalSystem()
+        api = GqlWrapper("https://www.google.com", YUOS_TOKEN)
 
-        with pytest.raises(ConnectionError):
-            system.get_instrument_data(YUOS_TOKEN, "https://wwww.google.com")
+        with pytest.raises(ConnectionException):
+            api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_non_valid_url_raises(self):
-        system = ProposalSystem()
+        api = GqlWrapper("missing.protocol.com", YUOS_TOKEN)
 
-        with pytest.raises(MissingSchema):
-            system.get_instrument_data(YUOS_TOKEN, "missing.protocol.com")
+        with pytest.raises(ConnectionException):
+            api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_invalid_token_raises(self):
-        system = ProposalSystem()
+        api = GqlWrapper(URL, "INVALID TOKEN")
 
-        with pytest.raises(TransportQueryError):
-            system.get_instrument_data("INVALID TOKEN", URL)
+        with pytest.raises(InvalidTokenException):
+            api.request(INSTRUMENT_QUERY)
 
-    def test_querying_with_non_numeric_instrument_id_raises(self):
-        system = ProposalSystem()
+    def test_querying_with_malformed_query_raises(self):
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
-        with pytest.raises(GraphQLError):
-            system.get_proposals_by_instrument_id(YUOS_TOKEN, URL, ":: string ::")
+        with pytest.raises(InvalidQueryException):
+            api.request("MALFORMED QUERY")
 
-    def test_querying_with_float_instrument_id_raises(self):
-        system = ProposalSystem()
+    def test_querying_for_non_numeric_instrument_id_raises(self):
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
-        with pytest.raises(GraphQLError):
-            system.get_proposals_by_instrument_id(YUOS_TOKEN, URL, 3.14)
+        with pytest.raises(InvalidQueryException):
+            api.request(create_proposal_query("NOT NUMERIC"))
+
+    def test_querying_for_float_instrument_id_raises(self):
+        api = GqlWrapper(URL, YUOS_TOKEN)
+
+        with pytest.raises(InvalidQueryException):
+            api.request(create_proposal_query(123.45))
 
     @pytest.mark.parametrize("test_input", [-10000, 10000])
     def test_querying_with_out_of_range_instrument_id_return_empty_list(
         self, test_input
     ):
-        system = ProposalSystem()
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
-        assert (
-            len(system.get_proposals_by_instrument_id(YUOS_TOKEN, URL, test_input)) == 0
-        )
+        result = api.request(create_proposal_query(test_input))
 
-    def test_get_instrument_data(self):
-        system = ProposalSystem()
+        assert len(result["proposals"]["proposals"]) == 0
 
-        results = system.get_instrument_data(YUOS_TOKEN, URL)
-        assert len(results) > 0
-        assert any(instrument["name"] == "YMIR" for instrument in results)
+    def test_querying_for_instruments_returns_expected_data(self):
+        api = GqlWrapper(URL, YUOS_TOKEN)
 
-    def test_get_proposal_data(self):
-        system = ProposalSystem()
+        result = api.request(INSTRUMENT_QUERY)
 
-        proposals = system.get_proposals_by_instrument_id(YUOS_TOKEN, URL, YMIR_ID)
+        # Check structure matches query
+        assert "instruments" in result
+        assert "instruments" in result["instruments"]
+        assert "id" in result["instruments"]["instruments"][0]
+
+    def test_querying_for_proposals_returns_expected_data(self):
+        api = GqlWrapper(URL, YUOS_TOKEN)
+
+        response = api.request(create_proposal_query(YMIR_ID))
 
         result = None
-        for proposal in proposals:
+        for proposal in response["proposals"]["proposals"]:
             if proposal["shortCode"] == VALID_PROPOSAL_ID:
                 result = proposal
                 break

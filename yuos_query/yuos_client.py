@@ -3,16 +3,18 @@ from typing import Optional
 from yuos_query.cache import Cache
 from yuos_query.data_classes import ProposalInfo
 from yuos_query.exceptions import InvalidIdException
+from yuos_query.proposal_system import ProposalRequester
 
 
 class YuosClient:
-    def __init__(self, url, token, instrument, cache=None):
+    def __init__(self, url, token, instrument, cache=None, system=None):
         self.url = url
         self.token = token
         self.instrument = instrument
-        self.cache = cache if cache else Cache(url, token, instrument)
+        self.cache = cache if cache else Cache(instrument)
+        self.system = system if system else ProposalRequester(url, token)
 
-        self.refresh_cache()
+        self.update_cache()
 
     def proposal_by_id(self, proposal_id: str) -> Optional[ProposalInfo]:
         """
@@ -32,5 +34,6 @@ class YuosClient:
         except Exception as error:
             raise InvalidIdException(error) from error
 
-    def refresh_cache(self):
-        self.cache.refresh()
+    def update_cache(self):
+        proposals = self.system.get_proposals_for_instrument(self.instrument)
+        self.cache.update(proposals)

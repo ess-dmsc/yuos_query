@@ -1,7 +1,7 @@
 from example_data import get_ymir_example_data
 from yuos_query.data_extractors import extract_relevant_sample_info
 
-for data in get_ymir_example_data():
+for data in get_ymir_example_data()["proposals"]["proposals"]:
     if data["shortCode"] == "871067":  # proposalId 242
         SAMPLE_EXAMPLE = data["samples"]
 
@@ -21,22 +21,7 @@ def test_supplies_default_if_relevant_data_missing():
         {
             "proposalId": 242,
             "title": "Camembert",
-            "questionary": {
-                "steps": [
-                    {
-                        "fields": [
-                            {
-                                "value": {"unit": None, "value": ""},
-                                "dependencies": [],
-                                "question": {
-                                    "question": "Density (g/cm*3)",
-                                    "naturalKey": "number_input_1610713898040",
-                                },
-                            },
-                        ]
-                    }
-                ]
-            },
+            "questionary": {"steps": [{"fields": []}]},
         }
     ]
 
