@@ -110,8 +110,8 @@ class ProposalRequester:
     Don't use this directly, use YuosClient
     """
 
-    def __init__(self, url, token, querier=None):
-        self.querier = querier if querier else GqlWrapper(url, token)
+    def __init__(self, url, token, wrapper=None):
+        self.wrapper = wrapper if wrapper else GqlWrapper(url, token)
 
     def _get_instrument_id(self, name):
         data = self._execute(INSTRUMENT_QUERY)
@@ -127,7 +127,7 @@ class ProposalRequester:
         return self._extract_proposals(data["proposals"]["proposals"])
 
     def _execute(self, query):
-        return self.querier.request(query)
+        return self.wrapper.request(query)
 
     def _extract_proposals(self, response):
         proposals = {}

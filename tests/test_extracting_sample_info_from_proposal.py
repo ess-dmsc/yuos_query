@@ -21,22 +21,7 @@ def test_supplies_default_if_relevant_data_missing():
         {
             "proposalId": 242,
             "title": "Camembert",
-            "questionary": {
-                "steps": [
-                    {
-                        "fields": [
-                            {
-                                "value": {"unit": None, "value": ""},
-                                "dependencies": [],
-                                "question": {
-                                    "question": "Density (g/cm*3)",
-                                    "naturalKey": "number_input_1610713898040",
-                                },
-                            },
-                        ]
-                    }
-                ]
-            },
+            "questionary": {"steps": [{"fields": []}]},
         }
     ]
 
