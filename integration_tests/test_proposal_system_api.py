@@ -4,6 +4,7 @@ import pytest
 from gql.transport.exceptions import TransportQueryError
 from graphql import GraphQLError
 from requests import ConnectionError
+from requests.exceptions import MissingSchema
 
 from yuos_query.proposal_system import ProposalSystem
 
@@ -34,11 +35,17 @@ class TestProposalSystemAPI:
         with pytest.raises(ConnectionError):
             system.get_instrument_data(YUOS_TOKEN, "https://wwww.google.com")
 
+    def test_querying_with_non_valid_url_raises(self):
+        system = ProposalSystem()
+
+        with pytest.raises(MissingSchema):
+            system.get_instrument_data(YUOS_TOKEN, "missing.protocol.com")
+
     def test_querying_with_invalid_token_raises(self):
         system = ProposalSystem()
 
         with pytest.raises(TransportQueryError):
-            system.get_instrument_data("::TOKEN::", URL)
+            system.get_instrument_data("INVALID TOKEN", URL)
 
     def test_querying_with_non_numeric_instrument_id_raises(self):
         system = ProposalSystem()

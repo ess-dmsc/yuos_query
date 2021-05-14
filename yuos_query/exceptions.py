@@ -2,7 +2,7 @@ class BaseYuosException(Exception):
     pass
 
 
-class ConnectionException(BaseYuosException):
+class InvalidTokenException(BaseYuosException):
     pass
 
 
@@ -11,4 +11,8 @@ class InvalidIdException(BaseYuosException):
 
 
 class InvalidQueryException(BaseYuosException):
+    pass
+
+
+class InvalidUrlException(BaseYuosException):
     pass

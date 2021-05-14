@@ -3,14 +3,15 @@ from unittest import mock
 import pytest
 from gql.transport.exceptions import TransportQueryError
 from graphql import GraphQLError
-from requests.exceptions import ConnectionError
+from requests.exceptions import ConnectionError, MissingSchema
 
 from example_data import get_ymir_example_data
 from yuos_query.cache import Cache
 from yuos_query.exceptions import (
-    ConnectionException,
     InvalidIdException,
     InvalidQueryException,
+    InvalidTokenException,
+    InvalidUrlException,
 )
 from yuos_query.proposal_system import ProposalSystem
 
@@ -118,7 +119,7 @@ def test_querying_with_invalid_token_raises_correct_exception():
     mocked_impl.get_instrument_data.side_effect = TransportQueryError("oops")
 
     cache = Cache(":: url ::", ":: token ::", ":: inst ::", implementation=mocked_impl)
-    with pytest.raises(ConnectionException):
+    with pytest.raises(InvalidTokenException):
         cache.refresh()
 
 
@@ -137,7 +138,26 @@ def test_querying_with_non_server_url_raises_correct_exception():
         implementation=mocked_impl,
     )
 
-    with pytest.raises(ConnectionException):
+    with pytest.raises(InvalidUrlException):
+        cache.refresh()
+
+
+def test_querying_with_non_url_raises_correct_exception():
+    """
+    The GraphQL library raises a specific exception if given something that
+    doesn't look like a URI.
+    """
+    mocked_impl = mock.create_autospec(ProposalSystem)
+    mocked_impl.get_instrument_data.side_effect = MissingSchema("oops")
+
+    cache = Cache(
+        "missing.protocol.com",
+        ":: token ::",
+        ":: inst ::",
+        implementation=mocked_impl,
+    )
+
+    with pytest.raises(InvalidUrlException):
         cache.refresh()
 
 
