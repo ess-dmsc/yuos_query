@@ -6,6 +6,10 @@ class InvalidIdException(BaseYuosException):
     pass
 
 
+class UnknownInstrumentException(BaseYuosException):
+    pass
+
+
 class ServerException(BaseYuosException):
     pass
 

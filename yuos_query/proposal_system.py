@@ -15,6 +15,7 @@ from yuos_query.exceptions import (
     InvalidQueryException,
     InvalidTokenException,
     ServerException,
+    UnknownInstrumentException,
 )
 
 INSTRUMENT_QUERY = """
@@ -114,11 +115,10 @@ class ProposalRequester:
 
     def _get_instrument_id(self, name):
         data = self._execute(INSTRUMENT_QUERY)
-        ids_by_name = {
-            inst["shortCode"].lower(): inst["id"]
-            for inst in data["instruments"]["instruments"]
-        }
-        return ids_by_name.get(name)
+        for inst in data["instruments"]["instruments"]:
+            if inst["shortCode"].lower() == name:
+                return inst["id"]
+        raise UnknownInstrumentException(f"Unknown instrument {name}")
 
     def get_proposals_for_instrument(self, name):
         instrument_id = self._get_instrument_id(name.lower())
