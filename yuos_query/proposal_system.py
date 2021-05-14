@@ -104,7 +104,7 @@ class GqlWrapper:
             raise ServerException(error) from error
 
 
-class ProposalSystem:
+class ProposalRequester:
     """
     Don't use this directly, use YuosClient
     """
@@ -112,14 +112,16 @@ class ProposalSystem:
     def __init__(self, url, token, querier=None):
         self.querier = querier if querier else GqlWrapper(url, token)
 
-    def get_instrument_data(self):
+    def _get_instrument_id(self, name):
         data = self._execute(INSTRUMENT_QUERY)
-        return {
+        ids_by_name = {
             inst["shortCode"].lower(): inst["id"]
             for inst in data["instruments"]["instruments"]
         }
+        return ids_by_name.get(name)
 
-    def get_proposals_by_instrument_id(self, instrument_id):
+    def get_proposals_for_instrument(self, name):
+        instrument_id = self._get_instrument_id(name.lower())
         query = create_proposal_query(instrument_id)
         data = self._execute(query)
         return self._extract_proposals(data["proposals"]["proposals"])

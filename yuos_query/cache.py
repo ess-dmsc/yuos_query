@@ -1,8 +1,7 @@
 class Cache:
-    def __init__(self):
-        self.instrument_ids = {}
+    def __init__(self, instrument):
+        self.instrument = instrument
         self.proposals = {}
 
-    def update(self, inst_data, proposals):
-        self.instrument_ids = inst_data
+    def update(self, proposals):
         self.proposals = proposals

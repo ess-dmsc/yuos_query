@@ -5,7 +5,7 @@ import pytest
 from yuos_query.cache import Cache
 from yuos_query.data_classes import ProposalInfo
 from yuos_query.exceptions import InvalidIdException
-from yuos_query.proposal_system import ProposalSystem
+from yuos_query.proposal_system import ProposalRequester
 from yuos_query.yuos_client import YuosClient
 
 VALID_PROPOSAL_DATA = {
@@ -32,20 +32,18 @@ class TestYuosClient:
     @pytest.fixture(autouse=True)
     def prepare(self):
         self.cache = mock.create_autospec(Cache)
-        self.system = mock.create_autospec(ProposalSystem)
+        self.system = mock.create_autospec(ProposalRequester)
 
     def test_on_construction_proposal_system_called_and_cache_updated(self):
         _ = YuosClient(":: url ::", ":: token ::", "YMIR", self.cache, self.system)
 
-        self.system.get_instrument_data.assert_called_once()
-        self.system.get_proposals_by_instrument_id.assert_called_once()
+        self.system.get_proposals_for_instrument.assert_called_once()
         self.cache.update.assert_called_once()
 
     def test_on_refreshing_cache_proposal_system_called_and_cache_updated(self):
         _ = YuosClient(":: url ::", ":: token ::", "YMIR", self.cache, self.system)
 
-        self.system.get_instrument_data.assert_called_once()
-        self.system.get_proposals_by_instrument_id.assert_called_once()
+        self.system.get_proposals_for_instrument.assert_called_once()
         self.cache.update.assert_called_once()
 
     def test_querying_with_id_that_does_not_conform_to_pattern_raises(

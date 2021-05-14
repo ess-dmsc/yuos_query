@@ -1,7 +1,7 @@
 from unittest import mock
 
 from example_data import get_ymir_example_data
-from yuos_query.proposal_system import GqlWrapper, ProposalSystem
+from yuos_query.proposal_system import GqlWrapper, ProposalRequester
 
 KNOWN_PROPOSAL_ID = "471120"
 
@@ -40,25 +40,13 @@ GET_INSTRUMENT_RESPONSE = {
 }
 
 
-def test_getting_instrument_information():
-    impl = mock.create_autospec(GqlWrapper)
-    impl.request.return_value = GET_INSTRUMENT_RESPONSE
-
-    system = ProposalSystem(":: url ::", ":: token ::", impl)
-
-    results = system.get_instrument_data()
-
-    assert results["ymir"] == YMIR_ID
-    assert results["dream"] == DREAM_ID
-
-
 def test_getting_proposal_information():
-    impl = mock.create_autospec(GqlWrapper)
-    impl.request.return_value = get_ymir_example_data()
+    wrapper = mock.create_autospec(GqlWrapper)
+    wrapper.request.side_effect = [GET_INSTRUMENT_RESPONSE, get_ymir_example_data()]
 
-    system = ProposalSystem(":: url ::", ":: token ::", impl)
+    system = ProposalRequester(":: url ::", ":: token ::", wrapper)
 
-    proposals = system.get_proposals_by_instrument_id(":: id ::")
+    proposals = system.get_proposals_for_instrument("ymir")
 
     assert len(proposals) == 17
     assert (
