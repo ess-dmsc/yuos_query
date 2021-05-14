@@ -3,9 +3,9 @@ import os
 import pytest
 
 from yuos_query.exceptions import (
+    ConnectionException,
     InvalidQueryException,
     InvalidTokenException,
-    InvalidUrlException,
 )
 from yuos_query.proposal_system import (
     INSTRUMENT_QUERY,
@@ -35,15 +35,15 @@ class TestProposalSystemAPI:
     """
 
     def test_querying_with_non_server_url_raises(self):
-        api = GqlWrapper("https://wwww.google.com", YUOS_TOKEN)
+        api = GqlWrapper("https://www.google.com", YUOS_TOKEN)
 
-        with pytest.raises(InvalidUrlException):
+        with pytest.raises(ConnectionException):
             api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_non_valid_url_raises(self):
         api = GqlWrapper("missing.protocol.com", YUOS_TOKEN)
 
-        with pytest.raises(InvalidUrlException):
+        with pytest.raises(ConnectionException):
             api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_invalid_token_raises(self):

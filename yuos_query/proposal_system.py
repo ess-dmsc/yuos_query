@@ -1,14 +1,20 @@
 from gql import Client, gql
-from gql.transport.exceptions import TransportQueryError
+from gql.transport.exceptions import TransportQueryError, TransportServerError
 from gql.transport.requests import RequestsHTTPTransport
 from graphql import GraphQLError
 from requests import RequestException
 
+from yuos_query.data_classes import ProposalInfo
+from yuos_query.data_extractors import (
+    extract_proposer,
+    extract_relevant_sample_info,
+    extract_users,
+)
 from yuos_query.exceptions import (
-    BaseYuosException,
+    ConnectionException,
     InvalidQueryException,
     InvalidTokenException,
-    InvalidUrlException,
+    ServerException,
 )
 
 INSTRUMENT_QUERY = """
@@ -88,12 +94,14 @@ class GqlWrapper:
                 return session.execute(gql(query))
         except TransportQueryError as error:
             raise InvalidTokenException(error) from error
+        except TransportServerError as error:
+            raise ConnectionException(error) from error
         except RequestException as error:
-            raise InvalidUrlException(error) from error
+            raise ConnectionException(error) from error
         except GraphQLError as error:
             raise InvalidQueryException(error) from error
         except Exception as error:
-            raise BaseYuosException(error) from error
+            raise ServerException(error) from error
 
 
 class ProposalSystem:
@@ -101,17 +109,36 @@ class ProposalSystem:
     Don't use this directly, use YuosClient
     """
 
-    def __init__(self, url, token):
-        self.wrapper = GqlWrapper(url, token)
+    def __init__(self, url, token, querier=None):
+        self.querier = querier if querier else GqlWrapper(url, token)
 
     def get_instrument_data(self):
-        json_data = self._execute(INSTRUMENT_QUERY)
-        return json_data["instruments"]["instruments"]
+        data = self._execute(INSTRUMENT_QUERY)
+        return {
+            inst["shortCode"].lower(): inst["id"]
+            for inst in data["instruments"]["instruments"]
+        }
 
     def get_proposals_by_instrument_id(self, instrument_id):
         query = create_proposal_query(instrument_id)
-        json_data = self._execute(query)
-        return json_data["proposals"]["proposals"]
+        data = self._execute(query)
+        return self._extract_proposals(data["proposals"]["proposals"])
 
     def _execute(self, query):
-        return self.wrapper.request(query)
+        return self.querier.request(query)
+
+    def _extract_proposals(self, response):
+        proposals = {}
+        for proposal in response:
+            users = extract_users(proposal)
+            proposer = extract_proposer(proposal)
+            title = proposal["title"]
+            id = proposal["id"]
+            prop_id = proposal["shortCode"]
+            samples = extract_relevant_sample_info(proposal["samples"])
+
+            proposals[prop_id] = ProposalInfo(
+                prop_id, title, proposer, users, id, samples
+            )
+
+        return proposals
