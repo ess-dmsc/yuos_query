@@ -23,12 +23,14 @@ class Cache:
         self.token = token
         self.url = url
         self.instrument = instrument
-        self.implementation = implementation if implementation else ProposalSystem()
+        self.implementation = (
+            implementation if implementation else ProposalSystem(token, url)
+        )
         self.instrument_list = {}
         self.proposals = {}
 
     def _get_instruments(self):
-        data = self.implementation.get_instrument_data(self.token, self.url)
+        data = self.implementation.get_instrument_data()
         return {inst["id"]: inst["shortCode"].lower() for inst in data}
 
     def _get_instrument_id_from_name(self, instrument_name):
@@ -55,9 +57,7 @@ class Cache:
 
     def _get_proposals(self):
         inst_id = self._get_instrument_id_from_name(self.instrument)
-        response = self.implementation.get_proposals_by_instrument_id(
-            self.token, self.url, inst_id
-        )
+        response = self.implementation.get_proposals_by_instrument_id(inst_id)
         proposals = {}
         for proposal in response:
             users = extract_users(proposal)

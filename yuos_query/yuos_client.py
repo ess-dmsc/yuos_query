@@ -12,7 +12,7 @@ class YuosClient:
         self.instrument = instrument
         self.cache = cache if cache else Cache(url, token, instrument)
 
-        self.refresh_cache()
+        self.update_cache()
 
     def proposal_by_id(self, proposal_id: str) -> Optional[ProposalInfo]:
         """
@@ -32,5 +32,5 @@ class YuosClient:
         except Exception as error:
             raise InvalidIdException(error) from error
 
-    def refresh_cache(self):
+    def update_cache(self):
         self.cache.refresh()
