@@ -3,7 +3,7 @@ from unittest import mock
 import pytest
 
 from yuos_query.cache import Cache
-from yuos_query.data_classes import ProposalInfo
+from yuos_query.data_classes import ProposalInfo, SampleInfo
 from yuos_query.exceptions import InvalidIdException
 from yuos_query.proposal_system import ProposalRequester
 from yuos_query.yuos_client import YuosClient
@@ -15,7 +15,22 @@ VALID_PROPOSAL_DATA = {
         proposer=("Fredrik", "Bolmsten"),
         users=[("jonathan ", "Taylor"), ("Johan", "Andersson")],
         db_id=169,
-        samples=[],
+        samples=[
+            SampleInfo(
+                name="",
+                formula="Yb3Ga5O12",
+                number=1,
+                mass_or_volume=(0, ""),
+                density=(0, "g/cm*3"),
+            ),
+            SampleInfo(
+                name="",
+                formula="(EO)20-(PO)45-(EO)30, D2O, NaCl, SDS",
+                number=1,
+                mass_or_volume=(0, "µg"),
+                density=(0, "g/cm*3"),
+            ),
+        ],
     ),
     "871067": ProposalInfo(
         id="871067",
