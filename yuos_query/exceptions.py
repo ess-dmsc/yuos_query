@@ -32,3 +32,7 @@ class ImportCacheException(BaseYuosException):
 
 class ExportCacheException(BaseYuosException):
     pass
+
+
+class DataUnavailableException(BaseYuosException):
+    pass

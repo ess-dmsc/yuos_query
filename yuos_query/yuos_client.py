@@ -2,7 +2,12 @@ from typing import Optional
 
 from yuos_query.cache import Cache
 from yuos_query.data_classes import ProposalInfo
-from yuos_query.exceptions import InvalidIdException, ServerException
+from yuos_query.exceptions import (
+    DataUnavailableException,
+    ImportCacheException,
+    InvalidIdException,
+    ServerException,
+)
 from yuos_query.proposal_system import ProposalRequester
 
 
@@ -15,7 +20,6 @@ class YuosClient:
         self.instrument = instrument
         self.cache = cache if cache else Cache(instrument, cache_filepath)
         self.system = system if system else ProposalRequester(url, token)
-        self.cache_file_name = "cache.json"
 
         self.update_cache()
 
@@ -42,5 +46,9 @@ class YuosClient:
             proposals = self.system.get_proposals_for_instrument(self.instrument)
             self.cache.update(proposals)
         except ServerException:
-            # TODO: this can fail
-            self.cache.import_from_json()
+            try:
+                self.cache.import_from_json()
+            except ImportCacheException as ex:
+                raise DataUnavailableException(
+                    "Proposal system and Cache unavailable"
+                ) from ex

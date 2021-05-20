@@ -4,7 +4,12 @@ import pytest
 
 from yuos_query.cache import Cache
 from yuos_query.data_classes import ProposalInfo, SampleInfo
-from yuos_query.exceptions import InvalidIdException, ServerException
+from yuos_query.exceptions import (
+    DataUnavailableException,
+    ImportCacheException,
+    InvalidIdException,
+    ServerException,
+)
 from yuos_query.proposal_system import ProposalRequester
 from yuos_query.yuos_client import YuosClient
 
@@ -110,3 +115,12 @@ class TestYuosClient:
             ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
         )
         self.cache.import_from_json.assert_called_once()
+
+    def test_if_proposal_system_unavailable_and_load_from_cache_raises(self):
+        self.system.get_proposals_for_instrument.side_effect = ServerException("oops")
+        self.cache.import_from_json.side_effect = ImportCacheException("oops")
+
+        with pytest.raises(DataUnavailableException):
+            _ = YuosClient(
+                ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
+            )
