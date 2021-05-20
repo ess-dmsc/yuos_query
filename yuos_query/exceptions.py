@@ -24,3 +24,15 @@ class InvalidTokenException(ServerException):
 
 class InvalidQueryException(ServerException):
     pass
+
+
+class ImportCacheException(BaseYuosException):
+    pass
+
+
+class ExportCacheException(BaseYuosException):
+    pass
+
+
+class DataUnavailableException(BaseYuosException):
+    pass
