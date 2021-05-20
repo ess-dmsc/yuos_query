@@ -1,6 +1,5 @@
 from typing import Optional
 
-from yuos_query.cache import Cache
 from yuos_query.data_classes import ProposalInfo
 from yuos_query.exceptions import (
     DataUnavailableException,
@@ -9,17 +8,16 @@ from yuos_query.exceptions import (
     InvalidIdException,
     ServerException,
 )
+from yuos_query.file_cache import FileCache
 from yuos_query.proposal_system import ProposalRequester
 
 
 class YuosClient:
-    def __init__(
-        self, url, token, instrument, cache_filepath=None, cache=None, system=None
-    ):
+    def __init__(self, url, token, instrument, cache_filepath, cache=None, system=None):
         self.url = url
         self.token = token
         self.instrument = instrument
-        self.cache = cache if cache else Cache(instrument, cache_filepath)
+        self.cache = cache if cache else FileCache(instrument, cache_filepath)
         self.system = system if system else ProposalRequester(url, token)
 
         self.update_cache()

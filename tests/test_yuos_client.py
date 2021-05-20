@@ -2,7 +2,6 @@ from unittest import mock
 
 import pytest
 
-from yuos_query.cache import Cache
 from yuos_query.data_classes import ProposalInfo, SampleInfo
 from yuos_query.exceptions import (
     DataUnavailableException,
@@ -10,6 +9,7 @@ from yuos_query.exceptions import (
     InvalidIdException,
     ServerException,
 )
+from yuos_query.file_cache import FileCache
 from yuos_query.proposal_system import ProposalRequester
 from yuos_query.yuos_client import YuosClient
 
@@ -51,22 +51,28 @@ VALID_PROPOSAL_DATA = {
 class TestYuosClient:
     @pytest.fixture(autouse=True)
     def prepare(self):
-        self.cache = mock.create_autospec(Cache)
+        self.cache = mock.create_autospec(FileCache)
         self.system = mock.create_autospec(ProposalRequester)
 
-    def test_on_construction_proposal_system_called_and_cache_updated(self):
-        _ = YuosClient(
-            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
+    def create_client(self):
+        return YuosClient(
+            ":: url ::",
+            ":: token ::",
+            "YMIR",
+            ":: file ::",
+            cache=self.cache,
+            system=self.system,
         )
+
+    def test_on_construction_proposal_system_called_and_cache_updated(self):
+        _ = self.create_client()
 
         self.system.get_proposals_for_instrument.assert_called_once()
         self.cache.update.assert_called_once()
         self.cache.export_to_json.assert_called_once()
 
     def test_on_refreshing_cache_proposal_system_called_and_cache_updated(self):
-        _ = YuosClient(
-            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
-        )
+        _ = self.create_client()
 
         self.system.get_proposals_for_instrument.assert_called_once()
         self.cache.update.assert_called_once()
@@ -74,9 +80,7 @@ class TestYuosClient:
     def test_querying_with_id_that_does_not_conform_to_pattern_raises(
         self,
     ):
-        client = YuosClient(
-            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
-        )
+        client = self.create_client()
 
         with pytest.raises(InvalidIdException):
             client.proposal_by_id("abc")
@@ -84,18 +88,14 @@ class TestYuosClient:
     def test_querying_for_unknown_proposal_id_returns_nothing(self):
         self.cache.proposals = VALID_PROPOSAL_DATA
 
-        client = YuosClient(
-            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
-        )
+        client = self.create_client()
 
         assert client.proposal_by_id("00000") is None
 
     def test_querying_for_proposal_by_id_gives_proposal_info(self):
         self.cache.proposals = VALID_PROPOSAL_DATA
 
-        client = YuosClient(
-            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
-        )
+        client = self.create_client()
         proposal_info = client.proposal_by_id("471120")
 
         assert (
@@ -112,9 +112,7 @@ class TestYuosClient:
     def test_if_proposal_system_unavailable_load_from_cache(self):
         self.system.get_proposals_for_instrument.side_effect = ServerException("oops")
 
-        _ = YuosClient(
-            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
-        )
+        _ = self.create_client()
         self.cache.import_from_json.assert_called_once()
 
     def test_if_proposal_system_unavailable_and_load_from_cache_raises(self):
@@ -122,23 +120,17 @@ class TestYuosClient:
         self.cache.import_from_json.side_effect = ImportCacheException("oops")
 
         with pytest.raises(DataUnavailableException):
-            _ = YuosClient(
-                ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
-            )
+            _ = self.create_client()
 
     def test_if_proposal_system_unavailable_and_cache_not_empty_then_dont_import(self):
         self.system.get_proposals_for_instrument.side_effect = ServerException("oops")
         self.cache.is_empty.return_value = False
 
-        _ = YuosClient(
-            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
-        )
+        _ = self.create_client()
         self.cache.import_from_json.assert_not_called()
 
     def test_on_refresh_proposal_system_called_and_cache_updated(self):
-        client = YuosClient(
-            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
-        )
+        client = self.create_client()
         self.cache.reset_mock()
         self.system.reset_mock()
 

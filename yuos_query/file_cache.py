@@ -8,7 +8,7 @@ from yuos_query.utils import (
 )
 
 
-class Cache:
+class FileCache:
     def __init__(self, instrument, cache_filepath):
         self.instrument = instrument
         self.cache_filepath = cache_filepath
