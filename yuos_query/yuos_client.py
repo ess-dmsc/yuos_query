@@ -8,13 +8,14 @@ from yuos_query.proposal_system import ProposalRequester
 
 class YuosClient:
     def __init__(
-        self, url, token, instrument, cache=None, system=None, cache_directory=None
+        self, url, token, instrument, cache_filepath=None, cache=None, system=None
     ):
         self.url = url
         self.token = token
         self.instrument = instrument
-        self.cache = cache if cache else Cache(instrument, cache_directory)
+        self.cache = cache if cache else Cache(instrument, cache_filepath)
         self.system = system if system else ProposalRequester(url, token)
+        self.cache_file_name = "cache.json"
 
         self.update_cache()
 
@@ -41,4 +42,5 @@ class YuosClient:
             proposals = self.system.get_proposals_for_instrument(self.instrument)
             self.cache.update(proposals)
         except ServerException:
-            self.cache.import_from_json("cache.json")
+            # TODO: this can fail
+            self.cache.import_from_json()
