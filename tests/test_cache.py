@@ -5,7 +5,7 @@ import pytest
 
 from tests.test_yuos_client import VALID_PROPOSAL_DATA
 from yuos_query.cache import Cache
-from yuos_query.exceptions import ImportCacheException
+from yuos_query.exceptions import ExportCacheException, ImportCacheException
 
 
 def test_exporting_data_to_json_from_cache():
@@ -31,9 +31,9 @@ def test_importing_proposals_from_file_if_does_not_exist():
 
     filename = "test_filename.json"
 
-    with pytest.raises(ImportCacheException):
-        with TemporaryDirectory() as directory:
-            filepath = os.path.join(directory, filename)
+    with TemporaryDirectory() as directory:
+        filepath = os.path.join(directory, filename)
+        with pytest.raises(ImportCacheException):
             cache.import_from_json(filepath)
 
 
@@ -50,3 +50,13 @@ def test_importing_proposals_from_file_with_non_json_data():
 
         with pytest.raises(ImportCacheException):
             cache.import_from_json(filepath)
+
+
+def test_exporting_data_from_cache_with_invalid_data():
+    cache = Cache("YMIR")
+    CANNOT_BE_SERIALIZED = type
+
+    cache.proposals = CANNOT_BE_SERIALIZED
+
+    with pytest.raises(ExportCacheException):
+        cache.export_to_json("test_filename.json")
