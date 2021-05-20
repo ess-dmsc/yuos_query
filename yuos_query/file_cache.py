@@ -21,21 +21,23 @@ class FileCache:
         try:
             with open(self.cache_filepath, "w") as file:
                 file.write(serialise_proposals_to_json(self.proposals))
-        except Exception as ex:
-            raise ExportCacheException(f"Export exception: {ex}")
+        except Exception as error:
+            raise ExportCacheException(f"Export exception: {error}")
 
     def import_from_json(self):
         try:
             with open(self.cache_filepath, "r") as file:
                 self.proposals = deserialise_proposals_from_json(file.read())
-        except FileNotFoundError as ex:
-            raise ImportCacheException(f"File not found: {self.cache_filepath}") from ex
-        except JSONDecodeError as ex:
+        except FileNotFoundError as error:
+            raise ImportCacheException(
+                f"File not found: {self.cache_filepath}"
+            ) from error
+        except JSONDecodeError as error:
             raise ImportCacheException(
                 f"Could not deserialise data from file: {self.cache_filepath}"
-            ) from ex
-        except Exception as ex:
-            raise ImportCacheException(f"Import exception: {ex}") from ex
+            ) from error
+        except Exception as error:
+            raise ImportCacheException(f"Import exception: {error}") from error
 
     def clear_cache(self):
         self.proposals = {}

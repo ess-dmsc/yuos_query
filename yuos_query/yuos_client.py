@@ -49,9 +49,9 @@ class YuosClient:
             try:
                 if self.cache.is_empty():
                     self.cache.import_from_json()
-            except ImportCacheException as ex:
+            except ImportCacheException as error:
                 raise DataUnavailableException(
                     "Proposal system and Cache unavailable"
-                ) from ex
+                ) from error
         except ExportCacheException:
             raise
