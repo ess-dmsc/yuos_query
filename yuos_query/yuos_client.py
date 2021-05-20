@@ -4,6 +4,7 @@ from yuos_query.cache import Cache
 from yuos_query.data_classes import ProposalInfo
 from yuos_query.exceptions import (
     DataUnavailableException,
+    ExportCacheException,
     ImportCacheException,
     InvalidIdException,
     ServerException,
@@ -45,10 +46,14 @@ class YuosClient:
         try:
             proposals = self.system.get_proposals_for_instrument(self.instrument)
             self.cache.update(proposals)
+            self.cache.export_to_json()
         except ServerException:
             try:
-                self.cache.import_from_json()
+                if self.cache.is_empty():
+                    self.cache.import_from_json()
             except ImportCacheException as ex:
                 raise DataUnavailableException(
                     "Proposal system and Cache unavailable"
                 ) from ex
+        except ExportCacheException:
+            raise

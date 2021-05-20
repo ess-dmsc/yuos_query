@@ -39,3 +39,6 @@ class Cache:
 
     def clear_cache(self):
         self.proposals = {}
+
+    def is_empty(self):
+        return len(self.proposals) == 0

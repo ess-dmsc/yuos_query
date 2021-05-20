@@ -61,6 +61,7 @@ class TestYuosClient:
 
         self.system.get_proposals_for_instrument.assert_called_once()
         self.cache.update.assert_called_once()
+        self.cache.export_to_json.assert_called_once()
 
     def test_on_refreshing_cache_proposal_system_called_and_cache_updated(self):
         _ = YuosClient(
@@ -124,3 +125,25 @@ class TestYuosClient:
             _ = YuosClient(
                 ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
             )
+
+    def test_if_proposal_system_unavailable_and_cache_not_empty_then_dont_import(self):
+        self.system.get_proposals_for_instrument.side_effect = ServerException("oops")
+        self.cache.is_empty.return_value = False
+
+        _ = YuosClient(
+            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
+        )
+        self.cache.import_from_json.assert_not_called()
+
+    def test_on_refresh_proposal_system_called_and_cache_updated(self):
+        client = YuosClient(
+            ":: url ::", ":: token ::", "YMIR", cache=self.cache, system=self.system
+        )
+        self.cache.reset_mock()
+        self.system.reset_mock()
+
+        client.update_cache()
+
+        self.system.get_proposals_for_instrument.assert_called_once()
+        self.cache.update.assert_called_once()
+        self.cache.export_to_json.assert_called_once()
