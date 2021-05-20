@@ -7,23 +7,8 @@ def serialise_proposals_to_json(proposals):
 
     json_proposals = {}
     for id, proposal in proposals.items():
-        json_proposal = {
-            "id": proposal.id,
-            "title": proposal.title,
-            "proposer": list(proposal.proposer),
-            "users": [[user[0], user[1]] for user in proposal.users],
-            "db_id": proposal.db_id,
-            "samples": [
-                {
-                    "name": sample.name,
-                    "formula": sample.formula,
-                    "number": sample.number,
-                    "mass_or_volume": list(sample.mass_or_volume),
-                    "density": list(sample.density),
-                }
-                for sample in proposal.samples
-            ],
-        }
+        json_proposal = proposal._asdict()
+        json_proposal["samples"] = [sample._asdict() for sample in proposal.samples]
         json_proposals[id] = json_proposal
 
     return json.dumps(json_proposals, indent=4)
