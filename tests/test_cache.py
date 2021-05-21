@@ -10,7 +10,7 @@ from yuos_query.file_cache import FileCache
 
 def test_exporting_data_to_json_from_cache():
     with TemporaryDirectory() as directory:
-        cache = FileCache("YMIR", os.path.join(directory, "test_filename.json"))
+        cache = FileCache(os.path.join(directory, "test_filename.json"))
         cache.update(VALID_PROPOSAL_DATA)
 
         cache.export_to_json()
@@ -22,7 +22,7 @@ def test_exporting_data_to_json_from_cache():
 
 def test_importing_proposals_from_file_if_does_not_exist():
     with TemporaryDirectory() as directory:
-        cache = FileCache("YMIR", os.path.join(directory, "test_filename.json"))
+        cache = FileCache(os.path.join(directory, "test_filename.json"))
         cache.update(VALID_PROPOSAL_DATA)
 
         with pytest.raises(ImportCacheException):
@@ -32,7 +32,7 @@ def test_importing_proposals_from_file_if_does_not_exist():
 def test_importing_proposals_from_file_with_non_json_data():
     filename = "test_filename.json"
     with TemporaryDirectory() as directory:
-        cache = FileCache("YMIR", os.path.join(directory, filename))
+        cache = FileCache(os.path.join(directory, filename))
         cache.update(VALID_PROPOSAL_DATA)
 
         with open(os.path.join(directory, filename), "w") as file:
@@ -43,7 +43,7 @@ def test_importing_proposals_from_file_with_non_json_data():
 
 
 def test_exporting_data_from_cache_with_invalid_data():
-    cache = FileCache("YMIR", "test_filename.json")
+    cache = FileCache("test_filename.json")
     CANNOT_BE_SERIALIZED = type
 
     cache.update(CANNOT_BE_SERIALIZED)

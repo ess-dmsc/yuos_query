@@ -14,10 +14,8 @@ from yuos_query.proposal_system import ProposalRequester
 
 class YuosClient:
     def __init__(self, url, token, instrument, cache_filepath, cache=None, system=None):
-        self.url = url
-        self.token = token
         self.instrument = instrument
-        self.cache = cache if cache else FileCache(instrument, cache_filepath)
+        self.cache = cache if cache else FileCache(cache_filepath)
         self.system = system if system else ProposalRequester(url, token)
 
         self.update_cache()

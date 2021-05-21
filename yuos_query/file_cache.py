@@ -9,8 +9,7 @@ from yuos_query.utils import (
 
 
 class FileCache:
-    def __init__(self, instrument, cache_filepath):
-        self.instrument = instrument
+    def __init__(self, cache_filepath):
         self.cache_filepath = cache_filepath
         self.proposals = {}
 
