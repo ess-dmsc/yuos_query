@@ -46,6 +46,6 @@ To run these tests, the `YUOS_TOKEN` environment variable must be set to the val
 import os
 from yuos_query.yuos_client import YuosClient
 
-client = YuosClient("some url", os.environ["YUOS_TOKEN"], instrument_name)
+client = YuosClient("some url", os.environ["YUOS_TOKEN"], instrument_name, "/path/to/cache.json")
 proposal_info = client.proposal_by_id(proposal_id)
 ```
