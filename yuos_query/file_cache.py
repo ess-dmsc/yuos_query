@@ -1,6 +1,7 @@
 from copy import deepcopy
 from json.decoder import JSONDecodeError
 
+from yuos_query.data_extractors import arrange_by_user
 from yuos_query.exceptions import ExportCacheException, ImportCacheException
 from yuos_query.utils import (
     deserialise_proposals_from_json,
@@ -12,9 +13,11 @@ class FileCache:
     def __init__(self, cache_filepath):
         self.cache_filepath = cache_filepath
         self.proposals = {}
+        self.proposals_by_fed_id = {}
 
     def update(self, proposals):
         self.proposals = deepcopy(proposals)
+        self.proposals_by_fed_id = arrange_by_user(self.proposals)
 
     def export_to_json(self):
         try:

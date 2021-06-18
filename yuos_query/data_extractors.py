@@ -84,3 +84,15 @@ def extract_relevant_sample_info(data):
     for sample in data:
         results.append(_extract_sample_data(sample))
     return results
+
+
+def arrange_by_user(proposals_by_id):
+    proposals_by_users = {}
+    for proposal_id, proposal in proposals_by_id.items():
+        for user in proposal.users:
+            fed_id = f"{user[0]}{user[1]}".lower()
+            for_user = proposals_by_users.get(fed_id, [])
+            for_user.append(proposal)
+            proposals_by_users[fed_id] = for_user
+
+    return proposals_by_users

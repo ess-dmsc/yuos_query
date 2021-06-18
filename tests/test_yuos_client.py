@@ -18,7 +18,7 @@ VALID_PROPOSAL_DATA = {
         id="471120",
         title="The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12",
         proposer=("Fredrik", "Bolmsten"),
-        users=[("jonathan ", "Taylor"), ("Johan", "Andersson")],
+        users=[("jonathan", "Taylor"), ("Johan", "Andersson")],
         db_id=169,
         samples=[
             SampleInfo(
@@ -41,7 +41,7 @@ VALID_PROPOSAL_DATA = {
         id="871067",
         title="The Structure of Cheese Under Pressure",
         proposer=("Andrew", "Jackson"),
-        users=[("jonathan ", "Taylor"), ("Caroline", "Curfs")],
+        users=[("jonathan", "Taylor"), ("Caroline", "Curfs")],
         db_id=242,
         samples=[],
     ),
@@ -54,13 +54,16 @@ class TestYuosClient:
         self.cache = mock.create_autospec(FileCache)
         self.system = mock.create_autospec(ProposalRequester)
 
-    def create_client(self):
+    def create_client(self, cache=None):
+        if not cache:
+            cache = self.cache
+
         return YuosClient(
             ":: url ::",
             ":: token ::",
             "YMIR",
             ":: file ::",
-            cache=self.cache,
+            cache=cache,
             system=self.system,
         )
 
@@ -104,7 +107,7 @@ class TestYuosClient:
         )
         assert proposal_info.id == "471120"
         assert proposal_info.users == [
-            ("jonathan ", "Taylor"),
+            ("jonathan", "Taylor"),
             ("Johan", "Andersson"),
         ]
         assert proposal_info.proposer == ("Fredrik", "Bolmsten")
@@ -139,3 +142,17 @@ class TestYuosClient:
         self.system.get_proposals_for_instrument.assert_called_once()
         self.cache.update.assert_called_once()
         self.cache.export_to_json.assert_called_once()
+
+    def test_can_get_proposals_by_fed_id(self):
+        cache = FileCache(":: filepath ::")
+        cache.update(VALID_PROPOSAL_DATA)
+
+        client = self.create_client(cache)
+        proposals = client.proposals_for_user("jonathantaylor")
+
+        assert len(proposals) == 2
+        assert {p.id for p in proposals} == {"471120", "871067"}
+
+    def test_unrecognised_fed_id(self):
+        # TODO
+        pass

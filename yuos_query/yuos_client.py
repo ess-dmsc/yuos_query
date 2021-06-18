@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from yuos_query.data_classes import ProposalInfo
 from yuos_query.exceptions import (
@@ -29,6 +29,9 @@ class YuosClient:
         """
         converted_id = self._validate_proposal_id(proposal_id)
         return self.cache.proposals.get(converted_id)
+
+    def proposals_for_user(self, fed_id: str) -> List[ProposalInfo]:
+        return self.cache.proposals_by_fed_id[fed_id]
 
     def _validate_proposal_id(self, proposal_id: str) -> str:
         # Does proposal_id conform to the expected pattern?
