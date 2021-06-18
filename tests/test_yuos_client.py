@@ -2,7 +2,7 @@ from unittest import mock
 
 import pytest
 
-from yuos_query.data_classes import ProposalInfo, SampleInfo
+from yuos_query.data_classes import ProposalInfo, SampleInfo, User
 from yuos_query.exceptions import (
     DataUnavailableException,
     ImportCacheException,
@@ -17,10 +17,10 @@ VALID_PROPOSAL_DATA = {
     "471120": ProposalInfo(
         id="471120",
         title="The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12",
-        proposer=("Fredrik", "Bolmsten", "fredrikbolmsten"),
+        proposer=User("Fredrik", "Bolmsten", "fredrikbolmsten"),
         users=[
-            ("jonathan", "Taylor", "jonathantaylor"),
-            ("Johan", "Andersson", "johanandersson"),
+            User("jonathan", "Taylor", "jonathantaylor"),
+            User("Johan", "Andersson", "johanandersson"),
         ],
         db_id=169,
         samples=[
@@ -43,10 +43,10 @@ VALID_PROPOSAL_DATA = {
     "871067": ProposalInfo(
         id="871067",
         title="The Structure of Cheese Under Pressure",
-        proposer=("Andrew", "Jackson", "andrewjackson"),
+        proposer=User("Andrew", "Jackson", "andrewjackson"),
         users=[
-            ("jonathan", "Taylor", "jonathantaylor"),
-            ("Caroline", "Curfs", "carolinecurfs"),
+            User("jonathan", "Taylor", "jonathantaylor"),
+            User("Caroline", "Curfs", "carolinecurfs"),
         ],
         db_id=242,
         samples=[],

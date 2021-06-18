@@ -1,4 +1,4 @@
-from yuos_query.data_classes import SampleInfo
+from yuos_query.data_classes import SampleInfo, User
 
 
 def _generate_fed_id(firstname, lastname):
@@ -11,7 +11,7 @@ def extract_proposer(proposal):
     def _extract_name(user):
         first = user.get("firstname", "").strip()
         last = user.get("lastname", "").strip()
-        return first, last, _generate_fed_id(first, last)
+        return User(first, last, _generate_fed_id(first, last))
 
     if "proposer" in proposal:
         proposer = _extract_name(proposal["proposer"])
@@ -29,7 +29,7 @@ def extract_users(proposal):
     def _extract_name(user):
         first = user.get("firstname", "").strip()
         last = user.get("lastname", "").strip()
-        return first, last, _generate_fed_id(first, last)
+        return User(first, last, _generate_fed_id(first, last))
 
     if "users" in proposal:
         return [_extract_name(user) for user in proposal["users"]]

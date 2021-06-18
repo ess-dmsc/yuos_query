@@ -11,6 +11,15 @@ SampleInfo = NamedTuple(
     ),
 )
 
+User = NamedTuple(
+    "User",
+    (
+        ("firstname", str),
+        ("lastname", str),
+        ("fed_id", str),
+    ),
+)
+
 
 ProposalInfo = NamedTuple(
     "ProposalInfo",
@@ -18,7 +27,7 @@ ProposalInfo = NamedTuple(
         ("id", str),
         ("title", str),
         ("proposer", Tuple[str, str, str]),
-        ("users", List[Tuple[str, str, str]]),
+        ("users", List[User]),
         ("db_id", int),
         ("samples", List[SampleInfo]),
     ),
