@@ -55,10 +55,14 @@ def test_gets_proposal_information():
     )
     assert proposals[KNOWN_PROPOSAL_ID].id == KNOWN_PROPOSAL_ID
     assert proposals[KNOWN_PROPOSAL_ID].users == [
-        ("jonathan", "Taylor"),
-        ("Johan", "Andersson"),
+        ("jonathan", "Taylor", "jonathantaylor"),
+        ("Johan", "Andersson", "johanandersson"),
     ]
-    assert proposals[KNOWN_PROPOSAL_ID].proposer == ("Fredrik", "Bolmsten")
+    assert proposals[KNOWN_PROPOSAL_ID].proposer == (
+        "Fredrik",
+        "Bolmsten",
+        "fredrikbolmsten",
+    )
     assert len(proposals[KNOWN_PROPOSAL_ID].samples) == 3
     assert proposals[KNOWN_PROPOSAL_ID].samples[0].name == ""
     assert proposals[KNOWN_PROPOSAL_ID].samples[0].formula == "Yb3Ga5O12"

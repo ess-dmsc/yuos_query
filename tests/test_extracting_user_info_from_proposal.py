@@ -36,7 +36,7 @@ def test_extracting_users_stray_whitespace_removed():
     }
 
     results = extract_users(proposal)
-    assert results[0] == ("Ralf", "Fields")
+    assert results[0] == ("Ralf", "Fields", "ralffields")
 
 
 def test_extracting_users_when_user_missing_firstname_or_lastname_inserts_blanks():
@@ -53,8 +53,8 @@ def test_extracting_users_when_user_missing_firstname_or_lastname_inserts_blanks
 
     results = extract_users(proposal_missing_parts)
     assert len(results) == 2
-    assert ("Ralf", "") in results
-    assert ("", "Fields") in results
+    assert ("Ralf", "", "ralf") in results
+    assert ("", "Fields", "fields") in results
 
 
 def test_extracting_proposer_when_not_present_gives_none():
@@ -82,4 +82,4 @@ def test_extracting_proposer_stray_whitespace_removed():
     }
 
     result = extract_proposer(proposal)
-    assert result == ("Alberto", "Accountant")
+    assert result == ("Alberto", "Accountant", "albertoaccountant")

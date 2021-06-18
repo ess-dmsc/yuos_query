@@ -4,7 +4,6 @@ from yuos_query.data_classes import ProposalInfo, SampleInfo
 
 
 def serialise_proposals_to_json(proposals):
-
     json_proposals = {}
     for id, proposal in proposals.items():
         json_proposal = proposal._asdict()

@@ -1,23 +1,38 @@
 from yuos_query.data_classes import SampleInfo
 
 
+def _generate_fed_id(firstname, lastname):
+    # TODO: this is a hack to generate something like a fed ID while
+    # we wait for the real fed IDs to appear in the proposal system
+    return f"{firstname}{lastname}".lower()
+
+
 def extract_proposer(proposal):
+    def _extract_name(user):
+        first = user.get("firstname", "").strip()
+        last = user.get("lastname", "").strip()
+        return first, last, _generate_fed_id(first, last)
+
     if "proposer" in proposal:
-        proposer = (
-            proposal["proposer"].get("firstname", "").strip(),
-            proposal["proposer"].get("lastname", "").strip(),
-        )
+        proposer = _extract_name(proposal["proposer"])
     else:
         proposer = None
     return proposer
 
 
 def extract_users(proposal):
+    """
+    :param proposal: The proposal
+    :return: A tuple of first name, last name, fed id
+    """
+
+    def _extract_name(user):
+        first = user.get("firstname", "").strip()
+        last = user.get("lastname", "").strip()
+        return first, last, _generate_fed_id(first, last)
+
     if "users" in proposal:
-        return [
-            (x.get("firstname", "").strip(), x.get("lastname", "").strip())
-            for x in proposal["users"]
-        ]
+        return [_extract_name(user) for user in proposal["users"]]
     return []
 
 
@@ -90,7 +105,7 @@ def arrange_by_user(proposals_by_id):
     proposals_by_users = {}
     for proposal_id, proposal in proposals_by_id.items():
         for user in proposal.users:
-            fed_id = f"{user[0]}{user[1]}".lower()
+            fed_id = user[2]
             for_user = proposals_by_users.get(fed_id, [])
             for_user.append(proposal)
             proposals_by_users[fed_id] = for_user

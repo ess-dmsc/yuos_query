@@ -31,10 +31,10 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
         )
         assert result.id == "471120"
         assert result.users == [
-            ("jonathan", "Taylor"),
-            ("Johan", "Andersson"),
+            ("jonathan", "Taylor", "jonathantaylor"),
+            ("Johan", "Andersson", "johanandersson"),
         ]
-        assert result.proposer == ("Fredrik", "Bolmsten")
+        assert result.proposer == ("Fredrik", "Bolmsten", "fredrikbolmsten")
         assert len(result.samples) == 3
         assert result.samples[0].name == ""
         assert result.samples[0].formula == "Yb3Ga5O12"

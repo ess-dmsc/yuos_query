@@ -31,6 +31,8 @@ class YuosClient:
         return self.cache.proposals.get(converted_id)
 
     def proposals_for_user(self, fed_id: str) -> List[ProposalInfo]:
+        if fed_id not in self.cache.proposals_by_fed_id:
+            return []
         return self.cache.proposals_by_fed_id[fed_id]
 
     def _validate_proposal_id(self, proposal_id: str) -> str:
@@ -45,11 +47,11 @@ class YuosClient:
         try:
             proposals = self.system.get_proposals_for_instrument(self.instrument)
             self.cache.update(proposals)
-            self.cache.export_to_json()
+            self.cache.export_to_file()
         except ServerException:
             try:
                 if self.cache.is_empty():
-                    self.cache.import_from_json()
+                    self.cache.import_from_file()
             except ImportCacheException as error:
                 raise DataUnavailableException(
                     "Proposal system and Cache unavailable"
