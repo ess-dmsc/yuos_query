@@ -13,12 +13,22 @@ from yuos_query.proposal_system import ProposalRequester
 
 
 class YuosClient:
-    def __init__(self, url, token, instrument, cache_filepath, cache=None, system=None):
+    def __init__(
+        self,
+        url,
+        token,
+        instrument,
+        cache_filepath,
+        update_cache=True,
+        cache=None,
+        system=None,
+    ):
         self.instrument = instrument
         self.cache = cache if cache else FileCache(cache_filepath)
         self.system = system if system else ProposalRequester(url, token)
 
-        self.update_cache()
+        if update_cache:
+            self.update_cache()
 
     def proposal_by_id(self, proposal_id: str) -> Optional[ProposalInfo]:
         """

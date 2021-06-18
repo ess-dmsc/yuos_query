@@ -60,7 +60,7 @@ class TestYuosClient:
         self.cache = mock.create_autospec(FileCache)
         self.system = mock.create_autospec(ProposalRequester)
 
-    def create_client(self, cache=None):
+    def create_client(self, cache=None, update_cache=True):
         if not cache:
             cache = self.cache
 
@@ -69,6 +69,7 @@ class TestYuosClient:
             ":: token ::",
             "YMIR",
             ":: file ::",
+            update_cache=update_cache,
             cache=cache,
             system=self.system,
         )
@@ -156,7 +157,7 @@ class TestYuosClient:
         cache.update(VALID_PROPOSAL_DATA)
         self.system.get_proposals_for_instrument.return_value = VALID_PROPOSAL_DATA
 
-        client = self.create_client(cache)
+        client = self.create_client(cache, update_cache=False)
         proposals = client.proposals_for_user("jonathantaylor")
 
         assert len(proposals) == 2
@@ -167,7 +168,7 @@ class TestYuosClient:
         cache.update(VALID_PROPOSAL_DATA)
         self.system.get_proposals_for_instrument.return_value = VALID_PROPOSAL_DATA
 
-        client = self.create_client(cache)
+        client = self.create_client(cache, update_cache=False)
         proposals = client.proposals_for_user("not_a_fed_id")
 
         assert len(proposals) == 0
