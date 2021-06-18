@@ -31,7 +31,7 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
         )
         assert result.id == "471120"
         assert result.users == [
-            ("jonathan ", "Taylor"),
+            ("jonathan", "Taylor"),
             ("Johan", "Andersson"),
         ]
         assert result.proposer == ("Fredrik", "Bolmsten")

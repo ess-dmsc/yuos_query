@@ -25,6 +25,20 @@ def test_extracting_users_when_users_not_present_gives_no_users():
     assert len(results) == 0
 
 
+def test_extracting_users_stray_whitespace_removed():
+    proposal = {
+        "id": 123,
+        "title": "Title filled out correctly",
+        "users": [
+            {"firstname": " Ralf ", "lastname": " Fields "},
+        ],
+        "proposer": {"firstname": "Alberto", "lastname": "Accountant"},
+    }
+
+    results = extract_users(proposal)
+    assert results[0] == ("Ralf", "Fields")
+
+
 def test_extracting_users_when_user_missing_firstname_or_lastname_inserts_blanks():
     # Not sure if is possible, but...
     proposal_missing_parts = {
@@ -55,3 +69,17 @@ def test_extracting_proposer_when_not_present_gives_none():
 
     result = extract_proposer(proposal_no_proposer)
     assert result is None
+
+
+def test_extracting_proposer_stray_whitespace_removed():
+    proposal = {
+        "id": 123,
+        "title": "Title filled out correctly",
+        "users": [
+            {"firstname": "Ralf", "lastname": "Fields"},
+        ],
+        "proposer": {"firstname": " Alberto ", "lastname": " Accountant "},
+    }
+
+    result = extract_proposer(proposal)
+    assert result == ("Alberto", "Accountant")
