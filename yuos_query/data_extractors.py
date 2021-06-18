@@ -4,8 +4,8 @@ from yuos_query.data_classes import SampleInfo
 def extract_proposer(proposal):
     if "proposer" in proposal:
         proposer = (
-            proposal["proposer"].get("firstname", ""),
-            proposal["proposer"].get("lastname", ""),
+            proposal["proposer"].get("firstname", "").strip(),
+            proposal["proposer"].get("lastname", "").strip(),
         )
     else:
         proposer = None
@@ -15,7 +15,8 @@ def extract_proposer(proposal):
 def extract_users(proposal):
     if "users" in proposal:
         return [
-            (x.get("firstname", ""), x.get("lastname", "")) for x in proposal["users"]
+            (x.get("firstname", "").strip(), x.get("lastname", "").strip())
+            for x in proposal["users"]
         ]
     return []
 

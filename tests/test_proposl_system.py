@@ -55,7 +55,7 @@ def test_gets_proposal_information():
     )
     assert proposals[KNOWN_PROPOSAL_ID].id == KNOWN_PROPOSAL_ID
     assert proposals[KNOWN_PROPOSAL_ID].users == [
-        ("jonathan ", "Taylor"),
+        ("jonathan", "Taylor"),
         ("Johan", "Andersson"),
     ]
     assert proposals[KNOWN_PROPOSAL_ID].proposer == ("Fredrik", "Bolmsten")
