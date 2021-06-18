@@ -20,8 +20,9 @@ class FileCache:
 
     def export_to_file(self):
         try:
+            json = serialise_proposals_to_json(self.proposals)
             with open(self.cache_filepath, "w") as file:
-                file.write(serialise_proposals_to_json(self.proposals))
+                file.write(json)
         except Exception as error:
             raise ExportCacheException(f"Export exception: {error}")
 
