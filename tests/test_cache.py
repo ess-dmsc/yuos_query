@@ -45,15 +45,20 @@ def test_importing_proposals_from_file_with_non_json_data():
 
 
 def test_exporting_data_from_cache_with_invalid_data():
-    cache = FileCache(":: filepath ::")
-    # Put something in ProposalInfo that cannot be serialised
-    CANNOT_BE_SERIALIZED = {
-        "a": ProposalInfo(
-            type, ":: title ::", proposer=None, users=[], db_id=1, samples=[]
-        )
-    }
+    filename = "test_filename.json"
+    with TemporaryDirectory() as directory:
+        cache = FileCache(filename)
+        # Put something in ProposalInfo that cannot be serialised
+        CANNOT_BE_SERIALIZED = {
+            "a": ProposalInfo(
+                type, ":: title ::", proposer=None, users=[], db_id=123, samples=[]
+            )
+        }
 
-    cache.update(CANNOT_BE_SERIALIZED)
+        cache.update(CANNOT_BE_SERIALIZED)
 
-    with pytest.raises(ExportCacheException):
-        cache.export_to_file()
+        with pytest.raises(ExportCacheException):
+            cache.export_to_file()
+
+        # Should not leave a file behind
+        assert not os.path.exists(os.path.join(directory, filename))
