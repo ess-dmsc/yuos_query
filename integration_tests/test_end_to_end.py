@@ -12,6 +12,7 @@ if "YUOS_TOKEN" in os.environ:
     YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
 SERVER_URL = "https://useroffice-test.esss.lu.se/graphql"
+KNOWN_PROPOSAL = "471120"
 
 
 @pytest.mark.skipif(
@@ -23,13 +24,13 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
             SERVER_URL, YUOS_TOKEN, "YMIR", os.path.join(directory, "cache.json")
         )
 
-        result = client.proposal_by_id("471120")
+        result = client.proposal_by_id(KNOWN_PROPOSAL)
 
         assert (
             result.title
             == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
         )
-        assert result.id == "471120"
+        assert result.id == KNOWN_PROPOSAL
         assert result.users == [
             ("jonathan", "Taylor", "jonathantaylor"),
             ("Johan", "Andersson", "johanandersson"),

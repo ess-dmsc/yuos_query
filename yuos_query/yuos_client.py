@@ -37,21 +37,18 @@ class YuosClient:
         :param proposal_id: proposal ID
         :return: the proposal information or None if not found
         """
-        converted_id = self._validate_proposal_id(proposal_id)
-        return self.cache.proposals.get(converted_id)
+        if not self._does_proposal_id_conform(proposal_id):
+            raise InvalidIdException()
+        return self.cache.proposals.get(proposal_id)
 
     def proposals_for_user(self, fed_id: str) -> List[ProposalInfo]:
         if fed_id not in self.cache.proposals_by_fed_id:
             return []
         return self.cache.proposals_by_fed_id[fed_id]
 
-    def _validate_proposal_id(self, proposal_id: str) -> str:
+    def _does_proposal_id_conform(self, proposal_id: str) -> bool:
         # Does proposal_id conform to the expected pattern?
-        try:
-            # Currently just needs to be a numeric string
-            return str(int(proposal_id))
-        except Exception as error:
-            raise InvalidIdException(error) from error
+        return all(c.isdigit() for c in proposal_id)
 
     def update_cache(self):
         try:
