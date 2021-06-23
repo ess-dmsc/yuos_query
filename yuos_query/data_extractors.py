@@ -104,7 +104,10 @@ def extract_relevant_sample_info(data):
 def arrange_by_user(proposals_by_id):
     proposals_by_users = {}
     for proposal_id, proposal in proposals_by_id.items():
-        for user in proposal.users:
+        users = proposal.users[:]
+        if proposal.proposer:
+            users.append(proposal.proposer)
+        for user in users:
             fed_id = user[2]
             for_user = proposals_by_users.get(fed_id, [])
             for_user.append(proposal)

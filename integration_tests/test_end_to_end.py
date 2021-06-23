@@ -65,5 +65,12 @@ def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
 
         results = client.proposals_for_user("jonathantaylor")
 
-        assert len(results) == 3
-        assert {p.id for p in results} == {"471120", "871067", "035455"}
+        assert len(results) == 6
+        assert {p.id for p in results} == {
+            "871067",
+            "169700",
+            "035455",
+            "139558",
+            "471120",
+            "199842",
+        }
