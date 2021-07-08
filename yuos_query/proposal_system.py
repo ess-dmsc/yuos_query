@@ -37,41 +37,40 @@ def create_proposal_query(instrument_id):
         {
             proposals(filter: {instrumentId: $INST$}){
                 totalCount
-                proposals{
-                    shortCode
+                proposals {
+                  primaryKey
+                  title
+                  proposalId
+                  users {
+                    firstname
+                    lastname
+                  }
+                  proposer {
+                    firstname
+                    lastname
+                  }
+                  samples {
                     title
                     id
-                    users {
-                        firstname
-                        lastname
-                    }
-                    proposer {
-                        firstname
-                        lastname
-                    }
-                    samples {
-                        proposalId
-                        title
-                        id
-                        questionary {
-                            steps {
-                                fields {
-                                    value
-                                    dependencies {
-                                        dependencyNaturalKey
-                                        questionId
-                                    }
-                                    question {
-                                        question
-                                        naturalKey
-                                    }
-                                }
-                            }
+                    questionary {
+                      steps {
+                        fields {
+                          value
+                          dependencies {
+                            dependencyNaturalKey
+                            questionId
+                          }
+                          question {
+                            question
+                            naturalKey
+                          }
                         }
+                      }
                     }
+                  }
                 }
+              }
             }
-        }
         """.replace(
         "$INST$", str(instrument_id)
     )
@@ -135,8 +134,8 @@ class ProposalRequester:
             users = extract_users(proposal)
             proposer = extract_proposer(proposal)
             title = proposal["title"]
-            id = proposal["id"]
-            prop_id = proposal["shortCode"]
+            id = proposal["primaryKey"]
+            prop_id = proposal["proposalId"]
             samples = extract_relevant_sample_info(proposal["samples"])
 
             proposals[prop_id] = ProposalInfo(

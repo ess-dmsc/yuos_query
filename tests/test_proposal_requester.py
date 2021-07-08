@@ -48,7 +48,7 @@ def test_gets_proposal_information():
 
     proposals = system.get_proposals_for_instrument("ymir")
 
-    assert len(proposals) == 17
+    assert len(proposals) == 21
     assert (
         proposals[KNOWN_PROPOSAL_ID].title
         == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
@@ -87,7 +87,7 @@ def test_ignore_instrument_name_case():
 
     proposals = system.get_proposals_for_instrument("yMiR")
 
-    assert len(proposals) == 17
+    assert len(proposals) == 21
 
 
 def test_unrecognised_instrument_raises():

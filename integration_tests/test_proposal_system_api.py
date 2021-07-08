@@ -97,7 +97,7 @@ class TestProposalSystemAPI:
 
         result = None
         for proposal in response["proposals"]["proposals"]:
-            if proposal["shortCode"] == VALID_PROPOSAL_ID:
+            if proposal["proposalId"] == VALID_PROPOSAL_ID:
                 result = proposal
                 break
 
@@ -105,7 +105,7 @@ class TestProposalSystemAPI:
             result["title"]
             == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
         )
-        assert result["id"] == 169
+        assert result["primaryKey"] == 169
         assert len(result["users"]) == 2
         assert len(result["samples"]) == 3
         assert result["proposer"]["firstname"] == "Fredrik"
