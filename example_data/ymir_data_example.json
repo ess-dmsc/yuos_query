@@ -1,11 +1,55 @@
 {
   "proposals": {
-    "totalCount": 17,
+    "totalCount": 21,
     "proposals": [
       {
-        "shortCode": "525828",
+        "primaryKey": 303,
+        "title": "Copy of Copy of a",
+        "proposalId": "465544",
+        "users": [],
+        "proposer": {
+          "firstname": "Fredrik",
+          "lastname": "Bolmsten"
+        },
+        "samples": []
+      },
+      {
+        "primaryKey": 302,
+        "title": "Copy of a",
+        "proposalId": "898421",
+        "users": [],
+        "proposer": {
+          "firstname": "Fredrik",
+          "lastname": "Bolmsten"
+        },
+        "samples": []
+      },
+      {
+        "primaryKey": 301,
+        "title": "a",
+        "proposalId": "331299",
+        "users": [],
+        "proposer": {
+          "firstname": "Fredrik",
+          "lastname": "Bolmsten"
+        },
+        "samples": []
+      },
+      {
+        "primaryKey": 297,
+        "title": "My new proposal",
+        "proposalId": "2110002",
+        "users": [],
+        "proposer": {
+          "firstname": "Fredrik",
+          "lastname": "Bolmsten"
+        },
+        "samples": []
+      },
+      {
+        "primaryKey": 289,
         "title": "Test proposal 2",
-        "id": 289,
+        "proposalId": "525828",
         "users": [],
         "proposer": {
           "firstname": "Martin",
@@ -14,9 +58,9 @@
         "samples": []
       },
       {
-        "shortCode": "958705",
-        "title": "Test proposal 1",
-        "id": 288,
+        "primaryKey": 288,
+        "title": "Test proposal 11",
+        "proposalId": "958705",
         "users": [],
         "proposer": {
           "firstname": "Martin",
@@ -25,13 +69,13 @@
         "samples": []
       },
       {
-        "shortCode": "391583",
-        "title": "test",
-        "id": 287,
+        "primaryKey": 280,
+        "title": "Spin Diffusion at Ferromagnetic",
+        "proposalId": "421725",
         "users": [
           {
-            "firstname": "Peter",
-            "lastname": "Asztalos"
+            "firstname": "Stuart",
+            "lastname": "Campbell"
           }
         ],
         "proposer": {
@@ -41,9 +85,9 @@
         "samples": []
       },
       {
-        "shortCode": "720357",
+        "primaryKey": 277,
         "title": "New Proposal",
-        "id": 277,
+        "proposalId": "720357",
         "users": [],
         "proposer": {
           "firstname": "User",
@@ -51,7 +95,6 @@
         },
         "samples": [
           {
-            "proposalId": 277,
             "title": "My sample title",
             "id": 179,
             "questionary": {
@@ -396,9 +439,9 @@
         ]
       },
       {
-        "shortCode": "139558",
+        "primaryKey": 246,
         "title": "dynamics of amino acids ",
-        "id": 246,
+        "proposalId": "139558",
         "users": [
           {
             "firstname": "Zoë",
@@ -411,7 +454,6 @@
         },
         "samples": [
           {
-            "proposalId": 246,
             "title": "Proline",
             "id": 159,
             "questionary": {
@@ -752,7 +794,6 @@
             }
           },
           {
-            "proposalId": 246,
             "title": "proline",
             "id": 162,
             "questionary": {
@@ -1606,9 +1647,9 @@
         ]
       },
       {
-        "shortCode": "005313",
+        "primaryKey": 244,
         "title": "Microgels ",
-        "id": 244,
+        "proposalId": "005313",
         "users": [
           {
             "firstname": "Caroline",
@@ -1621,7 +1662,6 @@
         },
         "samples": [
           {
-            "proposalId": 244,
             "title": "DPPC",
             "id": 156,
             "questionary": {
@@ -1962,7 +2002,6 @@
             }
           },
           {
-            "proposalId": 244,
             "title": "deuterated-DPPC",
             "id": 157,
             "questionary": {
@@ -2814,7 +2853,6 @@
             }
           },
           {
-            "proposalId": 244,
             "title": "Less deuterated-DPPC",
             "id": 161,
             "questionary": {
@@ -3668,9 +3706,9 @@
         ]
       },
       {
-        "shortCode": "438190",
+        "primaryKey": 243,
         "title": "Photoswitching in molecular membranes",
-        "id": 243,
+        "proposalId": "438190",
         "users": [
           {
             "firstname": "Caroline",
@@ -3684,9 +3722,9 @@
         "samples": []
       },
       {
-        "shortCode": "871067",
+        "primaryKey": 242,
         "title": "The Structure of Cheese Under Pressure",
-        "id": 242,
+        "proposalId": "871067",
         "users": [
           {
             "firstname": "jonathan ",
@@ -3703,7 +3741,6 @@
         },
         "samples": [
           {
-            "proposalId": 242,
             "title": "Camembert",
             "id": 153,
             "questionary": {
@@ -4044,7 +4081,6 @@
             }
           },
           {
-            "proposalId": 242,
             "title": "Chaource",
             "id": 155,
             "questionary": {
@@ -4389,9 +4425,9 @@
         ]
       },
       {
-        "shortCode": "736822",
+        "primaryKey": 240,
         "title": "Spin dynamics in optimally doped (U0.965 / Th0.035) Be13",
-        "id": 240,
+        "proposalId": "736822",
         "users": [
           {
             "firstname": "pascale",
@@ -4404,7 +4440,6 @@
         },
         "samples": [
           {
-            "proposalId": 240,
             "title": "UBe13",
             "id": 152,
             "questionary": {
@@ -4749,9 +4784,9 @@
         ]
       },
       {
-        "shortCode": "169700",
+        "primaryKey": 239,
         "title": "Spin Diffusion at Ferromagnetic / Superconducting interfaces",
-        "id": 239,
+        "proposalId": "169700",
         "users": [
           {
             "firstname": "Stuart",
@@ -4768,7 +4803,6 @@
         },
         "samples": [
           {
-            "proposalId": 239,
             "title": "YBa2Cu3O7 / La2/3Ca1/3MnO3 multilayer",
             "id": 151,
             "questionary": {
@@ -5112,9 +5146,9 @@
         ]
       },
       {
-        "shortCode": "602577",
+        "primaryKey": 238,
         "title": "Mechanical properties of wood under High humidity",
-        "id": 238,
+        "proposalId": "602577",
         "users": [
           {
             "firstname": "Arno",
@@ -5131,7 +5165,6 @@
         },
         "samples": [
           {
-            "proposalId": 238,
             "title": "Wood from my cheery tree in my garden",
             "id": 154,
             "questionary": {
@@ -5476,9 +5509,9 @@
         ]
       },
       {
-        "shortCode": "035455",
+        "primaryKey": 237,
         "title": "I luurve magnetism",
-        "id": 237,
+        "proposalId": "035455",
         "users": [
           {
             "firstname": "Jonathan",
@@ -5491,7 +5524,6 @@
         },
         "samples": [
           {
-            "proposalId": 237,
             "title": "Gd2Ga5O12",
             "id": 147,
             "questionary": {
@@ -5832,7 +5864,6 @@
             }
           },
           {
-            "proposalId": 237,
             "title": "Yb3Ga5O12",
             "id": 148,
             "questionary": {
@@ -6175,9 +6206,9 @@
         ]
       },
       {
-        "shortCode": "468332",
+        "primaryKey": 236,
         "title": "Photoswitching in lipid vesicles",
-        "id": 236,
+        "proposalId": "468332",
         "users": [
           {
             "firstname": "Caroline",
@@ -6190,7 +6221,6 @@
         },
         "samples": [
           {
-            "proposalId": 236,
             "title": "azobenzene-glycolipid C16 ",
             "id": 145,
             "questionary": {
@@ -6533,9 +6563,9 @@
         ]
       },
       {
-        "shortCode": "334087",
+        "primaryKey": 234,
         "title": "Spin correlations in the chiral spin liquid YBaCo3FeO7",
-        "id": 234,
+        "proposalId": "334087",
         "users": [],
         "proposer": {
           "firstname": "werner",
@@ -6543,7 +6573,6 @@
         },
         "samples": [
           {
-            "proposalId": 234,
             "title": "YBaCo3FeO7",
             "id": 146,
             "questionary": {
@@ -6886,9 +6915,9 @@
         ]
       },
       {
-        "shortCode": "199842",
+        "primaryKey": 232,
         "title": "Dynamics of Supercooled H2O in confined geometries",
-        "id": 232,
+        "proposalId": "199842",
         "users": [
           {
             "firstname": "pascale",
@@ -6905,7 +6934,6 @@
         },
         "samples": [
           {
-            "proposalId": 232,
             "title": "Water",
             "id": 143,
             "questionary": {
@@ -7246,7 +7274,6 @@
             }
           },
           {
-            "proposalId": 232,
             "title": "Vycor Glass",
             "id": 144,
             "questionary": {
@@ -7589,9 +7616,9 @@
         ]
       },
       {
-        "shortCode": "260126",
+        "primaryKey": 218,
         "title": "Best experiment ever",
-        "id": 218,
+        "proposalId": "260126",
         "users": [
           {
             "firstname": "TestReviewer",
@@ -7604,7 +7631,6 @@
         },
         "samples": [
           {
-            "proposalId": 218,
             "title": "CAtalyst A: gold particls on zeolite Y",
             "id": 128,
             "questionary": {
@@ -7953,7 +7979,6 @@
             }
           },
           {
-            "proposalId": 218,
             "title": "CAtalyst A: titanium particls on zeolite Y",
             "id": 129,
             "questionary": {
@@ -8304,9 +8329,9 @@
         ]
       },
       {
-        "shortCode": "471120",
+        "primaryKey": 169,
         "title": "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12",
-        "id": 169,
+        "proposalId": "471120",
         "users": [
           {
             "firstname": "jonathan ",
@@ -8323,7 +8348,6 @@
         },
         "samples": [
           {
-            "proposalId": 169,
             "title": "Yb3Ga5O12",
             "id": 77,
             "questionary": {
@@ -8844,7 +8868,6 @@
             }
           },
           {
-            "proposalId": 169,
             "title": "Styrene solution B",
             "id": 107,
             "questionary": {
@@ -9171,7 +9194,6 @@
             }
           },
           {
-            "proposalId": 169,
             "title": "PEO in solution",
             "id": 108,
             "questionary": {
