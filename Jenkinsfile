@@ -2,9 +2,6 @@
 import ecdcpipeline.ContainerBuildNode
 import ecdcpipeline.PipelineBuilder
 
-project = "yuos_query"
-
-python = "python3.6"
 
 container_build_nodes = [
   'centos7-release': ContainerBuildNode.getDefaultContainerBuildNode('centos7-gcc8')
@@ -44,10 +41,8 @@ builders = pipeline_builder.createBuilders { container ->
   pipeline_builder.stage("${container.key}: Dependencies") {
     def conan_remote = "ess-dmsc-local"
     container.sh """
-      /opt/miniconda/bin/conda init bash
-      export PATH=/opt/miniconda/bin:$PATH
       python --version
-      python -m pip install --user -r ${project}/requirements-dev.txt
+      python -m pip install --user -r ${pipeline_builder.project}/requirements-dev.txt
     """
   } // stage
 
@@ -55,19 +50,18 @@ builders = pipeline_builder.createBuilders { container ->
     def test_output = "TestResults.xml"
     withCredentials([usernamePassword(credentialsId: 'cow-bot-proposal-system', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
       container.sh """
-        export PATH=/opt/miniconda/bin:$PATH
         python --version
-        cd ${project}
+        cd ${pipeline_builder.project}
         YUOS_TOKEN=${PASSWORD} python -m pytest --junitxml=${test_output}
       """
     }
-    container.copyFrom("${project}/${test_output}", ".")
+    container.copyFrom("${pipeline_builder.project}/${test_output}", ".")
     xunit thresholds: [failed(unstableThreshold: '0')], tools: [JUnit(deleteOutputFiles: true, pattern: '*.xml', skipNoTestFiles: false, stopProcessingIfError: true)]
   } // stage
 }  // createBuilders
 
 node {
-  dir("${project}") {
+  dir("${pipeline_builder.project}") {
     scm_vars = checkout scm
   }
 
