@@ -35,7 +35,7 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
             ("jonathan", "Taylor", "jonathantaylor"),
             ("Johan", "Andersson", "johanandersson"),
         ]
-        assert result.proposer == ("Fredrik", "Bolmsten", "fredrikbolmsten")
+        assert result.proposer == ("Bob", "Bolmsten", "bobbolmsten")
         assert len(result.samples) == 3
         assert result.samples[0].name == ""
         assert result.samples[0].formula == "Yb3Ga5O12"
@@ -64,8 +64,7 @@ def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
         )
 
         results = client.proposals_for_user("jonathantaylor")
-
-        assert len(results) == 6
+        assert len(results) == 7
         assert {p.id for p in results} == {
             "871067",
             "169700",
@@ -73,4 +72,5 @@ def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
             "139558",
             "471120",
             "199842",
+            "509363",
         }

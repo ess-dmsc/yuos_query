@@ -17,7 +17,7 @@ VALID_PROPOSAL_DATA = {
     "471120": ProposalInfo(
         id="471120",
         title="The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12",
-        proposer=User("Fredrik", "Bolmsten", "fredrikbolmsten"),
+        proposer=User("Bob", "Bolmsten", "bobbolmsten"),
         users=[
             User("jonathan", "Taylor", "jonathantaylor"),
             User("Johan", "Andersson", "johanandersson"),
@@ -117,7 +117,7 @@ class TestYuosClient:
             ("jonathan", "Taylor", "jonathantaylor"),
             ("Johan", "Andersson", "johanandersson"),
         ]
-        assert proposal_info.proposer == ("Fredrik", "Bolmsten", "fredrikbolmsten")
+        assert proposal_info.proposer == ("Bob", "Bolmsten", "bobbolmsten")
 
     def test_if_proposal_system_unavailable_load_from_cache(self):
         self.system.get_proposals_for_instrument.side_effect = ServerException("oops")

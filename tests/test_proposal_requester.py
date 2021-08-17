@@ -47,8 +47,7 @@ def test_gets_proposal_information():
     system = ProposalRequester(":: url ::", ":: token ::", wrapper)
 
     proposals = system.get_proposals_for_instrument("ymir")
-
-    assert len(proposals) == 21
+    assert len(proposals) == 16
     assert (
         proposals[KNOWN_PROPOSAL_ID].title
         == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
@@ -59,9 +58,9 @@ def test_gets_proposal_information():
         ("Johan", "Andersson", "johanandersson"),
     ]
     assert proposals[KNOWN_PROPOSAL_ID].proposer == (
-        "Fredrik",
+        "Bob",
         "Bolmsten",
-        "fredrikbolmsten",
+        "bobbolmsten",
     )
     assert len(proposals[KNOWN_PROPOSAL_ID].samples) == 3
     assert proposals[KNOWN_PROPOSAL_ID].samples[0].name == ""
@@ -87,7 +86,7 @@ def test_ignore_instrument_name_case():
 
     proposals = system.get_proposals_for_instrument("yMiR")
 
-    assert len(proposals) == 21
+    assert len(proposals) == 16
 
 
 def test_unrecognised_instrument_raises():
