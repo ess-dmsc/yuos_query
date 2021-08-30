@@ -58,7 +58,7 @@ builders = pipeline_builder.createBuilders { container ->
         export PATH=/opt/miniconda/bin:$PATH
         python --version
         cd ${project}
-        YUOS_TOKEN=${PASSWORD} python -m pytest --junitxml=${test_output}
+        YUOS_TOKEN=${PASSWORD} python -m tox -- --junitxml=${test_output}
       """
     }
     container.copyFrom("${project}/${test_output}", ".")
