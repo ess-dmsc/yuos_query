@@ -53,6 +53,7 @@ builders = pipeline_builder.createBuilders { container ->
     def test_output = "TestResults.xml"
     withCredentials([usernamePassword(credentialsId: 'cow-bot-proposal-system', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
       container.sh """
+        export PATH=/opt/miniconda/bin:$PATH
         python --version
         cd ${pipeline_builder.project}
         YUOS_TOKEN=${PASSWORD} python -m tox -- --junitxml=${test_output}
