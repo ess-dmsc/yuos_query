@@ -53,8 +53,7 @@ builders = pipeline_builder.createBuilders { container ->
     def test_output = "TestResults.xml"
     withCredentials([usernamePassword(credentialsId: 'cow-bot-proposal-system', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
       container.sh """
-        export LC_ALL=C.UTF-8
-        export LANG=C.UTF-8
+        export PYTHONUTF8=1
         export PATH=/opt/miniconda/bin:$PATH
         python --version
         cd ${pipeline_builder.project}
