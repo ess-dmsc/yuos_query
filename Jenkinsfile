@@ -2,7 +2,6 @@
 import ecdcpipeline.ContainerBuildNode
 import ecdcpipeline.PipelineBuilder
 
-
 container_build_nodes = [
   'centos7-release': ContainerBuildNode.getDefaultContainerBuildNode('centos7-gcc8')
 ]
@@ -41,6 +40,10 @@ builders = pipeline_builder.createBuilders { container ->
   pipeline_builder.stage("${container.key}: Dependencies") {
     def conan_remote = "ess-dmsc-local"
     container.sh """
+      /opt/miniconda/bin/conda init bash
+      export PATH=/opt/miniconda/bin:$PATH
+      curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+      python get-pip.py
       python --version
       python -m pip install --user -r ${pipeline_builder.project}/requirements-dev.txt
     """
@@ -52,7 +55,7 @@ builders = pipeline_builder.createBuilders { container ->
       container.sh """
         python --version
         cd ${pipeline_builder.project}
-        YUOS_TOKEN=${PASSWORD} python -m pytest --junitxml=${test_output}
+        YUOS_TOKEN=${PASSWORD} python -m tox -- --junitxml=${test_output}
       """
     }
     container.copyFrom("${pipeline_builder.project}/${test_output}", ".")
