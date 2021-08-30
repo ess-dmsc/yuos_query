@@ -1,13 +1,15 @@
 from example_data import get_ymir_example_data
 from yuos_query.data_extractors import extract_relevant_sample_info
 
-for data in get_ymir_example_data()["proposals"]["proposals"]:
-    if data["proposalId"] == "871067":  # proposalId 242
-        SAMPLE_EXAMPLE = data["samples"]
+
+def get_sample_data():
+    for data in get_ymir_example_data()["proposals"]["proposals"]:
+        if data["proposalId"] == "871067":  # proposalId 242
+            return data["samples"]
 
 
 def test_sample_info():
-    result = extract_relevant_sample_info(SAMPLE_EXAMPLE)
+    result = extract_relevant_sample_info(get_sample_data())
     assert len(result) == 2
     assert result[0].name == ""
     assert result[0].formula == "CHE3S"
