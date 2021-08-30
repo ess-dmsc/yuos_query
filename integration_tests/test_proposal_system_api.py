@@ -108,7 +108,7 @@ class TestProposalSystemAPI:
         assert result["primaryKey"] == 169
         assert len(result["users"]) == 2
         assert len(result["samples"]) == 3
-        assert result["proposer"]["firstname"] == "Fredrik"
+        assert result["proposer"]["firstname"] == "Bob"
         assert result["proposer"]["lastname"] == "Bolmsten"
         assert {"firstname": "jonathan ", "lastname": "Taylor"} in result["users"]
         assert result["samples"][0]["id"] == 77

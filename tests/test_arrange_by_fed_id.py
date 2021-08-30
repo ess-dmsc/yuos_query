@@ -12,7 +12,7 @@ def test_can_organise_proposals_by_fed_id():
 
 def test_includes_experiment_where_user_is_proposer():
     proposals_by_users = arrange_by_user(VALID_PROPOSAL_DATA)
-    result = proposals_by_users["fredrikbolmsten"]
+    result = proposals_by_users["bobbolmsten"]
 
     assert len(result) == 1
     assert {p.id for p in result} == {"471120"}

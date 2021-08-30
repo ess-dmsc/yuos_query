@@ -7,7 +7,7 @@ from yuos_query.exceptions import UnknownInstrumentException
 from yuos_query.proposal_system import GqlWrapper, ProposalRequester
 
 KNOWN_PROPOSAL_ID = "471120"
-YMIR_EXAMPLE_DATA = get_ymir_example_data()
+# YMIR_EXAMPLE_DATA = get_ymir_example_data()
 INSTRUMENT_INFO_RESPONSE = {
     "instruments": {
         "instruments": [
@@ -42,13 +42,12 @@ INSTRUMENT_INFO_RESPONSE = {
 
 def test_gets_proposal_information():
     wrapper = mock.create_autospec(GqlWrapper)
-    wrapper.request.side_effect = [INSTRUMENT_INFO_RESPONSE, YMIR_EXAMPLE_DATA]
+    wrapper.request.side_effect = [INSTRUMENT_INFO_RESPONSE, get_ymir_example_data()]
 
     system = ProposalRequester(":: url ::", ":: token ::", wrapper)
 
     proposals = system.get_proposals_for_instrument("ymir")
-
-    assert len(proposals) == 21
+    assert len(proposals) == 16
     assert (
         proposals[KNOWN_PROPOSAL_ID].title
         == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
@@ -59,9 +58,9 @@ def test_gets_proposal_information():
         ("Johan", "Andersson", "johanandersson"),
     ]
     assert proposals[KNOWN_PROPOSAL_ID].proposer == (
-        "Fredrik",
+        "Bob",
         "Bolmsten",
-        "fredrikbolmsten",
+        "bobbolmsten",
     )
     assert len(proposals[KNOWN_PROPOSAL_ID].samples) == 3
     assert proposals[KNOWN_PROPOSAL_ID].samples[0].name == ""
@@ -81,18 +80,18 @@ def test_gets_proposal_information():
 
 def test_ignore_instrument_name_case():
     wrapper = mock.create_autospec(GqlWrapper)
-    wrapper.request.side_effect = [INSTRUMENT_INFO_RESPONSE, YMIR_EXAMPLE_DATA]
+    wrapper.request.side_effect = [INSTRUMENT_INFO_RESPONSE, get_ymir_example_data()]
 
     system = ProposalRequester(":: url ::", ":: token ::", wrapper)
 
     proposals = system.get_proposals_for_instrument("yMiR")
 
-    assert len(proposals) == 21
+    assert len(proposals) == 16
 
 
 def test_unrecognised_instrument_raises():
     wrapper = mock.create_autospec(GqlWrapper)
-    wrapper.request.side_effect = [INSTRUMENT_INFO_RESPONSE, YMIR_EXAMPLE_DATA]
+    wrapper.request.side_effect = [INSTRUMENT_INFO_RESPONSE, get_ymir_example_data()]
 
     system = ProposalRequester(":: url ::", ":: token ::", wrapper)
 

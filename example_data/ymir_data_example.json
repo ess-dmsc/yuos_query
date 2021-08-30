@@ -1,102 +1,549 @@
 {
   "proposals": {
-    "totalCount": 21,
+    "totalCount": 16,
     "proposals": [
       {
-        "primaryKey": 303,
-        "title": "Copy of Copy of a",
-        "proposalId": "465544",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 302,
-        "title": "Copy of a",
-        "proposalId": "898421",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 301,
-        "title": "a",
-        "proposalId": "331299",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 297,
-        "title": "My new proposal",
-        "proposalId": "2110002",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 289,
-        "title": "Test proposal 2",
-        "proposalId": "525828",
-        "users": [],
-        "proposer": {
-          "firstname": "Martin",
-          "lastname": "Trajanovski"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 288,
-        "title": "Test proposal 11",
-        "proposalId": "958705",
-        "users": [],
-        "proposer": {
-          "firstname": "Martin",
-          "lastname": "Trajanovski"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 280,
-        "title": "Spin Diffusion at Ferromagnetic",
-        "proposalId": "421725",
+        "primaryKey": 326,
+        "title": "Copy of The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12",
+        "proposalId": "509363",
         "users": [
           {
-            "firstname": "Stuart",
-            "lastname": "Campbell"
+            "firstname": "jonathan ",
+            "lastname": "Taylor"
+          },
+          {
+            "firstname": "Johan",
+            "lastname": "Andersson"
           }
         ],
         "proposer": {
-          "firstname": "Fredrik",
+          "firstname": "Bob",
           "lastname": "Bolmsten"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 277,
-        "title": "New Proposal",
-        "proposalId": "720357",
-        "users": [],
-        "proposer": {
-          "firstname": "User",
-          "lastname": "Karklins"
         },
         "samples": [
           {
-            "title": "My sample title",
-            "id": 179,
+            "title": "Yb3Ga5O12",
+            "id": 192,
+            "questionary": {
+              "steps": [
+                {
+                  "fields": [
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Sample name and/or material",
+                        "naturalKey": "sample_basis"
+                      }
+                    },
+                    {
+                      "value": "Yb3Ga5O12",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Additional components",
+                        "naturalKey": "text_input_1603874407022"
+                      }
+                    },
+                    {
+                      "value": "Yb3Ga5O12",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Chemical formula",
+                        "naturalKey": "text_input_1603713145780"
+                      }
+                    },
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "New question",
+                        "naturalKey": "embellishment_1601536727146_sample"
+                      }
+                    },
+                    {
+                      "value": "1900mg",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Quantity (e.g.weight, volume, thickness)",
+                        "naturalKey": "text_input_1603713162762"
+                      }
+                    },
+                    {
+                      "value": [
+                        "Single Crystal"
+                      ],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Form",
+                        "naturalKey": "selection_from_options_1601536868245"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1601536868245",
+                          "questionId": "text_input_1602676349290"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details",
+                        "naturalKey": "text_input_1602676349290"
+                      }
+                    },
+                    {
+                      "value": [
+                        "None"
+                      ],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Special Requirements",
+                        "naturalKey": "selection_from_options_1601536990025"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1601536990025",
+                          "questionId": "text_input_1603713303928"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details",
+                        "naturalKey": "text_input_1603713303928"
+                      }
+                    },
+                    {
+                      "value": [
+                        "mg"
+                      ],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Sample mass or volume",
+                        "naturalKey": "selection_from_options_1603713436108"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Density (g/cm*3)",
+                        "naturalKey": "text_input_1603713516881"
+                      }
+                    },
+                    {
+                      "value": "100 mK",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Temperature required for neutron measurement",
+                        "naturalKey": "text_input_1603713560048"
+                      }
+                    },
+                    {
+                      "value": "1",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Total number of the same sample",
+                        "naturalKey": "text_input_1603713538053"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Add File(s)  Please attach all related Safety Data Sheets (SDS) and Crystallographic Information (CIF) files.",
+                        "naturalKey": "file_upload_1601537324380"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "fields": [
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "New question",
+                        "naturalKey": "embellishment_1602773138487"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "None",
+                        "naturalKey": "boolean_1602773213510"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Do Not Know",
+                        "naturalKey": "boolean_1602773230906"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Mechanical processing (e.g. stress-straining)",
+                        "naturalKey": "boolean_1603874937965"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Helium Cryostat",
+                        "naturalKey": "boolean_1602773256185"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "CCR",
+                        "naturalKey": "boolean_1602773280956"
+                      }
+                    },
+                    {
+                      "value": true,
+                      "dependencies": [],
+                      "question": {
+                        "question": "T < 1K cryostat",
+                        "naturalKey": "boolean_1602773302193"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "T < 0.3K cryostat",
+                        "naturalKey": "boolean_1602773317392"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Cryofurnace",
+                        "naturalKey": "boolean_1602773331017"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Gas Handling",
+                        "naturalKey": "boolean_1602773353268"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Furnace",
+                        "naturalKey": "boolean_1602773373453"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "High Pressure",
+                        "naturalKey": "boolean_1602773395929"
+                      }
+                    },
+                    {
+                      "value": true,
+                      "dependencies": [],
+                      "question": {
+                        "question": "1.5 Tesla Magnet",
+                        "naturalKey": "boolean_1602773419327"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "7.5 Tesla Magnet",
+                        "naturalKey": "boolean_1602773442532"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "10 Tesla Magnet",
+                        "naturalKey": "boolean_1602773459215"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Water Bath",
+                        "naturalKey": "boolean_1602773488341"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Sample Changer",
+                        "naturalKey": "boolean_1602773508081"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Temperatur Range(K)",
+                        "naturalKey": "text_input_1602681814172"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Pressure range(MPa)",
+                        "naturalKey": "text_input_1602681849961"
+                      }
+                    },
+                    {
+                      "value": "0 - 3.5",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Magnetic field strength(T)",
+                        "naturalKey": "text_input_1602681867032"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Details of any specialist equipment or user supplied equipment",
+                        "naturalKey": "text_input_1602681886438"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "fields": [
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any Radioactive hazards associated with your sample?",
+                        "naturalKey": "boolean_1602681963527"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602681963527",
+                          "questionId": "text_input_1602681978151"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give more details (max 100 characters)",
+                        "naturalKey": "text_input_1602681978151"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any Biological hazards associated with your sample?",
+                        "naturalKey": "boolean_1602682007458"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602682007458",
+                          "questionId": "text_input_1602682027045"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give more details (max 100 characters)",
+                        "naturalKey": "text_input_1602682027045"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Is your sample sensitive to air?",
+                        "naturalKey": "boolean_1602682066934"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Is your sample sensitive to water vapour?",
+                        "naturalKey": "boolean_1602682083541"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any other hazards associated with your sample?",
+                        "naturalKey": "boolean_1602682237551"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602682237551",
+                          "questionId": "boolean_1602773681572"
+                        }
+                      ],
+                      "question": {
+                        "question": "Toxic",
+                        "naturalKey": "boolean_1602773681572"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602682237551",
+                          "questionId": "boolean_1602773700421"
+                        }
+                      ],
+                      "question": {
+                        "question": "Corrosive",
+                        "naturalKey": "boolean_1602773700421"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602682237551",
+                          "questionId": "boolean_1602773734839"
+                        }
+                      ],
+                      "question": {
+                        "question": "Flammable",
+                        "naturalKey": "boolean_1602773734839"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602682237551",
+                          "questionId": "boolean_1602773765442"
+                        }
+                      ],
+                      "question": {
+                        "question": "Explosive",
+                        "naturalKey": "boolean_1602773765442"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602682237551",
+                          "questionId": "boolean_1602773780009"
+                        }
+                      ],
+                      "question": {
+                        "question": "Other",
+                        "naturalKey": "other_hazard"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602682237551",
+                          "questionId": "text_input_1602682939107"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details (max 255 characters)",
+                        "naturalKey": "text_input_1602682939107"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any other hazards associated with experiment equipment? ",
+                        "naturalKey": "boolean_1602684475301"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602684475301",
+                          "questionId": "text_input_1602684496739"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details (max 100 characters)",
+                        "naturalKey": "text_input_1602684496739"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any other hazards associated with the experiment?",
+                        "naturalKey": "boolean_1602684552338"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1602684552338",
+                          "questionId": "text_input_1602684572056"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details (max 100 characters)",
+                        "naturalKey": "text_input_1602684572056"
+                      }
+                    },
+                    {
+                      "value": [
+                        "Removed By User"
+                      ],
+                      "dependencies": [],
+                      "question": {
+                        "question": "After the experiment the sample will be",
+                        "naturalKey": "selection_from_options_1602684676663"
+                      }
+                    },
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "New question",
+                        "naturalKey": "embellishment_1602684762285"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "title": "Styrene solution B",
+            "id": 193,
             "questionary": {
               "steps": [
                 {
@@ -118,7 +565,7 @@
                       }
                     },
                     {
-                      "value": "C2H6",
+                      "value": "(EO)20-(PO)45-(EO)30, D2O, NaCl, SDS",
                       "dependencies": [],
                       "question": {
                         "question": "Chemical formula",
@@ -164,7 +611,671 @@
                     },
                     {
                       "value": [
-                        "Gas"
+                        "Liquid"
+                      ],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Form",
+                        "naturalKey": "selection_from_options_1601536868245"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1601536868245",
+                          "questionId": "text_input_1602676349290"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details",
+                        "naturalKey": "text_input_1602676349290"
+                      }
+                    },
+                    {
+                      "value": [
+                        "None"
+                      ],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Special Requirements",
+                        "naturalKey": "selection_from_options_1601536990025"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1601536990025",
+                          "questionId": "text_input_1603713303928"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details",
+                        "naturalKey": "text_input_1603713303928"
+                      }
+                    },
+                    {
+                      "value": {
+                        "value": "",
+                        "unit": null
+                      },
+                      "dependencies": [],
+                      "question": {
+                        "question": "Total number of the same sample",
+                        "naturalKey": "number_input_1610713981207"
+                      }
+                    },
+                    {
+                      "value": {
+                        "value": "",
+                        "unit": "µg"
+                      },
+                      "dependencies": [],
+                      "question": {
+                        "question": "Mass or volume",
+                        "naturalKey": "number_input_1610698357121"
+                      }
+                    },
+                    {
+                      "value": {
+                        "value": "",
+                        "unit": null
+                      },
+                      "dependencies": [],
+                      "question": {
+                        "question": "Density (g/cm*3)",
+                        "naturalKey": "number_input_1610713898040"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Add File(s)  Please attach all related Safety Data Sheets (SDS) and Crystallographic Information (CIF) files.",
+                        "naturalKey": "file_upload_1601537324380"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "fields": [
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Temperature ambient?",
+                        "naturalKey": "selection_from_options_1609928685331"
+                      }
+                    },
+                    {
+                      "value": {
+                        "min": "",
+                        "max": "",
+                        "unit": "kelvin"
+                      },
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609928685331",
+                          "questionId": "interval_1609858014044"
+                        }
+                      ],
+                      "question": {
+                        "question": "Temperatur Range",
+                        "naturalKey": "interval_1609858014044"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Pressure ambient?",
+                        "naturalKey": "selection_from_options_1609929012415"
+                      }
+                    },
+                    {
+                      "value": {
+                        "min": "",
+                        "max": "",
+                        "unit": "pascal"
+                      },
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929012415",
+                          "questionId": "interval_1609858071129"
+                        }
+                      ],
+                      "question": {
+                        "question": "Pressure range",
+                        "naturalKey": "interval_1609858071129"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Magnetic field?",
+                        "naturalKey": "selection_from_options_1609929067527"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929067527",
+                          "questionId": "text_input_1602681867032"
+                        }
+                      ],
+                      "question": {
+                        "question": "Magnetic field strength(T)",
+                        "naturalKey": "text_input_1602681867032"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "fields": [
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any Radioactive hazards associated with your sample?",
+                        "naturalKey": "selection_from_options_1609929138919"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929138919",
+                          "questionId": "text_input_1602681978151"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give more details (max 100 characters)",
+                        "naturalKey": "text_input_1602681978151"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any Biological hazards associated with your sample?",
+                        "naturalKey": "selection_from_options_1609929232267"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929232267",
+                          "questionId": "text_input_1602682027045"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give more details (max 100 characters)",
+                        "naturalKey": "text_input_1602682027045"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Is your sample sensitive to air?",
+                        "naturalKey": "selection_from_options_1609929356031"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Is your sample sensitive to water vapour?",
+                        "naturalKey": "selection_from_options_1609929408773"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any other hazards associated with your sample?",
+                        "naturalKey": "selection_from_options_1609929454945"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929454945",
+                          "questionId": "text_input_1602682939107"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details (max 255 characters)",
+                        "naturalKey": "text_input_1602682939107"
+                      }
+                    },
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "New question",
+                        "naturalKey": "embellishment_1602684762285"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "title": "PEO in solution",
+            "id": 194,
+            "questionary": {
+              "steps": [
+                {
+                  "fields": [
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "New question",
+                        "naturalKey": "embellishment_1601536727146_sample"
+                      }
+                    },
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Sample name and/or material",
+                        "naturalKey": "sample_basis"
+                      }
+                    },
+                    {
+                      "value": "PEO, D2O, NaCl, EtOH",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Chemical formula",
+                        "naturalKey": "text_input_1603713145780"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Special Isotopes",
+                        "naturalKey": "boolean_1607087013135"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1607087013135",
+                          "questionId": "text_input_1607087043945"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details",
+                        "naturalKey": "special_isotopes_input"
+                      }
+                    },
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "New question",
+                        "naturalKey": "embellishment_1607087117745"
+                      }
+                    },
+                    {
+                      "value": "NaCl",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Additional components",
+                        "naturalKey": "text_input_1603874407022"
+                      }
+                    },
+                    {
+                      "value": [
+                        "Liquid"
+                      ],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Form",
+                        "naturalKey": "selection_from_options_1601536868245"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1601536868245",
+                          "questionId": "text_input_1602676349290"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details",
+                        "naturalKey": "text_input_1602676349290"
+                      }
+                    },
+                    {
+                      "value": [
+                        "None"
+                      ],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Special Requirements",
+                        "naturalKey": "selection_from_options_1601536990025"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1601536990025",
+                          "questionId": "text_input_1603713303928"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details",
+                        "naturalKey": "text_input_1603713303928"
+                      }
+                    },
+                    {
+                      "value": {
+                        "value": "",
+                        "unit": null
+                      },
+                      "dependencies": [],
+                      "question": {
+                        "question": "Total number of the same sample",
+                        "naturalKey": "number_input_1610713981207"
+                      }
+                    },
+                    {
+                      "value": {
+                        "value": "",
+                        "unit": "µg"
+                      },
+                      "dependencies": [],
+                      "question": {
+                        "question": "Mass or volume",
+                        "naturalKey": "number_input_1610698357121"
+                      }
+                    },
+                    {
+                      "value": {
+                        "value": "",
+                        "unit": null
+                      },
+                      "dependencies": [],
+                      "question": {
+                        "question": "Density (g/cm*3)",
+                        "naturalKey": "number_input_1610713898040"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Add File(s)  Please attach all related Safety Data Sheets (SDS) and Crystallographic Information (CIF) files.",
+                        "naturalKey": "file_upload_1601537324380"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "fields": [
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Temperature ambient?",
+                        "naturalKey": "selection_from_options_1609928685331"
+                      }
+                    },
+                    {
+                      "value": {
+                        "min": "",
+                        "max": "",
+                        "unit": "kelvin"
+                      },
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609928685331",
+                          "questionId": "interval_1609858014044"
+                        }
+                      ],
+                      "question": {
+                        "question": "Temperatur Range",
+                        "naturalKey": "interval_1609858014044"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Pressure ambient?",
+                        "naturalKey": "selection_from_options_1609929012415"
+                      }
+                    },
+                    {
+                      "value": {
+                        "min": "",
+                        "max": "",
+                        "unit": "pascal"
+                      },
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929012415",
+                          "questionId": "interval_1609858071129"
+                        }
+                      ],
+                      "question": {
+                        "question": "Pressure range",
+                        "naturalKey": "interval_1609858071129"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Magnetic field?",
+                        "naturalKey": "selection_from_options_1609929067527"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929067527",
+                          "questionId": "text_input_1602681867032"
+                        }
+                      ],
+                      "question": {
+                        "question": "Magnetic field strength(T)",
+                        "naturalKey": "text_input_1602681867032"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "fields": [
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any Radioactive hazards associated with your sample?",
+                        "naturalKey": "selection_from_options_1609929138919"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929138919",
+                          "questionId": "text_input_1602681978151"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give more details (max 100 characters)",
+                        "naturalKey": "text_input_1602681978151"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any Biological hazards associated with your sample?",
+                        "naturalKey": "selection_from_options_1609929232267"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929232267",
+                          "questionId": "text_input_1602682027045"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give more details (max 100 characters)",
+                        "naturalKey": "text_input_1602682027045"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Is your sample sensitive to air?",
+                        "naturalKey": "selection_from_options_1609929356031"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Is your sample sensitive to water vapour?",
+                        "naturalKey": "selection_from_options_1609929408773"
+                      }
+                    },
+                    {
+                      "value": [],
+                      "dependencies": [],
+                      "question": {
+                        "question": "Are there any other hazards associated with your sample?",
+                        "naturalKey": "selection_from_options_1609929454945"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "selection_from_options_1609929454945",
+                          "questionId": "text_input_1602682939107"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details (max 255 characters)",
+                        "naturalKey": "text_input_1602682939107"
+                      }
+                    },
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "New question",
+                        "naturalKey": "embellishment_1602684762285"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "primaryKey": 309,
+        "title": "Yeast phospholipids for neutron scattering studies of cell membrane dynamics and structure",
+        "proposalId": "868279",
+        "users": [],
+        "proposer": {
+          "firstname": "User",
+          "lastname": "Karklins"
+        },
+        "samples": [
+          {
+            "title": "Eukaryotic, single-celled microorganism",
+            "id": 184,
+            "questionary": {
+              "steps": [
+                {
+                  "fields": [
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "New question",
+                        "naturalKey": "embellishment_1601536727146_sample"
+                      }
+                    },
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Sample name and/or material",
+                        "naturalKey": "sample_basis"
+                      }
+                    },
+                    {
+                      "value": "Ethanol",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Chemical formula",
+                        "naturalKey": "text_input_1603713145780"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "dependencies": [],
+                      "question": {
+                        "question": "Special Isotopes",
+                        "naturalKey": "boolean_1607087013135"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [
+                        {
+                          "dependencyNaturalKey": "boolean_1607087013135",
+                          "questionId": "text_input_1607087043945"
+                        }
+                      ],
+                      "question": {
+                        "question": "Please give details",
+                        "naturalKey": "special_isotopes_input"
+                      }
+                    },
+                    {
+                      "value": null,
+                      "dependencies": [],
+                      "question": {
+                        "question": "New question",
+                        "naturalKey": "embellishment_1607087117745"
+                      }
+                    },
+                    {
+                      "value": "",
+                      "dependencies": [],
+                      "question": {
+                        "question": "Additional components",
+                        "naturalKey": "text_input_1603874407022"
+                      }
+                    },
+                    {
+                      "value": [
+                        "Liquid"
                       ],
                       "dependencies": [],
                       "question": {
@@ -221,8 +1332,8 @@
                     },
                     {
                       "value": {
-                        "unit": "µg",
-                        "value": ""
+                        "unit": "g",
+                        "value": 50
                       },
                       "dependencies": [],
                       "question": {
@@ -309,7 +1420,7 @@
                     },
                     {
                       "value": [
-                        "No"
+                        "Yes"
                       ],
                       "dependencies": [],
                       "question": {
@@ -318,7 +1429,7 @@
                       }
                     },
                     {
-                      "value": "",
+                      "value": "0",
                       "dependencies": [
                         {
                           "dependencyNaturalKey": "selection_from_options_1609929067527",
@@ -392,7 +1503,7 @@
                     },
                     {
                       "value": [
-                        "No"
+                        "Yes"
                       ],
                       "dependencies": [],
                       "question": {
@@ -401,9 +1512,7 @@
                       }
                     },
                     {
-                      "value": [
-                        "Other"
-                      ],
+                      "value": [],
                       "dependencies": [],
                       "question": {
                         "question": "Are there any other hazards associated with your sample?",
@@ -411,7 +1520,7 @@
                       }
                     },
                     {
-                      "value": "Explosive",
+                      "value": "",
                       "dependencies": [
                         {
                           "dependencyNaturalKey": "selection_from_options_1609929454945",
@@ -437,6 +1546,22 @@
             }
           }
         ]
+      },
+      {
+        "primaryKey": 280,
+        "title": "Spin Diffusion at Ferromagnetic",
+        "proposalId": "421725",
+        "users": [
+          {
+            "firstname": "Stuart",
+            "lastname": "Campbell"
+          }
+        ],
+        "proposer": {
+          "firstname": "Bob",
+          "lastname": "Bolmsten"
+        },
+        "samples": []
       },
       {
         "primaryKey": 246,
@@ -4793,7 +5918,7 @@
             "lastname": "Campbell"
           },
           {
-            "firstname": "Fredrik",
+            "firstname": "Bob",
             "lastname": "Bolmsten"
           }
         ],
@@ -8343,7 +9468,7 @@
           }
         ],
         "proposer": {
-          "firstname": "Fredrik",
+          "firstname": "Bob",
           "lastname": "Bolmsten"
         },
         "samples": [
