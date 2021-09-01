@@ -42,8 +42,6 @@ builders = pipeline_builder.createBuilders { container ->
     container.sh """
       /opt/miniconda/bin/conda init bash
       export PATH=/opt/miniconda/bin:$PATH
-      curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-      python get-pip.py
       python --version
       python -m pip install --user -r ${pipeline_builder.project}/requirements-dev.txt
     """
