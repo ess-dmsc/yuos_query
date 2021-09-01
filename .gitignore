@@ -146,3 +146,6 @@ dmypy.json
 
 # PyCharm
 .idea
+
+# Tox environments
+.tox
