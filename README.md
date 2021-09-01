@@ -20,8 +20,8 @@ These tests live in the `tests` directory and can be run directly from the main 
 ```
 
 ### Integration tests
-There are "pure" integration_tests in the `integration_tests` directory and are not run automatically by pytest because they
-actually connect to a real server and are, thus, a bit slower to run.
+There are "pure" integration_tests in the `integration_tests` directory and are not run automatically by pytest because
+they actually connect to a real server and are, thus, a bit slower to run.
 
 The integration_tests contain two types of tests:
 - end-to-end which check the test from the usage point of view
@@ -34,7 +34,8 @@ To run these tests, the `YUOS_TOKEN` environment variable must be set to the val
 > YUOS_TOKEN=<the long token string> pytest integration_tests
 ```
 
-**All these tests should be run before submitting code and semi-regularly to check that the real server's API hasn't changed.**
+**All these tests should be run before submitting code and semi-regularly to check that the real server's API hasn't
+changed.**
 
 **Jenkins will run the tests against the real system automatically for pull requests.**
 
