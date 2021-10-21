@@ -17,6 +17,7 @@ User = NamedTuple(
         ("firstname", str),
         ("lastname", str),
         ("fed_id", str),
+        ("organisation", str),
     ),
 )
 

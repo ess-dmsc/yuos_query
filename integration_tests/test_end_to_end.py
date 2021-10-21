@@ -32,10 +32,15 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
         )
         assert result.id == KNOWN_PROPOSAL
         assert result.users == [
-            ("jonathan", "Taylor", "jonathantaylor"),
-            ("Johan", "Andersson", "johanandersson"),
+            ("jonathan", "Taylor", "jonathantaylor", "Other"),
+            ("Johan", "Andersson", "johanandersson", "Other"),
         ]
-        assert result.proposer == ("Bob", "Bolmsten", "bobbolmsten")
+        assert result.proposer == (
+            "Bob",
+            "Bolmsten",
+            "bobbolmsten",
+            "European Spallation Source ERIC (ESS)",
+        )
         assert len(result.samples) == 3
         assert result.samples[0].name == ""
         assert result.samples[0].formula == "Yb3Ga5O12"

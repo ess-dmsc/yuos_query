@@ -8,13 +8,14 @@ def _generate_fed_id(firstname, lastname):
 
 
 def extract_proposer(proposal):
-    def _extract_name(user):
+    def _extract_details(user):
         first = user.get("firstname", "").strip()
         last = user.get("lastname", "").strip()
-        return User(first, last, _generate_fed_id(first, last))
+        org = user.get("organisation", "").strip()
+        return User(first, last, _generate_fed_id(first, last), org)
 
     if "proposer" in proposal:
-        proposer = _extract_name(proposal["proposer"])
+        proposer = _extract_details(proposal["proposer"])
     else:
         proposer = None
     return proposer
@@ -29,7 +30,8 @@ def extract_users(proposal):
     def _extract_name(user):
         first = user.get("firstname", "").strip()
         last = user.get("lastname", "").strip()
-        return User(first, last, _generate_fed_id(first, last))
+        org = user.get("organisation", "").strip()
+        return User(first, last, _generate_fed_id(first, last), org)
 
     if "users" in proposal:
         return [_extract_name(user) for user in proposal["users"]]
