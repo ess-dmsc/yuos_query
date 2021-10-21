@@ -17,10 +17,10 @@ VALID_PROPOSAL_DATA = {
     "471120": ProposalInfo(
         id="471120",
         title="The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12",
-        proposer=User("Bob", "Bolmsten", "bobbolmsten"),
+        proposer=User("Bob", "Bolmsten", "bobbolmsten", "University A"),
         users=[
-            User("jonathan", "Taylor", "jonathantaylor"),
-            User("Johan", "Andersson", "johanandersson"),
+            User("jonathan", "Taylor", "jonathantaylor", "ESS"),
+            User("Johan", "Andersson", "johanandersson", "University B"),
         ],
         db_id=169,
         samples=[
@@ -43,10 +43,10 @@ VALID_PROPOSAL_DATA = {
     "871067": ProposalInfo(
         id="871067",
         title="The Structure of Cheese Under Pressure",
-        proposer=User("Andrew", "Jackson", "andrewjackson"),
+        proposer=User("Andrew", "Jackson", "andrewjackson", "Science"),
         users=[
-            User("jonathan", "Taylor", "jonathantaylor"),
-            User("Caroline", "Curfs", "carolinecurfs"),
+            User("jonathan", "Taylor", "jonathantaylor", "NSS"),
+            User("Caroline", "Curfs", "carolinecurfs", "SAD"),
         ],
         db_id=242,
         samples=[],
@@ -114,10 +114,15 @@ class TestYuosClient:
         )
         assert proposal_info.id == "471120"
         assert proposal_info.users == [
-            ("jonathan", "Taylor", "jonathantaylor"),
-            ("Johan", "Andersson", "johanandersson"),
+            ("jonathan", "Taylor", "jonathantaylor", "ESS"),
+            ("Johan", "Andersson", "johanandersson", "University B"),
         ]
-        assert proposal_info.proposer == ("Bob", "Bolmsten", "bobbolmsten")
+        assert proposal_info.proposer == (
+            "Bob",
+            "Bolmsten",
+            "bobbolmsten",
+            "University A",
+        )
 
     def test_if_proposal_system_unavailable_load_from_cache(self):
         self.system.get_proposals_for_instrument.side_effect = ServerException("oops")
