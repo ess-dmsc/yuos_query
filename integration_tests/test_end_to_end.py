@@ -29,10 +29,20 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
         assert result.title == "Dynamics of Supercooled H2O in confined geometries"
         assert result.id == KNOWN_PROPOSAL
         assert result.users == [
-            ("pascale", "deen", "pascaledeen"),
-            ("Andrew", "Jackson", "andrewjackson"),
+            ("pascale", "deen", "pascaledeen", "Other"),
+            (
+                "Andrew",
+                "Jackson",
+                "andrewjackson",
+                "European Spallation Source ERIC (ESS)",
+            ),
         ]
-        assert result.proposer == ("Jonathan", "Taylor", "jonathantaylor")
+        assert result.proposer == (
+            "Jonathan",
+            "Taylor",
+            "jonathantaylor",
+            "European Spallation Source ERIC (ESS)",
+        )
         assert len(result.samples) == 2
         assert result.samples[0].name == ""
         assert result.samples[0].formula == "H2O"

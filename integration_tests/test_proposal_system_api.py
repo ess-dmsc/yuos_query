@@ -106,6 +106,10 @@ class TestProposalSystemAPI:
         assert len(result["samples"]) == 2
         assert result["proposer"]["firstname"] == "Jonathan"
         assert result["proposer"]["lastname"] == "Taylor"
-        assert {"firstname": "pascale", "lastname": "deen"} in result["users"]
+        assert {
+            "firstname": "pascale",
+            "lastname": "deen",
+            "organisation": "Other",
+        } in result["users"]
         assert result["samples"][0]["id"] == 143
         assert result["samples"][0]["title"] == "Water"
