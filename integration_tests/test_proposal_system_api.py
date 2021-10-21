@@ -13,8 +13,7 @@ from yuos_query.proposal_system import (
     create_proposal_query,
 )
 
-# 471120 is a known proposal
-VALID_PROPOSAL_ID = "471120"
+KNOWN_PROPOSAL_ID = "199842"
 YMIR_ID = 4  # From the proposal system
 URL = "https://useroffice-test.esss.lu.se/graphql"
 
@@ -97,19 +96,16 @@ class TestProposalSystemAPI:
 
         result = None
         for proposal in response["proposals"]["proposals"]:
-            if proposal["proposalId"] == VALID_PROPOSAL_ID:
+            if proposal["proposalId"] == KNOWN_PROPOSAL_ID:
                 result = proposal
                 break
 
-        assert (
-            result["title"]
-            == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
-        )
-        assert result["primaryKey"] == 169
+        assert result["title"] == "Dynamics of Supercooled H2O in confined geometries"
+        assert result["primaryKey"] == 232
         assert len(result["users"]) == 2
-        assert len(result["samples"]) == 3
-        assert result["proposer"]["firstname"] == "Bob"
-        assert result["proposer"]["lastname"] == "Bolmsten"
-        assert {"firstname": "jonathan ", "lastname": "Taylor"} in result["users"]
-        assert result["samples"][0]["id"] == 77
-        assert result["samples"][0]["title"] == "Yb3Ga5O12"
+        assert len(result["samples"]) == 2
+        assert result["proposer"]["firstname"] == "Jonathan"
+        assert result["proposer"]["lastname"] == "Taylor"
+        assert {"firstname": "pascale", "lastname": "deen"} in result["users"]
+        assert result["samples"][0]["id"] == 143
+        assert result["samples"][0]["title"] == "Water"

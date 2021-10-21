@@ -12,7 +12,7 @@ if "YUOS_TOKEN" in os.environ:
     YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
 SERVER_URL = "https://useroffice-test.esss.lu.se/graphql"
-KNOWN_PROPOSAL = "471120"
+KNOWN_PROPOSAL = "199842"
 
 
 @pytest.mark.skipif(
@@ -26,32 +26,24 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
 
         result = client.proposal_by_id(KNOWN_PROPOSAL)
 
-        assert (
-            result.title
-            == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
-        )
+        assert result.title == "Dynamics of Supercooled H2O in confined geometries"
         assert result.id == KNOWN_PROPOSAL
         assert result.users == [
-            ("jonathan", "Taylor", "jonathantaylor"),
-            ("Johan", "Andersson", "johanandersson"),
+            ("pascale", "deen", "pascaledeen"),
+            ("Andrew", "Jackson", "andrewjackson"),
         ]
-        assert result.proposer == ("Bob", "Bolmsten", "bobbolmsten")
-        assert len(result.samples) == 3
+        assert result.proposer == ("Jonathan", "Taylor", "jonathantaylor")
+        assert len(result.samples) == 2
         assert result.samples[0].name == ""
-        assert result.samples[0].formula == "Yb3Ga5O12"
+        assert result.samples[0].formula == "H2O"
         assert result.samples[0].number == 1
-        assert result.samples[0].density == (0, "g/cm*3")
-        assert result.samples[0].mass_or_volume == (0, "")
+        assert result.samples[0].density == (1, "g/cm*3")
+        assert result.samples[0].mass_or_volume == (7, "mL")
         assert result.samples[1].name == ""
-        assert result.samples[1].formula == "(EO)20-(PO)45-(EO)30, D2O, NaCl, SDS"
+        assert result.samples[1].formula == "SiO2 - B2O3"
         assert result.samples[1].number == 1
-        assert result.samples[1].density == (0, "g/cm*3")
-        assert result.samples[1].mass_or_volume == (0, "µg")
-        assert result.samples[2].name == ""
-        assert result.samples[2].formula == "PEO, D2O, NaCl, EtOH"
-        assert result.samples[2].number == 1
-        assert result.samples[2].density == (0, "g/cm*3")
-        assert result.samples[2].mass_or_volume == (0, "µg")
+        assert result.samples[1].density == (5.5, "g/cm*3")
+        assert result.samples[1].mass_or_volume == (10, "g")
 
 
 @pytest.mark.skipif(
@@ -64,13 +56,12 @@ def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
         )
 
         results = client.proposals_for_user("jonathantaylor")
-        assert len(results) == 7
+        assert len(results) == 6
         assert {p.id for p in results} == {
             "871067",
             "169700",
             "035455",
             "139558",
-            "471120",
             "199842",
             "509363",
         }
