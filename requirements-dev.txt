@@ -2,6 +2,7 @@
 
 pre-commit
 pytest
+pytest-approvaltests
 tox
 
 # Pin to match versions in precommit hooks
