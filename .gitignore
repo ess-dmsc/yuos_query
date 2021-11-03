@@ -149,3 +149,6 @@ dmypy.json
 
 # Tox environments
 .tox
+
+# Mac junk
+.DS_Store
