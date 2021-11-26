@@ -1,8 +1,9 @@
 -r requirements.txt
 
+approvaltests==3.0.0
 pre-commit
 pytest
-pytest-approvaltests
+pytest-approvaltests==0.2.3
 tox
 
 # Pin to match versions in precommit hooks
