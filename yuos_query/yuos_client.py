@@ -61,7 +61,7 @@ class YuosClient:
                     self.cache.import_from_file()
             except ImportCacheException as error:
                 raise DataUnavailableException(
-                    "Proposal system and Cache unavailable"
+                    "Proposal system and cache unavailable"
                 ) from error
         except ExportCacheException:
             raise
