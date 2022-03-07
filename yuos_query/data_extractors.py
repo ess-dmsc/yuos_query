@@ -92,7 +92,7 @@ def _extract_value_with_units(question, default_units=""):
     if "value" in question["value"] and question["value"]["value"]:
         value = question["value"]["value"]
     if "unit" in question["value"] and question["value"]["unit"]:
-        units = question["value"]["unit"]
+        units = question["value"]["unit"]["unit"]
     return value, units
 
 

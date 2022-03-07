@@ -6,8 +6,7 @@ from example_data import get_ymir_example_data
 from yuos_query.exceptions import UnknownInstrumentException
 from yuos_query.proposal_system import GqlWrapper, ProposalRequester
 
-KNOWN_PROPOSAL_ID = "471120"
-# YMIR_EXAMPLE_DATA = get_ymir_example_data()
+KNOWN_PROPOSAL_ID = "199842"
 INSTRUMENT_INFO_RESPONSE = {
     "instruments": {
         "instruments": [
@@ -47,36 +46,33 @@ def test_gets_proposal_information():
     system = ProposalRequester(":: url ::", ":: token ::", wrapper)
 
     proposals = system.get_proposals_for_instrument("ymir")
-    assert len(proposals) == 17
+    assert len(proposals) == 19
     assert (
         proposals[KNOWN_PROPOSAL_ID].title
-        == "The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12"
+        == "Dynamics of Supercooled H2O in confined geometries"
     )
     assert proposals[KNOWN_PROPOSAL_ID].id == KNOWN_PROPOSAL_ID
     assert proposals[KNOWN_PROPOSAL_ID].users == [
-        ("jonathan", "Taylor", "jonathantaylor", "Other"),
-        ("Johan", "Andersson", "johanandersson", "Other"),
+        ("pascale", "deen", "pascaledeen", "Other"),
+        ("Andrew", "Jackson", "andrewjackson", "European Spallation Source ERIC (ESS)"),
     ]
     assert proposals[KNOWN_PROPOSAL_ID].proposer == (
-        "Bob",
-        "Bolmsten",
-        "bobbolmsten",
+        "Jonathan",
+        "Taylor",
+        "jonathantaylor",
         "European Spallation Source ERIC (ESS)",
     )
-    assert len(proposals[KNOWN_PROPOSAL_ID].samples) == 3
+    assert len(proposals[KNOWN_PROPOSAL_ID].samples) == 2
     assert proposals[KNOWN_PROPOSAL_ID].samples[0].name == ""
-    assert proposals[KNOWN_PROPOSAL_ID].samples[0].formula == "Yb3Ga5O12"
+    assert proposals[KNOWN_PROPOSAL_ID].samples[0].formula == "H2O"
     assert proposals[KNOWN_PROPOSAL_ID].samples[0].number == 1
-    assert proposals[KNOWN_PROPOSAL_ID].samples[0].density == (0, "g/cm*3")
-    assert proposals[KNOWN_PROPOSAL_ID].samples[0].mass_or_volume == (0, "")
+    assert proposals[KNOWN_PROPOSAL_ID].samples[0].density == (1, "g/cm*3")
+    assert proposals[KNOWN_PROPOSAL_ID].samples[0].mass_or_volume == (7, "mL")
     assert proposals[KNOWN_PROPOSAL_ID].samples[1].name == ""
-    assert (
-        proposals[KNOWN_PROPOSAL_ID].samples[1].formula
-        == "(EO)20-(PO)45-(EO)30, D2O, NaCl, SDS"
-    )
+    assert proposals[KNOWN_PROPOSAL_ID].samples[1].formula == "SiO2 - B2O3"
     assert proposals[KNOWN_PROPOSAL_ID].samples[1].number == 1
-    assert proposals[KNOWN_PROPOSAL_ID].samples[1].density == (0, "g/cm*3")
-    assert proposals[KNOWN_PROPOSAL_ID].samples[1].mass_or_volume == (0, "µg")
+    assert proposals[KNOWN_PROPOSAL_ID].samples[1].density == (5.5, "g/cm*3")
+    assert proposals[KNOWN_PROPOSAL_ID].samples[1].mass_or_volume == (10, "g")
 
 
 def test_ignore_instrument_name_case():
@@ -87,7 +83,7 @@ def test_ignore_instrument_name_case():
 
     proposals = system.get_proposals_for_instrument("yMiR")
 
-    assert len(proposals) == 17
+    assert len(proposals) == 19
 
 
 def test_unrecognised_instrument_raises():

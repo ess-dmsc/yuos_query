@@ -47,7 +47,17 @@ def test_supplies_default_if_blank_data():
                     {
                         "fields": [
                             {
-                                "value": {"unit": "kg", "value": ""},
+                                "value": {
+                                    "unit": {
+                                        "id": "kg",
+                                        "unit": "kg",
+                                        "symbol": "kg",
+                                        "quantity": "kg",
+                                        "siConversionFormula": "x",
+                                    },
+                                    "value": "",
+                                    "siValue": "",
+                                },
                                 "dependencies": [],
                                 "question": {
                                     "question": "Mass or volume",
