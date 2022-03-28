@@ -3,7 +3,7 @@ from tempfile import TemporaryDirectory
 
 import pytest
 
-from yuos_query.yuos_client import YuosClient
+from yuos_query.yuos_client import YuosCacheClient, YuosServer
 
 # These tests are skipped if the YUOS_TOKEN environment variable is not defined
 SKIP_TEST = True
@@ -20,9 +20,13 @@ KNOWN_PROPOSAL = "199842"
 )
 def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
     with TemporaryDirectory() as directory:
-        client = YuosClient(
+        server = YuosServer.create(
             SERVER_URL, YUOS_TOKEN, "YMIR", os.path.join(directory, "cache.json")
         )
+        server.update_cache()
+
+        client = YuosCacheClient.create(os.path.join(directory, "cache.json"))
+        client.update_cache()
 
         result = client.proposal_by_id(KNOWN_PROPOSAL)
 
@@ -61,9 +65,13 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
 )
 def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
     with TemporaryDirectory() as directory:
-        client = YuosClient(
+        server = YuosServer.create(
             SERVER_URL, YUOS_TOKEN, "YMIR", os.path.join(directory, "cache.json")
         )
+        server.update_cache()
+
+        client = YuosCacheClient.create(os.path.join(directory, "cache.json"))
+        client.update_cache()
 
         results = client.proposals_for_user("jonathantaylor")
         assert len(results) == 6

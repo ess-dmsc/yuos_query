@@ -108,7 +108,7 @@ class GqlWrapper:
 
 class ProposalRequester:
     """
-    Don't use this directly, use YuosClient
+    Don't use this directly, use YuosServer
     """
 
     def __init__(self, url, token, wrapper=None):
