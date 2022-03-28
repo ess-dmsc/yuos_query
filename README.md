@@ -12,6 +12,27 @@ pip install -r requirements-dev.txt
 pre-commit install
 ```
 
+## Usage
+
+There are two parts to the program: a service for downloading the data from the proposal system and storing it locally,
+and a client for extracting information from the local store based on queries.
+
+Running the service:
+```
+python bin/yuos.py -u https://useroffice-test.esss.lu.se/graphql -i YMIR -c /opt/yuos/cached_proposals.json
+```
+Typically this would be run as a service.
+NOTE: requires an authenticating token environment variable.
+
+Using the client:
+```
+from yuos_query.yuos_client import YuosCacheClient
+
+client = YuosCacheClient.create('/opt/yuos/cached_proposals.json')
+client.update_cache()
+proposal = client.proposal_by_id("199842")
+```
+
 ## Tests
 ### Programmer tests
 These tests live in the `tests` directory and can be run directly from the main directory using pytest.
@@ -40,13 +61,3 @@ changed.**
 **Jenkins will run the tests against the real system automatically for pull requests.**
 
 **Jenkins will also run the tests on main daily, so if there are breaking any API changes we will know about it.**
-
-## Example usage
-
-```
-import os
-from yuos_query.yuos_client import YuosClient
-
-client = YuosClient("some url", os.environ["YUOS_TOKEN"], instrument_name, "/path/to/cache.json")
-proposal_info = client.proposal_by_id(proposal_id)
-```
