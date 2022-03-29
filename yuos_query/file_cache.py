@@ -28,8 +28,7 @@ class FileCache:
 
     def import_from_file(self):
         try:
-            with open(self.cache_filepath, "r") as file:
-                self.update(deserialise_proposals_from_json(file.read()))
+            self.update(deserialise_proposals_from_json(self._read_file()))
         except FileNotFoundError as error:
             raise ImportCacheException(
                 f"Cache file ({self.cache_filepath}) not found"
@@ -38,6 +37,11 @@ class FileCache:
             raise ImportCacheException(
                 f"Could not extract data from cache file ({self.cache_filepath}): {error}"
             ) from error
+
+    def _read_file(self):
+        with open(self.cache_filepath, "r") as file:
+            data = file.read()
+        return data
 
     def clear_cache(self):
         self.proposals = {}
