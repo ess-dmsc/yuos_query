@@ -16,7 +16,7 @@ def main(url, instrument, cache_filepath, update_interval=3200):
             ).update_cache()
             logging.info("updated cache")
             time.sleep(update_interval)
-        except RuntimeError as error:
+        except Exception as error:
             logging.error(f"failed to update cache {error}")
 
 
