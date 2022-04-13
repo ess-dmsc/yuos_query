@@ -27,6 +27,6 @@ def test_if_data_has_changed_on_proposal_system():
     If this is the case then ymir_data_example.json will need to be replaced
     with the latest data.
     """
-    api = GqlWrapper(URL, YUOS_TOKEN)
+    api = GqlWrapper(URL, YUOS_TOKEN, {})
     response = api.request(create_proposal_query(YMIR_ID))
     verify(json.dumps(response), PythonNativeReporter())

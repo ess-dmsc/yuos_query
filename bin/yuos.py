@@ -8,11 +8,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from yuos_query import YuosServer
 
 
-def main(url, instrument, cache_filepath, update_interval=3200):
+def main(url, instrument, cache_filepath, proxies, update_interval=3200):
     while True:
         try:
             YuosServer.create(
-                url, os.environ.get("YUOS_TOKEN"), instrument, cache_filepath
+                url, os.environ.get("YUOS_TOKEN"), instrument, cache_filepath, proxies
             ).update_cache()
             logging.info("updated cache")
             time.sleep(update_interval)
@@ -36,12 +36,20 @@ if __name__ == "__main__":
         "-i", "--instrument", type=str, help="the instrument name", required=True
     )
 
-    parser.add_argument(
+    required_args.add_argument(
         "-c",
         "--cache-filepath",
         type=str,
         help="where to write the data",
         required=True,
+    )
+
+    parser.add_argument(
+        "-hp",
+        "--http-proxy",
+        type=str,
+        default="",
+        help="the http proxy if required",
     )
 
     parser.add_argument(
@@ -61,8 +69,11 @@ if __name__ == "__main__":
     else:
         logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 
+    proxies = {"https": args.http_proxy} if args.http_proxy else {}
+
     main(
         args.url,
         args.instrument,
         args.cache_filepath,
+        proxies,
     )

@@ -21,7 +21,7 @@ KNOWN_PROPOSAL = "199842"
 def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
     with TemporaryDirectory() as directory:
         server = YuosServer.create(
-            SERVER_URL, YUOS_TOKEN, "YMIR", os.path.join(directory, "cache.json")
+            SERVER_URL, YUOS_TOKEN, "YMIR", os.path.join(directory, "cache.json"), {}
         )
         server.update_cache()
 
@@ -66,7 +66,7 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
 def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
     with TemporaryDirectory() as directory:
         server = YuosServer.create(
-            SERVER_URL, YUOS_TOKEN, "YMIR", os.path.join(directory, "cache.json")
+            SERVER_URL, YUOS_TOKEN, "YMIR", os.path.join(directory, "cache.json"), {}
         )
         server.update_cache()
 

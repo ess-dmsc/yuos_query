@@ -79,9 +79,10 @@ def create_proposal_query(instrument_id):
 
 
 class GqlWrapper:
-    def __init__(self, url, token):
+    def __init__(self, url, token, proxies):
         self.token = token
         self.url = url
+        self.proxies = proxies
 
     def request(self, query):
         try:
@@ -90,6 +91,7 @@ class GqlWrapper:
                 url=self.url,
                 verify=True,
                 headers={"Authorization": token},
+                proxies=self.proxies,
             )
             client = Client(transport=transport, fetch_schema_from_transport=True)
             with client as session:
@@ -111,8 +113,8 @@ class ProposalRequester:
     Don't use this directly, use YuosServer
     """
 
-    def __init__(self, url, token, wrapper=None):
-        self.wrapper = wrapper if wrapper else GqlWrapper(url, token)
+    def __init__(self, url, token, proxies, wrapper=None):
+        self.wrapper = wrapper if wrapper else GqlWrapper(url, token, proxies)
 
     def _get_instrument_id(self, name):
         data = self._execute(INSTRUMENT_QUERY)
@@ -123,6 +125,9 @@ class ProposalRequester:
 
     def get_proposals_for_instrument(self, name):
         instrument_id = self._get_instrument_id(name.lower())
+        return self._get_proposals(instrument_id)
+
+    def _get_proposals(self, instrument_id):
         query = create_proposal_query(instrument_id)
         data = self._execute(query)
         return self._extract_proposals(data["proposals"]["proposals"])

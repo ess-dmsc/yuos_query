@@ -75,8 +75,12 @@ class YuosServer:
         self.system = requester
 
     @classmethod
-    def create(cls, url, token, instrument, cache_filepath):
-        return cls(instrument, FileCache(cache_filepath), ProposalRequester(url, token))
+    def create(cls, url, token, instrument, cache_filepath, proxies):
+        return cls(
+            instrument,
+            FileCache(cache_filepath),
+            ProposalRequester(url, token, proxies),
+        )
 
     def update_cache(self):
         try:
