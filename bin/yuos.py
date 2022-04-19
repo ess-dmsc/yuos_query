@@ -17,7 +17,8 @@ def main(url, instrument, cache_filepath, proxies, update_interval=3200):
             logging.info("updated cache")
             time.sleep(update_interval)
         except Exception as error:
-            logging.error(f"failed to update cache {error}")
+            logging.error(f"failed to update cache: {error}")
+            time.sleep(60)
 
 
 if __name__ == "__main__":
