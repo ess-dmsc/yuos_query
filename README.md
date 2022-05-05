@@ -61,3 +61,8 @@ changed.**
 **Jenkins will run the tests against the real system automatically for pull requests.**
 
 **Jenkins will also run the tests on main daily, so if there are any breaking API changes we will know about it.**
+
+## Releasing
+- update the version number, commit and push
+- locally, run `rm -rf build dist && python setup.py sdist bdist_wheel`
+- tag the version on GitHub and upload the wheel file from the local `dist` folder.
