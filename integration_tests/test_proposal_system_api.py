@@ -2,11 +2,7 @@ import os
 
 import pytest
 
-from yuos_query.exceptions import (
-    ConnectionException,
-    InvalidQueryException,
-    InvalidTokenException,
-)
+from yuos_query.exceptions import ConnectionException, InvalidQueryException
 from yuos_query.proposal_system import (
     INSTRUMENT_QUERY,
     GqlWrapper,
@@ -48,7 +44,7 @@ class TestProposalSystemAPI:
     def test_querying_with_invalid_token_raises(self):
         api = GqlWrapper(URL, "INVALID TOKEN", {})
 
-        with pytest.raises(InvalidTokenException):
+        with pytest.raises(ConnectionException):
             api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_malformed_query_raises(self):
