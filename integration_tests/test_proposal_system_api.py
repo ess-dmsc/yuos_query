@@ -11,7 +11,7 @@ from yuos_query.proposal_system import (
 
 KNOWN_PROPOSAL_ID = "199842"
 YMIR_ID = 4  # From the proposal system
-URL = "https://useroffice-test.esss.lu.se/graphql"
+URL = "https://useroffice.swap.ess.eu/graphql"
 
 SKIP_TEST = True
 if "YUOS_TOKEN" in os.environ:

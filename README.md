@@ -19,7 +19,7 @@ and a client for extracting information from the local store based on queries.
 
 Running the service:
 ```
-python bin/yuos.py -u https://useroffice-test.esss.lu.se/graphql -i YMIR -c /opt/yuos/cached_proposals.json
+python bin/yuos.py -u https://useroffice.swap.ess.eu/graphql -i YMIR -c /opt/yuos/cached_proposals.json
 ```
 Typically this would be run as a service.
 NOTE: requires an authenticating token environment variable.

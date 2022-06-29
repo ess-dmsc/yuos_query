@@ -11,7 +11,7 @@ if "YUOS_TOKEN" in os.environ:
     SKIP_TEST = False
     YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
-SERVER_URL = "https://useroffice-test.esss.lu.se/graphql"
+SERVER_URL = "https://useroffice.swap.ess.eu/graphql"
 KNOWN_PROPOSAL = "199842"
 
 
