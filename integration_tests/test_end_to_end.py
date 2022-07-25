@@ -74,7 +74,7 @@ def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
         client.update_cache()
 
         results = client.proposals_for_user("jonathantaylor")
-        assert len(results) == 6
+        assert len(results) == 7
         assert {p.id for p in results} == {
             "871067",
             "169700",
@@ -82,4 +82,5 @@ def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
             "139558",
             "199842",
             "509363",
+            "520252",
         }
