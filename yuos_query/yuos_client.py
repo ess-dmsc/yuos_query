@@ -57,7 +57,7 @@ class YuosCacheClient:
         return self.cache.proposals.get(proposal_id)
 
     def all_proposals(self):
-        return self.cache.proposals
+        return [self.cache.proposals[k] for k in sorted(self.cache.proposals)]
 
     def proposals_for_user(self, fed_id: str) -> List[ProposalInfo]:
         if fed_id not in self.cache.proposals_by_fed_id:
