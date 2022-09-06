@@ -52,6 +52,16 @@ VALID_PROPOSAL_DATA = {
         db_id=242,
         samples=[],
     ),
+    "123456": ProposalInfo(
+        id="123456",
+        title="Without jon as a usr",
+        proposer=User("Andrew", "Jackson", "andrewjackson", "Science"),
+        users=[
+            User("Caroline", "Curfs", "carolinecurfs", "SAD"),
+        ],
+        db_id=252,
+        samples=[],
+    ),
 }
 
 
@@ -168,3 +178,11 @@ class TestYuosCacheClient:
         proposals = client.proposals_for_user("not_a_fed_id")
 
         assert len(proposals) == 0
+
+    def test_can_get_all_proposals(self):
+        client = self.create_client()
+        client.update_cache()
+
+        proposals = client.all_proposals()
+
+        assert len(proposals) == 3
