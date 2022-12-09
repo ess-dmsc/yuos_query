@@ -28,6 +28,6 @@ setup(
     license="BSD 2-Clause License",
     packages=find_packages(exclude=["*tests", "tests.*"]),
     python_requires=">=3.6.0",
-    install_requires=["gql==3.0.0", "requests==2.27.1", "requests-toolbelt==0.9.1"],
+    install_requires=["gql>=3.0.0", "requests>=2.27.1", "requests-toolbelt>=0.9.1"],
     extras_require={},
 )
