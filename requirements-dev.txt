@@ -5,6 +5,7 @@ pre-commit
 pytest
 pytest-approvaltests==0.2.3
 tox==3.27.1  # tox 4 seems to be broken at the moment
+tox-pyenv
 
 # Pin to match versions in precommit hooks
 black==22.6.0
