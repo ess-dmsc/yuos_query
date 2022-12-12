@@ -49,10 +49,11 @@ builders = pipeline_builder.createBuilders { container ->
     def test_output = "TestResults.xml"
     withCredentials([usernamePassword(credentialsId: 'cow-bot-proposal-system', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
       container.sh """
-        ls .tox
         pyenv local 3.7 3.8 3.9
         pyenv versions
         cd ${pipeline_builder.project}
+        ls .tox
+        rm -rf .tox
         YUOS_TOKEN=${PASSWORD} python -m tox -- --junitxml=${test_output}
       """
     }
