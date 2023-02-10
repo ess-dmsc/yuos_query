@@ -152,3 +152,7 @@ dmypy.json
 
 # Mac junk
 .DS_Store
+
+# local token
+.token
+

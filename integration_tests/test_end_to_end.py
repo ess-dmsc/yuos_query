@@ -11,8 +11,8 @@ if "YUOS_TOKEN" in os.environ:
     SKIP_TEST = False
     YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
-SERVER_URL = "https://useroffice.swap.ess.eu/graphql"
-KNOWN_PROPOSAL = "199842"
+SERVER_URL = "https://scheduler-staging.useroffice.ess.eu/gateway"
+KNOWN_PROPOSAL = "038243"
 
 
 @pytest.mark.skipif(
@@ -30,34 +30,22 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
 
         result = client.proposal_by_id(KNOWN_PROPOSAL)
 
-        assert result.title == "Dynamics of Supercooled H2O in confined geometries"
+        assert result.title == "VIP demo for WP12"
         assert result.id == KNOWN_PROPOSAL
-        assert result.users == [
-            ("pascale", "deen", "pascaledeen", "Other"),
-            (
-                "Andrew",
-                "Jackson",
-                "andrewjackson",
-                "European Spallation Source ERIC (ESS)",
-            ),
-        ]
+        assert len(result.users) == 7
+        assert ("Afonso", "Mukai", "afonsomukai", "ESS") in result.users
         assert result.proposer == (
-            "Jonathan",
-            "Taylor",
-            "jonathantaylor",
-            "European Spallation Source ERIC (ESS)",
+            "Matt",
+            "Clarke",
+            "mattclarke",
+            "Other",
         )
-        assert len(result.samples) == 2
+        assert len(result.samples) == 1
         assert result.samples[0].name == ""
-        assert result.samples[0].formula == "H2O"
+        assert result.samples[0].formula == "Plastic"
         assert result.samples[0].number == 1
-        assert result.samples[0].density == (1, "g/cm*3")
-        assert result.samples[0].mass_or_volume == (7, "mL")
-        assert result.samples[1].name == ""
-        assert result.samples[1].formula == "SiO2 - B2O3"
-        assert result.samples[1].number == 1
-        assert result.samples[1].density == (5.5, "g/cm*3")
-        assert result.samples[1].mass_or_volume == (10, "g")
+        assert result.samples[0].density == (0, "g/cm*3")
+        assert result.samples[0].mass_or_volume == (0, "")
 
 
 @pytest.mark.skipif(
@@ -73,14 +61,6 @@ def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
         client = YuosCacheClient.create(os.path.join(directory, "cache.json"))
         client.update_cache()
 
-        results = client.proposals_for_user("jonathantaylor")
-        assert len(results) == 7
-        assert {p.id for p in results} == {
-            "871067",
-            "169700",
-            "035455",
-            "139558",
-            "199842",
-            "509363",
-            "520252",
-        }
+        results = client.proposals_for_user("mattclarke")
+        assert len(results) > 0
+        assert KNOWN_PROPOSAL in {p.id for p in results}
