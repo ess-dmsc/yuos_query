@@ -1,6 +1,6 @@
 # Working with the graphql playground
 
-The graphql playground is located at https://useroffice.swap.ess.eu/graphql. NOTE: this is the test system and not the real one.
+The graphql playground is located at https://scheduler-staging.useroffice.ess.eu/gateway. NOTE: this is the staging system and not the real one.
 
 To begin, it is necessary to get the token for the proposal system for blackbox.
 
