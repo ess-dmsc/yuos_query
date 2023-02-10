@@ -2,16 +2,20 @@ import os
 
 import pytest
 
-from yuos_query.exceptions import ConnectionException, InvalidQueryException
+from yuos_query.exceptions import (
+    ConnectionException,
+    InvalidQueryException,
+    InvalidTokenException,
+)
 from yuos_query.proposal_system import (
     INSTRUMENT_QUERY,
     GqlWrapper,
     create_proposal_query,
 )
 
-KNOWN_PROPOSAL_ID = "199842"
+KNOWN_PROPOSAL_ID = "038243"
 YMIR_ID = 4  # From the proposal system
-URL = "https://useroffice.swap.ess.eu/graphql"
+URL = "https://scheduler-staging.useroffice.ess.eu/gateway"
 
 SKIP_TEST = True
 if "YUOS_TOKEN" in os.environ:
@@ -44,7 +48,7 @@ class TestProposalSystemAPI:
     def test_querying_with_invalid_token_raises(self):
         api = GqlWrapper(URL, "INVALID TOKEN", {})
 
-        with pytest.raises(ConnectionException):
+        with pytest.raises(InvalidTokenException):
             api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_malformed_query_raises(self):
@@ -96,16 +100,16 @@ class TestProposalSystemAPI:
                 result = proposal
                 break
 
-        assert result["title"] == "Dynamics of Supercooled H2O in confined geometries"
-        assert result["primaryKey"] == 232
-        assert len(result["users"]) == 2
-        assert len(result["samples"]) == 2
-        assert result["proposer"]["firstname"] == "Jonathan"
-        assert result["proposer"]["lastname"] == "Taylor"
+        assert result["title"] == "VIP demo for WP12"
+        assert result["primaryKey"] == 170
+        assert len(result["users"]) == 7
+        assert len(result["samples"]) == 1
+        assert result["proposer"]["firstname"] == "Matt"
+        assert result["proposer"]["lastname"] == "Clarke"
         assert {
-            "firstname": "pascale",
-            "lastname": "deen",
-            "organisation": "Other",
+            "firstname": "Afonso",
+            "lastname": "Mukai",
+            "organisation": "ESS",
         } in result["users"]
-        assert result["samples"][0]["id"] == 143
-        assert result["samples"][0]["title"] == "Water"
+        assert result["samples"][0]["id"] == 2
+        assert result["samples"][0]["title"] == "It's Lego"
