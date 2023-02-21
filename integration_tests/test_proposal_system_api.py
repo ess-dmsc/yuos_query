@@ -102,7 +102,7 @@ class TestProposalSystemAPI:
 
         assert result["title"] == "VIP demo for WP12"
         assert result["primaryKey"] == 170
-        assert len(result["users"]) == 7
+        assert len(result["users"]) == 8
         assert len(result["samples"]) == 1
         assert result["proposer"]["firstname"] == "Matt"
         assert result["proposer"]["lastname"] == "Clarke"
