@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from yuos_query import YuosServer
 
 
-def main(url, instrument, cache_filepath, proxies, update_interval=3200):
+def main(url, instrument, cache_filepath, proxies, update_interval=900):
     while True:
         try:
             YuosServer.create(
