@@ -46,7 +46,7 @@ class TestProposalSystemAPI:
             api.request(INSTRUMENT_QUERY)
 
     def test_querying_with_invalid_token_raises(self):
-        api = GqlWrapper(URL, "INVALID TOKEN", {})
+        api = GqlWrapper(URL, "ECDCINTEGRATIONTEST", {})
 
         with pytest.raises(InvalidTokenException):
             api.request(INSTRUMENT_QUERY)
