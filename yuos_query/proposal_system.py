@@ -44,12 +44,12 @@ def create_proposal_query(instrument_id):
                   users {
                     firstname
                     lastname
-                    organisation
+                    institution
                   }
                   proposer {
                     firstname
                     lastname
-                    organisation
+                    institution
                   }
                   samples {
                     title

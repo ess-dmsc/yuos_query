@@ -109,7 +109,7 @@ class TestProposalSystemAPI:
         assert {
             "firstname": "Afonso",
             "lastname": "Mukai",
-            "organisation": "ESS",
+            "institution": "ESS",
         } in result["users"]
         assert result["samples"][0]["id"] == 2
         assert result["samples"][0]["title"] == "It's Lego"

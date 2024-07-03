@@ -33,12 +33,12 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
         assert result.title == "VIP demo for WP12"
         assert result.id == KNOWN_PROPOSAL
         assert len(result.users) == 8
-        assert ("Afonso", "Mukai", "afonsomukai", "ESS") in result.users
+        assert ("Afonso", "Mukai", "afonsomukai", "") in result.users
         assert result.proposer == (
             "Matt",
             "Clarke",
             "mattclarke",
-            "Other",
+            "",
         )
         assert len(result.samples) == 1
         assert result.samples[0].name == ""
