@@ -38,12 +38,12 @@ query {
       users {
         firstname
         lastname
-        organisation
+        institution
       }
       proposer {
         firstname
         lastname
-        organisation
+        institution
       }
       samples {
         title
