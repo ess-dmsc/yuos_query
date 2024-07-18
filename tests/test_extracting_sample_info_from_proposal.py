@@ -4,7 +4,7 @@ from yuos_query.data_extractors import extract_relevant_sample_info
 
 def get_sample_data():
     for data in get_ymir_example_data()["proposals"]["proposals"]:
-        if data["proposalId"] == "871067":  # proposalId 242
+        if data["proposalId"] == "597001":  # proposalId 242
             return data["samples"]
 
 
@@ -12,10 +12,10 @@ def test_sample_info():
     result = extract_relevant_sample_info(get_sample_data())
     assert len(result) == 2
     assert result[0].name == ""
-    assert result[0].formula == "CHE3S"
-    assert result[0].number == 10
+    assert result[0].formula == "formula 1"
+    assert result[0].number == 1
     assert result[0].density == (0, "g/cm*3")
-    assert result[0].mass_or_volume == (5, "kg")
+    assert result[0].mass_or_volume == (0, "")
 
 
 def test_supplies_default_if_relevant_data_missing():

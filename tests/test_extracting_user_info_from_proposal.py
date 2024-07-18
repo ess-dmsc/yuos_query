@@ -36,7 +36,7 @@ class ProposalBuilder:
         if last:
             user["lastname"] = last
         if org:
-            user["organisation"] = org
+            user["institution"] = org
         return user
 
     def finish(self):
