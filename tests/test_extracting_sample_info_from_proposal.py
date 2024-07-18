@@ -14,8 +14,11 @@ def test_sample_info():
     assert result[0].name == ""
     assert result[0].formula == "formula 1"
     assert result[0].number == 1
-    assert result[0].density == (0, "g/cm*3")
-    assert result[0].mass_or_volume == (0, "")
+    assert result[0].density == (1, "g/cm*3")
+    assert result[1].name == ""
+    assert result[1].formula == "formula 2"
+    assert result[1].number == 3
+    assert result[1].density == (456, "g/cm*3")
 
 
 def test_supplies_default_if_relevant_data_missing():
@@ -65,7 +68,7 @@ def test_supplies_default_if_blank_data():
                                 },
                             },
                             {
-                                "value": {"unit": None, "value": ""},
+                                "value": "123",
                                 "dependencies": [],
                                 "question": {
                                     "question": "Density (g/cm*3)",
@@ -73,7 +76,7 @@ def test_supplies_default_if_blank_data():
                                 },
                             },
                             {
-                                "value": {"value": "", "unit": None},
+                                "value": "10",
                                 "dependencies": [],
                                 "question": {
                                     "question": "Total number of the same sample",
@@ -87,6 +90,6 @@ def test_supplies_default_if_blank_data():
         }
     ]
     result = extract_relevant_sample_info(data_missing)
-    assert result[0].density == (0, "g/cm*3")
-    assert result[0].mass_or_volume == (0, "kg")
-    assert result[0].number == 1
+    assert result[0].density == (123, "g/cm*3")
+    assert result[0].mass_or_volume == (0, "")
+    assert result[0].number == 10
