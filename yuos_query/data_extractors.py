@@ -41,31 +41,13 @@ def extract_users(proposal):
 def _extract_sample_data(sample_data):
     extracted_data = {
         "name": "",
-        "formula": "",
-        "number": 1,
-        "mass_or_volume": (0, ""),
-        "density": (0, "g/cm*3"),
     }
 
-    questions = sample_data["questionary"]["steps"][0]["fields"]
-    for question in questions:
-        try:
-            question_key = question["question"]["question"]
-            if question_key == "Sample name and/or material":
-                extracted_data["name"] = _extract_simple_value(question, "")
-            elif question_key == "Chemical formula":
-                extracted_data["formula"] = _extract_simple_value(question, "")
-            elif question_key == "Total number of the same sample":
-                extracted_data["number"] = _extract_number(question, 1)
-            elif question_key == "Sample mass or volume":
-                extracted_data["mass_or_volume"] = _extract_value_with_units(question)
-            elif question_key == "Density (g/cm*3)":
-                extracted_data["density"] = _extract_value_with_units(
-                    question, 0, "g/cm*3"
-                )
-        except KeyError:
-            # If the data cannot be extracted then we have to use the defaults
-            pass
+    try:
+        extracted_data["name"] = sample_data.get("title", "")
+    except KeyError:
+        # If the data cannot be extracted then we have to use the defaults
+        pass
 
     return SampleInfo(**extracted_data)
 

@@ -27,17 +27,9 @@ VALID_PROPOSAL_DATA = {
         samples=[
             SampleInfo(
                 name="",
-                formula="Yb3Ga5O12",
-                number=1,
-                mass_or_volume=(0, ""),
-                density=(0, "g/cm*3"),
             ),
             SampleInfo(
                 name="",
-                formula="(EO)20-(PO)45-(EO)30, D2O, NaCl, SDS",
-                number=1,
-                mass_or_volume=(0, "µg"),
-                density=(0, "g/cm*3"),
             ),
         ],
     ),

@@ -41,11 +41,7 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
             "European Spallation Source ERIC (ESS)",
         )
         assert len(result.samples) == 1
-        assert result.samples[0].name == ""
-        assert result.samples[0].formula == "Plastic"
-        assert result.samples[0].number == 1
-        assert result.samples[0].density == (1, "g/cm*3")
-        assert result.samples[0].mass_or_volume == (0, "")
+        assert result.samples[0].name == "It's Lego"
 
 
 @pytest.mark.skipif(

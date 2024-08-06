@@ -25,10 +25,6 @@ def deserialise_proposals_from_json(json_proposals):
             samples=[
                 SampleInfo(
                     name=sample["name"],
-                    formula=sample["formula"],
-                    number=sample["number"],
-                    mass_or_volume=tuple(sample["mass_or_volume"]),
-                    density=tuple(sample["density"]),
                 )
                 for sample in value["samples"]
             ],

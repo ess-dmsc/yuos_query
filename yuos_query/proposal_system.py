@@ -54,21 +54,6 @@ def create_proposal_query(instrument_id):
                   samples {
                     title
                     id
-                    questionary {
-                      steps {
-                        fields {
-                          value
-                          dependencies {
-                            dependencyNaturalKey
-                            questionId
-                          }
-                          question {
-                            question
-                            naturalKey
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }

@@ -2,13 +2,7 @@ from typing import List, NamedTuple, Tuple
 
 SampleInfo = NamedTuple(
     "SampleInfo",
-    (
-        ("name", str),
-        ("formula", str),
-        ("number", int),
-        ("mass_or_volume", Tuple[float, str]),
-        ("density", Tuple[float, str]),
-    ),
+    (("name", str),),
 )
 
 User = NamedTuple(

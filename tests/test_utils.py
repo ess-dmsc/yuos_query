@@ -18,19 +18,3 @@ def test_converting_proposals_to_json_and_back():
         proposals["471120"].samples[0].name
         == VALID_PROPOSAL_DATA["471120"].samples[0].name
     )
-    assert (
-        proposals["471120"].samples[0].formula
-        == VALID_PROPOSAL_DATA["471120"].samples[0].formula
-    )
-    assert (
-        proposals["471120"].samples[0].number
-        == VALID_PROPOSAL_DATA["471120"].samples[0].number
-    )
-    assert (
-        proposals["471120"].samples[0].mass_or_volume
-        == VALID_PROPOSAL_DATA["471120"].samples[0].mass_or_volume
-    )
-    assert (
-        proposals["471120"].samples[0].density
-        == VALID_PROPOSAL_DATA["471120"].samples[0].density
-    )
