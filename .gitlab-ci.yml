@@ -1,0 +1,49 @@
+default:
+  tags:
+    - docker
+  image: registry.esss.lu.se/ecdc/ess-dmsc/docker-centos7-build-node:latest
+  before_script:
+    - scl enable rh-python38 -- python --version
+    - scl enable rh-python38 -- pyenv install 3.8 || true
+    - scl enable rh-python38 -- pyenv install 3.9 || true
+    - scl enable rh-python38 -- pyenv install 3.10 || true
+    - scl enable rh-python38 -- pyenv global 3.8 3.9 3.10
+    - export PATH="/home/jenkins/.pyenv/shims:$PATH"
+    - scl enable rh-python38 -- pip install --user -r requirements-dev.txt
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+stages:
+  - "Checks"
+  - "Tests"
+
+Black:
+  stage: "Checks"
+  script:
+    - scl enable rh-python38 -- python -m black --check .
+
+Tests:
+  stage: "Tests"
+  script:
+    - |
+      if [ -z "$YUOS_TOKEN" ]; then
+        echo "Error: YUOS_TOKEN is not set. It is needed for integration testing."
+        exit 1
+      fi
+    - scl enable rh-python38 -- pyenv global 3.8 3.9 3.10
+    - pyenv versions
+    - export PATH="/home/jenkins/.pyenv/shims:$PATH"
+    - python -m tox -- --cov=yuos_query --cov-report=term --cov-report=xml --junitxml=test-output.xml
+  coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+  artifacts:
+    paths:  
+      - test-output.xml
+      - coverage.xml
+    reports:
+      junit: test-output.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
