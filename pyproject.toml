@@ -1,0 +1,7 @@
+[build-system]
+requires = [
+    "setuptools>=45",
+    "gql>=3.0.0",
+    "requests>=2.27.1",
+    "requests-toolbelt>=0.9.1"
+    ]
