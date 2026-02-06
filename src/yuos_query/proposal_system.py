@@ -58,9 +58,7 @@ def create_proposal_query(instrument_id):
                 }
               }
             }
-        """.replace(
-        "$INST$", str(instrument_id)
-    )
+        """.replace("$INST$", str(instrument_id))
 
 
 class GqlWrapper:

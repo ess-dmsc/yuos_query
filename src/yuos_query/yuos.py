@@ -1,10 +1,8 @@
 import argparse
 import logging
 import os
-import sys
 import time
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from yuos_query import YuosServer
 
 
@@ -21,7 +19,7 @@ def main(url, instrument, cache_filepath, proxies, update_interval=900):
             time.sleep(60)
 
 
-if __name__ == "__main__":
+def cli():
     parser = argparse.ArgumentParser()
 
     required_args = parser.add_argument_group("required arguments")
