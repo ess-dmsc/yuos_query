@@ -4,7 +4,7 @@ version = "0.1.22"
 description = "Python wrapper for querying the ESS user office system"
 readme = "README.md"
 license = { text = "BSD-2-Clause" }
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 dependencies = [
     "gql<4",
     "requests>=2.32.5",
