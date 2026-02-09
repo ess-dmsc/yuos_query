@@ -1,6 +1,6 @@
 [project]
 name = "yuos-query"
-version = "0.1.22"
+version = "0.2.0"
 description = "Python wrapper for querying the ESS user office system"
 readme = "README.md"
 license = { text = "BSD-2-Clause" }
