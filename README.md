@@ -49,7 +49,30 @@ changed.**
 
 ## Release
 
-- Update version in `pyproject.toml`
-- Create and push a git tag: `git tag X.Y.Z && git push origin X.Y.Z`
-- GitLab CI starts automatically
-- Pipeline builds and uploads the package to the `ecdc-pypi` index
+This project follows [Semantic Versioning](https://semver.org/).
+
+Releases are done in a few simple steps:
+
+1. Update the project version using `uv version`
+
+```
+uv version X.Y.Z
+```
+
+2. Open a merge request containing the dedicated release commit:
+
+```
+release: bump version to X.Y.Z
+```
+
+3. Once the MR is merged into the `main` branch, create and push a Git tag:
+
+```
+git tag X.Y.Z && git push origin X.Y.Z
+```
+
+Alternatively, the tag can be created via the GitLab UI.
+
+#### Creating the tag automatically triggers the GitLab CI pipeline.
+
+The pipeline builds the package, uploads it to the `ecdc-pypi` index, and creates a GitLab Release for the tagged version.
