@@ -72,3 +72,28 @@ create_release:
     description: 'Release description'
   rules:
     - if: $CI_COMMIT_TAG
+
+publish_docker_image:
+  stage: release
+  image: docker:28-cli
+  script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
+    - |
+      docker build -t "$IMAGE_NAME:$DOCKER_IMAGE_TAG" \
+        --build-arg https_proxy="$HTTPS_PROXY" \
+        --build-arg http_proxy="$HTTP_PROXY" \
+        .
+    - docker push "$IMAGE_NAME:$DOCKER_IMAGE_TAG"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      variables:
+        DOCKER_IMAGE_TAG: "latest"
+    - if: $CI_COMMIT_TAG
+      variables:
+        DOCKER_IMAGE_TAG: "${CI_COMMIT_TAG}"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+  variables:
+    IMAGE_NAME: "registry.esss.lu.se/ecdc/yuos_query"
+    HTTP_PROXY: "http://172.20.72.11:8888"
+    HTTPS_PROXY: "http://172.20.72.11:8888"
