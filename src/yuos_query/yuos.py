@@ -3,7 +3,7 @@ import logging
 import os
 import time
 
-from yuos_query import YuosServer
+from yuos_query.yuos_client import YuosServer
 
 
 def main(url, instrument, cache_filepath, proxies, update_interval=900):
