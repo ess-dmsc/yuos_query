@@ -9,7 +9,7 @@ from yuos_query.exceptions import (
     ServerException,
 )
 from yuos_query.file_cache import FileCache
-from yuos_query.proposal_system import ProposalRequester
+from yuos_query.proposal_system_scicat import ProposalRequester
 
 
 class YuosServer:

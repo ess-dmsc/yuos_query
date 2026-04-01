@@ -1,1706 +1,1282 @@
-{
-  "proposals": {
-    "totalCount": 90,
-    "proposals": [
-      {
-        "primaryKey": 379,
-        "title": "Testing Sample July 23",
-        "proposalId": "566859",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": [
-          {
-            "title": "asdasd",
-            "id": 18
-          },
-          {
-            "title": "asdasdasdasd",
-            "id": 19
-          }
-        ]
-      },
-      {
-        "primaryKey": 378,
-        "title": "yoga schedule 1 ",
-        "proposalId": "999736",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": [
-          {
-            "title": "nm",
-            "id": 17
-          }
-        ]
-      },
-      {
-        "primaryKey": 372,
-        "title": "For testing yuos",
-        "proposalId": "597001",
-        "users": [
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Jonas",
-            "lastname": "Petersson",
-            "institution": "Other"
-          }
-        ],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": [
-          {
-            "title": "sample 1",
-            "id": 15
-          },
-          {
-            "title": "sample 2",
-            "id": 16
-          }
-        ]
-      },
-      {
-        "primaryKey": 371,
-        "title": "Testing Samples July 16",
-        "proposalId": "029879",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": [
-          {
-            "title": "Sample 1",
-            "id": 13
-          },
-          {
-            "title": "test",
-            "id": 14
-          }
-        ]
-      },
-      {
-        "primaryKey": 370,
-        "title": "Testing Visa Request 111",
-        "proposalId": "462756",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 369,
-        "title": "Testing Visa Request21",
-        "proposalId": "895633",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 368,
-        "title": "Testing Visa Request 16",
-        "proposalId": "328511",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 367,
-        "title": "Testing Visa Request 15",
-        "proposalId": "761388",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 366,
-        "title": "Testing Visa Request 14",
-        "proposalId": "194266",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 365,
-        "title": "Testing Visa Request 13",
-        "proposalId": "627143",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 364,
-        "title": "Testing Visa Request 12",
-        "proposalId": "060021",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 363,
-        "title": "Testing Visa Request 11",
-        "proposalId": "492898",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 362,
-        "title": "testing race condition 5",
-        "proposalId": "925775",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 361,
-        "title": "testing race condition 4",
-        "proposalId": "358653",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 360,
-        "title": "testing race condition 3",
-        "proposalId": "791530",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 359,
-        "title": "testing race condition 2",
-        "proposalId": "224408",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 358,
-        "title": "testing race condition",
-        "proposalId": "657285",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 357,
-        "title": "Visa Instance for Seminar 1 ",
-        "proposalId": "090163",
-        "users": [
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Junjie",
-            "lastname": "Quan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 356,
-        "title": "Testing Visa Request",
-        "proposalId": "523040",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 324,
-        "title": "asd",
-        "proposalId": "375118",
-        "users": [],
-        "proposer": {
-          "firstname": "Junjie",
-          "lastname": "Quan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 323,
-        "title": "Integration testing proposal #3",
-        "proposalId": "807995",
-        "users": [
-          {
-            "firstname": "Jan-Lukas",
-            "lastname": "Wynen",
-            "institution": "Other"
-          }
-        ],
-        "proposer": {
-          "firstname": "Massimiliano",
-          "lastname": "Novelli",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 322,
-        "title": "Integration testing proposal #2",
-        "proposalId": "240873",
-        "users": [
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Massimiliano",
-          "lastname": "Novelli",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 321,
-        "title": "Integration testing proposal #1",
-        "proposalId": "673750",
-        "users": [
-          {
-            "firstname": "Jan-Lukas",
-            "lastname": "Wynen",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Massimiliano",
-          "lastname": "Novelli",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 318,
-        "title": "Proposal that has samples for Matt",
-        "proposalId": "972382",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": [
-          {
-            "title": "Test sample",
-            "id": 12
-          }
-        ]
-      },
-      {
-        "primaryKey": 314,
-        "title": "this has samples ",
-        "proposalId": "703892",
-        "users": [],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 313,
-        "title": "A proposal that can create folders",
-        "proposalId": "136770",
-        "users": [
-          {
-            "firstname": "Jonas",
-            "lastname": "Petersson",
-            "institution": "Other"
-          }
-        ],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 304,
-        "title": "Beamtime for looking at vinadium ",
-        "proposalId": "032667",
-        "users": [
-          {
-            "firstname": "Jekabs",
-            "lastname": "Karklins",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 293,
-        "title": "Testing Visa DEV - 18 JUNE",
-        "proposalId": "794318",
-        "users": [
-          {
-            "firstname": "Yoganandan",
-            "lastname": "",
-            "institution": "Aarhus University"
-          },
-          {
-            "firstname": "Yoganandan",
-            "lastname": "Pandiyan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Carl",
-          "lastname": "Andersson",
-          "institution": "Essa (Czechia)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 290,
-        "title": "vnbm",
-        "proposalId": "092951",
-        "users": [
-          {
-            "firstname": "Tobias",
-            "lastname": "Richter",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 289,
-        "title": "asdasd",
-        "proposalId": "525828",
-        "users": [
-          {
-            "firstname": "Stefanos",
-            "lastname": "Athanasopoulos",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Tobias",
-            "lastname": "Richter",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 288,
-        "title": "Demo - SIMS Team",
-        "proposalId": "958705",
-        "users": [
-          {
-            "firstname": "Bryan Trevor",
-            "lastname": "Sewell",
-            "institution": "University of Cape Town"
-          },
-          {
-            "firstname": "Juan Manuel",
-            "lastname": "Orozco",
-            "institution": "Lund University"
-          },
-          {
-            "firstname": "Stuart",
-            "lastname": "Campbell",
-            "institution": "Brookhaven National Laboratory"
-          },
-          {
-            "firstname": "Yoganandan",
-            "lastname": "Pandiyan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Zoë",
-          "lastname": "Fisher",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 287,
-        "title": "Demo Preparation 30May2024",
-        "proposalId": "391583",
-        "users": [
-          {
-            "firstname": "Yoganandan",
-            "lastname": "",
-            "institution": "Aarhus University"
-          },
-          {
-            "firstname": "Carl",
-            "lastname": "Andersson",
-            "institution": "Essa (Czechia)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 283,
-        "title": "FlexRICAN EU Project",
-        "proposalId": "123093",
-        "users": [
-          {
-            "firstname": "Serkan",
-            "lastname": "Üçer",
-            "institution": "Adam Mickiewicz University"
-          }
-        ],
-        "proposer": {
-          "firstname": "Serkan",
-          "lastname": "Ücer",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 282,
-        "title": "23May2024-3",
-        "proposalId": "555970",
-        "users": [],
-        "proposer": {
-          "firstname": "Carl",
-          "lastname": "Andersson",
-          "institution": "Essa (Czechia)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 281,
-        "title": "23May2024 - 1",
-        "proposalId": "988847",
-        "users": [
-          {
-            "firstname": "Yoganandan",
-            "lastname": "",
-            "institution": "Aarhus University"
-          },
-          {
-            "firstname": "Yoganandan",
-            "lastname": "Pandiyan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Carl",
-          "lastname": "Andersson",
-          "institution": "Essa (Czechia)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 280,
-        "title": "TEST 23MAY2024",
-        "proposalId": "421725",
-        "users": [],
-        "proposer": {
-          "firstname": "Carl",
-          "lastname": "Andersson",
-          "institution": "Essa (Czechia)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 279,
-        "title": "asdasd",
-        "proposalId": "854602",
-        "users": [],
-        "proposer": {
-          "firstname": "Carl",
-          "lastname": "Andersson",
-          "institution": "Essa (Czechia)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 278,
-        "title": "ECDC BEAMTIME",
-        "proposalId": "287480",
-        "users": [
-          {
-            "firstname": "Yoganandan",
-            "lastname": "Pandiyan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Carl",
-          "lastname": "Andersson",
-          "institution": "Essa (Czechia)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 275,
-        "title": "1IM Integration test (2)",
-        "proposalId": "586112",
-        "users": [],
-        "proposer": {
-          "firstname": "Janos",
-          "lastname": "Babik",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 274,
-        "title": "1IM Integration test",
-        "proposalId": "018990",
-        "users": [],
-        "proposer": {
-          "firstname": "Janos",
-          "lastname": "Babik",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 273,
-        "title": "Test of user creation 2",
-        "proposalId": "451867",
-        "users": [
-          {
-            "firstname": "János",
-            "lastname": "Babik",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Carl",
-          "lastname": "Andersson",
-          "institution": "Essa (Czechia)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 272,
-        "title": "Test of user creation",
-        "proposalId": "884744",
-        "users": [],
-        "proposer": {
-          "firstname": "Carl-Thomas1",
-          "lastname": "Bolmsten",
-          "institution": "Other"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 270,
-        "title": "Testing user creation at DMSC",
-        "proposalId": "750499",
-        "users": [],
-        "proposer": {
-          "firstname": "Thomas",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 267,
-        "title": "Test for YMIR",
-        "proposalId": "049132",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 264,
-        "title": "Proposal number 10",
-        "proposalId": "347764",
-        "users": [
-          {
-            "firstname": "Junjie",
-            "lastname": "Quan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Yoganandan",
-            "lastname": "Pandiyan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Martin",
-            "lastname": "Trajanovski",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Massimiliano",
-          "lastname": "Novelli",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 262,
-        "title": "My proposal",
-        "proposalId": "213519",
-        "users": [
-          {
-            "firstname": "Junjie",
-            "lastname": "Quan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Yoganandan",
-            "lastname": "Pandiyan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Martin",
-            "lastname": "Trajanovski",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Massimiliano",
-          "lastname": "Novelli",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 261,
-        "title": "my proposal ",
-        "proposalId": "646396",
-        "users": [
-          {
-            "firstname": "Junjie",
-            "lastname": "Quan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Yoganandan",
-            "lastname": "Pandiyan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Martin",
-            "lastname": "Trajanovski",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Massimiliano",
-          "lastname": "Novelli",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 252,
-        "title": "test3 nov ",
-        "proposalId": "542293",
-        "users": [
-          {
-            "firstname": "Yoganandan",
-            "lastname": "",
-            "institution": "Aarhus University"
-          }
-        ],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 249,
-        "title": "testing yuos part 2",
-        "proposalId": "840925",
-        "users": [],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 248,
-        "title": "Testing yuos",
-        "proposalId": "273803",
-        "users": [],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 234,
-        "title": "InstrumentVisa2",
-        "proposalId": "334087",
-        "users": [
-          {
-            "firstname": "Yoganandan",
-            "lastname": "Pandiyan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "",
-          "institution": "Aarhus University"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 232,
-        "title": "test staging 2",
-        "proposalId": "199842",
-        "users": [
-          {
-            "firstname": "Jekabs",
-            "lastname": "Karklins",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 231,
-        "title": "Test of new staging",
-        "proposalId": "632719",
-        "users": [
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 227,
-        "title": "Testing of new proposal connector",
-        "proposalId": "364229",
-        "users": [
-          {
-            "firstname": "Jonas",
-            "lastname": "Petersson",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 225,
-        "title": "Does this create a room in scichat?",
-        "proposalId": "229984",
-        "users": [
-          {
-            "firstname": "Jonas",
-            "lastname": "Petersson",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 221,
-        "title": "Test proposal",
-        "proposalId": "961493",
-        "users": [
-          {
-            "firstname": "Tobias",
-            "lastname": "Richter",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Jekabs",
-            "lastname": "Karklins",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Martin",
-            "lastname": "Trajanovski",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 220,
-        "title": "Test 9/6 - SWAP - DEMO 3",
-        "proposalId": "394371",
-        "users": [
-          {
-            "firstname": "Stefanos",
-            "lastname": "Athanasopoulos",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Tobias",
-            "lastname": "Richter",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Junjie",
-            "lastname": "Quan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Yoganandan",
-            "lastname": "Pandiyan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Martin",
-            "lastname": "Trajanovski",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 211,
-        "title": "Does everything work now?",
-        "proposalId": "290268",
-        "users": [
-          {
-            "firstname": "Stefanos",
-            "lastname": "Athanasopoulos",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Jonas",
-            "lastname": "Petersson",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Anders",
-            "lastname": "Pettersson",
-            "institution": "Other"
-          }
-        ],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 209,
-        "title": "Test of connector",
-        "proposalId": "156023",
-        "users": [
-          {
-            "firstname": "Junjie",
-            "lastname": "Quan",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 206,
-        "title": "wewer",
-        "proposalId": "454655",
-        "users": [],
-        "proposer": {
-          "firstname": "Yoganandan",
-          "lastname": "Pandiyan",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 201,
-        "title": "Test 1 May",
-        "proposalId": "619042",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 200,
-        "title": "This is martin test proposal",
-        "proposalId": "051920",
-        "users": [],
-        "proposer": {
-          "firstname": "Martin",
-          "lastname": "Trajanovski",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 198,
-        "title": "Folder Creation Test",
-        "proposalId": "917674",
-        "users": [
-          {
-            "firstname": "Tobias",
-            "lastname": "Richter",
-            "institution": "Other"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 197,
-        "title": "March 24 - Test",
-        "proposalId": "350552",
-        "users": [
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 196,
-        "title": "Towards My Nobel prize",
-        "proposalId": "783429",
-        "users": [
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Anders",
-          "lastname": "Pettersson",
-          "institution": "Other"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 195,
-        "title": "Chopper",
-        "proposalId": "216307",
-        "users": [],
-        "proposer": {
-          "firstname": "Markus",
-          "lastname": "Olsson",
-          "institution": "Other"
-        },
-        "samples": [
-          {
-            "title": "Plastic",
-            "id": 6
-          }
-        ]
-      },
-      {
-        "primaryKey": 194,
-        "title": "Test proposal martin",
-        "proposalId": "649184",
-        "users": [],
-        "proposer": {
-          "firstname": "Martin",
-          "lastname": "Trajanovski",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 193,
-        "title": "A new proposal",
-        "proposalId": "082062",
-        "users": [
-          {
-            "firstname": "Tobias",
-            "lastname": "Richter",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Stefanos",
-          "lastname": "Athanasopoulos",
-          "institution": "Other"
-        },
-        "samples": [
-          {
-            "title": "Lego piece",
-            "id": 5
-          }
-        ]
-      },
-      {
-        "primaryKey": 192,
-        "title": "Test with Matt",
-        "proposalId": "514939",
-        "users": [
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 191,
-        "title": "testing 2",
-        "proposalId": "947816",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 190,
-        "title": "testing 2023-02",
-        "proposalId": "380694",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 186,
-        "title": "Some scans",
-        "proposalId": "112204",
-        "users": [
-          {
-            "firstname": "Anders",
-            "lastname": "Pettersson",
-            "institution": "Other"
-          }
-        ],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": [
-          {
-            "title": "wheatbeiscuites",
-            "id": 4
-          }
-        ]
-      },
-      {
-        "primaryKey": 174,
-        "title": "I want beamtime for YMIR",
-        "proposalId": "306733",
-        "users": [
-          {
-            "firstname": "Jekabs",
-            "lastname": "Karklins",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 173,
-        "title": "Test fail of username",
-        "proposalId": "739610",
-        "users": [
-          {
-            "firstname": "Kenan Muric",
-            "lastname": "",
-            "institution": "ESS"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 172,
-        "title": "MC and SA test",
-        "proposalId": "172488",
-        "users": [],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 171,
-        "title": "I want beamtime 4 ",
-        "proposalId": "605365",
-        "users": [
-          {
-            "firstname": "Afonso",
-            "lastname": "Mukai",
-            "institution": "ESS"
-          },
-          {
-            "firstname": "Kenan Muric",
-            "lastname": "",
-            "institution": "ESS"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 170,
-        "title": "VIP demo for WP12",
-        "proposalId": "038243",
-        "users": [
-          {
-            "firstname": "Afonso",
-            "lastname": "Mukai",
-            "institution": "ESS"
-          },
-          {
-            "firstname": "Stefanos",
-            "lastname": "Athanasopoulos",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Tobias",
-            "lastname": "Richter",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Kenan Muric",
-            "lastname": "",
-            "institution": "ESS"
-          },
-          {
-            "firstname": "Daniel",
-            "lastname": "Cacabelos",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Jonas",
-            "lastname": "Petersson",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Jennifer",
-            "lastname": "Walker",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": [
-          {
-            "title": "It's Lego",
-            "id": 2
-          }
-        ]
-      },
-      {
-        "primaryKey": 169,
-        "title": "I want beamtime 3",
-        "proposalId": "471120",
-        "users": [
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": [
-          {
-            "title": "CH3)-(CH2)x-SO4-Na",
-            "id": 1
-          }
-        ]
-      },
-      {
-        "primaryKey": 168,
-        "title": "I want beamtime 2",
-        "proposalId": "903997",
-        "users": [
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 167,
-        "title": "Lego tomography round 2",
-        "proposalId": "336875",
-        "users": [
-          {
-            "firstname": "Tobias",
-            "lastname": "Richter",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Jekabs",
-            "lastname": "Karklins",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Massimiliano",
-          "lastname": "Novelli",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 166,
-        "title": "Lego tomography",
-        "proposalId": "769752",
-        "users": [],
-        "proposer": {
-          "firstname": "Massimiliano",
-          "lastname": "Novelli",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 165,
-        "title": "Experiment at YMIR",
-        "proposalId": "202630",
-        "users": [
-          {
-            "firstname": "Tobias",
-            "lastname": "Richter",
-            "institution": "Other"
-          },
-          {
-            "firstname": "Matt",
-            "lastname": "Clarke",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "Bolmsten",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 164,
-        "title": "Test B",
-        "proposalId": "635507",
-        "users": [
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Jekabs",
-          "lastname": "Karklins",
-          "institution": "Other"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 163,
-        "title": "Test A",
-        "proposalId": "068385",
-        "users": [],
-        "proposer": {
-          "firstname": "Jekabs",
-          "lastname": "Karklins",
-          "institution": "Other"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 162,
-        "title": "My test proposal",
-        "proposalId": "501262",
-        "users": [],
-        "proposer": {
-          "firstname": "Jekabs",
-          "lastname": "Karklins",
-          "institution": "Other"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 161,
-        "title": "This is a new test",
-        "proposalId": "934139",
-        "users": [
-          {
-            "firstname": "Fredrik",
-            "lastname": "",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          },
-          {
-            "firstname": "Massimiliano",
-            "lastname": "Novelli",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Jekabs",
-          "lastname": "Karklins",
-          "institution": "Other"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 159,
-        "title": "Measurement of xtrinsic tension for epoxy surface",
-        "proposalId": "799894",
-        "users": [],
-        "proposer": {
-          "firstname": "Jekabs",
-          "lastname": "Karklins",
-          "institution": "Other"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 158,
-        "title": "Matt's second experiment",
-        "proposalId": "232772",
-        "users": [
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 156,
-        "title": "Matt's first proposal",
-        "proposalId": "098527",
-        "users": [
-          {
-            "firstname": "Fredrik",
-            "lastname": "Bolmsten",
-            "institution": "European Spallation Source ERIC (ESS)"
-          }
-        ],
-        "proposer": {
-          "firstname": "Matt",
-          "lastname": "Clarke",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
-      },
-      {
-        "primaryKey": 155,
-        "title": "I want beamtime",
-        "proposalId": "531404",
-        "users": [],
-        "proposer": {
-          "firstname": "Fredrik",
-          "lastname": "",
-          "institution": "European Spallation Source ERIC (ESS)"
-        },
-        "samples": []
+[
+  {
+    "isPublished": false,
+    "parentProposalId": null,
+    "_id": "14CD3N",
+    "pi_email": "oliver.lohmann@esss.se",
+    "pi_firstname": "Oliver",
+    "pi_lastname": "Lohmann",
+    "email": "oliver.lohmann@esss.se",
+    "firstname": "Oliver",
+    "lastname": "Lohmann",
+    "title": "SANS/Reflectometry",
+    "abstract": "SANS/Reflectometry",
+    "attachments": [],
+    "ownerGroup": "ess",
+    "accessGroups": [
+      "ess"
+    ],
+    "createdBy": "ingestor",
+    "updatedBy": "proposalIngestor",
+    "createdAt": "2019-06-24T11:55:58.798Z",
+    "updatedAt": "2019-06-24T11:56:27.443Z",
+    "MeasurementPeriodList": [
+      {
+        "id": null,
+        "instrument": "V20",
+        "start": "2019-07-29T01:01:00.000Z",
+        "end": "2019-09-01T23:59:00.000Z",
+        "comment": "string"
       }
-    ]
+    ],
+    "startTime": "2019-07-29T01:01:00.000Z",
+    "endTime": "2019-09-01T23:59:00.000Z",
+    "proposalId": "14CD3N",
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 132,
+    "metadata": {},
+    "id": "14CD3N"
+  },
+  {
+    "_id": "471120",
+    "pi_email": "junjie.quan@ess.eu",
+    "pi_firstname": "Junjie",
+    "pi_lastname": "Quan",
+    "email": "junjie.quan@ess.eu",
+    "firstname": "Junjie",
+    "lastname": "Quan",
+    "title": "test-1120-1318",
+    "ownerGroup": "471120",
+    "createdBy": "proposalIngestor",
+    "updatedBy": "admin",
+    "MeasurementPeriodList": [],
+    "createdAt": "2022-10-20T12:40:11.202Z",
+    "updatedAt": "2024-11-20T12:18:40.162Z",
+    "proposalId": "471120",
+    "__v": 1,
+    "abstract": "test-1120-1318",
+    "accessGroups": [],
+    "endTime": "2024-11-20T12:18:40.153Z",
+    "isPublished": false,
+    "metadata": {},
+    "parentProposalId": null,
+    "startTime": "2024-11-20T12:18:40.153Z",
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "id": "471120"
+  },
+  {
+    "_id": "934139",
+    "pi_email": "junjie.quan@ess.eu",
+    "pi_firstname": "Junjie",
+    "pi_lastname": "Quan",
+    "email": "junjie.quan@ess.eu",
+    "firstname": "Junjie",
+    "lastname": "Quan",
+    "title": "test-test-test-11-20",
+    "ownerGroup": "934139",
+    "createdBy": "proposalIngestor",
+    "updatedBy": "admin",
+    "MeasurementPeriodList": [],
+    "createdAt": "2022-09-26T11:04:00.151Z",
+    "updatedAt": "2024-11-20T11:37:34.663Z",
+    "proposalId": "934139",
+    "__v": 1,
+    "abstract": "test-test-test-11-20",
+    "accessGroups": [],
+    "endTime": "2024-11-20T11:37:34.652Z",
+    "isPublished": false,
+    "metadata": {},
+    "parentProposalId": null,
+    "startTime": "2024-11-20T11:37:34.652Z",
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "id": "934139"
+  },
+  {
+    "isPublished": false,
+    "parentProposalId": null,
+    "_id": "H5B3C2",
+    "pi_email": "morgano.manuel@esss.se",
+    "pi_firstname": "Morgano",
+    "pi_lastname": "Manuel",
+    "email": "Robin.Woracek@esss.se",
+    "firstname": "Robin",
+    "lastname": "Woracek",
+    "title": "spatial data reduction - systematic using MCP detector",
+    "abstract": "Morgano Manuel, Peter Kadletz, Robin Woracek",
+    "attachments": [],
+    "ownerGroup": "ess",
+    "accessGroups": [
+      "ess"
+    ],
+    "createdBy": "ingestor",
+    "updatedBy": "proposalIngestor",
+    "createdAt": "2019-06-24T11:55:58.798Z",
+    "updatedAt": "2019-06-24T11:56:27.765Z",
+    "MeasurementPeriodList": [
+      {
+        "id": null,
+        "instrument": "V20",
+        "start": "2019-10-20T00:01:00.000Z",
+        "end": "2019-11-03T23:59:00.000Z",
+        "comment": "string"
+      }
+    ],
+    "startTime": "2019-10-20T00:01:00.000Z",
+    "endTime": "2019-11-03T23:59:00.000Z",
+    "proposalId": "H5B3C2",
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "H5B3C2"
+  },
+  {
+    "isPublished": false,
+    "parentProposalId": null,
+    "_id": "J5CB6D",
+    "pi_email": "peter.kadletz@esss.se",
+    "pi_firstname": "Peter",
+    "pi_lastname": "Kadletz",
+    "email": "Robin.Woracek@esss.se",
+    "firstname": "Robin",
+    "lastname": "Woracek",
+    "title": "In situ Heating and Deformation with Scintillator-CMOS Detector (Krooss, Lauhoff, Reul)",
+    "abstract": "Peter Kadletz, Robin Woracek",
+    "attachments": [],
+    "ownerGroup": "ess",
+    "accessGroups": [
+      "ess"
+    ],
+    "createdBy": "ingestor",
+    "updatedBy": "proposalIngestor",
+    "createdAt": "2019-06-24T11:55:58.798Z",
+    "updatedAt": "2019-06-24T11:56:27.997Z",
+    "MeasurementPeriodList": [
+      {
+        "id": null,
+        "instrument": "V20",
+        "start": "2019-11-04T00:01:00.000Z",
+        "end": "2019-11-10T23:59:00.000Z",
+        "comment": "string"
+      }
+    ],
+    "startTime": "2019-11-04T00:01:00.000Z",
+    "endTime": "2019-11-10T23:59:00.000Z",
+    "proposalId": "J5CB6D",
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "J5CB6D"
+  },
+  {
+    "isPublished": false,
+    "parentProposalId": null,
+    "_id": "Z3HJ84",
+    "pi_email": "markus.strobl@esss.se",
+    "pi_firstname": "Markus",
+    "pi_lastname": "Strobl",
+    "email": "morgano.manuel@esss.se",
+    "firstname": "Morgano",
+    "lastname": "Manuel",
+    "title": "TOF MCP detector ",
+    "abstract": "Markus Strobl",
+    "attachments": [],
+    "ownerGroup": "ess",
+    "accessGroups": [
+      "ess"
+    ],
+    "createdBy": "ingestor",
+    "updatedBy": "proposalIngestor",
+    "createdAt": "2019-06-24T11:55:58.798Z",
+    "updatedAt": "2019-06-24T11:56:27.163Z",
+    "MeasurementPeriodList": [
+      {
+        "id": null,
+        "instrument": "V20",
+        "start": "2019-06-03T00:01:00.000Z",
+        "end": "2019-06-16T23:59:00.000Z",
+        "comment": "string"
+      }
+    ],
+    "startTime": "2019-06-03T00:01:00.000Z",
+    "endTime": "2019-06-16T23:59:00.000Z",
+    "proposalId": "Z3HJ84",
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "Z3HJ84"
+  },
+  {
+    "_id": "098527",
+    "pi_email": "junjie.quan@ess.eu",
+    "pi_firstname": "Junjie",
+    "pi_lastname": "Quan",
+    "email": "junjie.quan@ess.eu",
+    "firstname": "Junjie",
+    "lastname": "Quan",
+    "title": "sfasdadsa",
+    "ownerGroup": "098527",
+    "createdBy": "proposalIngestor",
+    "updatedBy": "admin",
+    "MeasurementPeriodList": [],
+    "createdAt": "2022-12-15T12:53:35.573Z",
+    "updatedAt": "2024-11-19T12:12:07.143Z",
+    "proposalId": "098527",
+    "__v": 2,
+    "abstract": "asdsadsadsadsad",
+    "accessGroups": [],
+    "endTime": "2024-11-19T12:12:07.136Z",
+    "isPublished": false,
+    "parentProposalId": null,
+    "startTime": "2024-11-19T12:12:07.136Z",
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "098527"
+  },
+  {
+    "_id": "112204",
+    "pi_email": "swapteam@swap.eu",
+    "pi_firstname": "Swap team",
+    "pi_lastname": "ESS",
+    "email": "swapteam@swap.eu",
+    "firstname": "Swap team",
+    "lastname": "ESS",
+    "title": "Cypress demo 25-11-2024 51603",
+    "ownerGroup": "112204",
+    "createdBy": "proposalIngestor",
+    "updatedBy": "admin",
+    "MeasurementPeriodList": [],
+    "createdAt": "2023-02-01T09:56:36.054Z",
+    "updatedAt": "2024-11-25T08:26:02.531Z",
+    "proposalId": "112204",
+    "__v": 1,
+    "abstract": "Cypress demo 25-11-2024 Consequuntur labore minima. Iusto eos aut a provident aut soluta quidem aperiam. Quo vitae impedit totam magnam qui repellat ut ipsum.",
+    "accessGroups": [],
+    "endTime": "2024-11-25T08:26:02.517Z",
+    "isPublished": false,
+    "metadata": {},
+    "parentProposalId": null,
+    "startTime": "2024-11-25T08:26:02.517Z",
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "id": "112204"
+  },
+  {
+    "_id": "158548",
+    "createdBy": "proposalIngestor",
+    "updatedBy": "admin",
+    "ownerGroup": "158548",
+    "accessGroups": [],
+    "proposalId": "158548",
+    "pi_email": "p.yoganandan@gmail.com",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "p.yoganandan@gmail.com",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Testing 1 of STFC/ELI 12/08/2025 Demo",
+    "abstract": "Testing 1 of STFC/ELI 12/08/2025 Demo",
+    "startTime": "2026-03-18T10:45:52.249Z",
+    "endTime": "2026-03-18T10:45:52.249Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2023-02-17T12:27:27.937Z",
+    "updatedAt": "2026-03-18T10:45:52.340Z",
+    "__v": 1,
+    "type": "Default Proposal",
+    "isPublished": false,
+    "metadata": {},
+    "parentProposalId": null,
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 3,
+    "id": "158548"
+  },
+  {
+    "isPublished": false,
+    "parentProposalId": null,
+    "_id": "531141",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "ess",
+    "accessGroups": [],
+    "proposalId": "531141",
+    "pi_email": "martin.trajanovski@ess.eu",
+    "pi_firstname": "Martin",
+    "pi_lastname": "Trajanovski",
+    "email": "martin.trajanovski@ess.eu",
+    "firstname": "Martin",
+    "lastname": "Trajanovski",
+    "title": "Another test proposal from Martin",
+    "abstract": "This is just a test",
+    "startTime": "2023-06-19T12:30:24.699Z",
+    "endTime": "2023-06-19T12:30:24.699Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2023-03-29T12:37:02.942Z",
+    "updatedAt": "2023-06-19T12:29:22.881Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "531141"
+  },
+  {
+    "isPublished": false,
+    "parentProposalId": null,
+    "_id": "887269",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "ess",
+    "accessGroups": [],
+    "proposalId": "887269",
+    "pi_email": "junjie.quan@ess.eu",
+    "pi_firstname": "junjie",
+    "pi_lastname": "quan",
+    "email": "junjie.quan@ess.eu",
+    "firstname": "junjie",
+    "lastname": "quan",
+    "title": "123123123",
+    "abstract": "123",
+    "startTime": "2023-10-16T09:39:35.585Z",
+    "endTime": "2023-10-16T09:39:35.585Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2023-10-16T09:41:15.920Z",
+    "updatedAt": "2023-10-16T09:41:16.114Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "887269"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "689952",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "689952",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "689952",
+    "pi_email": "babik.janos@gmail.com",
+    "pi_firstname": "János",
+    "pi_lastname": "Babik",
+    "email": "babik.janos@gmail.com",
+    "firstname": "János",
+    "lastname": "Babik",
+    "title": "S",
+    "abstract": "S",
+    "startTime": "2025-12-11T10:03:56.467Z",
+    "endTime": "2025-12-11T10:03:56.467Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2023-12-04T12:57:47.693Z",
+    "updatedAt": "2025-12-11T10:03:56.572Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "689952"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "029616",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "029616",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "029616",
+    "pi_email": "swap@ess.eu",
+    "pi_firstname": "Swap team",
+    "pi_lastname": "ESS",
+    "email": "swap@ess.eu",
+    "firstname": "Swap team",
+    "lastname": "ESS",
+    "title": "This is connector test",
+    "abstract": "test",
+    "startTime": "2024-02-07T10:02:59.899Z",
+    "endTime": "2024-02-07T10:02:59.899Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-02-07T10:02:35.979Z",
+    "updatedAt": "2024-02-07T10:02:59.909Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "029616"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "624092",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "624092",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "624092",
+    "pi_email": "martin.trajanovski@gmail.com",
+    "pi_firstname": "Martin",
+    "pi_lastname": "Trajanovski",
+    "email": "martin.trajanovski@gmail.com",
+    "firstname": "Martin",
+    "lastname": "Trajanovski",
+    "title": "Test proposal 19-03-2024",
+    "abstract": "This is just a test",
+    "startTime": "2024-03-19T12:44:40.492Z",
+    "endTime": "2024-03-19T12:44:40.492Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-03-19T12:44:40.531Z",
+    "updatedAt": "2024-03-19T12:44:40.531Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "624092"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "319884",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "319884",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "319884",
+    "pi_email": "junjie.quan@ess.eu",
+    "pi_firstname": "Junjie",
+    "pi_lastname": "Quan",
+    "email": "junjie.quan@ess.eu",
+    "firstname": "Junjie",
+    "lastname": "Quan",
+    "title": "test-jay-18-06-2024",
+    "abstract": "test-jay-18-06-2024",
+    "startTime": "2024-06-18T08:18:41.194Z",
+    "endTime": "2024-06-18T08:18:41.194Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-06-18T08:18:09.453Z",
+    "updatedAt": "2024-06-18T08:18:41.203Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "319884"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "467806",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "467806",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "467806",
+    "pi_email": "p.yoganandan@gmail.com",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "p.yoganandan@gmail.com",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Sample Handle Yoga",
+    "abstract": "Sample Handle Yoga",
+    "startTime": "2024-07-04T12:39:00.337Z",
+    "endTime": "2024-07-04T12:39:00.337Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-07-04T12:39:00.347Z",
+    "updatedAt": "2024-07-04T12:39:00.347Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "467806"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "062283",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "062283",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "062283",
+    "pi_email": "sylvana.brewer@gmail.com",
+    "pi_firstname": "Sylvana",
+    "pi_lastname": "Brewer",
+    "email": "sylvana.brewer@gmail.com",
+    "firstname": "Sylvana",
+    "lastname": "Brewer",
+    "title": "Incredible research",
+    "abstract": "Incredible research abstract",
+    "startTime": "2024-08-14T13:13:05.935Z",
+    "endTime": "2024-08-14T13:13:05.935Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-08-14T13:05:50.982Z",
+    "updatedAt": "2024-08-14T13:13:05.967Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "062283"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "897895",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "897895",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "897895",
+    "pi_email": "sylvana.brewer@gmail.com",
+    "pi_firstname": "Sylvana",
+    "pi_lastname": "Brewer",
+    "email": "sylvana.brewer@gmail.com",
+    "firstname": "Sylvana",
+    "lastname": "Brewer",
+    "title": "Best best proposal",
+    "abstract": "renkgrejknler",
+    "startTime": "2024-08-15T14:31:44.267Z",
+    "endTime": "2024-08-15T14:31:44.267Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-08-15T14:31:06.099Z",
+    "updatedAt": "2024-08-15T14:31:44.285Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "897895"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "851288",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "851288",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "851288",
+    "pi_email": "swapteam@swap.eu",
+    "pi_firstname": "Swap team",
+    "pi_lastname": "ESS",
+    "email": "swapteam@swap.eu",
+    "firstname": "Swap team",
+    "lastname": "ESS",
+    "title": "Cypress demo 12-09-2024 qui numquam",
+    "abstract": "Cypress demo 12-09-2024 Sunt accusantium omnis. Accusantium et recusandae harum. Molestias ducimus dolorem similique dolore consequatur ex.",
+    "startTime": "2024-09-12T07:07:43.191Z",
+    "endTime": "2024-09-12T07:07:43.191Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-09-12T07:07:43.214Z",
+    "updatedAt": "2024-09-12T07:07:43.214Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "851288"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "178064",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "178064",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "178064",
+    "pi_email": "swapteam@swap.eu",
+    "pi_firstname": "Swap team",
+    "pi_lastname": "ESS",
+    "email": "swapteam@swap.eu",
+    "firstname": "Swap team",
+    "lastname": "ESS",
+    "title": "Cypress demo 20-09-2024 53396",
+    "abstract": "Cypress demo 20-09-2024 Qui sapiente alias eligendi omnis dolore. Ratione suscipit reiciendis unde vero eum exercitationem repellat mollitia repellendus. Aperiam quaerat porro occaecati corrupti saepe libero quam. Minus doloribus veniam molestiae ex numquam. Reprehenderit voluptates molestias.",
+    "startTime": "2024-09-20T10:22:30.848Z",
+    "endTime": "2024-09-20T10:22:30.848Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-09-20T10:22:30.863Z",
+    "updatedAt": "2024-09-20T10:22:30.863Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "178064"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "312309",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "312309",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "312309",
+    "pi_email": "swapteam@swap.eu",
+    "pi_firstname": "Swap team",
+    "pi_lastname": "ESS",
+    "email": "swapteam@swap.eu",
+    "firstname": "Swap team",
+    "lastname": "ESS",
+    "title": "Cypress demo 20-09-2024 67026",
+    "abstract": "Cypress demo 20-09-2024 Officia numquam est. Dolores harum nemo. Quod iure possimus qui eveniet vel.",
+    "startTime": "2024-09-20T10:54:57.370Z",
+    "endTime": "2024-09-20T10:54:57.370Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-09-20T10:54:57.383Z",
+    "updatedAt": "2024-09-20T10:54:57.383Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "312309"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "147922",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "147922",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "147922",
+    "pi_email": "swapteam@swap.eu",
+    "pi_firstname": "Swap team",
+    "pi_lastname": "ESS",
+    "email": "swapteam@swap.eu",
+    "firstname": "Swap team",
+    "lastname": "ESS",
+    "title": "Cypress demo 20-09-2024 52348",
+    "abstract": "Cypress demo 20-09-2024 Repellendus esse cum in nihil. Dolorem reprehenderit eligendi alias eum quidem soluta deleniti dolor quaerat. Consequuntur at nam odio minus et est qui nam. Iste sed blanditiis ut reiciendis ipsa est praesentium. Qui qui saepe illo delectus est iure exercitationem ea perspiciatis. Quisquam iste et molestiae voluptatem nostrum non quo quas.",
+    "startTime": "2024-09-20T12:10:22.169Z",
+    "endTime": "2024-09-20T12:10:22.169Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-09-20T12:10:22.183Z",
+    "updatedAt": "2024-09-20T12:10:22.183Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "147922"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "594476",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "594476",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "594476",
+    "pi_email": "junjie.quan@ess.eu",
+    "pi_firstname": "Junjie",
+    "pi_lastname": "Quan",
+    "email": "junjie.quan@ess.eu",
+    "firstname": "Junjie",
+    "lastname": "Quan",
+    "title": "10/03/2024",
+    "abstract": "10/03/2024",
+    "startTime": "2024-10-03T12:09:14.210Z",
+    "endTime": "2024-10-03T12:09:14.210Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-10-03T11:42:33.732Z",
+    "updatedAt": "2024-10-03T12:09:14.232Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "594476"
+  },
+  {
+    "parentProposalId": null,
+    "_id": "161599",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "161599",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "161599",
+    "pi_email": "junjie.quan@ess.eu",
+    "pi_firstname": "Junjie",
+    "pi_lastname": "Quan",
+    "email": "junjie.quan@ess.eu",
+    "firstname": "Junjie",
+    "lastname": "Quan",
+    "title": "123123",
+    "abstract": "asdasdsa",
+    "startTime": "2024-10-03T15:13:55.184Z",
+    "endTime": "2024-10-03T15:13:55.184Z",
+    "MeasurementPeriodList": [],
+    "createdAt": "2024-10-03T12:12:32.980Z",
+    "updatedAt": "2024-10-03T15:13:55.192Z",
+    "__v": 0,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "metadata": {},
+    "id": "161599"
+  },
+  {
+    "_id": "350552",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "350552",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "350552",
+    "pi_email": "junjie.quan@ess.eu",
+    "pi_firstname": "Junjie",
+    "pi_lastname": "Quan",
+    "email": "junjie.quan@ess.eu",
+    "firstname": "Junjie",
+    "lastname": "Quan",
+    "title": "new-test-11-27",
+    "abstract": "new-test-11-27",
+    "startTime": "2024-11-27T13:58:56.865Z",
+    "endTime": "2024-11-27T13:58:56.865Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "createdAt": "2024-11-27T13:58:56.889Z",
+    "updatedAt": "2024-11-27T13:58:56.889Z",
+    "__v": 0,
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "id": "350552"
+  },
+  {
+    "_id": "076486",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "076486",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "076486",
+    "pi_email": "babik.jano111s@gmail.com",
+    "pi_firstname": "János",
+    "pi_lastname": "Babik",
+    "email": "babik.jano111s@gmail.com",
+    "firstname": "János",
+    "lastname": "Babik",
+    "title": "TEST",
+    "abstract": "TEST",
+    "startTime": "2025-03-10T13:27:41.108Z",
+    "endTime": "2025-03-10T13:27:41.108Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "createdAt": "2025-03-10T13:27:41.128Z",
+    "updatedAt": "2025-03-10T13:27:41.128Z",
+    "__v": 0,
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "id": "076486"
+  },
+  {
+    "_id": "567122",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "567122",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "567122",
+    "pi_email": "fredrik.bolmsten@ess.eu",
+    "pi_firstname": "Fredrik",
+    "pi_lastname": "Bolmsten",
+    "email": "fredrik.bolmsten@ess.eu",
+    "firstname": "Fredrik",
+    "lastname": "Bolmsten",
+    "title": "First proposal",
+    "abstract": "a",
+    "startTime": "2026-02-27T12:31:25.947Z",
+    "endTime": "2026-02-27T12:31:25.947Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "createdAt": "2025-04-02T09:22:39.390Z",
+    "updatedAt": "2026-02-27T12:31:26.041Z",
+    "__v": 1,
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "id": "567122"
+  },
+  {
+    "_id": "060021",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "060021",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "060021",
+    "pi_email": "vehewop644@avzong.com",
+    "pi_firstname": "Jokster",
+    "pi_lastname": "Test",
+    "email": "vehewop644@avzong.com",
+    "firstname": "Jokster",
+    "lastname": "Test",
+    "title": "Test if visitor can see proposal",
+    "abstract": "Test if visitor can see proposal",
+    "startTime": "2025-05-16T08:35:44.351Z",
+    "endTime": "2025-05-16T08:35:44.351Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "createdAt": "2025-05-16T08:35:44.366Z",
+    "updatedAt": "2025-05-16T08:35:44.366Z",
+    "__v": 0,
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "id": "060021"
+  },
+  {
+    "_id": "569384",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "569384",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "569384",
+    "pi_email": "swapteam@swap.eu",
+    "pi_firstname": "Swap team",
+    "pi_lastname": "ESS",
+    "email": "swapteam@swap.eu",
+    "firstname": "Swap team",
+    "lastname": "ESS",
+    "title": "Cypress demo 08-01-2026 91715",
+    "abstract": "Cypress demo 08-01-2026 Voluptatum repellendus fuga velit voluptatem magni hic necessitatibus. Reprehenderit ut est error et quasi nihil dolores sunt. Et ut voluptatibus. Cum non tempora doloribus consectetur id odit dolorem mollitia. Quasi est deserunt est aut repellat sit aut. Quidem recusandae et qui deserunt ratione voluptatibus sunt veritatis.",
+    "startTime": "2026-01-08T08:07:54.983Z",
+    "endTime": "2026-01-08T08:07:54.983Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-01-08T08:07:55.099Z",
+    "updatedAt": "2026-01-08T08:07:55.099Z",
+    "__v": 0,
+    "id": "569384"
+  },
+  {
+    "_id": "673487",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "673487",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "673487",
+    "pi_email": "p.yoganandan@gmail.com",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "p.yoganandan@gmail.com",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Testing Shipment 1",
+    "abstract": "Testing Shipment 1",
+    "startTime": "2026-01-14T12:42:42.910Z",
+    "endTime": "2026-01-14T12:42:42.910Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-01-14T12:42:43.001Z",
+    "updatedAt": "2026-01-14T12:42:43.001Z",
+    "__v": 0,
+    "id": "673487"
+  },
+  {
+    "_id": "210468",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "210468",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "210468",
+    "pi_email": "yoga@yoga.com",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoga@yoga.com",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "asd",
+    "abstract": "asd",
+    "startTime": "2026-02-04T11:29:40.332Z",
+    "endTime": "2026-02-04T11:29:40.332Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-04T11:29:40.431Z",
+    "updatedAt": "2026-02-04T11:29:40.431Z",
+    "__v": 0,
+    "id": "210468"
+  },
+  {
+    "_id": "344713",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "344713",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "344713",
+    "pi_email": "yoganandan.pandiyan@ess.eu",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoganandan.pandiyan@ess.eu",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Cypress demo 09-02-2026 66908",
+    "abstract": "Cypress demo 09-02-2026 Molestiae et hic aliquid magni ex. Dolores non ipsum vel fugiat repellendus saepe ipsa omnis. Debitis dolore consectetur minima quibusdam. Dolorem quo iste dolorum.",
+    "startTime": "2026-02-09T10:37:04.807Z",
+    "endTime": "2026-02-09T10:37:04.807Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-09T10:37:04.967Z",
+    "updatedAt": "2026-02-09T10:37:04.967Z",
+    "__v": 0,
+    "id": "344713"
+  },
+  {
+    "_id": "747448",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "747448",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "747448",
+    "pi_email": "yoganandan.pandiyan@ess.eu",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoganandan.pandiyan@ess.eu",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Cypress demo 09-02-2026 25206",
+    "abstract": "Cypress demo 09-02-2026 Fugit dolores non. Cupiditate sunt dolor et. Accusantium quia nesciunt odit quas rerum sunt assumenda accusamus.",
+    "startTime": "2026-02-09T12:12:31.333Z",
+    "endTime": "2026-02-09T12:12:31.333Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-09T12:12:31.429Z",
+    "updatedAt": "2026-02-09T12:12:31.429Z",
+    "__v": 0,
+    "id": "747448"
+  },
+  {
+    "_id": "583061",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "583061",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "583061",
+    "pi_email": "yoganandan.pandiyan@ess.eu",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoganandan.pandiyan@ess.eu",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Cypress demo 09-02-2026 40536",
+    "abstract": "Cypress demo 09-02-2026 Ut quas aperiam. Earum dolorem autem eum aliquid eum fugit voluptas magni. Pariatur dolor repudiandae porro veritatis.",
+    "startTime": "2026-02-09T12:22:20.097Z",
+    "endTime": "2026-02-09T12:22:20.097Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-09T12:22:20.207Z",
+    "updatedAt": "2026-02-09T12:22:20.207Z",
+    "__v": 0,
+    "id": "583061"
+  },
+  {
+    "_id": "150184",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "150184",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "150184",
+    "pi_email": "yoganandan.pandiyan@ess.eu",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoganandan.pandiyan@ess.eu",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Cypress demo 09-02-2026 70846",
+    "abstract": "Cypress demo 09-02-2026 Et eveniet distinctio corporis tempore voluptatum. Ea voluptas id. Saepe dolore facere praesentium sequi sunt non pariatur vel est. Qui qui accusantium sed voluptas nihil. Ut eaque rerum earum itaque sunt cupiditate natus asperiores maiores. Vel sed sed est hic deserunt aut.",
+    "startTime": "2026-02-09T12:24:28.199Z",
+    "endTime": "2026-02-09T12:24:28.199Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-09T12:24:28.327Z",
+    "updatedAt": "2026-02-09T12:24:28.327Z",
+    "__v": 0,
+    "id": "150184"
+  },
+  {
+    "_id": "717306",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "717306",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "717306",
+    "pi_email": "yoganandan.pandiyan@ess.eu",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoganandan.pandiyan@ess.eu",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Cypress demo 09-02-2026 90416",
+    "abstract": "Cypress demo 09-02-2026 Voluptas quasi atque nostrum atque. Ipsam consectetur perferendis provident at doloremque consequuntur. Sed nam eos neque. Ut voluptas voluptate sint. Libero nihil omnis deserunt ut voluptate quia nihil.",
+    "startTime": "2026-02-09T12:35:57.677Z",
+    "endTime": "2026-02-09T12:35:57.677Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-09T12:35:57.792Z",
+    "updatedAt": "2026-02-09T12:35:57.792Z",
+    "__v": 0,
+    "id": "717306"
+  },
+  {
+    "_id": "284429",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "284429",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "284429",
+    "pi_email": "yoganandan.pandiyan@ess.eu",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoganandan.pandiyan@ess.eu",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Cypress demo 09-02-2026 74093",
+    "abstract": "Cypress demo 09-02-2026 Omnis beatae rerum. Placeat aut nihil aut impedit quos molestias quam corrupti nulla. Corporis ad aperiam animi reiciendis fugiat in enim. Ut nesciunt quam quae sequi deserunt libero. Non voluptatem est at saepe ad aliquid in odit.",
+    "startTime": "2026-02-09T12:39:46.457Z",
+    "endTime": "2026-02-09T12:39:46.457Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-09T12:39:46.545Z",
+    "updatedAt": "2026-02-09T12:39:46.545Z",
+    "__v": 0,
+    "id": "284429"
+  },
+  {
+    "_id": "851551",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "851551",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "851551",
+    "pi_email": "yoganandan.pandiyan@ess.eu",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoganandan.pandiyan@ess.eu",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Cypress demo 09-02-2026 88047",
+    "abstract": "Cypress demo 09-02-2026 Corrupti autem nam et quam et necessitatibus molestiae esse. Sed eos dolor sed earum non voluptatem reprehenderit illo. Excepturi non culpa nisi ipsam soluta rerum corporis. Ea ullam et sunt sit recusandae aut blanditiis eos. Aut aut consequatur.",
+    "startTime": "2026-02-09T12:47:48.234Z",
+    "endTime": "2026-02-09T12:47:48.234Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-09T12:47:48.352Z",
+    "updatedAt": "2026-02-09T12:47:48.352Z",
+    "__v": 0,
+    "id": "851551"
+  },
+  {
+    "_id": "418674",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "418674",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "418674",
+    "pi_email": "yoganandan.pandiyan@ess.eu",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoganandan.pandiyan@ess.eu",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "Cypress demo 09-02-2026 75558",
+    "abstract": "Cypress demo 09-02-2026 At officia dolorem labore sit. Quis dolores iusto animi tenetur. Reprehenderit non cumque consequatur. Sunt distinctio sed blanditiis aliquid porro voluptatibus ullam. Consequatur modi assumenda molestias.",
+    "startTime": "2026-02-09T13:09:54.594Z",
+    "endTime": "2026-02-09T13:09:54.594Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-09T13:09:54.700Z",
+    "updatedAt": "2026-02-09T13:09:54.700Z",
+    "__v": 0,
+    "id": "418674"
+  },
+  {
+    "_id": "985796",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "ownerGroup": "985796",
+    "accessGroups": [],
+    "isPublished": false,
+    "proposalId": "985796",
+    "pi_email": "yoganandan.pandiyan@ess.eu",
+    "pi_firstname": "Yoganandan",
+    "pi_lastname": "Pandiyan",
+    "email": "yoganandan.pandiyan@ess.eu",
+    "firstname": "Yoganandan",
+    "lastname": "Pandiyan",
+    "title": "YMIR test proposal",
+    "abstract": "Cypress demo 09-02-2026 Et adipisci temporibus enim. Possimus atque sequi tempora voluptatem voluptates. Rerum et dolorum perferendis sit et harum fugit sint. Eveniet ad eveniet aut. Eos quo quae molestiae modi vero dignissimos.",
+    "startTime": "2026-02-09T13:38:49.022Z",
+    "endTime": "2026-02-09T13:38:49.022Z",
+    "MeasurementPeriodList": [],
+    "metadata": {},
+    "parentProposalId": null,
+    "type": "Default Proposal",
+    "instrumentIds": [
+      "ebfb7106-b885-4eda-b414-3f6fb80443e4"
+    ],
+    "numberOfDatasets": 0,
+    "createdAt": "2026-02-09T13:38:49.109Z",
+    "updatedAt": "2026-02-09T13:38:49.109Z",
+    "__v": 0,
+    "id": "985796"
   }
-}
+]
