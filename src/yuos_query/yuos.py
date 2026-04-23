@@ -3,15 +3,21 @@ import logging
 import os
 import time
 
-from yuos_query import YuosServer
+from yuos_query.server import YuosHttpServer
+from yuos_query.yuos_client import YuosServer
 
 
-def main(url, instrument, cache_filepath, proxies, update_interval=900):
+def main(url, instrument, cache_filepath, proxies, update_interval=900, http_port=14870):
+    server = YuosServer.create(
+        url, os.environ.get("YUOS_TOKEN"), instrument, cache_filepath, proxies
+    )
+
+    if http_port > 0:
+        YuosHttpServer(server, port=http_port).start()
+
     while True:
         try:
-            YuosServer.create(
-                url, os.environ.get("YUOS_TOKEN"), instrument, cache_filepath, proxies
-            ).update_cache()
+            server.update_cache()
             logging.info("updated cache")
             time.sleep(update_interval)
         except Exception as error:
@@ -52,6 +58,14 @@ def cli():
     )
 
     parser.add_argument(
+        "-p",
+        "--port",
+        type=int,
+        default=14870,
+        help="port for the HTTP control server (0 to disable, default: 14870)",
+    )
+
+    parser.add_argument(
         "-l",
         "--log-level",
         type=int,
@@ -75,4 +89,9 @@ def cli():
         args.instrument,
         args.cache_filepath,
         proxies,
+        http_port=args.port,
     )
+
+
+if __name__ == "__main__":
+    cli()

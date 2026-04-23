@@ -36,6 +36,19 @@ class YuosServer:
         except ExportCacheException:
             raise
 
+    def update_single_proposal(self, proposal_id: str):
+        try:
+            proposal = self.system.get_proposal_by_id(proposal_id)
+            if proposal is None:
+                raise DataUnavailableException(
+                    f"Proposal {proposal_id} not found in proposal system"
+                )
+            self.cache.update_single(proposal_id, proposal)
+        except ServerException as error:
+            raise DataUnavailableException("Proposal system unavailable") from error
+        except ExportCacheException:
+            raise
+
 
 class YuosCacheClient:
     def __init__(self, cache):
