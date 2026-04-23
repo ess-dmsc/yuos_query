@@ -63,66 +63,47 @@ class ProposalRequester:
     def _generate_fed_id(self, firstname: str, lastname: str) -> str:
         return f"{firstname}{lastname}".lower()
 
+    def _extract_samples(self, prop: dict) -> list:
+        return [
+            SampleInfo(name=s.get("description", ""))
+            for s in prop.get("samples", [])
+        ]
+
     def get_proposals_for_instrument(self, name: str) -> Dict[str, ProposalInfo]:
         """
-        Fetch proposals for a given instrument from SciCat.
+        Fetch proposals for a given instrument from SciCat, including samples.
 
         :param name: The short name of the instrument.
         :return: Dictionary of ProposalInfo objects keyed by proposal ID.
         """
         instrument_id = self._get_instrument_id(name)
 
-        # 1. Fetch proposals for the instrument
-        filter_query = json.dumps({"where": {"instrumentIds": instrument_id}})
-        encoded_filter = quote(filter_query)
-        proposals_endpoint = f"/api/v3/proposals?filters={encoded_filter}"
-        proposals_data = self._execute_get(proposals_endpoint)
+        filter_query = json.dumps({
+            "where": {"instrumentIds": instrument_id},
+            "include": [{"relation": "samples"}],
+        })
+        proposals_data = self._execute_get(
+            f"/api/v3/proposals?filters={quote(filter_query)}"
+        )
 
         result = {}
         for prop in proposals_data:
             prop_id = prop.get("proposalId", "")
-            title = prop.get("title", "")
-            print(f"Processing proposal: {prop.get('proposalId', 'N/A')}")
-
-            # Proposer
-            # pi_first = prop.get("pi_firstname", "").strip()
             pi_first = prop.get("pi_firstname", "").strip()
             pi_last = prop.get("pi_lastname", "").strip()
-            # SciCat doesn't currently provide institution, defaulting to empty string
-            pi_institution = ""
             proposer = User(
                 pi_first,
                 pi_last,
                 self._generate_fed_id(pi_first, pi_last),
-                pi_institution
+                "",
             )
-
-            # Co-proposers (Empty response for now as requested)
-            users = []
-
-            # 2. Fetch samples for each proposal
-            sample_filter = json.dumps({"where": {"proposalId": prop_id}})
-            sample_encoded_filter = quote(sample_filter)
-            samples_endpoint = f"/api/v3/samples?filter={sample_encoded_filter}"
-            samples_data = self._execute_get(samples_endpoint)
-
-            samples = []
-            for sample in samples_data:
-                sample_name = sample.get("description", "")
-                samples.append(SampleInfo(name=sample_name))
-
-            # Database ID (mapping SciCat's _id to db_id)
-            # SciCat exposes id as a string, dropping into db_id as 0 since data_classes expects int
-            # and the system mostly relies on the string `id` properties.
-            db_id = 0
-
             result[prop_id] = ProposalInfo(
                 id=prop_id,
-                title=title,
+                title=prop.get("title", ""),
                 proposer=proposer,
-                users=users,
-                db_id=db_id,
-                samples=samples
+                users=[],
+                db_id=0,
+                samples=self._extract_samples(prop),
             )
 
         return result
@@ -134,10 +115,12 @@ class ProposalRequester:
         :param proposal_id: The proposal ID to look up.
         :return: ProposalInfo if found, None otherwise.
         """
-        filter_query = json.dumps({"where": {"proposalId": proposal_id}})
-        encoded_filter = quote(filter_query)
+        filter_query = json.dumps({
+            "where": {"proposalId": proposal_id},
+            "include": [{"relation": "samples"}],
+        })
         proposals_data = self._execute_get(
-            f"/api/v3/proposals?filters={encoded_filter}"
+            f"/api/v3/proposals?filters={quote(filter_query)}"
         )
 
         if not proposals_data:
@@ -145,7 +128,6 @@ class ProposalRequester:
 
         prop = proposals_data[0]
         prop_id = prop.get("proposalId", "")
-        title = prop.get("title", "")
 
         pi_first = prop.get("pi_firstname", "").strip()
         pi_last = prop.get("pi_lastname", "").strip()
@@ -156,20 +138,11 @@ class ProposalRequester:
             "",
         )
 
-        sample_filter = json.dumps({"where": {"proposalId": prop_id}})
-        sample_encoded_filter = quote(sample_filter)
-        samples_data = self._execute_get(
-            f"/api/v3/samples?filter={sample_encoded_filter}"
-        )
-        samples = [
-            SampleInfo(name=s.get("description", "")) for s in samples_data
-        ]
-
         return ProposalInfo(
             id=prop_id,
-            title=title,
+            title=prop.get("title", ""),
             proposer=proposer,
             users=[],
             db_id=0,
-            samples=samples,
+            samples=self._extract_samples(prop),
         )
