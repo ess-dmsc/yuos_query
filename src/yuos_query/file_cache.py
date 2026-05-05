@@ -43,6 +43,11 @@ class FileCache:
             data = file.read()
         return data
 
+    def update_single(self, proposal_id: str, proposal: "ProposalInfo"):
+        self.proposals[proposal_id] = proposal
+        self.proposals_by_fed_id = arrange_by_user(self.proposals)
+        self.export_to_file()
+
     def clear_cache(self):
         self.proposals = {}
         self.proposals_by_fed_id = {}
