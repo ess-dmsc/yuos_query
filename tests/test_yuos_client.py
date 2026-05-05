@@ -10,7 +10,7 @@ from yuos_query.exceptions import (
     ServerException,
 )
 from yuos_query.file_cache import FileCache
-from yuos_query.proposal_system import ProposalRequester
+from yuos_query.proposal_system_scicat import ProposalRequester
 from yuos_query.utils import serialise_proposals_to_json
 from yuos_query.yuos_client import YuosCacheClient, YuosServer
 
