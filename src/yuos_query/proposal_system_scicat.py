@@ -69,9 +69,7 @@ class ProposalRequester:
 
     def _extract_sample_name(self, sample: dict) -> str:
         return (
-            sample.get("sampleId")
-            or sample.get("_id")
-            or sample.get("description", "")
+            sample.get("sampleId") or sample.get("_id") or sample.get("description", "")
         )
 
     def _extract_samples(self, prop: dict) -> list:
@@ -89,10 +87,12 @@ class ProposalRequester:
         """
         instrument_id = self._get_instrument_id(name)
 
-        filter_query = json.dumps({
-            "where": {"instrumentIds": instrument_id},
-            "include": [{"relation": "samples"}],
-        })
+        filter_query = json.dumps(
+            {
+                "where": {"instrumentIds": instrument_id},
+                "include": [{"relation": "samples"}],
+            }
+        )
         proposals_data = self._execute_get(
             f"/api/v3/proposals?filters={quote(filter_query)}"
         )
@@ -126,10 +126,12 @@ class ProposalRequester:
         :param proposal_id: The proposal ID to look up.
         :return: ProposalInfo if found, None otherwise.
         """
-        filter_query = json.dumps({
-            "where": {"proposalId": proposal_id},
-            "include": [{"relation": "samples"}],
-        })
+        filter_query = json.dumps(
+            {
+                "where": {"proposalId": proposal_id},
+                "include": [{"relation": "samples"}],
+            }
+        )
         proposals_data = self._execute_get(
             f"/api/v3/proposals?filters={quote(filter_query)}"
         )

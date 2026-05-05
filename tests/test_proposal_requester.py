@@ -40,7 +40,10 @@ def test_gets_proposal_information():
         proposals = system.get_proposals_for_instrument("ymir")
 
     assert len(proposals) == 10
-    assert proposals[KNOWN_PROPOSAL_ID].title == "Spin Dynamics in Kagome Quantum Spin Liquids"
+    assert (
+        proposals[KNOWN_PROPOSAL_ID].title
+        == "Spin Dynamics in Kagome Quantum Spin Liquids"
+    )
     assert proposals[KNOWN_PROPOSAL_ID].id == KNOWN_PROPOSAL_ID
     assert proposals[KNOWN_PROPOSAL_ID].proposer == User(
         firstname="Jekabs_Science",
@@ -68,8 +71,12 @@ def test_unrecognised_instrument_raises():
 
 
 def test_get_proposal_by_id():
-    single_proposal = [p for p in get_ymir_example_data() if p["proposalId"] == KNOWN_PROPOSAL_ID]
-    single_sample = [s for s in get_sample_example_data() if s["proposalId"] == KNOWN_PROPOSAL_ID]
+    single_proposal = [
+        p for p in get_ymir_example_data() if p["proposalId"] == KNOWN_PROPOSAL_ID
+    ]
+    single_sample = [
+        s for s in get_sample_example_data() if s["proposalId"] == KNOWN_PROPOSAL_ID
+    ]
 
     def _get_by_id(url, **kwargs):
         if "/api/v3/proposals" in url:
