@@ -12,7 +12,7 @@ if "YUOS_TOKEN" in os.environ:
     YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
 SERVER_URL = "https://scheduler-staging.useroffice.ess.eu/gateway"
-KNOWN_PROPOSAL = "038243"
+KNOWN_PROPOSAL = "711730"
 
 
 @pytest.mark.skipif(

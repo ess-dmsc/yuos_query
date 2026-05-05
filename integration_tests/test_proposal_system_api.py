@@ -13,7 +13,7 @@ from yuos_query.proposal_system import (
     create_proposal_query,
 )
 
-KNOWN_PROPOSAL_ID = "038243"
+KNOWN_PROPOSAL_ID = "711730"
 YMIR_ID = 4  # From the proposal system
 URL = "https://scheduler-staging.useroffice.ess.eu/gateway"
 

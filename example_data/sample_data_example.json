@@ -1,0 +1,36 @@
+[
+    {
+        "_id": "1d850a9d-91dd-4076-86ac-90fb62d5f35b",
+        "createdBy": "ingestor",
+        "updatedBy": "ingestor",
+        "ownerGroup": "711730",
+        "accessGroups": [],
+        "instrumentGroup": "ebfb7106-b885-4eda-b414-3f6fb80443e4",
+        "isPublished": false,
+        "sampleId": "1d850a9d-91dd-4076-86ac-90fb62d5f35b",
+        "owner": "711730",
+        "type": "string",
+        "proposalId": "711730",
+        "sampleCharacteristics": {
+            "concentration": {
+                "value": "10",
+                "unit": "percent",
+                "human_name": "concentration",
+                "type": "string",
+                "valueSI": "10",
+                "unitSI": "percent"
+            },
+            "temperature": {
+                "value": 273,
+                "unit": "K",
+                "human_name": "temperature",
+                "type": "number",
+                "valueSI": 273,
+                "unitSI": "K"
+            }
+        },
+        "createdAt": "2026-04-24T11:30:48.189Z",
+        "updatedAt": "2026-04-24T11:30:48.189Z",
+        "__v": 0
+    }
+]

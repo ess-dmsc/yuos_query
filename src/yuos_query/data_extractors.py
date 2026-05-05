@@ -44,7 +44,7 @@ def _extract_sample_data(sample_data):
     }
 
     try:
-        extracted_data["name"] = sample_data.get("title", "")
+        extracted_data["name"] = sample_data.get("_id", "")
     except KeyError:
         # If the data cannot be extracted then we have to use the defaults
         pass
