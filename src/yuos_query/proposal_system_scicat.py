@@ -98,9 +98,7 @@ class ProposalRequester:
             first = str(self._meta_value(metadata, f"co_i_{i}_firstname")).strip()
             last = str(self._meta_value(metadata, f"co_i_{i}_lastname")).strip()
             org = self._meta_value(metadata, f"co_i_{i}_affiliation")
-            users.append(
-                User(first, last, self._generate_fed_id(first, last), org)
-            )
+            users.append(User(first, last, self._generate_fed_id(first, last), org))
         return users
 
     def _extract_sample_name(self, sample: dict) -> str:
