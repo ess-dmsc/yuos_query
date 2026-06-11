@@ -67,6 +67,42 @@ class ProposalRequester:
     def _generate_fed_id(self, firstname: str, lastname: str) -> str:
         return f"{firstname}{lastname}".lower()
 
+    @staticmethod
+    def _meta_value(metadata: dict, key: str, default: str = "") -> str:
+        return metadata.get(key, {}).get("value", default)
+
+    def _extract_proposer(self, prop: dict, metadata: dict) -> User:
+        first = prop.get("pi_firstname", "").strip()
+        last = prop.get("pi_lastname", "").strip()
+        return User(
+            first,
+            last,
+            self._generate_fed_id(first, last),
+            self._meta_value(metadata, "pi_affiliation"),
+        )
+
+    def _extract_users(self, metadata: dict) -> list:
+        """
+        Decode co-investigators from the proposal metadata.
+
+        Co-investigators are stored as flat, indexed keys such as
+        ``co_i_1_firstname``, ``co_i_1_lastname``, ``co_i_1_affiliation``, with
+        the total count held in ``number_of_co_is``.
+
+        :param metadata: The ``metadata`` block of a SciCat proposal.
+        :return: List of User objects, one per co-investigator.
+        """
+        count = self._meta_value(metadata, "number_of_co_is", 0)
+        users = []
+        for i in range(1, int(count) + 1):
+            first = str(self._meta_value(metadata, f"co_i_{i}_firstname")).strip()
+            last = str(self._meta_value(metadata, f"co_i_{i}_lastname")).strip()
+            org = self._meta_value(metadata, f"co_i_{i}_affiliation")
+            users.append(
+                User(first, last, self._generate_fed_id(first, last), org)
+            )
+        return users
+
     def _extract_sample_name(self, sample: dict) -> str:
         return (
             sample.get("sampleId") or sample.get("_id") or sample.get("description", "")
@@ -100,19 +136,12 @@ class ProposalRequester:
         result = {}
         for prop in proposals_data:
             prop_id = prop.get("proposalId", "")
-            pi_first = prop.get("pi_firstname", "").strip()
-            pi_last = prop.get("pi_lastname", "").strip()
-            proposer = User(
-                pi_first,
-                pi_last,
-                self._generate_fed_id(pi_first, pi_last),
-                "",
-            )
+            metadata = prop.get("metadata") or {}
             result[prop_id] = ProposalInfo(
                 id=prop_id,
                 title=prop.get("title", ""),
-                proposer=proposer,
-                users=[],
+                proposer=self._extract_proposer(prop, metadata),
+                users=self._extract_users(metadata),
                 db_id=0,
                 samples=self._extract_samples(prop),
             )
@@ -141,21 +170,13 @@ class ProposalRequester:
 
         prop = proposals_data[0]
         prop_id = prop.get("proposalId", "")
-
-        pi_first = prop.get("pi_firstname", "").strip()
-        pi_last = prop.get("pi_lastname", "").strip()
-        proposer = User(
-            pi_first,
-            pi_last,
-            self._generate_fed_id(pi_first, pi_last),
-            "",
-        )
+        metadata = prop.get("metadata") or {}
 
         return ProposalInfo(
             id=prop_id,
             title=prop.get("title", ""),
-            proposer=proposer,
-            users=[],
+            proposer=self._extract_proposer(prop, metadata),
+            users=self._extract_users(metadata),
             db_id=0,
             samples=self._extract_samples(prop),
         )

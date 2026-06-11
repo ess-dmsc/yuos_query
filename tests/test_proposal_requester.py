@@ -107,3 +107,83 @@ def test_get_proposal_by_id_returns_none_when_not_found():
         proposal = system.get_proposal_by_id("000000")
 
     assert proposal is None
+
+
+def _meta(value):
+    return {"value": value}
+
+
+PROPOSAL_WITH_USERS = {
+    "proposalId": "259600",
+    "pi_firstname": "Junjie",
+    "pi_lastname": "Quan",
+    "title": "Sample testing 2026/06/10",
+    "samples": [],
+    "metadata": {
+        "pi_affiliation": _meta("European Spallation Source ERIC (ESS)"),
+        "number_of_co_is": _meta(3),
+        "co_i_1_firstname": _meta("junjie"),
+        "co_i_1_lastname": _meta("quan"),
+        "co_i_1_affiliation": _meta("Other"),
+        "co_i_2_firstname": _meta("Yoganandan"),
+        "co_i_2_lastname": _meta("Pandiyan"),
+        "co_i_2_affiliation": _meta("European Spallation Source ERIC (ESS)"),
+        "co_i_3_firstname": _meta("Jekabs"),
+        "co_i_3_lastname": _meta("Karklins"),
+        "co_i_3_affiliation": _meta("Other"),
+    },
+}
+
+
+def test_extracts_co_investigators_as_users():
+    def _get_by_id(url, **kwargs):
+        if "/api/v3/proposals" in url:
+            return _make_mock_response([PROPOSAL_WITH_USERS])
+        elif "/api/v3/samples" in url:
+            return _make_mock_response([])
+        raise ValueError(f"Unexpected URL: {url}")
+
+    with mock.patch("requests.get", side_effect=_get_by_id):
+        system = ProposalRequester("https://scicat.example.com", ":: token ::", {})
+        proposal = system.get_proposal_by_id("259600")
+
+    assert proposal.users == [
+        User(
+            firstname="junjie",
+            lastname="quan",
+            fed_id="junjiequan",
+            organisation="Other",
+        ),
+        User(
+            firstname="Yoganandan",
+            lastname="Pandiyan",
+            fed_id="yoganandanpandiyan",
+            organisation="European Spallation Source ERIC (ESS)",
+        ),
+        User(
+            firstname="Jekabs",
+            lastname="Karklins",
+            fed_id="jekabskarklins",
+            organisation="Other",
+        ),
+    ]
+
+
+def test_populates_proposer_organisation_from_metadata():
+    def _get_by_id(url, **kwargs):
+        if "/api/v3/proposals" in url:
+            return _make_mock_response([PROPOSAL_WITH_USERS])
+        elif "/api/v3/samples" in url:
+            return _make_mock_response([])
+        raise ValueError(f"Unexpected URL: {url}")
+
+    with mock.patch("requests.get", side_effect=_get_by_id):
+        system = ProposalRequester("https://scicat.example.com", ":: token ::", {})
+        proposal = system.get_proposal_by_id("259600")
+
+    assert proposal.proposer == User(
+        firstname="Junjie",
+        lastname="Quan",
+        fed_id="junjiequan",
+        organisation="European Spallation Source ERIC (ESS)",
+    )
