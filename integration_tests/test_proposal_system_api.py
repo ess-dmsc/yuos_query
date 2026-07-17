@@ -2,20 +2,19 @@ import os
 
 import pytest
 
+from yuos_query.data_classes import SampleInfo, User
 from yuos_query.exceptions import (
     ConnectionException,
-    InvalidQueryException,
-    InvalidTokenException,
+    ServerException,
+    UnknownInstrumentException,
 )
-from yuos_query.proposal_system import (
-    INSTRUMENT_QUERY,
-    GqlWrapper,
-    create_proposal_query,
-)
+from yuos_query.proposal_system_scicat import ProposalRequester
 
-KNOWN_PROPOSAL_ID = "711730"
-YMIR_ID = 4  # From the proposal system
-URL = "https://scheduler-staging.useroffice.ess.eu/gateway"
+KNOWN_PROPOSAL_ID = "248711"
+KNOWN_EXPERIMENT_ID = "248711-1"
+
+YMIR_ID = "ebfb7106-b885-4eda-b414-3f6fb80443e4"  # From the proposal system
+URL = "https://staging.scicat.ess.eu"
 
 SKIP_TEST = True
 if "YUOS_TOKEN" in os.environ:
@@ -33,83 +32,89 @@ class TestProposalSystemAPI:
     which we need to adjust to.
     """
 
-    def test_querying_with_non_server_url_raises(self):
-        api = GqlWrapper("https://www.google.com", YUOS_TOKEN, {})
+    def test_querying_a_url_that_is_not_a_scicat_backend_raises(self):
+        # The host resolves but has no SciCat endpoints, so it answers with a
+        # 404 rather than failing at the transport level.
+        api = ProposalRequester("https://www.google.com/scicat-explorer", YUOS_TOKEN, {})
 
-        with pytest.raises(ConnectionException):
-            api.request(INSTRUMENT_QUERY)
+        with pytest.raises(ServerException):
+            api.get_proposal_by_id(KNOWN_PROPOSAL_ID)
 
     def test_querying_with_non_valid_url_raises(self):
-        api = GqlWrapper("missing.protocol.com", YUOS_TOKEN, {})
+        api = ProposalRequester("missing.protocol.com", YUOS_TOKEN, {})
 
         with pytest.raises(ConnectionException):
-            api.request(INSTRUMENT_QUERY)
+            api.get_proposal_by_id(KNOWN_PROPOSAL_ID)
 
-    def test_querying_with_invalid_token_raises(self):
-        api = GqlWrapper(URL, "ECDCINTEGRATIONTEST", {})
+    def test_querying_an_unreachable_host_raises(self):
+        api = ProposalRequester("https://not-a-real-host.invalid", YUOS_TOKEN, {})
 
-        with pytest.raises(InvalidTokenException):
-            api.request(INSTRUMENT_QUERY)
+        with pytest.raises(ConnectionException):
+            api.get_proposal_by_id(KNOWN_PROPOSAL_ID)
 
-    def test_querying_with_malformed_query_raises(self):
-        api = GqlWrapper(URL, YUOS_TOKEN, {})
+    def test_querying_with_invalid_token_returns_no_data(self):
+        # SciCat does not reject an invalid token on this endpoint; it answers
+        # 200 with an empty result set, so no proposal is found.
+        api = ProposalRequester(URL, "ECDCINTEGRATIONTEST", {})
 
-        with pytest.raises(InvalidQueryException):
-            api.request("MALFORMED QUERY")
+        assert api.get_proposal_by_id(KNOWN_PROPOSAL_ID) is None
 
-    def test_querying_for_non_numeric_instrument_id_raises(self):
-        api = GqlWrapper(URL, YUOS_TOKEN, {})
+    def test_querying_for_unknown_instrument_raises(self):
+        api = ProposalRequester(URL, YUOS_TOKEN, {})
 
-        with pytest.raises(InvalidQueryException):
-            api.request(create_proposal_query("NOT NUMERIC"))
+        with pytest.raises(UnknownInstrumentException):
+            api.get_proposals_for_instrument("NOT_AN_INSTRUMENT")
 
-    def test_querying_for_float_instrument_id_raises(self):
-        api = GqlWrapper(URL, YUOS_TOKEN, {})
+    def test_querying_for_numeric_instrument_name_raises(self):
+        # Instruments are identified by short code now, not by a numeric id,
+        # so a number matches nothing.
+        api = ProposalRequester(URL, YUOS_TOKEN, {})
 
-        with pytest.raises(InvalidQueryException):
-            api.request(create_proposal_query(123.45))
-
-    @pytest.mark.parametrize("test_input", [-10000, 10000])
-    def test_querying_with_out_of_range_instrument_id_return_empty_list(
-        self, test_input
-    ):
-        api = GqlWrapper(URL, YUOS_TOKEN, {})
-
-        result = api.request(create_proposal_query(test_input))
-
-        assert len(result["proposals"]["proposals"]) == 0
+        with pytest.raises(UnknownInstrumentException):
+            api.get_proposals_for_instrument("4")
 
     def test_querying_for_instruments_returns_expected_data(self):
-        api = GqlWrapper(URL, YUOS_TOKEN, {})
+        api = ProposalRequester(URL, YUOS_TOKEN, {})
 
-        result = api.request(INSTRUMENT_QUERY)
-
-        # Check structure matches query
-        assert "instruments" in result
-        assert "instruments" in result["instruments"]
-        assert "id" in result["instruments"]["instruments"][0]
+        assert api._get_instrument_id("YMIR") == YMIR_ID
 
     def test_querying_for_proposals_returns_expected_data(self):
-        api = GqlWrapper(URL, YUOS_TOKEN, {})
+        api = ProposalRequester(URL, YUOS_TOKEN, {})
 
-        response = api.request(create_proposal_query(YMIR_ID))
+        proposals = api.get_proposals_for_instrument("YMIR")
 
-        result = None
-        for proposal in response["proposals"]["proposals"]:
-            if proposal["proposalId"] == KNOWN_PROPOSAL_ID:
-                result = proposal
-                break
+        assert KNOWN_PROPOSAL_ID in proposals
+        result = proposals[KNOWN_PROPOSAL_ID]
 
-        assert result["title"] == "VIP demo for WP12"
-        assert result["primaryKey"] == 170
-        assert len(result["users"]) == 8
-        assert len(result["samples"]) == 1
-        assert result["proposer"]["firstname"] == "Matt"
-        assert result["proposer"]["lastname"] == "Clarke"
-        assert {
-            "firstname": "Afonso",
-            "lastname": "Mukai",
-            "institution": "ESS",
-        } in result["users"]
-        assert result["samples"][0]["id"] == 2
-        assert result["samples"][0]["title"] == "It's Lego"
+        assert result.id == KNOWN_PROPOSAL_ID
+        assert result.title == "Test proposal for Nicos"
+        assert result.proposer == User("Junjie", "Quan", "junjiequan", "")
+        assert result.users == [
+            User(
+                "Massimiliano",
+                "Novelli",
+                "massimilianonovelli",
+                "European Spallation Source ERIC (ESS)",
+            )
+        ]
+
+    def test_querying_for_experiments_returns_expected_data(self):
+        api = ProposalRequester(URL, YUOS_TOKEN, {})
+
+        proposals = api.get_proposals_for_instrument("YMIR")
+
+        assert KNOWN_EXPERIMENT_ID in proposals
+        result = proposals[KNOWN_EXPERIMENT_ID]
+
+        assert result.id == KNOWN_EXPERIMENT_ID
+        assert result.samples == [
+            SampleInfo("f9e12e7e-a130-4684-9f39-4b483fe9e3e8"),
+        ]
+
+    def test_querying_by_id_matches_the_instrument_listing(self):
+        api = ProposalRequester(URL, YUOS_TOKEN, {})
+
+        by_id = api.get_proposal_by_id(KNOWN_PROPOSAL_ID)
+        from_listing = api.get_proposals_for_instrument("YMIR")[KNOWN_PROPOSAL_ID]
+
+        assert by_id == from_listing
