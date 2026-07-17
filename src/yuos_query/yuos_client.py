@@ -65,8 +65,12 @@ class YuosCacheClient:
         return self.cache.proposals_by_fed_id[fed_id]
 
     def _does_proposal_id_conform(self, proposal_id: str) -> bool:
-        # Does proposal_id conform to the expected pattern?
-        return all(c.isdigit() for c in proposal_id)
+        # Proposal ids are all digits; an experiment adds a numeric suffix to
+        # its parent proposal's id, e.g. 248711-1.
+        proposal, _, experiment = proposal_id.partition("-")
+        if not proposal.isdigit():
+            return False
+        return experiment == "" or experiment.isdigit()
 
     def update_cache(self):
         try:
