@@ -13,9 +13,8 @@ if "YUOS_TOKEN" in os.environ:
     YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
 SERVER_URL = "https://staging.scicat.ess.eu"
-KNOWN_PROPOSAL_ID = "248711"
-KNOWN_EXPERIMENT_ID = "248711-1"
-KNOWN_FED_ID = "junjiequan"
+KNOWN_PROPOSAL_ID = "352814-1"
+KNOWN_FED_ID = "jekabskarklins"
 
 
 def create_client(directory):
@@ -35,12 +34,13 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
     with TemporaryDirectory() as directory:
         client = create_client(directory)
 
-        result = client.proposal_by_id(KNOWN_EXPERIMENT_ID)
+        result = client.proposal_by_id(KNOWN_PROPOSAL_ID)
 
-        assert result.id == KNOWN_EXPERIMENT_ID
-        assert result.proposer == ("Junjie", "Quan", "junjiequan", "")
+        assert result.id == KNOWN_PROPOSAL_ID
+        assert result.proposer == ("Jekabs", "Karklins", "jekabskarklins", "")
         assert result.samples == [
-            SampleInfo("f9e12e7e-a130-4684-9f39-4b483fe9e3e8"),
+            SampleInfo("262e2b02-be1a-4dd8-8152-8ba9f1a37188"),
+            SampleInfo("beed135e-c839-4e04-a0c5-b944517f5490"),
         ]
 
 
@@ -55,4 +55,3 @@ def test_get_proposals_for_specific_fed_id_on_ymir_instrument():
 
         assert len(results) > 0
         assert KNOWN_PROPOSAL_ID in {p.id for p in results}
-        assert KNOWN_EXPERIMENT_ID in {p.id for p in results}

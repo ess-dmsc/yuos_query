@@ -10,8 +10,7 @@ from yuos_query.exceptions import (
 )
 from yuos_query.proposal_system_scicat import ProposalRequester
 
-KNOWN_PROPOSAL_ID = "248711"
-KNOWN_EXPERIMENT_ID = "248711-1"
+KNOWN_PROPOSAL_ID = "352814-1"
 
 YMIR_ID = "ebfb7106-b885-4eda-b414-3f6fb80443e4"  # From the proposal system
 URL = "https://staging.scicat.ess.eu"
@@ -87,15 +86,14 @@ class TestProposalSystemAPI:
         result = proposals[KNOWN_PROPOSAL_ID]
 
         assert result.id == KNOWN_PROPOSAL_ID
-        assert result.title == "Test proposal for Nicos"
-        assert result.proposer == User("Junjie", "Quan", "junjiequan", "")
+        assert result.title == "Energy Storage (Powder Diffraction) - 352814-1"
+        assert result.proposer == User("Jekabs", "Karklins", "jekabskarklins", "")
+        # The proposal carries no affiliation for the PI or the visitors, so
+        # the organisation is empty for everyone. The PI is also visitor 1.
         assert result.users == [
-            User(
-                "Massimiliano",
-                "Novelli",
-                "massimilianonovelli",
-                "European Spallation Source ERIC (ESS)",
-            )
+            User("Jekabs", "Karklins", "jekabskarklins", ""),
+            User("Massimiliano", "Novelli", "massimilianonovelli", ""),
+            User("Yoganandan Apple", "Pandiyan", "yoganandan applepandiyan", ""),
         ]
 
     def test_querying_for_experiments_returns_expected_data(self):
@@ -103,12 +101,13 @@ class TestProposalSystemAPI:
 
         proposals = api.get_proposals_for_instrument("YMIR")
 
-        assert KNOWN_EXPERIMENT_ID in proposals
-        result = proposals[KNOWN_EXPERIMENT_ID]
+        assert KNOWN_PROPOSAL_ID in proposals
+        result = proposals[KNOWN_PROPOSAL_ID]
 
-        assert result.id == KNOWN_EXPERIMENT_ID
+        assert result.id == KNOWN_PROPOSAL_ID
         assert result.samples == [
-            SampleInfo("f9e12e7e-a130-4684-9f39-4b483fe9e3e8"),
+            SampleInfo("262e2b02-be1a-4dd8-8152-8ba9f1a37188"),
+            SampleInfo("beed135e-c839-4e04-a0c5-b944517f5490"),
         ]
 
     def test_querying_by_id_matches_the_instrument_listing(self):

@@ -168,7 +168,7 @@ class ProposalRequester:
         """
         filter_query = json.dumps(
             {
-                "where": {"proposalId": proposal_id, "type": "experiment"},
+                "where": {"proposalId": proposal_id, "type": "Experiment"},
                 "include": [{"relation": "samples"}],
             }
         )
