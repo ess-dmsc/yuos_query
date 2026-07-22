@@ -83,21 +83,34 @@ class ProposalRequester:
 
     def _extract_users(self, metadata: dict) -> list:
         """
-        Decode co-investigators from the proposal metadata.
+        Decode visitors from the proposal metadata.
 
-        Co-investigators are stored as flat, indexed keys such as
-        ``co_i_1_firstname``, ``co_i_1_lastname``, ``co_i_1_affiliation``, with
-        the total count held in ``number_of_co_is``.
+        Visitors are stored as flat, indexed keys such as
+        ``visitor_1_firstname``, ``visitor_1_lastname``, ``visitor_1_email``,
+        ``visitor_1_orcid``.
 
         :param metadata: The ``metadata`` block of a SciCat proposal.
-        :return: List of User objects, one per co-investigator.
+        :return: List of User objects, one per visitor.
         """
-        count = self._meta_value(metadata, "number_of_co_is", 0)
+        visitor_indices = set()
+        for key in metadata.keys():
+            if not key.startswith("visitor_"):
+                continue
+
+            parts = key.split("_")
+            if len(parts) < 3:
+                continue
+
+            try:
+                visitor_indices.add(int(parts[1]))
+            except ValueError:
+                continue
+
         users = []
-        for i in range(1, int(count) + 1):
-            first = str(self._meta_value(metadata, f"co_i_{i}_firstname")).strip()
-            last = str(self._meta_value(metadata, f"co_i_{i}_lastname")).strip()
-            org = self._meta_value(metadata, f"co_i_{i}_affiliation")
+        for i in sorted(visitor_indices):
+            first = str(self._meta_value(metadata, f"visitor_{i}_firstname")).strip()
+            last = str(self._meta_value(metadata, f"visitor_{i}_lastname")).strip()
+            org = ""
             users.append(User(first, last, self._generate_fed_id(first, last), org))
         return users
 
@@ -123,7 +136,7 @@ class ProposalRequester:
 
         filter_query = json.dumps(
             {
-                "where": {"instrumentIds": instrument_id},
+                "where": {"instrumentIds": instrument_id, "type": "Experiment"},
                 "include": [{"relation": "samples"}],
             }
         )
@@ -155,7 +168,7 @@ class ProposalRequester:
         """
         filter_query = json.dumps(
             {
-                "where": {"proposalId": proposal_id},
+                "where": {"proposalId": proposal_id, "type": "experiment"},
                 "include": [{"relation": "samples"}],
             }
         )

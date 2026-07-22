@@ -121,21 +121,23 @@ PROPOSAL_WITH_USERS = {
     "samples": [],
     "metadata": {
         "pi_affiliation": _meta("European Spallation Source ERIC (ESS)"),
-        "number_of_co_is": _meta(3),
-        "co_i_1_firstname": _meta("junjie"),
-        "co_i_1_lastname": _meta("quan"),
-        "co_i_1_affiliation": _meta("Other"),
-        "co_i_2_firstname": _meta("Yoganandan"),
-        "co_i_2_lastname": _meta("Pandiyan"),
-        "co_i_2_affiliation": _meta("European Spallation Source ERIC (ESS)"),
-        "co_i_3_firstname": _meta("Jekabs"),
-        "co_i_3_lastname": _meta("Karklins"),
-        "co_i_3_affiliation": _meta("Other"),
+        "visitor_1_firstname": _meta("junjie"),
+        "visitor_1_lastname": _meta("quan"),
+        "visitor_1_email": _meta("junjie@example.com"),
+        "visitor_1_orcid": _meta("0000-0001"),
+        "visitor_2_firstname": _meta("Yoganandan"),
+        "visitor_2_lastname": _meta("Pandiyan"),
+        "visitor_2_email": _meta("yoganandan@example.com"),
+        "visitor_2_orcid": _meta("0000-0002"),
+        "visitor_3_firstname": _meta("Jekabs"),
+        "visitor_3_lastname": _meta("Karklins"),
+        "visitor_3_email": _meta("jekabs@example.com"),
+        "visitor_3_orcid": _meta("0000-0003"),
     },
 }
 
 
-def test_extracts_co_investigators_as_users():
+def test_extracts_visitors_as_users():
     def _get_by_id(url, **kwargs):
         if "/api/v3/proposals" in url:
             return _make_mock_response([PROPOSAL_WITH_USERS])
@@ -152,19 +154,19 @@ def test_extracts_co_investigators_as_users():
             firstname="junjie",
             lastname="quan",
             fed_id="junjiequan",
-            organisation="Other",
+            organisation="",
         ),
         User(
             firstname="Yoganandan",
             lastname="Pandiyan",
             fed_id="yoganandanpandiyan",
-            organisation="European Spallation Source ERIC (ESS)",
+            organisation="",
         ),
         User(
             firstname="Jekabs",
             lastname="Karklins",
             fed_id="jekabskarklins",
-            organisation="Other",
+            organisation="",
         ),
     ]
 
