@@ -24,7 +24,9 @@ def deserialise_proposals_from_json(json_proposals):
             db_id=value["db_id"],
             samples=[
                 SampleInfo(
+                    id=sample["id"],
                     name=sample["name"],
+                    characteristics=sample["characteristics"],
                 )
                 for sample in value["samples"]
             ],

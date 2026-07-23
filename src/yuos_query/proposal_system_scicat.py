@@ -114,14 +114,18 @@ class ProposalRequester:
             users.append(User(first, last, self._generate_fed_id(first, last), org))
         return users
 
-    def _extract_sample_name(self, sample: dict) -> str:
+    def _extract_sample_id(self, sample: dict) -> str:
         return (
             sample.get("sampleId") or sample.get("_id") or sample.get("description", "")
         )
 
     def _extract_samples(self, prop: dict) -> list:
         return [
-            SampleInfo(name=self._extract_sample_name(s))
+            SampleInfo(
+                id=self._extract_sample_id(s),
+                name=s.get("sampleName", ""),
+                characteristics=s.get("sampleCharacteristics") or {},
+            )
             for s in prop.get("samples", [])
         ]
 

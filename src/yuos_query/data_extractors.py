@@ -39,17 +39,11 @@ def extract_users(proposal):
 
 
 def _extract_sample_data(sample_data):
-    extracted_data = {
-        "name": "",
-    }
-
-    try:
-        extracted_data["name"] = sample_data.get("_id", "")
-    except KeyError:
-        # If the data cannot be extracted then we have to use the defaults
-        pass
-
-    return SampleInfo(**extracted_data)
+    return SampleInfo(
+        id=sample_data.get("sampleId") or sample_data.get("_id", ""),
+        name=sample_data.get("sampleName", ""),
+        characteristics=sample_data.get("sampleCharacteristics") or {},
+    )
 
 
 def _extract_simple_value(question, default_value):

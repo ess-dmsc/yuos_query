@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from yuos_query.data_classes import SampleInfo, User
+from yuos_query.data_classes import User
 from yuos_query.exceptions import (
     ConnectionException,
     ServerException,
@@ -105,9 +105,9 @@ class TestProposalSystemAPI:
         result = proposals[KNOWN_PROPOSAL_ID]
 
         assert result.id == KNOWN_PROPOSAL_ID
-        assert result.samples == [
-            SampleInfo("262e2b02-be1a-4dd8-8152-8ba9f1a37188"),
-            SampleInfo("beed135e-c839-4e04-a0c5-b944517f5490"),
+        assert [s.id for s in result.samples] == [
+            "262e2b02-be1a-4dd8-8152-8ba9f1a37188",
+            "beed135e-c839-4e04-a0c5-b944517f5490",
         ]
 
     def test_querying_by_id_matches_the_instrument_listing(self):

@@ -3,7 +3,6 @@ from tempfile import TemporaryDirectory
 
 import pytest
 
-from yuos_query.data_classes import SampleInfo
 from yuos_query.yuos_client import YuosCacheClient, YuosServer
 
 # These tests are skipped if the YUOS_TOKEN environment variable is not defined
@@ -38,9 +37,9 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
 
         assert result.id == KNOWN_PROPOSAL_ID
         assert result.proposer == ("Jekabs", "Karklins", "jekabskarklins", "")
-        assert result.samples == [
-            SampleInfo("262e2b02-be1a-4dd8-8152-8ba9f1a37188"),
-            SampleInfo("beed135e-c839-4e04-a0c5-b944517f5490"),
+        assert [s.id for s in result.samples] == [
+            "262e2b02-be1a-4dd8-8152-8ba9f1a37188",
+            "beed135e-c839-4e04-a0c5-b944517f5490",
         ]
 
 

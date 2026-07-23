@@ -26,10 +26,14 @@ VALID_PROPOSAL_DATA = {
         db_id=169,
         samples=[
             SampleInfo(
-                name="",
+                id="262e2b02-be1a-4dd8-8152-8ba9f1a37188",
+                name="cathode coin cell (Charged)",
+                characteristics={},
             ),
             SampleInfo(
+                id="",
                 name="",
+                characteristics={},
             ),
         ],
     ),
