@@ -34,7 +34,9 @@ class TestProposalSystemAPI:
     def test_querying_a_url_that_is_not_a_scicat_backend_raises(self):
         # The host resolves but has no SciCat endpoints, so it answers with a
         # 404 rather than failing at the transport level.
-        api = ProposalRequester("https://www.google.com/scicat-explorer", YUOS_TOKEN, {})
+        api = ProposalRequester(
+            "https://www.google.com/scicat-explorer", YUOS_TOKEN, {}
+        )
 
         with pytest.raises(ServerException):
             api.get_proposal_by_id(KNOWN_PROPOSAL_ID)
