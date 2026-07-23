@@ -1,8 +1,12 @@
-from typing import List, NamedTuple, Tuple
+from typing import Dict, List, NamedTuple, Tuple
 
 SampleInfo = NamedTuple(
     "SampleInfo",
-    (("name", str),),
+    (
+        ("id", str),
+        ("name", str),
+        ("characteristics", Dict),
+    ),
 )
 
 User = NamedTuple(
