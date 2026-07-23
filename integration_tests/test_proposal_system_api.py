@@ -113,6 +113,7 @@ class TestProposalSystemAPI:
     def test_querying_by_id_matches_the_instrument_listing(self):
         api = ProposalRequester(URL, YUOS_TOKEN, {})
 
+        props = api.get_proposals_for_instrument("YMIR")
         by_id = api.get_proposal_by_id(KNOWN_PROPOSAL_ID)
         from_listing = api.get_proposals_for_instrument("YMIR")[KNOWN_PROPOSAL_ID]
 
