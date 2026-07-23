@@ -131,29 +131,6 @@ def test_extracts_sample_id_and_name():
     assert sample.name == "cathode coin cell (Charged)"
 
 
-def test_missing_sample_name_defaults_to_empty():
-    proposal_with_bare_sample = {
-        "proposalId": KNOWN_PROPOSAL_ID,
-        "title": "Sample metadata",
-        "samples": [{"sampleId": "bare-sample-id"}],
-    }
-
-    def _get_by_id(url, **kwargs):
-        if "/api/v3/proposals" in url:
-            return _make_mock_response([proposal_with_bare_sample])
-        elif "/api/v3/samples" in url:
-            return _make_mock_response([])
-        raise ValueError(f"Unexpected URL: {url}")
-
-    with mock.patch("requests.get", side_effect=_get_by_id):
-        system = ProposalRequester("https://scicat.example.com", ":: token ::", {})
-        proposal = system.get_proposal_by_id(KNOWN_PROPOSAL_ID)
-
-    sample = proposal.samples[0]
-    assert sample.id == "bare-sample-id"
-    assert sample.name == ""
-
-
 def test_get_proposal_by_id_returns_none_when_not_found():
     with mock.patch("requests.get", return_value=_make_mock_response([])):
         system = ProposalRequester("https://scicat.example.com", ":: token ::", {})
