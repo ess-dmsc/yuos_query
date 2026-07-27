@@ -150,7 +150,7 @@ class ProposalRequester:
 
         result = {}
         for prop in proposals_data:
-            prop_id = prop.get("proposalId", "")
+            prop_id = prop.get("parentProposalId", "")
             metadata = prop.get("metadata") or {}
             result[prop_id] = ProposalInfo(
                 id=prop_id,
@@ -172,7 +172,7 @@ class ProposalRequester:
         """
         filter_query = json.dumps(
             {
-                "where": {"proposalId": proposal_id, "type": "Experiment"},
+                "where": {"parentProposalId": proposal_id, "type": "Experiment"},
                 "include": [{"relation": "samples"}],
             }
         )
@@ -183,8 +183,9 @@ class ProposalRequester:
         if not proposals_data:
             return None
 
+        # TODO - handle multiple proposals with the same parent proposal ID
         prop = proposals_data[0]
-        prop_id = prop.get("proposalId", "")
+        prop_id = prop.get("parentProposalId", "")
         metadata = prop.get("metadata") or {}
 
         return ProposalInfo(

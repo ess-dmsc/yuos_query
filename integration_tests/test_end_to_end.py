@@ -12,7 +12,7 @@ if "YUOS_TOKEN" in os.environ:
     YUOS_TOKEN = os.environ["YUOS_TOKEN"]
 
 SERVER_URL = "https://staging.scicat.ess.eu"
-KNOWN_PROPOSAL_ID = "352814-1"
+KNOWN_PROPOSAL_ID = "352814"
 KNOWN_FED_ID = "jekabskarklins"
 
 

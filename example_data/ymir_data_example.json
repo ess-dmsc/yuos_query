@@ -19,7 +19,7 @@
     "endTime": "2026-04-24T11:20:17.593Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "711730",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"
@@ -119,7 +119,7 @@
     "endTime": "2026-03-13T12:00:34.803Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "117254",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"
@@ -233,7 +233,7 @@
     "endTime": "2026-02-16T15:47:00.329Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "372067",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"
@@ -264,7 +264,7 @@
     "endTime": "2026-02-09T13:54:37.917Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "552919",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"
@@ -295,7 +295,7 @@
     "endTime": "2026-02-09T13:38:49.022Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "985796",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"
@@ -326,7 +326,7 @@
     "endTime": "2026-02-09T13:09:54.594Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "418674",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"
@@ -357,7 +357,7 @@
     "endTime": "2026-02-09T12:47:48.234Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "851551",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"
@@ -388,7 +388,7 @@
     "endTime": "2026-02-09T12:39:46.457Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "284429",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"
@@ -419,7 +419,7 @@
     "endTime": "2026-02-09T12:35:57.677Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "717306",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"
@@ -450,7 +450,7 @@
     "endTime": "2026-02-09T12:24:28.199Z",
     "MeasurementPeriodList": [],
     "metadata": {},
-    "parentProposalId": null,
+    "parentProposalId": "150184",
     "type": "Default Proposal",
     "instrumentIds": [
       "ebfb7106-b885-4eda-b414-3f6fb80443e4"

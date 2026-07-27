@@ -10,7 +10,7 @@ from yuos_query.exceptions import (
 )
 from yuos_query.proposal_system_scicat import ProposalRequester
 
-KNOWN_PROPOSAL_ID = "352814-1"
+KNOWN_PROPOSAL_ID = "352814"
 
 YMIR_ID = "ebfb7106-b885-4eda-b414-3f6fb80443e4"  # From the proposal system
 URL = "https://staging.scicat.ess.eu"
