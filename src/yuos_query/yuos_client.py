@@ -30,9 +30,7 @@ class YuosServer:
     def update_cache(self):
         try:
             proposals = self.system.get_proposals_for_instrument(self.instrument)
-            logging.info(
-                f"Retrieved {len(proposals)} proposals for instrument {self.instrument}"
-            )
+            print(f"Retrieved {len(proposals)} proposals for instrument {self.instrument}")
             self.cache.update(proposals)
             self.cache.export_to_file()
         except ServerException as error:
