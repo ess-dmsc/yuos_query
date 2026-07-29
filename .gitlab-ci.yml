@@ -7,6 +7,7 @@ workflow:
 variables:
   UV_VERSION: "0.10"
   PYTHON_VERSION: "3.14"
+  RUFF_VERSION: "0.16.0"
   BASE_LAYER: trixie-slim
   # GitLab CI creates a separate mountpoint for the build directory,
   # so we need to copy instead of using hard links.
@@ -25,8 +26,8 @@ stages:
 checks:
   stage: check
   script:
-    - uvx ruff check
-    - uvx ruff format --check
+    - uvx ruff@$RUFF_VERSION check
+    - uvx ruff@$RUFF_VERSION format --check
 
 unit_tests:
   stage: test

@@ -15,6 +15,9 @@ def test_converting_proposals_to_json_and_back():
     assert proposals["471120"].db_id == VALID_PROPOSAL_DATA["471120"].db_id
 
     assert (
+        proposals["471120"].samples[0].id == VALID_PROPOSAL_DATA["471120"].samples[0].id
+    )
+    assert (
         proposals["471120"].samples[0].name
         == VALID_PROPOSAL_DATA["471120"].samples[0].name
     )

@@ -9,7 +9,7 @@ from yuos_query.exceptions import (
     ServerException,
 )
 from yuos_query.file_cache import FileCache
-from yuos_query.proposal_system import ProposalRequester
+from yuos_query.proposal_system_scicat import ProposalRequester
 
 
 class YuosServer:
@@ -65,7 +65,8 @@ class YuosCacheClient:
         return self.cache.proposals_by_fed_id[fed_id]
 
     def _does_proposal_id_conform(self, proposal_id: str) -> bool:
-        # Does proposal_id conform to the expected pattern?
+        # Proposals are identified by their id alone, e.g. 248711; an
+        # experiment is identified by its parent proposal's id.
         return all(c.isdigit() for c in proposal_id)
 
     def update_cache(self):

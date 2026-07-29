@@ -10,7 +10,7 @@ from yuos_query.exceptions import (
     ServerException,
 )
 from yuos_query.file_cache import FileCache
-from yuos_query.proposal_system import ProposalRequester
+from yuos_query.proposal_system_scicat import ProposalRequester
 from yuos_query.utils import serialise_proposals_to_json
 from yuos_query.yuos_client import YuosCacheClient, YuosServer
 
@@ -26,10 +26,14 @@ VALID_PROPOSAL_DATA = {
         db_id=169,
         samples=[
             SampleInfo(
-                name="",
+                id="262e2b02-be1a-4dd8-8152-8ba9f1a37188",
+                name="cathode coin cell (Charged)",
+                characteristics={},
             ),
             SampleInfo(
+                id="",
                 name="",
+                characteristics={},
             ),
         ],
     ),

@@ -20,6 +20,15 @@ dev = [
 [project.scripts]
 yuos-query = "yuos_query.yuos:cli"
 
+[tool.ruff.lint]
+# Enabled rules are pinned explicitly: ruff 0.16 grew its default set from 59
+# to over 400 rules, which failed CI on code nobody had touched. Adopting a
+# rule should be a deliberate choice, not a side effect of a ruff release.
+select = [
+    "E4", "E7", "E9",  # pycodestyle
+    "F",               # pyflakes
+]
+
 [build-system]
 requires = ["uv_build>=0.10.12,<0.11.0"]
 build-backend = "uv_build"
