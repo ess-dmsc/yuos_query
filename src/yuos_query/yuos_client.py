@@ -1,4 +1,3 @@
-import logging
 from typing import List, Optional
 
 from yuos_query.data_classes import ProposalInfo
