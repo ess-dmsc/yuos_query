@@ -140,7 +140,7 @@ class ProposalRequester:
 
         filter_query = json.dumps(
             {
-                "where": {"instrumentIds": instrument_id, "type": "Experiment"},
+                "where": {"instrumentIds": instrument_id, "type": "Experiment", "metadata.status_experiment.value":"ACTIVE"},
                 "include": [{"relation": "samples"}],
             }
         )
