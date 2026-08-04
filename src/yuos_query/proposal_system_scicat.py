@@ -110,8 +110,8 @@ class ProposalRequester:
         for i in sorted(visitor_indices):
             first = str(self._meta_value(metadata, f"visitor_{i}_firstname")).strip()
             last = str(self._meta_value(metadata, f"visitor_{i}_lastname")).strip()
-            org = ""
-            users.append(User(first, last, self._generate_fed_id(first, last), org))
+            affiliation = str(self._meta_value(metadata, f"visitor_{i}_affiliation")).strip()
+            users.append(User(first, last, self._generate_fed_id(first, last), affiliation))
         return users
 
     def _extract_sample_id(self, sample: dict) -> str:
