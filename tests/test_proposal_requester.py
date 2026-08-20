@@ -201,6 +201,41 @@ def test_extracts_visitors_as_users():
     ]
 
 
+PROPOSAL_WITH_PI_IN_METADATA = {
+    "proposalId": "722882-1",
+    "parentProposalId": "722882",
+    "title": "Bifrost cold commissioning - 722882-1",
+    "samples": [],
+    "metadata": {
+        "pi_firstname": _meta("Jonas"),
+        "pi_lastname": _meta("Petersson"),
+        "pi_email": _meta("jonas.petersson@ess.eu"),
+        "pi_affiliation": _meta("European Spallation Source ERIC (ESS)"),
+        "number_of_visitors": _meta(0),
+    },
+}
+
+
+def test_extracts_proposer_from_metadata():
+    def _get_by_id(url, **kwargs):
+        if "/api/v3/proposals" in url:
+            return _make_mock_response([PROPOSAL_WITH_PI_IN_METADATA])
+        elif "/api/v3/samples" in url:
+            return _make_mock_response([])
+        raise ValueError(f"Unexpected URL: {url}")
+
+    with mock.patch("requests.get", side_effect=_get_by_id):
+        system = ProposalRequester("https://scicat.example.com", ":: token ::", {})
+        proposal = system.get_proposal_by_id("722882")
+
+    assert proposal.proposer == User(
+        firstname="Jonas",
+        lastname="Petersson",
+        fed_id="jonaspetersson",
+        organisation="European Spallation Source ERIC (ESS)",
+    )
+
+
 def test_populates_proposer_organisation_from_metadata():
     def _get_by_id(url, **kwargs):
         if "/api/v3/proposals" in url:

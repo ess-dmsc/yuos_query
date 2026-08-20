@@ -72,13 +72,28 @@ class ProposalRequester:
         return metadata.get(key, {}).get("value", default)
 
     def _extract_proposer(self, prop: dict, metadata: dict) -> User:
-        first = prop.get("pi_firstname", "").strip()
-        last = prop.get("pi_lastname", "").strip()
+        """
+        Decode the principal investigator from the proposal metadata.
+
+        The PI details are stored in the ``metadata`` block, falling back to
+        the top-level proposal fields for older proposals.
+
+        :param prop: A SciCat proposal.
+        :param metadata: The ``metadata`` block of the proposal.
+        :return: The User object for the principal investigator.
+        """
+        first = str(
+            self._meta_value(metadata, "pi_firstname") or prop.get("pi_firstname") or ""
+        ).strip()
+        last = str(
+            self._meta_value(metadata, "pi_lastname") or prop.get("pi_lastname") or ""
+        ).strip()
+        affiliation = str(self._meta_value(metadata, "pi_affiliation") or "").strip()
         return User(
             first,
             last,
             self._generate_fed_id(first, last),
-            self._meta_value(metadata, "pi_affiliation"),
+            affiliation,
         )
 
     def _extract_users(self, metadata: dict) -> list:
