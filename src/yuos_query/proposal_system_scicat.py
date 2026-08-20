@@ -69,12 +69,17 @@ class ProposalRequester:
         return metadata.get(key, {}).get("value", default)
 
     def _extract_proposer(self, prop: dict, metadata: dict) -> User:
-        first = prop.get("pi_firstname", "").strip()
-        last = prop.get("pi_lastname", "").strip()
-        fed_id = str(self._meta_value(metadata, "pi_orcid")).strip()
-        affiliation = self._meta_value(metadata, "pi_affiliation")
-        email = prop.get("pi_email", "").strip()
-        return User(first, last, fed_id, affiliation, email)
+        """
+        Decode the PI from the proposal metadata.
+        """
+        first = str(self._meta_value(metadata, "pi_firstname") or "").strip()
+        last = str(self._meta_value(metadata, "pi_lastname") or "").strip()
+        affiliation = str(self._meta_value(metadata, "pi_affiliation") or "").strip()
+        orcid = str(self._meta_value(metadata, "pi_orcid") or "").strip()
+        email = str(
+            self._meta_value(metadata, "pi_email") or prop.get("pi_email") or ""
+        ).strip()
+        return User(first, last, orcid, affiliation, email)
 
     def _extract_users(self, metadata: dict) -> list:
         """

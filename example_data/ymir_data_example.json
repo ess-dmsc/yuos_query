@@ -19,6 +19,12 @@
     "endTime": "2026-04-24T11:20:17.593Z",
     "MeasurementPeriodList": [],
     "metadata": {
+      "pi_firstname": {
+        "value": "Jekabs"
+      },
+      "pi_lastname": {
+        "value": "Karklins"
+      },
       "pi_orcid": {
         "value": "jekabskarklins"
       }
@@ -122,7 +128,14 @@
     "startTime": "2026-03-13T12:00:34.803Z",
     "endTime": "2026-03-13T12:00:34.803Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_firstname": {
+        "value": "Jekabs"
+      },
+      "pi_lastname": {
+        "value": "Karklins"
+      }
+    },
     "parentProposalId": "117254",
     "type": "Default Proposal",
     "instrumentIds": [
@@ -236,7 +249,14 @@
     "startTime": "2026-02-16T15:47:00.329Z",
     "endTime": "2026-02-16T15:47:00.329Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_firstname": {
+        "value": "Swap team"
+      },
+      "pi_lastname": {
+        "value": "ESS"
+      }
+    },
     "parentProposalId": "372067",
     "type": "Default Proposal",
     "instrumentIds": [
@@ -267,7 +287,14 @@
     "startTime": "2026-02-09T13:54:37.917Z",
     "endTime": "2026-02-09T13:54:37.917Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_firstname": {
+        "value": "Yoganandan"
+      },
+      "pi_lastname": {
+        "value": "Pandiyan"
+      }
+    },
     "parentProposalId": "552919",
     "type": "Default Proposal",
     "instrumentIds": [
@@ -298,7 +325,14 @@
     "startTime": "2026-02-09T13:38:49.022Z",
     "endTime": "2026-02-09T13:38:49.022Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_firstname": {
+        "value": "Yoganandan"
+      },
+      "pi_lastname": {
+        "value": "Pandiyan"
+      }
+    },
     "parentProposalId": "985796",
     "type": "Default Proposal",
     "instrumentIds": [
@@ -329,7 +363,14 @@
     "startTime": "2026-02-09T13:09:54.594Z",
     "endTime": "2026-02-09T13:09:54.594Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_firstname": {
+        "value": "Yoganandan"
+      },
+      "pi_lastname": {
+        "value": "Pandiyan"
+      }
+    },
     "parentProposalId": "418674",
     "type": "Default Proposal",
     "instrumentIds": [
@@ -360,7 +401,14 @@
     "startTime": "2026-02-09T12:47:48.234Z",
     "endTime": "2026-02-09T12:47:48.234Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_firstname": {
+        "value": "Yoganandan"
+      },
+      "pi_lastname": {
+        "value": "Pandiyan"
+      }
+    },
     "parentProposalId": "851551",
     "type": "Default Proposal",
     "instrumentIds": [
@@ -391,7 +439,14 @@
     "startTime": "2026-02-09T12:39:46.457Z",
     "endTime": "2026-02-09T12:39:46.457Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_firstname": {
+        "value": "Yoganandan"
+      },
+      "pi_lastname": {
+        "value": "Pandiyan"
+      }
+    },
     "parentProposalId": "284429",
     "type": "Default Proposal",
     "instrumentIds": [
@@ -422,7 +477,14 @@
     "startTime": "2026-02-09T12:35:57.677Z",
     "endTime": "2026-02-09T12:35:57.677Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_firstname": {
+        "value": "Yoganandan"
+      },
+      "pi_lastname": {
+        "value": "Pandiyan"
+      }
+    },
     "parentProposalId": "717306",
     "type": "Default Proposal",
     "instrumentIds": [
@@ -453,7 +515,14 @@
     "startTime": "2026-02-09T12:24:28.199Z",
     "endTime": "2026-02-09T12:24:28.199Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_firstname": {
+        "value": "Yoganandan"
+      },
+      "pi_lastname": {
+        "value": "Pandiyan"
+      }
+    },
     "parentProposalId": "150184",
     "type": "Default Proposal",
     "instrumentIds": [
