@@ -47,8 +47,8 @@ def test_gets_proposal_information():
     assert proposals[KNOWN_PROPOSAL_ID].id == KNOWN_PROPOSAL_ID
     assert proposals[KNOWN_PROPOSAL_ID].proposer == User(
         firstname="Jekabs_Science",
-        lastname="KIarklins_User",
-        fed_id="jekabs_sciencekiarklins_user",
+        lastname="Karklins_User",
+        fed_id="jekabs_scienceKarklins_User",
         organisation="",
     )
     assert proposals[KNOWN_PROPOSAL_ID].users == []
@@ -94,8 +94,8 @@ def test_get_proposal_by_id():
     assert proposal.title == "Spin Dynamics in Kagome Quantum Spin Liquids"
     assert proposal.proposer == User(
         firstname="Jekabs_Science",
-        lastname="KIarklins_User",
-        fed_id="jekabs_sciencekiarklins_user",
+        lastname="Karklins_User",
+        fed_id="jekabs_scienceKarklins_User",
         organisation="",
     )
     assert proposal.users == []
