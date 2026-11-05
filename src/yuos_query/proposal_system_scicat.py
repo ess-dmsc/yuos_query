@@ -110,11 +110,12 @@ class ProposalRequester:
         for i in sorted(visitor_indices):
             first = str(self._meta_value(metadata, f"visitor_{i}_firstname")).strip()
             last = str(self._meta_value(metadata, f"visitor_{i}_lastname")).strip()
+            oidcSub = str(self._meta_value(metadata, f"visitor_{i}_orcid")).strip()
             affiliation = str(
                 self._meta_value(metadata, f"visitor_{i}_affiliation")
             ).strip()
             users.append(
-                User(first, last, self._generate_fed_id(first, last), affiliation)
+                User(first, last, oidcSub, affiliation)
             )
         return users
 
@@ -196,11 +197,12 @@ class ProposalRequester:
         prop_id = prop.get("parentProposalId", "")
         metadata = prop.get("metadata") or {}
 
+        samples = self._extract_samples(prop)
         return ProposalInfo(
             id=prop_id,
             title=prop.get("title", ""),
             proposer=self._extract_proposer(prop, metadata),
             users=self._extract_users(metadata),
             db_id=0,
-            samples=self._extract_samples(prop),
+            samples=samples,
         )

@@ -183,19 +183,19 @@ def test_extracts_visitors_as_users():
         User(
             firstname="junjie",
             lastname="quan",
-            fed_id="junjiequan",
+            fed_id="0000-0001",
             organisation="",
         ),
         User(
             firstname="Yoganandan",
             lastname="Pandiyan",
-            fed_id="yoganandanpandiyan",
+            fed_id="0000-0002",
             organisation="",
         ),
         User(
             firstname="Jekabs",
             lastname="Karklins",
-            fed_id="jekabskarklins",
+            fed_id="0000-0003",
             organisation="",
         ),
     ]
