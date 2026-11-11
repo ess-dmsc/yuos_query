@@ -131,6 +131,51 @@ def test_extracts_sample_id_and_name():
     assert sample.name == "cathode coin cell (Charged)"
 
 
+def test_keeps_only_scientific_sample_characteristics():
+    proposal_with_sample = {
+        "proposalId": KNOWN_PROPOSAL_ID,
+        "title": "Sample metadata",
+        "samples": [
+            {
+                "sampleId": "262e2b02-be1a-4dd8-8152-8ba9f1a37188",
+                "sampleName": "cathode coin cell (Charged)",
+                "sampleCharacteristics": {
+                    "formula": {
+                        "human_name": "Formula",
+                        "value": '"LiCoO2"',
+                        "is_scientific_metadata": True,
+                    },
+                    "waste": {
+                        "human_name": "Waste disposal",
+                        "value": '"Return to user"',
+                        "is_scientific_metadata": False,
+                    },
+                    "uos_sample_id": {
+                        "human_name": "UOS Sample ID",
+                        "value": 42,
+                        "is_scientific_metadata": False,
+                    },
+                    "no_flag": {"human_name": "Legacy field", "value": "x"},
+                },
+            }
+        ],
+    }
+
+    with mock.patch(
+        "requests.get", return_value=_make_mock_response([proposal_with_sample])
+    ):
+        system = ProposalRequester("https://scicat.example.com", ":: token ::", {})
+        proposal = system.get_proposal_by_id(KNOWN_PROPOSAL_ID)
+
+    assert proposal.samples[0].characteristics == {
+        "formula": {
+            "human_name": "Formula",
+            "value": '"LiCoO2"',
+            "is_scientific_metadata": True,
+        }
+    }
+
+
 def test_get_proposal_by_id_returns_none_when_not_found():
     with mock.patch("requests.get", return_value=_make_mock_response([])):
         system = ProposalRequester("https://scicat.example.com", ":: token ::", {})

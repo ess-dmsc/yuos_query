@@ -123,12 +123,28 @@ class ProposalRequester:
             sample.get("sampleId") or sample.get("_id") or sample.get("description", "")
         )
 
+    @staticmethod
+    def _extract_scientific_characteristics(sample: dict) -> dict:
+        """
+        Keep only the sample characteristics marked as scientific metadata.
+
+        The connector sets ``is_scientific_metadata`` on every characteristic;
+        anything not explicitly ``True`` (bookkeeping fields, irrelevant
+        questionary answers, or entries without the flag) is left out.
+        """
+        characteristics = sample.get("sampleCharacteristics") or {}
+        return {
+            key: entry
+            for key, entry in characteristics.items()
+            if isinstance(entry, dict) and entry.get("is_scientific_metadata") is True
+        }
+
     def _extract_samples(self, prop: dict) -> list:
         return [
             SampleInfo(
                 id=self._extract_sample_id(s),
                 name=s.get("sampleName", ""),
-                characteristics=s.get("sampleCharacteristics") or {},
+                characteristics=self._extract_scientific_characteristics(s),
             )
             for s in prop.get("samples", [])
         ]
