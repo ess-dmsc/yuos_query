@@ -48,7 +48,7 @@ def test_gets_proposal_information():
     assert proposals[KNOWN_PROPOSAL_ID].proposer == User(
         firstname="Jekabs_Science",
         lastname="Karklins_User",
-        fed_id="jekabs_scienceKarklins_User",
+        fed_id="0003",
         organisation="",
     )
     assert proposals[KNOWN_PROPOSAL_ID].users == []
@@ -95,7 +95,7 @@ def test_get_proposal_by_id():
     assert proposal.proposer == User(
         firstname="Jekabs_Science",
         lastname="Karklins_User",
-        fed_id="jekabs_scienceKarklins_User",
+        fed_id="0003",
         organisation="",
     )
     assert proposal.users == []
@@ -151,6 +151,7 @@ PROPOSAL_WITH_USERS = {
     "samples": [],
     "metadata": {
         "pi_affiliation": _meta("European Spallation Source ERIC (ESS)"),
+        "pi_orcid": _meta("0000-0004"),
         "visitor_1_firstname": _meta("junjie"),
         "visitor_1_lastname": _meta("quan"),
         "visitor_1_email": _meta("junjie@example.com"),
@@ -216,6 +217,6 @@ def test_populates_proposer_organisation_from_metadata():
     assert proposal.proposer == User(
         firstname="Junjie",
         lastname="Quan",
-        fed_id="junjiequan",
+        fed_id="0000-0004",
         organisation="European Spallation Source ERIC (ESS)",
     )

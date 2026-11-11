@@ -18,7 +18,11 @@
     "startTime": "2026-04-24T11:20:17.593Z",
     "endTime": "2026-04-24T11:20:17.593Z",
     "MeasurementPeriodList": [],
-    "metadata": {},
+    "metadata": {
+      "pi_orcid": {
+        "value": "0003"
+      }
+    },
     "parentProposalId": "711730",
     "type": "Default Proposal",
     "instrumentIds": [

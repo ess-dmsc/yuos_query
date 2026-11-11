@@ -64,9 +64,6 @@ class ProposalRequester:
 
         raise UnknownInstrumentException(f"Unknown instrument {name}")
 
-    def _generate_fed_id(self, firstname: str, lastname: str) -> str:
-        return f"{firstname}{lastname}".lower()
-
     @staticmethod
     def _meta_value(metadata: dict, key: str, default: str = "") -> str:
         return metadata.get(key, {}).get("value", default)
@@ -77,7 +74,7 @@ class ProposalRequester:
         return User(
             first,
             last,
-            self._generate_fed_id(first, last),
+            str(self._meta_value(metadata, "pi_orcid")).strip(),
             self._meta_value(metadata, "pi_affiliation"),
         )
 
@@ -110,13 +107,11 @@ class ProposalRequester:
         for i in sorted(visitor_indices):
             first = str(self._meta_value(metadata, f"visitor_{i}_firstname")).strip()
             last = str(self._meta_value(metadata, f"visitor_{i}_lastname")).strip()
-            oidcSub = str(self._meta_value(metadata, f"visitor_{i}_orcid")).strip()
+            fed_id = str(self._meta_value(metadata, f"visitor_{i}_orcid")).strip()
             affiliation = str(
                 self._meta_value(metadata, f"visitor_{i}_affiliation")
             ).strip()
-            users.append(
-                User(first, last, oidcSub, affiliation)
-            )
+            users.append(User(first, last, fed_id, affiliation))
         return users
 
     def _extract_sample_id(self, sample: dict) -> str:
