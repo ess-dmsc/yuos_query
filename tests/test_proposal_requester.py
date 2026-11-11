@@ -46,9 +46,9 @@ def test_gets_proposal_information():
     )
     assert proposals[KNOWN_PROPOSAL_ID].id == KNOWN_PROPOSAL_ID
     assert proposals[KNOWN_PROPOSAL_ID].proposer == User(
-        firstname="Jekabs_Science",
-        lastname="Karklins_User",
-        fed_id="0003",
+        firstname="Jekabs",
+        lastname="Karklins",
+        fed_id="jekabskarklins",
         organisation="",
     )
     assert proposals[KNOWN_PROPOSAL_ID].users == []
@@ -93,9 +93,9 @@ def test_get_proposal_by_id():
     assert proposal.id == KNOWN_PROPOSAL_ID
     assert proposal.title == "Spin Dynamics in Kagome Quantum Spin Liquids"
     assert proposal.proposer == User(
-        firstname="Jekabs_Science",
-        lastname="Karklins_User",
-        fed_id="0003",
+        firstname="Jekabs",
+        lastname="Karklins",
+        fed_id="jekabskarklins",
         organisation="",
     )
     assert proposal.users == []
@@ -151,19 +151,19 @@ PROPOSAL_WITH_USERS = {
     "samples": [],
     "metadata": {
         "pi_affiliation": _meta("European Spallation Source ERIC (ESS)"),
-        "pi_orcid": _meta("0000-0004"),
+        "pi_orcid": _meta("junjiequan"),
         "visitor_1_firstname": _meta("junjie"),
         "visitor_1_lastname": _meta("quan"),
         "visitor_1_email": _meta("junjie@example.com"),
-        "visitor_1_orcid": _meta("0000-0001"),
+        "visitor_1_orcid": _meta("junjiequan"),
         "visitor_2_firstname": _meta("Yoganandan"),
         "visitor_2_lastname": _meta("Pandiyan"),
         "visitor_2_email": _meta("yoganandan@example.com"),
-        "visitor_2_orcid": _meta("0000-0002"),
+        "visitor_2_orcid": _meta("yoganandanpandiyan"),
         "visitor_3_firstname": _meta("Jekabs"),
         "visitor_3_lastname": _meta("Karklins"),
         "visitor_3_email": _meta("jekabs@example.com"),
-        "visitor_3_orcid": _meta("0000-0003"),
+        "visitor_3_orcid": _meta("jekabskarklins"),
     },
 }
 
@@ -184,19 +184,19 @@ def test_extracts_visitors_as_users():
         User(
             firstname="junjie",
             lastname="quan",
-            fed_id="0000-0001",
+            fed_id="junjiequan",
             organisation="",
         ),
         User(
             firstname="Yoganandan",
             lastname="Pandiyan",
-            fed_id="0000-0002",
+            fed_id="yoganandanpandiyan",
             organisation="",
         ),
         User(
             firstname="Jekabs",
             lastname="Karklins",
-            fed_id="0000-0003",
+            fed_id="jekabskarklins",
             organisation="",
         ),
     ]
@@ -217,6 +217,6 @@ def test_populates_proposer_organisation_from_metadata():
     assert proposal.proposer == User(
         firstname="Junjie",
         lastname="Quan",
-        fed_id="0000-0004",
+        fed_id="junjiequan",
         organisation="European Spallation Source ERIC (ESS)",
     )

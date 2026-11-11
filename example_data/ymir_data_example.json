@@ -8,11 +8,11 @@
     "isPublished": false,
     "proposalId": "711730",
     "pi_email": "sisixa1543@gxuzi.com",
-    "pi_firstname": "Jekabs_Science",
-    "pi_lastname": "Karklins_User",
+    "pi_firstname": "Jekabs",
+    "pi_lastname": "Karklins",
     "email": "sisixa1543@gxuzi.com",
-    "firstname": "Jekabs_Science",
-    "lastname": "Karklins_User",
+    "firstname": "Jekabs",
+    "lastname": "Karklins",
     "title": "Spin Dynamics in Kagome Quantum Spin Liquids",
     "abstract": "Resistance to antimicrobial peptides (AMPs) is a growing global health crisis. To design better therapeutics, we must understand the precise mechanism of membrane insertion. We propose to use Small-Angle Neutron Scattering (SANS) and neutron reflectometry to map the depth-dependent insertion of [Specific Peptide] into a deuterated lipid bilayer. The exceptionally high neutron flux of this facility is required to resolve the low-contrast structural changes occurring during the peptide-membrane binding event at physiological temperatures. These experiments will provide a high-resolution structural map of the pore-formation process, offering a structural template for the development of synthetic, membrane-active drugs.",
     "startTime": "2026-04-24T11:20:17.593Z",
@@ -20,7 +20,7 @@
     "MeasurementPeriodList": [],
     "metadata": {
       "pi_orcid": {
-        "value": "0003"
+        "value": "jekabskarklins"
       }
     },
     "parentProposalId": "711730",
