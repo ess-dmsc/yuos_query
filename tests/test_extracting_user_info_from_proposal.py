@@ -13,23 +13,23 @@ class ProposalBuilder:
         self._proposal_data["title"] = title
         return self
 
-    def user(self, first, last, org):
-        self._proposal_data["users"].append(self._build_user(first, last, org))
+    def user(self, first, last, org, email=""):
+        self._proposal_data["users"].append(self._build_user(first, last, org, email))
         return self
 
     def no_users(self):
         del self._proposal_data["users"]
         return self
 
-    def proposer(self, first, last, org):
-        self._proposal_data["proposer"] = self._build_user(first, last, org)
+    def proposer(self, first, last, org, email=""):
+        self._proposal_data["proposer"] = self._build_user(first, last, org, email)
         return self
 
     def no_proposer(self):
         del self._proposal_data["proposer"]
         return self
 
-    def _build_user(self, first, last, org):
+    def _build_user(self, first, last, org, email):
         user = {}
         if first:
             user["firstname"] = first
@@ -37,6 +37,8 @@ class ProposalBuilder:
             user["lastname"] = last
         if org:
             user["institution"] = org
+        if email:
+            user["email"] = email
         return user
 
     def finish(self):
@@ -76,13 +78,19 @@ def test_extracting_users_stray_whitespace_removed():
         ProposalBuilder()
         .id(123)
         .title("Title filled out correctly")
-        .user(" Ralf ", " Fields ", " Some University ")
+        .user(" Ralf ", " Fields ", " Some University ", " ralf.fields@example.com ")
         .proposer("Alberto", "Accountant", "Some University")
         .finish()
     )
 
     results = extract_users(proposal)
-    assert results[0] == ("Ralf", "Fields", "ralffields", "Some University")
+    assert results[0] == (
+        "Ralf",
+        "Fields",
+        "ralffields",
+        "Some University",
+        "ralf.fields@example.com",
+    )
 
 
 def test_extracting_users_when_user_missing_firstname_or_lastname_inserts_blanks():
@@ -99,8 +107,8 @@ def test_extracting_users_when_user_missing_firstname_or_lastname_inserts_blanks
 
     results = extract_users(proposal)
     assert len(results) == 2
-    assert ("Ralf", "", "ralf", "Some University") in results
-    assert ("", "Fields", "fields", "Some University") in results
+    assert ("Ralf", "", "ralf", "Some University", "") in results
+    assert ("", "Fields", "fields", "Some University", "") in results
 
 
 def test_extracting_users_when_user_missing_organisation_inserts_blanks():
@@ -116,7 +124,7 @@ def test_extracting_users_when_user_missing_organisation_inserts_blanks():
 
     results = extract_users(proposal)
     assert len(results) == 1
-    assert ("Ralf", "Fields", "ralffields", "") in results
+    assert ("Ralf", "Fields", "ralffields", "", "") in results
 
 
 def test_extracting_proposer_when_not_present_gives_none():
@@ -140,12 +148,23 @@ def test_extracting_proposer_stray_whitespace_removed():
         .id(123)
         .title("Title filled out correctly")
         .user("Ralf", "Fields", "Some University")
-        .proposer(" Alberto ", " Accountant ", " Some University ")
+        .proposer(
+            " Alberto ",
+            " Accountant ",
+            " Some University ",
+            " alberto.accountant@example.com ",
+        )
         .finish()
     )
 
     result = extract_proposer(proposal)
-    assert result == ("Alberto", "Accountant", "albertoaccountant", "Some University")
+    assert result == (
+        "Alberto",
+        "Accountant",
+        "albertoaccountant",
+        "Some University",
+        "alberto.accountant@example.com",
+    )
 
 
 def test_extracting_multiple_users():
@@ -153,13 +172,24 @@ def test_extracting_multiple_users():
         ProposalBuilder()
         .id(123)
         .title("Title filled out correctly")
-        .user("Ralf", "Fields", "Some University")
-        .user("Jane", "Eyre", "ESS")
-        .proposer(" Alberto ", " Accountant ", " Some University ")
+        .user("Ralf", "Fields", "Some University", "ralf.fields@example.com")
+        .user("Jane", "Eyre", "ESS", "jane.eyre@example.com")
+        .proposer(
+            " Alberto ",
+            " Accountant ",
+            " Some University ",
+            " alberto.accountant@example.com ",
+        )
         .finish()
     )
 
     results = extract_users(proposal)
     assert len(results) == 2
-    assert results[0] == ("Ralf", "Fields", "ralffields", "Some University")
-    assert results[1] == ("Jane", "Eyre", "janeeyre", "ESS")
+    assert results[0] == (
+        "Ralf",
+        "Fields",
+        "ralffields",
+        "Some University",
+        "ralf.fields@example.com",
+    )
+    assert results[1] == ("Jane", "Eyre", "janeeyre", "ESS", "jane.eyre@example.com")

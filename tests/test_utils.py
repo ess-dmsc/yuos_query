@@ -1,4 +1,7 @@
+import json
+
 from tests.test_yuos_client import VALID_PROPOSAL_DATA
+from yuos_query.data_classes import User
 from yuos_query.utils import (
     deserialise_proposals_from_json,
     serialise_proposals_to_json,
@@ -21,3 +24,23 @@ def test_converting_proposals_to_json_and_back():
         proposals["471120"].samples[0].name
         == VALID_PROPOSAL_DATA["471120"].samples[0].name
     )
+
+
+def test_reading_cache_without_email_gives_empty_email():
+    cache_without_email = json.dumps(
+        {
+            "123456": {
+                "id": "123456",
+                "title": "A test proposal",
+                "proposer": ["John", "Doe", "johndoe", "ESS"],
+                "users": [["Jane", "Doe", "janedoe", "ESS"]],
+                "db_id": 0,
+                "samples": [],
+            }
+        }
+    )
+
+    proposals = deserialise_proposals_from_json(cache_without_email)
+
+    assert proposals["123456"].proposer == User("John", "Doe", "johndoe", "ESS", "")
+    assert proposals["123456"].users == [User("Jane", "Doe", "janedoe", "ESS", "")]

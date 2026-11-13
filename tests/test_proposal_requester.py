@@ -50,6 +50,7 @@ def test_gets_proposal_information():
         lastname="Karklins",
         fed_id="jekabskarklins",
         organisation="",
+        email="sisixa1543@gxuzi.com",
     )
     assert proposals[KNOWN_PROPOSAL_ID].users == []
 
@@ -97,6 +98,7 @@ def test_get_proposal_by_id():
         lastname="Karklins",
         fed_id="jekabskarklins",
         organisation="",
+        email="sisixa1543@gxuzi.com",
     )
     assert proposal.users == []
 
@@ -147,6 +149,7 @@ PROPOSAL_WITH_USERS = {
     "proposalId": "259600",
     "pi_firstname": "Junjie",
     "pi_lastname": "Quan",
+    "pi_email": "junjie.quan@ess.eu",
     "title": "Sample testing 2026/06/10",
     "samples": [],
     "metadata": {
@@ -186,18 +189,21 @@ def test_extracts_visitors_as_users():
             lastname="quan",
             fed_id="junjiequan",
             organisation="",
+            email="junjie@example.com",
         ),
         User(
             firstname="Yoganandan",
             lastname="Pandiyan",
             fed_id="yoganandanpandiyan",
             organisation="",
+            email="yoganandan@example.com",
         ),
         User(
             firstname="Jekabs",
             lastname="Karklins",
             fed_id="jekabskarklins",
             organisation="",
+            email="jekabs@example.com",
         ),
     ]
 
@@ -219,4 +225,5 @@ def test_populates_proposer_organisation_from_metadata():
         lastname="Quan",
         fed_id="junjiequan",
         organisation="European Spallation Source ERIC (ESS)",
+        email="junjie.quan@ess.eu",
     )

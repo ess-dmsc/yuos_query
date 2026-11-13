@@ -1,4 +1,4 @@
-from typing import Dict, List, NamedTuple, Tuple
+from typing import Dict, List, NamedTuple
 
 SampleInfo = NamedTuple(
     "SampleInfo",
@@ -9,15 +9,13 @@ SampleInfo = NamedTuple(
     ),
 )
 
-User = NamedTuple(
-    "User",
-    (
-        ("firstname", str),
-        ("lastname", str),
-        ("fed_id", str),
-        ("organisation", str),
-    ),
-)
+
+class User(NamedTuple):
+    firstname: str
+    lastname: str
+    fed_id: str
+    organisation: str
+    email: str = ""
 
 
 ProposalInfo = NamedTuple(
@@ -25,7 +23,7 @@ ProposalInfo = NamedTuple(
     (
         ("id", str),
         ("title", str),
-        ("proposer", Tuple[str, str, str]),
+        ("proposer", User),
         ("users", List[User]),
         ("db_id", int),
         ("samples", List[SampleInfo]),
