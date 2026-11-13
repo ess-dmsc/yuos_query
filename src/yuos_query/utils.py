@@ -1,6 +1,6 @@
 import json
 
-from yuos_query.data_classes import ProposalInfo, SampleInfo
+from yuos_query.data_classes import ProposalInfo, SampleInfo, User
 
 
 def serialise_proposals_to_json(proposals):
@@ -19,8 +19,8 @@ def deserialise_proposals_from_json(json_proposals):
         proposal = ProposalInfo(
             id=value["id"],
             title=value["title"],
-            proposer=tuple(value["proposer"]),
-            users=[tuple(user) for user in value["users"]],
+            proposer=User(*value["proposer"]) if value["proposer"] else None,
+            users=[User(*user) for user in value["users"]],
             db_id=value["db_id"],
             samples=[
                 SampleInfo(

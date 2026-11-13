@@ -18,10 +18,24 @@ VALID_PROPOSAL_DATA = {
     "471120": ProposalInfo(
         id="471120",
         title="The magnetic field dependence of the director state in the quantum spin hyperkagome compound Yb3Ga5O12",
-        proposer=User("Bob", "Bolmsten", "bobbolmsten", "University A"),
+        proposer=User(
+            "Bob", "Bolmsten", "bobbolmsten", "University A", "bob.bolmsten@example.com"
+        ),
         users=[
-            User("jonathan", "Taylor", "jonathantaylor", "ESS"),
-            User("Johan", "Andersson", "johanandersson", "University B"),
+            User(
+                "jonathan",
+                "Taylor",
+                "jonathantaylor",
+                "ESS",
+                "jonathan.taylor@example.com",
+            ),
+            User(
+                "Johan",
+                "Andersson",
+                "johanandersson",
+                "University B",
+                "johan.andersson@example.com",
+            ),
         ],
         db_id=169,
         samples=[
@@ -40,10 +54,28 @@ VALID_PROPOSAL_DATA = {
     "871067": ProposalInfo(
         id="871067",
         title="The Structure of Cheese Under Pressure",
-        proposer=User("Andrew", "Jackson", "andrewjackson", "Science"),
+        proposer=User(
+            "Andrew",
+            "Jackson",
+            "andrewjackson",
+            "Science",
+            "andrew.jackson@example.com",
+        ),
         users=[
-            User("jonathan", "Taylor", "jonathantaylor", "NSS"),
-            User("Caroline", "Curfs", "carolinecurfs", "SAD"),
+            User(
+                "jonathan",
+                "Taylor",
+                "jonathantaylor",
+                "NSS",
+                "jonathan.taylor@example.com",
+            ),
+            User(
+                "Caroline",
+                "Curfs",
+                "carolinecurfs",
+                "SAD",
+                "caroline.curfs@example.com",
+            ),
         ],
         db_id=242,
         samples=[],
@@ -51,9 +83,21 @@ VALID_PROPOSAL_DATA = {
     "123456": ProposalInfo(
         id="123456",
         title="Without jon as a usr",
-        proposer=User("Andrew", "Jackson", "andrewjackson", "Science"),
+        proposer=User(
+            "Andrew",
+            "Jackson",
+            "andrewjackson",
+            "Science",
+            "andrew.jackson@example.com",
+        ),
         users=[
-            User("Caroline", "Curfs", "carolinecurfs", "SAD"),
+            User(
+                "Caroline",
+                "Curfs",
+                "carolinecurfs",
+                "SAD",
+                "caroline.curfs@example.com",
+            ),
         ],
         db_id=252,
         samples=[],
@@ -148,14 +192,27 @@ class TestYuosCacheClient:
         )
         assert proposal_info.id == "471120"
         assert proposal_info.users == [
-            ("jonathan", "Taylor", "jonathantaylor", "ESS"),
-            ("Johan", "Andersson", "johanandersson", "University B"),
+            (
+                "jonathan",
+                "Taylor",
+                "jonathantaylor",
+                "ESS",
+                "jonathan.taylor@example.com",
+            ),
+            (
+                "Johan",
+                "Andersson",
+                "johanandersson",
+                "University B",
+                "johan.andersson@example.com",
+            ),
         ]
         assert proposal_info.proposer == (
             "Bob",
             "Bolmsten",
             "bobbolmsten",
             "University A",
+            "bob.bolmsten@example.com",
         )
 
     def test_can_get_proposals_by_fed_id(self):

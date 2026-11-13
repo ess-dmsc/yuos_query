@@ -18,7 +18,7 @@ def test_excludes_experiment_where_user_is_only_proposer():
 
 
 def test_proposal_listed_once_when_proposer_is_also_a_user():
-    proposer = User("Petra", "Aulin", "petraaulin", "ESS")
+    proposer = User("Petra", "Aulin", "petraaulin", "ESS", "petra.aulin@example.com")
     proposal = ProposalInfo(
         id="917148",
         title="Proposer is also a user",

@@ -76,6 +76,7 @@ class ProposalRequester:
             last,
             str(self._meta_value(metadata, "pi_orcid")).strip(),
             self._meta_value(metadata, "pi_affiliation"),
+            prop.get("pi_email", "").strip(),
         )
 
     def _extract_users(self, metadata: dict) -> list:
@@ -111,7 +112,8 @@ class ProposalRequester:
             affiliation = str(
                 self._meta_value(metadata, f"visitor_{i}_affiliation")
             ).strip()
-            users.append(User(first, last, fed_id, affiliation))
+            email = str(self._meta_value(metadata, f"visitor_{i}_email")).strip()
+            users.append(User(first, last, fed_id, affiliation, email))
         return users
 
     def _extract_sample_id(self, sample: dict) -> str:
