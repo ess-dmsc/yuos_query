@@ -75,19 +75,8 @@ def extract_relevant_sample_info(data):
 
 def arrange_by_user(proposals_by_id):
     proposals_by_users = {}
-    for proposal_id, proposal in proposals_by_id.items():
-        users = proposal.users[:]
-        if proposal.proposer:
-            users.append(proposal.proposer)
-        # The proposer can also be listed as a user, so skip duplicates
-        fed_ids = set()
-        for user in users:
-            fed_id = user[2]
-            fed_ids.add(fed_id)
-
-        for fed_id in fed_ids:
-            if fed_id not in proposals_by_users:
-                proposals_by_users[fed_id] = []
-            proposals_by_users[fed_id].append(proposal)
+    for proposal in proposals_by_id.values():
+        for user in proposal.users:
+            proposals_by_users.setdefault(user[2], []).append(proposal)
 
     return proposals_by_users

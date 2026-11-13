@@ -11,12 +11,10 @@ def test_can_organise_proposals_by_fed_id():
     assert {p.id for p in result} == {"471120", "871067"}
 
 
-def test_includes_experiment_where_user_is_proposer():
+def test_excludes_experiment_where_user_is_only_proposer():
     proposals_by_users = arrange_by_user(VALID_PROPOSAL_DATA)
-    result = proposals_by_users["bobbolmsten"]
 
-    assert len(result) == 1
-    assert {p.id for p in result} == {"471120"}
+    assert "bobbolmsten" not in proposals_by_users
 
 
 def test_proposal_listed_once_when_proposer_is_also_a_user():
