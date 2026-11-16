@@ -19,7 +19,7 @@ def deserialise_proposals_from_json(json_proposals):
         proposal = ProposalInfo(
             id=value["id"],
             title=value["title"],
-            proposer=User(*value["proposer"]) if value["proposer"] else None,
+            proposer=User(*value["proposer"]),
             users=[User(*user) for user in value["users"]],
             db_id=value["db_id"],
             samples=[
