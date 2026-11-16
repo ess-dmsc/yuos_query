@@ -1,13 +1,10 @@
 from typing import Dict, List, NamedTuple
 
-SampleInfo = NamedTuple(
-    "SampleInfo",
-    (
-        ("id", str),
-        ("name", str),
-        ("characteristics", Dict),
-    ),
-)
+
+class SampleInfo(NamedTuple):
+    id: str
+    name: str
+    characteristics: Dict
 
 
 class User(NamedTuple):
@@ -18,14 +15,10 @@ class User(NamedTuple):
     email: str = ""
 
 
-ProposalInfo = NamedTuple(
-    "ProposalInfo",
-    (
-        ("id", str),
-        ("title", str),
-        ("proposer", User),
-        ("users", List[User]),
-        ("db_id", int),
-        ("samples", List[SampleInfo]),
-    ),
-)
+class ProposalInfo(NamedTuple):
+    id: str
+    title: str
+    proposer: User
+    users: List[User]
+    db_id: int
+    samples: List[SampleInfo]
