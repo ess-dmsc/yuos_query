@@ -22,3 +22,4 @@ class ProposalInfo(NamedTuple):
     users: List[User]
     db_id: int
     samples: List[SampleInfo]
+    local_contacts: List[User] = []

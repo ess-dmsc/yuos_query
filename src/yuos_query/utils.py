@@ -30,6 +30,10 @@ def deserialise_proposals_from_json(json_proposals):
                 )
                 for sample in value["samples"]
             ],
+            # Older cache files have no local contacts
+            local_contacts=[
+                User(*contact) for contact in value.get("local_contacts", [])
+            ],
         )
         proposals[id] = proposal
 

@@ -50,6 +50,9 @@ VALID_PROPOSAL_DATA = {
                 characteristics={},
             ),
         ],
+        local_contacts=[
+            User("Fredrik", "Bolmsten", "", "", "fredrik.bolmsten@example.com")
+        ],
     ),
     "871067": ProposalInfo(
         id="871067",

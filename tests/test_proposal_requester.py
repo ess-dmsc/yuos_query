@@ -227,3 +227,42 @@ def test_populates_proposer_organisation_from_metadata():
         organisation="European Spallation Source ERIC (ESS)",
         email="junjie.quan@ess.eu",
     )
+
+
+def _get_proposal_by_id_with_metadata(metadata):
+    proposal = dict(PROPOSAL_WITH_USERS, metadata=metadata)
+
+    def _get_by_id(url, **kwargs):
+        if "/api/v3/proposals" in url:
+            return _make_mock_response([proposal])
+        raise ValueError(f"Unexpected URL: {url}")
+
+    with mock.patch("requests.get", side_effect=_get_by_id):
+        system = ProposalRequester("https://scicat.example.com", ":: token ::", {})
+        return system.get_proposal_by_id("259600")
+
+
+def test_extracts_local_contact_from_metadata():
+    metadata = {
+        "local_contact_firstname": _meta("Fredrik"),
+        "local_contact_lastname": _meta("Bolmsten"),
+        "local_contact_email": _meta("fredrik.bolmsten@ess.eu"),
+    }
+
+    proposal = _get_proposal_by_id_with_metadata(metadata)
+
+    assert proposal.local_contacts == [
+        User(
+            firstname="Fredrik",
+            lastname="Bolmsten",
+            fed_id="",
+            organisation="",
+            email="fredrik.bolmsten@ess.eu",
+        )
+    ]
+
+
+def test_no_local_contact_in_metadata_gives_empty_list():
+    proposal = _get_proposal_by_id_with_metadata(PROPOSAL_WITH_USERS["metadata"])
+
+    assert proposal.local_contacts == []

@@ -79,6 +79,15 @@ class ProposalRequester:
             prop.get("pi_email", "").strip(),
         )
 
+    def _extract_local_contacts(self, metadata: dict) -> list:
+        first = str(self._meta_value(metadata, "local_contact_firstname")).strip()
+        last = str(self._meta_value(metadata, "local_contact_lastname")).strip()
+        email = str(self._meta_value(metadata, "local_contact_email")).strip()
+        if not (first or last or email):
+            return []
+        # SciCat has no fed_id or affiliation for the local contact
+        return [User(first, last, "", "", email)]
+
     def _extract_users(self, metadata: dict) -> list:
         """
         Decode visitors from the proposal metadata.
@@ -165,6 +174,7 @@ class ProposalRequester:
                 users=self._extract_users(metadata),
                 db_id=0,
                 samples=self._extract_samples(prop),
+                local_contacts=self._extract_local_contacts(metadata),
             )
 
         return result
@@ -202,4 +212,5 @@ class ProposalRequester:
             users=self._extract_users(metadata),
             db_id=0,
             samples=samples,
+            local_contacts=self._extract_local_contacts(metadata),
         )
