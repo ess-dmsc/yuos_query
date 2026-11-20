@@ -80,13 +80,19 @@ class ProposalRequester:
         )
 
     def _extract_local_contacts(self, metadata: dict) -> list:
-        first = str(self._meta_value(metadata, "local_contact_firstname")).strip()
-        last = str(self._meta_value(metadata, "local_contact_lastname")).strip()
-        email = str(self._meta_value(metadata, "local_contact_email")).strip()
+        def value(key):
+            # The connector sends null when no local contact is assigned
+            return str(self._meta_value(metadata, key) or "").strip()
+
+        first = value("local_contact_firstname")
+        last = value("local_contact_lastname")
+        email = value("local_contact_email")
         if not (first or last or email):
             return []
-        # SciCat has no fed_id or affiliation for the local contact
-        return [User(first, last, "", "", email)]
+        # ORCID and affiliation are only present in newer SciCat metadata
+        fed_id = value("local_contact_orcid")
+        affiliation = value("local_contact_affiliation")
+        return [User(first, last, fed_id, affiliation, email)]
 
     def _extract_users(self, metadata: dict) -> list:
         """

@@ -262,6 +262,45 @@ def test_extracts_local_contact_from_metadata():
     ]
 
 
+def test_extracts_local_contact_orcid_and_affiliation_when_present():
+    metadata = {
+        "local_contact_firstname": _meta("Fredrik"),
+        "local_contact_lastname": _meta("Bolmsten"),
+        "local_contact_email": _meta("fredrik.bolmsten@ess.eu"),
+        "local_contact_orcid": _meta("0000-0002-1825-0097"),
+        "local_contact_affiliation": _meta("European Spallation Source ERIC (ESS)"),
+    }
+
+    proposal = _get_proposal_by_id_with_metadata(metadata)
+
+    assert proposal.local_contacts == [
+        User(
+            firstname="Fredrik",
+            lastname="Bolmsten",
+            fed_id="0000-0002-1825-0097",
+            organisation="European Spallation Source ERIC (ESS)",
+            email="fredrik.bolmsten@ess.eu",
+        )
+    ]
+
+
+def test_null_local_contact_metadata_gives_empty_list():
+    metadata = {
+        key: _meta(None)
+        for key in (
+            "local_contact_firstname",
+            "local_contact_lastname",
+            "local_contact_email",
+            "local_contact_orcid",
+            "local_contact_affiliation",
+        )
+    }
+
+    proposal = _get_proposal_by_id_with_metadata(metadata)
+
+    assert proposal.local_contacts == []
+
+
 def test_no_local_contact_in_metadata_gives_empty_list():
     proposal = _get_proposal_by_id_with_metadata(PROPOSAL_WITH_USERS["metadata"])
 
