@@ -13,7 +13,8 @@ def extract_proposer(proposal):
         last = user.get("lastname", "").strip()
         org = user.get("institution", "").strip()
         email = user.get("email", "").strip()
-        return User(first, last, _generate_fed_id(first, last), org, email)
+        fed_id = _generate_fed_id(first, last)
+        return User(first, last, fed_id, org, email)
 
     if "proposer" in proposal:
         proposer = _extract_details(proposal["proposer"])
@@ -33,7 +34,8 @@ def extract_users(proposal):
         last = user.get("lastname", "").strip()
         org = user.get("institution", "").strip()
         email = user.get("email", "").strip()
-        return User(first, last, _generate_fed_id(first, last), org, email)
+        fed_id = _generate_fed_id(first, last)
+        return User(first, last, fed_id, org, email)
 
     if "users" in proposal:
         return [_extract_name(user) for user in proposal["users"]]
