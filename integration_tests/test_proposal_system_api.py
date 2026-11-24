@@ -2,7 +2,6 @@ import os
 
 import pytest
 
-from yuos_query.data_classes import User
 from yuos_query.exceptions import (
     ConnectionException,
     ServerException,
@@ -89,14 +88,23 @@ class TestProposalSystemAPI:
 
         assert result.id == KNOWN_PROPOSAL_ID
         assert result.title == "Energy Storage (Powder Diffraction) - 352814-1"
-        assert result.proposer == User("Jekabs", "Karklins", "jekabskarklins", "")
-        # The proposal carries no affiliation for the PI or the visitors, so
-        # the organisation is empty for everyone. The PI is also visitor 1.
-        assert result.users == [
-            User("Jekabs", "Karklins", "jekabskarklins", ""),
-            User("Massimiliano", "Novelli", "massimilianonovelli", ""),
-            User("Yoganandan Apple", "Pandiyan", "yoganandan applepandiyan", ""),
+        # Only check stable identity fields; affiliation, email and ORCID can
+        # change in the live data, so for those only check they are filled in.
+        proposer = result.proposer
+        assert (proposer.firstname, proposer.lastname, proposer.fed_id) == (
+            "Jekabs",
+            "Karklins",
+            "jekabskarklins",
+        )
+        assert proposer.organisation
+        assert proposer.email
+        # The PI is also visitor 1.
+        assert [(u.firstname, u.lastname) for u in result.users] == [
+            ("Jekabs", "Karklins"),
+            ("Massimiliano", "Novelli"),
+            ("Yoganandan Apple", "Pandiyan"),
         ]
+        assert all(u.fed_id and u.email for u in result.users)
 
     def test_querying_for_experiments_returns_expected_data(self):
         api = ProposalRequester(URL, YUOS_TOKEN, {})

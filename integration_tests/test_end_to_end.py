@@ -36,7 +36,12 @@ def test_get_proposals_and_sample_for_specific_id_on_ymir_instrument():
         result = client.proposal_by_id(KNOWN_PROPOSAL_ID)
 
         assert result.id == KNOWN_PROPOSAL_ID
-        assert result.proposer == ("Jekabs", "Karklins", "jekabskarklins", "")
+        proposer = result.proposer
+        assert (proposer.firstname, proposer.lastname, proposer.fed_id) == (
+            "Jekabs",
+            "Karklins",
+            "jekabskarklins",
+        )
         assert [s.id for s in result.samples] == [
             "262e2b02-be1a-4dd8-8152-8ba9f1a37188",
             "beed135e-c839-4e04-a0c5-b944517f5490",
